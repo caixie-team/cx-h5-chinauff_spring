@@ -1,118 +1,103 @@
 <template>
-  <div>
-    <div class="c-cover">
-      <van-button>我的福包</van-button>
-      <!--<van-address-edit-->
-      <!--:area-list="areaList"-->
-      <!--:search-result="searchResult"-->
-      <!--show-postal-->
-      <!--show-delete-->
-      <!--show-set-default-->
-      <!--show-search-result-->
-      <!--@save="onSave"-->
-      <!--@delete="onDelete"-->
-      <!--@change-detail="onChangeDetail"-->
-      <!--/>-->
+  <c-page>
+    <div
+      slot="content">
+      <div class="notices">
+        <div class="content">
+          <h1>
+            活动即将开始
+            <br>
+            敬请关注
+          </h1>
+          <p>
+            活动时间: 2019年1月5日——2月6日
+          </p>
+        </div>
+        <div class="footer">
+          <p>
+            关注公众号，活动消息早知道
+          </p>
+          <a href="">
+            <span>关注老娘舅公众号</span>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
+  </c-page>
 </template>
 <script>
-  /* eslint-disable no-undef */
-
-  import Vue from 'vue'
-
-  import {mapState} from 'vuex'
-  import apiConfig from '~/api.config'
   import CPage from '../components/c-page.vue'
-
-  const API_PREFIX = apiConfig.baseUrl
   import {isBrowser} from '~/environment'
-  import EventBus from '../utils/event-bus.js'
-  // import { Toast, Button } from 'vant'
-  // Vue.use(Button)
-
   export default {
     name: 'Index',
+    head() {
+      return {
+        title: '老娘舅新春集福瓜分18吨福米'
+      }
+    },
     components: {
-      CPage
-      // Toast,
-      // VanButton: Button
+      CPage,
     },
     data () {
       return {
-        // areaList,
-        searchResult: []
-      }
-    },
-    // head() {
-    //   return {
-    //     title: '老娘舅新春集福享好礼'
-    //   }
-    // },
-    // async fetch ({ store, params }) {
-    // console.log('lalala.......')
-    // console.log(params)
-    // let { data } = await axios.get('http://my-api/stars')
-    // store.commit('setStars', data)
-    // },
-    fetch ({store, route}) {
-      const query = route.query
-      console.log(query)
-      if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
-        return store.dispatch('loadWechatUserInfo', query.code)
-        // console.log('a')
-      }
-      // return store.dispatch('loadGithubRepositories')
-    },
-    async asyncData ({context, route}) {
-      const query = route.query
-      if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
-        console.log('a')
-      }
-    },
-    computed: {
-      ...mapState({
-        jssdkConfig: state => state.option.jssdkConfig,
-        oauth: state => state.option.oauth,
-        userInfo: state => state.user.info.data
-      })
-    },
-    created () {
-      // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx40f58df735cd2868&redirect_uri=http%3A%2F%2Fwx.caixie.top%2Fimplicit-oauth&response_type=code&scope=snsapi_base&state=userAuth#wechat_redirect
-    },
-    mounted () {
-      if (isBrowser) {
-        // EventBus.$emit('nav-close');
-
-        if (this.userInfo.openid !== '') {
-          // console.log('lll')
-        } else {
-          // console.log(this.oauth.implicitOAuth)
-          // window.location.href = this.oauth.implicitOAuth
-          // window.location.href = `${config.server}/activity/weChat/openId?callback=${config.host}`
-        }
-      }
-      // console.log(this.$route.query)
-      // window.location.href = this.oauth.oauthUrl
-    },
-    methods: {
-      onSave () {
-        this.$toast('save')
-      },
-      onDelete () {
-        this.$toast('delete')
-      },
-      onChangeDetail (val) {
-        if (val) {
-          this.searchResult = [{
-            name: '黄龙万科中心',
-            address: '杭州市西湖区'
-          }]
-        } else {
-          this.searchResult = []
-        }
       }
     }
-
   }
 </script>
+
+<!--<style lang="stylus" rel="stylesheet/stylus">-->
+<!--.c-page-->
+<!--width: 640px;-->
+<!--position: absolute-->
+<!--z-index: 10-->
+<!--top: 0-->
+<!--left: 0-->
+<!--/*width: 100%*/-->
+<!--/*height: 100%*/-->
+<!--background-size: 100% 100%;-->
+<!--background: url("/static/image/page-bg.jpg") no-repeat left top;-->
+
+<!--</style>-->
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .notices
+    color: #000
+    display: flex
+    align-items: center
+    flex-direction: column
+    min-height: 100vh
+    h1
+      font-size: 48px
+      font-weight: bold
+      line-height: 100px
+      text-shadow: 0 1px 30px rgba(0,0,0,0.30);
+      opacity: .8
+    p
+      font-size: $fontsize-large-xxx
+      font-weight: bold
+    .content
+      flex: 1
+      line-height: 50px
+      padding-top: 40%
+      text-align: center
+    .footer
+      display: flex
+      height: 260px
+      flex-direction: column
+      justify-content: center;
+      align-items: center
+      line-height: 80px;
+      color: #e6daa2;
+      a
+        width: 266px
+        height: 64px
+        background: url('~assets/images/bg/btn_default_bg.png') no-repeat
+        background-size: 266px 64px
+        display: flex
+        align-items: center
+        justify-content: center
+        span
+          color: #000
+          font-weight: bold
+          font-size: $fontsize-large-xxx
+          opacity: .8
+</style>

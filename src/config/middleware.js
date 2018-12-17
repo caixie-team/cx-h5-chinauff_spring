@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
 const path = require('path');
 const isDev = think.env === 'development';
-const config = require(path.join(think.ROOT_PATH, '/nuxt.config.js'))
+const config = require(path.join(think.ROOT_PATH, 'client/nuxt.config.js'))
 
-const nuxt = require('think-nuxt')
+// const nuxt = require('think-nuxt')
+const nuxt = require('./nuxt')
 
 module.exports = [
   {
@@ -42,7 +44,7 @@ module.exports = [
     handle: nuxt,
     options: {
       config: config,
-      unless: [/^\/api?/],
+      unless: [/^\/api?/, /^\/landing?/, /^\/callback?/],
       isDev: isDev
     }
   },
