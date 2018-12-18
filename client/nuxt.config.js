@@ -94,9 +94,9 @@ module.exports = {
     // },
     // analyze: true
     // 设置 CDN 地址，将 nuxt 内容传至 cdn 加速
-    // publicPath: 'http://spring.chinauff.com/spring/_nuxt/',
+    publicPath: 'http://spring.chinauff.com/spring/_nuxt/',
     // publicPath: apiConfig.cdnUrl + '/_nuxt/',
-    publicPath: '/spring/_nuxt/',
+    // publicPath: '/spring/_nuxt/',
     postcss: {
       // Add plugin names as key and arguments as value
       // Install them before as dependencies with npm or yarn
