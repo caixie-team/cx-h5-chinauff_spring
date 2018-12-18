@@ -119,15 +119,16 @@
 <!--</style>-->
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .notices
-    color: #000
+    color: #fff
     display: flex
     align-items: center
     flex-direction: column
     min-height: 100vh
     h1
+      padding-top: 20px
       font-size: 48px
       font-weight: bold
-      line-height: 100px
+      line-height: 90px
     p
       font-size: $fontsize-large-xxx
       font-weight: bold
@@ -143,7 +144,7 @@
       justify-content: center
       align-items: center
       line-height: 80px
-      color: #e6daa2
+      color: #fff
       img
         width: 160px
         height: 160px

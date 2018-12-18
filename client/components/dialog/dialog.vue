@@ -232,6 +232,9 @@
     line-height: 1
     color: $dialog-icon-color
     font-size: $fontsize-large-xxxx
+    img
+      width: 133px
+      height: 113px
     i
       display: inline-block
       width: 30px
