@@ -1,94 +1,100 @@
 <template>
-  <!--<c-page-->
-  <!--type="button-view"-->
-  <!--title="欢迎">-->
-  <div>
-    <a :href="oauth.oauthUrl">OAuth 用户信息授权</a>
-    <a :href="oauth.implicitOAuth">OAuth 静默授权</a>
-    <a :href="oauth.oauthCache">OAuth 静默授权</a>
-    <button
-      class="bg-grey-lighter flex-1 border-b-2 md:flex-none border-grey ml-2 hover:bg-grey-lightest text-grey-darkest font-bold py-4 px-6 rounded">
-      Question
-    </button>
-    <van-button type="default">默认按钮</van-button>
-    <van-button type="primary">主要按钮</van-button>
-    <van-button type="warning">警告按钮</van-button>
-    <van-button type="danger">危险按钮</van-button>
-    <!--<div>{{ jssdkConfig }}</div>-->
-  </div>
-  <!--</c-page>-->
+  <c-page>
+    <div
+      slot="content">
+      <div class="cover">
+        <div class="content">
+          <h1>
+            活动即将开始
+            <br>
+            敬请关注
+          </h1>
+          <p>
+            活动时间: 2019年1月5日——2月6日
+          </p>
+        </div>
+        <div class="footer">
+          <a href="">
+            <span>关注老娘舅公众号</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </c-page>
 </template>
 <script>
-  import Vue from 'vue'
-
-  import { mapState } from 'vuex'
-  import apiConfig from '~/api.config'
   import CPage from '../components/c-page.vue'
-
-  const API_PREFIX = apiConfig.baseUrl
-  import { isBrowser } from '~/environment'
-  import EventBus from '../utils/event-bus.js'
-  // import { Toast, Button } from 'vant'
-  // Vue.use(Button)
-
+  import {isBrowser} from '~/environment'
   export default {
     name: 'Index',
+    head() {
+      return {
+        title: '老娘舅新春集福瓜分18吨福米'
+      }
+    },
     components: {
       CPage,
-      // Toast,
-      // VanButton: Button
     },
-    // head() {
-    //   return {
-    //     title: '老娘舅新春集福享好礼'
-    //   }
-    // },
-    // async fetch ({ store, params }) {
-    // console.log('lalala.......')
-    // console.log(params)
-    // let { data } = await axios.get('http://my-api/stars')
-    // store.commit('setStars', data)
-    // },
-    fetch ({ store, route }) {
-      const query = route.query
-      console.log(query)
-      if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
-        return store.dispatch('loadWechatUserInfo', query.code)
-        // console.log('a')
+    data () {
+      return {
       }
-      // return store.dispatch('loadGithubRepositories')
-    },
-    async asyncData ({ context, route }) {
-      const query = route.query
-      if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
-        console.log('a')
-      }
-    },
-    computed: {
-      ...mapState({
-        jssdkConfig: state => state.option.jssdkConfig,
-        oauth: state => state.option.oauth,
-        userInfo: state => state.user.info.data
-      })
-    },
-    created () {
-      // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx40f58df735cd2868&redirect_uri=http%3A%2F%2Fwx.caixie.top%2Fimplicit-oauth&response_type=code&scope=snsapi_base&state=userAuth#wechat_redirect
-    },
-    mounted () {
-      if (isBrowser) {
-        // EventBus.$emit('nav-close');
-
-        if (this.userInfo.openid !== '') {
-          console.log('lll')
-        } else {
-          console.log(this.oauth.implicitOAuth)
-          // window.location.href = this.oauth.implicitOAuth
-          // window.location.href = `${config.server}/activity/weChat/openId?callback=${config.host}`
-        }
-      }
-      // console.log(this.$route.query)
-      // window.location.href = this.oauth.oauthUrl
     }
-
   }
 </script>
+
+<!--<style lang="stylus" rel="stylesheet/stylus">-->
+<!--.c-page-->
+<!--width: 640px;-->
+<!--position: absolute-->
+<!--z-index: 10-->
+<!--top: 0-->
+<!--left: 0-->
+<!--/*width: 100%*/-->
+<!--/*height: 100%*/-->
+<!--background-size: 100% 100%;-->
+<!--background: url("/static/image/page-bg.jpg") no-repeat left top;-->
+
+<!--</style>-->
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .cover
+    color: #000
+    display: flex
+    align-items: center
+    flex-direction: column
+    min-height: 100vh
+    h1
+      font-size: 48px
+      font-weight: bold
+      line-height: 100px
+      text-shadow: 0 1px 30px rgba(0,0,0,0.30);
+      opacity: .8
+    p
+      font-size: $fontsize-large-xxx
+      font-weight: bold
+    .content
+      flex: 1
+      line-height: 50px
+      padding-top: 40%
+      text-align: center
+    .footer
+      display: flex
+      height: 260px
+      flex-direction: column
+      justify-content: center;
+      align-items: center
+      line-height: 80px;
+      color: #e6daa2;
+      a
+        width: 266px
+        height: 64px
+        background: url('~assets/images/bg/btn_default_bg.png') no-repeat
+        background-size: 266px 64px
+        display: flex
+        align-items: center
+        justify-content: center
+        span
+          color: #000
+          font-weight: bold
+          font-size: $fontsize-large-xxx
+          opacity: .8
+</style>

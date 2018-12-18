@@ -14,12 +14,11 @@
           </p>
         </div>
         <div class="footer">
+          <img
+            src="~assets/images/chinauff_qrcode.jpeg">
           <p>
-            关注公众号，活动消息早知道
+            长按关注老娘舅公众号
           </p>
-          <a href="">
-            <span>关注老娘舅公众号</span>
-          </a>
         </div>
       </div>
     </div>
@@ -28,9 +27,10 @@
 <script>
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
+
   export default {
     name: 'Index',
-    head() {
+    head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
       }
@@ -39,8 +39,7 @@
       CPage,
     },
     data () {
-      return {
-      }
+      return {}
     }
   }
 </script>
@@ -69,7 +68,7 @@
       font-size: 48px
       font-weight: bold
       line-height: 100px
-      text-shadow: 0 1px 30px rgba(0,0,0,0.30);
+      text-shadow: 0 1px 30px rgba(0, 0, 0, 0.30)
       opacity: .8
     p
       font-size: $fontsize-large-xxx
@@ -81,23 +80,13 @@
       text-align: center
     .footer
       display: flex
-      height: 260px
+      height: 300px
       flex-direction: column
-      justify-content: center;
+      justify-content: center
       align-items: center
-      line-height: 80px;
-      color: #e6daa2;
-      a
-        width: 266px
-        height: 64px
-        background: url('~assets/images/bg/btn_default_bg.png') no-repeat
-        background-size: 266px 64px
-        display: flex
-        align-items: center
-        justify-content: center
-        span
-          color: #000
-          font-weight: bold
-          font-size: $fontsize-large-xxx
-          opacity: .8
+      line-height: 80px
+      color: #e6daa2
+      img
+        width: 160px
+        height: 160px
 </style>
