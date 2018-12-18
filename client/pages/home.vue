@@ -45,8 +45,32 @@
         this.dialog = this.$createDialog({
           type: 'alert',
           showClose: true,
-          title: '我是标题',
-          content: '我是内容',
+          content: `
+<img src="/assets/images/text/jifuyoli.png">
+集福活动时间：
+<p>
+2019年1月5日0:00:00 - 2019年2月4日23:59:59
+<p>
+进入活动主页，扫一扫任意米饭，即可参与新春集“福”，集齐“礻”、“一”、“口”、“田”等四个结构字，合成“福”字，即为集“福”成功，每个账户可集满的“福”字数量不限；
+</p>
+<p>
+活动期内参与集福，每参与一次还可获得老娘舅新春优惠礼券一份，更有机会抢到50元新春会员充值卡；
+</p>
+<p>
+活动期内，每个活动账户每天仅可参与3次集福；
+</p>
+<p>
+集到的结构字和福字，可在“我的福包”中查看；
+</p>
+<p>
+获得的优惠礼券可在“老娘舅会员中心-券包”中查看；
+</p>
+
+<p>
+获得的会员充值卡可在“活动主页-我的福包-查看卡包”中查看。
+
+</p>
+`,
           icon: 'cubeic-alert'
         })
         this.dialog.show()
@@ -56,6 +80,11 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .c-dialog-content-def
+    img
+      width: 332px
+      height: 108px
+
   .home
     color: #000
     display: flex

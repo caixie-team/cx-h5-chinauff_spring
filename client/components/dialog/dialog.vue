@@ -43,6 +43,7 @@
               </div>
             </slot>
           </div>
+          <!--
           <div
             :class="{'border-right-1px': isConfirm || isPrompt}"
             class="c-dialog-btns">
@@ -60,6 +61,7 @@
                 @click="confirm">{{ _confirmBtn.text }}</a>
             </slot>
           </div>
+          -->
         </div>
       </div>
     </c-popup>
@@ -219,8 +221,12 @@
   .c-dialog-main
     width: 418px
     padding: 0
+    display: flex
+    flex-direction: column
     text-align: center
     overflow: hidden
+    align-items: center
+    justify-content: center
     // background-color: $dialog-bgc
   .c-dialog-confirm, .c-dialog-alert
     position: relative
@@ -229,19 +235,19 @@
     border-radius: 20px
     background: url('~assets/images/bg/page_bg_light.jpg') no-repeat
     background-size: 640px 1136px
-
+    width: 400px
+    heigth: 500px
   .c-dialog-icon
     display: flex
     align-items: center
     justify-content: center
-    z-index: 1
-    position: absolute
-    width: 133px
-    height: 113px
+    z-index: 100
+    position: relative
+    top: 100px
+    botton: 100px
+    width: 229px
+    height: 194px
     color: $dialog-close-color
-    font-size: $fontsize-large-x
-    left: 34%
-    top: -30%
     img
       width: 229px
       height: 194px
@@ -270,16 +276,22 @@
     margin: 16px 0
     text-align: left
     color: $dialog-color
-    font-size: $fontsize-medium
-    line-height: 22px
+    font-size: $fontsize-large-xx
+    line-height: 30px
+    display: flex
+    flex-direction:column
 
   .c-dialog-content-def
     padding: 0 16px
+    img
+      width: 332px
+      height: 108px
     > p
       display: table
       margin: auto
       + .c-input
         margin-top: 12px
+
 
   .c-dialog-confirm, .c-dialog-prompt
     .c-dialog-btns
