@@ -54,7 +54,7 @@
     height: 100%
     background: #efeff4
     background: url('~assets/images/bg/page_bg.min.jpg')
-    background-size: 100% 100%
+    background-size: 640px 1136px;
     overflow: hidden
     > .wrapper
       // height: calc(100% - 44px)
