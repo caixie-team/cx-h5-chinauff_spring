@@ -66,8 +66,6 @@
         margin: 10px 0
         line-height: 20px
         font-size: 14px
-      .page-content
-        margin: 10px
 </style>
 
 

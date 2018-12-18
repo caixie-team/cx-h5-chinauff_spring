@@ -1,23 +1,24 @@
 <template>
   <c-page>
     <div
-      slot="content">
-      <div class="cover">
-        <div class="content">
-          <h1>
-            活动即将开始
-            <br>
-            敬请关注
-          </h1>
-          <p>
-            活动时间: 2019年1月5日——2月6日
-          </p>
-        </div>
-        <div class="footer">
-          <a href="">
-            <span>关注老娘舅公众号</span>
-          </a>
-        </div>
+      slot="content"
+      class="home">
+      <div class="topButtons">
+        <a
+          class="btn hdjsBtn"
+          @click="showAlert"/>
+        <nuxt-link
+          class="btn wdfbBtn"
+          to="/about"/>
+      </div>
+      <img
+        src="~assets/images/home/bt.png"
+        class="imgBt">
+      <div class="footer">
+        <a href="">
+          <img
+            src="~assets/images/home/sys.png">
+        </a>
       </div>
     </div>
   </c-page>
@@ -25,9 +26,10 @@
 <script>
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
+
   export default {
     name: 'Index',
-    head() {
+    head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
       }
@@ -36,65 +38,89 @@
       CPage,
     },
     data () {
-      return {
+      return {}
+    },
+    methods: {
+      showAlert () {
+        this.dialog = this.$createDialog({
+          type: 'alert',
+          title: '我是标题',
+          content: '我是内容',
+          icon: 'cubeic-alert'
+        })
+        this.dialog.show()
       }
     }
   }
 </script>
 
-<!--<style lang="stylus" rel="stylesheet/stylus">-->
-<!--.c-page-->
-<!--width: 640px;-->
-<!--position: absolute-->
-<!--z-index: 10-->
-<!--top: 0-->
-<!--left: 0-->
-<!--/*width: 100%*/-->
-<!--/*height: 100%*/-->
-<!--background-size: 100% 100%;-->
-<!--background: url("/static/image/page-bg.jpg") no-repeat left top;-->
-
-<!--</style>-->
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .cover
+  .home
     color: #000
     display: flex
     align-items: center
     flex-direction: column
     min-height: 100vh
+    position: absolute
+    z-index: 10
+    left: 0
+    width: 100%
+    height: 100%
+    background: url('~assets/images/home/hn.png')
+    background-size: 640px 1136px
+    overflow: hidden
+    .imgBt
+      padding: 145px 112px 0 112px
+      width: 444px
+      height: 176px
+    .imgSys
+      width: 543px
+      height: 528px
+    .topButtons
+      position: absolute
+      right: 30px
+      top: 0
+      height: 150px
+      width: 111px
+      z-index: 100
+      display: flex
+      justify-content: space-between
+      .btn
+        width: 51px
+        heigth: 144px
+        &.hdjsBtn
+          background: url('~assets/images/buttons/hdjsm.png') no-repeat
+          background-size: 51px 144px
+        &.wdfbBtn
+          background: url('~assets/images/buttons/wdfbm.png') no-repeat
+          background-size: 51px 144px
     h1
       font-size: 48px
       font-weight: bold
       line-height: 100px
-      text-shadow: 0 1px 30px rgba(0,0,0,0.30);
+      text-shadow: 0 1px 30px rgba(0, 0, 0, 0.30);
       opacity: .8
     p
       font-size: $fontsize-large-xxx
       font-weight: bold
-    .content
-      flex: 1
-      line-height: 50px
-      padding-top: 40%
-      text-align: center
     .footer
+      flex: 1
       display: flex
-      height: 260px
+      height: 300px
       flex-direction: column
-      justify-content: center;
-      align-items: center
-      line-height: 80px;
+      justify-content: flex-end;
+      align-items: flex-end;
       color: #e6daa2;
       a
         width: 266px
-        height: 64px
-        background: url('~assets/images/bg/btn_default_bg.png') no-repeat
-        background-size: 266px 64px
+        height: 200px
+        /*height: 64px*/
+        /*background: url('~assets/images/bg/btn_default_bg.png') no-repeat*/
+        /*background-size: 266px 64px*/
         display: flex
         align-items: center
         justify-content: center
-        span
-          color: #000
-          font-weight: bold
-          font-size: $fontsize-large-xxx
-          opacity: .8
+        img
+          width: 266px
+          height: 64px
 </style>

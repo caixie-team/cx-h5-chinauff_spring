@@ -39,6 +39,7 @@
     "think-view-nunjucks": "^1.0.1",
     "thinkjs": "^3.0.0",
     "vant": "^1.4.8",
+    "vue-create-api": "^0.2.0",
     "wechat-jssdk": "^4.0.0-alpha.2"
   },
   "devDependencies": {
