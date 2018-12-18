@@ -128,7 +128,6 @@
       font-size: 48px
       font-weight: bold
       line-height: 100px
-      text-shadow: 0 1px 30px rgba(0, 0, 0, 0.30)
     p
       font-size: $fontsize-large-xxx
       font-weight: bold
