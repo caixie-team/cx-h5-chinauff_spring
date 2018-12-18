@@ -88,15 +88,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    devMiddleware: {
-      noInfo: true,
-      quiet: true
-    },
-    hotMiddleware: {
-      log: console.log,
-      path: "/__webpack_hmr",
-      heartbeat: 10 * 1000
-    },
+    // devMiddleware: {
+    //   noInfo: true,
+    //   quiet: true
+    // },
     // analyze: true
     // 设置 CDN 地址，将 nuxt 内容传至 cdn 加速
     publicPath: 'http://spring.chinauff.com/spring/_nuxt/',
