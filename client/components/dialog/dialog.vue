@@ -16,7 +16,9 @@
         <div :class="containerClass">
           <p
             v-if="icon"
-            class="c-dialog-icon"><i :class="icon"/></p>
+            class="c-dialog-icon">
+            <i :class="icon"/>
+          </p>
           <h2
             v-if="title || $slots.title"
             class="c-dialog-title">
