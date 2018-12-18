@@ -104,19 +104,6 @@
   }
 </script>
 
-<!--<style lang="stylus" rel="stylesheet/stylus">-->
-<!--.c-page-->
-<!--width: 640px;-->
-<!--position: absolute-->
-<!--z-index: 10-->
-<!--top: 0-->
-<!--left: 0-->
-<!--/*width: 100%*/-->
-<!--/*height: 100%*/-->
-<!--background-size: 100% 100%;-->
-<!--background: url("/static/image/page-bg.jpg") no-repeat left top;-->
-
-<!--</style>-->
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .notices
     color: #fff
