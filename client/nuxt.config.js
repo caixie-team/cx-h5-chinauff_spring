@@ -99,12 +99,6 @@ module.exports = {
       // Add plugin names as key and arguments as value
       // Install them before as dependencies with npm or yarn
       plugins: {
-        // 'postcss-import': {},
-        // 'postcss-url': {},
-        // 'postcss-write-svg': {
-        //   utf8: false
-        // },
-        // 'postcss-cssnext': {},
         'postcss-px-to-viewport-rxdey': {
           viewportWidth: 640,
           viewportHeight: 1136,
