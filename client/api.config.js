@@ -7,7 +7,7 @@
 const { isProdMode } = require('./environment')
 
 module.exports = {
-  cdnUrl: isProdMode ? 'https://cdn.surmon.me' : '',
+  cdnUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://spring.chinauff.com/spring',
   proxyUrl: isProdMode ? 'https://surmon.me/proxy/' : '/proxy/',
   baseUrl: isProdMode ? 'http://spring.chinauff.com/api' : 'http://backoffice.caixie.top/api',
   thirdUrl: isProdMode ? 'https://weixin.chinauff.com/lnj-weixin/console' : 'http://demo.micvs.com/lnj-weixin/console',
