@@ -16,7 +16,7 @@
     "type": "file",
     "file": {
       "timeout": 86400000,
-      "cachePath": "/Users/basil/development/spring.h5/runtime/cache",
+      "cachePath": "/usr/local/wwwroot/spring.h5/runtime/cache",
       "pathDepth": 1,
       "gcInterval": 86400000
     }
@@ -42,13 +42,13 @@
       "cookie": {
         "name": "thinkjs"
       },
-      "sessionPath": "/Users/basil/development/spring.h5/runtime/session"
+      "sessionPath": "/usr/local/wwwroot/spring.h5/runtime/session"
     }
   },
   "view": {
     "type": "nunjucks",
     "nunjucks": {
-      "viewPath": "/Users/basil/development/spring.h5/view",
+      "viewPath": "/usr/local/wwwroot/spring.h5/view",
       "sep": "_",
       "extname": ".html"
     }
@@ -60,14 +60,14 @@
       "backups": 10,
       "absolute": true,
       "maxLogSize": 51200,
-      "filename": "/Users/basil/development/spring.h5/logs/app.log"
+      "filename": "/usr/local/wwwroot/spring.h5/logs/app.log"
     },
     "dateFile": {
       "level": "ALL",
       "absolute": true,
       "pattern": "-yyyy-MM-dd",
       "alwaysIncludePattern": true,
-      "filename": "/Users/basil/development/spring.h5/logs/app.log"
+      "filename": "/usr/local/wwwroot/spring.h5/logs/app.log"
     }
   }
 }
