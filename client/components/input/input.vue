@@ -1,0 +1,244 @@
+<template>
+  <div
+    :class="{'c-input_active': isFocus}"
+    class="c-input">
+    <div
+      v-if="$slots.prepend"
+      class="c-input-prepend">
+      <slot name="prepend"/>
+    </div>
+    <input
+      ref="input"
+      v-model="inputValue"
+      v-bind="$props"
+      :type="_type"
+      :disabled="disabled"
+      :readonly="readonly"
+      :autocomplete="autocomplete"
+      :autofocus="autofocus"
+      class="c-input-field"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      @change="changeHander"
+    >
+    <div
+      v-if="$slots.append || _showClear || _showPwdEye"
+      class="c-input-append">
+      <div
+        v-if="_showClear"
+        class="c-input-clear"
+        @click="handleClear">
+        <i class="cubeic-wrong"/>
+      </div>
+      <div
+        v-if="_showPwdEye"
+        class="c-input-eye"
+        @click="handlePwdEye">
+        <i :class="eyeClass"/>
+      </div>
+      <slot name="append"/>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  /* eslint-disable vue/require-default-prop */
+
+  const COMPONENT_NAME = 'c-input'
+  const EVENT_INPUT = 'input'
+  const EVENT_CHANGE = 'change'
+  const EVENT_BLUR = 'blur'
+  const EVENT_FOCUS = 'focus'
+
+  export default {
+    name: COMPONENT_NAME,
+    props: {
+      value: [String, Number],
+      type: {
+        type: String,
+        default: 'text'
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      placeholder: String,
+      readonly: {
+        type: Boolean,
+        default: false
+      },
+      autofocus: {
+        type: Boolean,
+        default: false
+      },
+      autocomplete: {
+        type: [Boolean, String],
+        default: false
+      },
+      name: String,
+      id: String,
+      form: String,
+      minlength: Number,
+      maxlength: Number,
+      resize: String,
+      min: Number,
+      max: Number,
+      step: Number,
+      tabindex: String,
+      clearable: {
+        type: [Boolean, Object],
+        default: false
+      },
+      eye: {
+        type: [Boolean, Object],
+        default: false
+      }
+    },
+    data() {
+      return {
+        inputValue: this.value,
+        isFocus: false,
+        formatedClearable: {
+          visible: false,
+          blurHidden: true
+        },
+        formatedEye: {
+          open: false,
+          reverse: false
+        }
+      }
+    },
+    computed: {
+      _type() {
+        const type = this.type
+        if (type === 'password' && this.eye && this.pwdVisible) {
+          return 'text'
+        }
+        return type
+      },
+      _showClear() {
+        let visible = this.formatedClearable.visible && this.inputValue && !this.readonly && !this.disabled
+        if (this.formatedClearable.blurHidden && !this.isFocus) {
+          visible = false
+        }
+        return visible
+      },
+      _showPwdEye() {
+        return this.type === 'password' && this.eye && !this.disabled
+      },
+      pwdVisible() {
+        const eye = this.formatedEye
+        return eye.reverse ? !eye.open : eye.open
+      },
+      eyeClass() {
+        return this.formatedEye.open ? 'cubeic-eye-visible' : 'cubeic-eye-invisible'
+      }
+    },
+    watch: {
+      value(newValue) {
+        this.inputValue = newValue
+      },
+      inputValue(newValue) {
+        this.$emit(EVENT_INPUT, newValue)
+      },
+      clearable: {
+        handler() {
+          this.formatClearable()
+        },
+        deep: true,
+        immediate: true
+      },
+      eye: {
+        handler() {
+          this.formateEye()
+        },
+        deep: true,
+        immediate: true
+      }
+    },
+    methods: {
+      changeHander(e) {
+        this.$emit(EVENT_CHANGE, e)
+      },
+      formatClearable() {
+        if (typeof this.clearable === 'boolean') {
+          this.formatedClearable.visible = this.clearable
+        } else {
+          Object.assign(this.formatedClearable, this.clearable)
+        }
+      },
+      formateEye() {
+        if (typeof this.eye === 'boolean') {
+          this.formatedEye.open = this.eye
+        } else {
+          Object.assign(this.formatedEye, this.eye)
+        }
+      },
+      handleFocus(e) {
+        this.$emit(EVENT_FOCUS, e)
+        this.isFocus = true
+      },
+      handleBlur(e) {
+        this.$emit(EVENT_BLUR, e)
+        this.isFocus = false
+      },
+      handleClear(e) {
+        this.inputValue = ''
+        this.$refs.input.focus()
+      },
+      handlePwdEye() {
+        this.formatedEye.open = !this.formatedEye.open
+      }
+    }
+  }
+</script>
+<style lang="stylus" rel="stylesheet/stylus">
+  /*@require "../../common/stylus/variable.styl"*/
+  /*@require "../../common/stylus/mixin.styl"*/
+
+  .c-input
+    display: flex
+    align-items: center
+    font-size: $fontsize-medium
+    line-height: 1.429
+    background-color: $input-bgc
+    border-1px($input-border-color)
+  .c-input-field
+    display: block
+    flex: 1
+    width: 100%
+    padding: 10px
+    box-sizing: border-box
+    color: $input-color
+    line-height: inherit
+    background-color: inherit
+    border-radius: 2px
+    outline: none
+    &::-webkit-input-placeholder
+      color: $input-placeholder-color
+      text-overflow: ellipsis
+    + .c-input-append
+      .c-input-clear, .c-input-eye
+        &:first-child
+          margin-left: -5px
+  .c-input_active
+    &::after
+      border-color: $input-focus-border-color
+  .c-input-prepend, .c-input-append
+    display: flex
+    align-items: center
+  .c-input-clear, .c-input-eye
+    width: 1em
+    height: 1em
+    line-height: 1
+    padding: 10px
+    box-sizing: content-box
+    color: $input-clear-icon-color
+    > i
+      display: inline-block
+      transform: scale(1.2)
+  .c-input-eye
+    >
+      .cubeic-eye-invisible, .cubeic-eye-visible
+        transform: scale(1.4)
+</style>

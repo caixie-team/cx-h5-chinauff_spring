@@ -195,6 +195,7 @@ module.exports = {
     {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~/plugins/wechat-jssdk.js', ssr: false},
     {src: '~/plugins/router.js', ssr: false},
+    {src: '~/plugins/ui.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
     // {src: '~/plugins/ahoy-analytics.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},
