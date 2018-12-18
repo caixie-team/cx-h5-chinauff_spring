@@ -223,7 +223,8 @@
     overflow: hidden
 
   .c-dialog-icon
-    margin-top: 20px
+    position: absolute;
+    margin-top: -50px
     margin-bottom: 16px
     line-height: 1
     color: $dialog-icon-color

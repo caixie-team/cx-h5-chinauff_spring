@@ -44,6 +44,7 @@
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'alert',
+          showClose: true,
           title: '我是标题',
           content: '我是内容',
           icon: 'cubeic-alert'

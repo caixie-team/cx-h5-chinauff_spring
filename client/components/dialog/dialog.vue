@@ -12,13 +12,17 @@
         <span
           v-show="showClose"
           class="c-dialog-close"
-          @click="close"><i class="cubeic-close"/></span>
+          @click="close">
+          <img
+            src="~assets/images/icon/close.png">
+        </span>
+        <span
+          v-if="icon"
+          class="c-dialog-icon">
+          <img
+            src="~assets/images/icon/longtou.png">
+        </span>
         <div :class="containerClass">
-          <p
-            v-if="icon"
-            class="c-dialog-icon">
-            <i :class="icon"/>
-          </p>
           <h2
             v-if="title || $slots.title"
             class="c-dialog-title">
@@ -217,32 +221,30 @@
     padding: 0
     text-align: center
     overflow: hidden
-    border-radius: 20px
-    border: 8px solid #000
     // background-color: $dialog-bgc
-    background: url('~assets/images/bg/page_bg_light.jpg') no-repeat
-    background-size: 640px 1136px
   .c-dialog-confirm, .c-dialog-alert
     position: relative
     overflow: hidden
+    border: 8px solid #000
+    border-radius: 20px
+    background: url('~assets/images/bg/page_bg_light.jpg') no-repeat
+    background-size: 640px 1136px
 
   .c-dialog-icon
-    margin-top: 20px
-    margin-bottom: 16px
-    line-height: 1
-    color: $dialog-icon-color
-    font-size: $fontsize-large-xxxx
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 1
+    position: absolute
+    width: 133px
+    height: 113px
+    color: $dialog-close-color
+    font-size: $fontsize-large-x
+    left: 34%
+    top: -30%
     img
-      width: 133px
-      height: 113px
-    i
-      display: inline-block
-      width: 30px
-      height: 30px
-      padding: 10px
-      box-sizing: content-box
-      border-radius: 50%
-      background-color: $dialog-icon-bgc
+      width: 229px
+      height: 194px
     +
     .c-dialog-title
       .c-dialog-title-def
@@ -301,7 +303,9 @@
     height: 32px
     color: $dialog-close-color
     font-size: $fontsize-large-x
-
+    img
+      width: 27px
+      height: 26px
   .c-dialog-btns
     overflow: hidden
     width: 100%
