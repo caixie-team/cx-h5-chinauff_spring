@@ -9,10 +9,10 @@ module.exports = options => {
 
   const nuxt = new Nuxt(options.config)
 
-  // if (options.isDev) {
-  //   console.log('build .....')
-  new Builder(nuxt).build()
-  // }
+  // if (options.isDev && options.startOnly !== false) {
+  if (options.isDev) {
+    new Builder(nuxt).build()
+  }
   let err = null
 
   const middleware = async (ctx, next) => {
