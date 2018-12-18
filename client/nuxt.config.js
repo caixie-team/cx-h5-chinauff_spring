@@ -141,7 +141,7 @@ module.exports = {
         // config.hotMiddleware.path = '/h5'
         // 解决路径找不到资源
         // config.output.publicPath = '_nuxt/'
-        // config.output.publicPath = 'http://weixin.chinauff.com/spring/_nuxt/'
+        config.output.publicPath = 'https://weixin.chinauff.com/spring/_nuxt/'
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
