@@ -98,7 +98,6 @@ sitemap.xml
 # barrages
 data/barrages.json
 /data/barrages.json
-
 # analytics
 static/scripts/analytics.js
 /static/scripts/analytics.js
