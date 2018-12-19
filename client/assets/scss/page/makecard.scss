@@ -1,0 +1,139 @@
+.makecard.page {
+  display: none;
+
+  .savebox {
+    display: block;
+    position: absolute;
+    width: 80%;
+    top: 16%;
+    left: 10%;
+
+    .savecard {
+      //          position: absolute;
+      width: 96%;
+      //          top: 2%;
+      //          left: 2%;
+    }
+  }
+
+  .box2 {
+    display: none;
+  }
+
+  .cardbox {
+    position: absolute;
+    width: 80%;
+    top: 16%;
+    left: 10%;
+
+    .swiper-container {
+      position: absolute;
+      width: 96%;
+      top: 2%;
+      left: 2%;
+      height: 49%;
+      border-radius: 6px;
+
+      .swiper-slide img {
+        width: 100%;
+      }
+
+      .swiper-button-prev, .swiper-button-next {
+        background: none;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .zufu {
+      position: absolute;
+      width: 90%;
+      top: 60%;
+      left: 5%;
+      margin: 0;
+      padding: 0;
+      color: #2e3433;
+      //          text-decoration: underline;
+      background: url(../resources/img/bg/textarea_bg.png) no-repeat left top;
+      background-size: 100% 100%;
+      line-height: 1.6rem;
+      //          height: 19%;
+      font-size: .6rem;
+    }
+
+    .textarea_to {
+      position: absolute;
+      width: 90%;
+      top: 52%;
+      left: 5%;
+      text-align: left;
+
+      .inputname {
+        position: absolute;
+        top: 0;
+        left: 5%;
+        color: #2e3433;
+        font-size: .6rem;
+        left: 0%;
+        height: 25px;
+        line-height: 25px;
+      }
+
+      .inputtext {
+        width: 100%;
+        color: #2e3433;
+        border: none;
+        font-size: .6rem;
+        text-indent: 10%;
+        height: 25px;
+        line-height: 25px;
+        padding: 0;
+      }
+    }
+
+    .qrcode {
+      position: absolute;
+      width: 15%;
+      height: auto;
+      bottom: 6%;
+      right: 7%;
+    }
+  }
+
+  .bg {
+    //      position: absolute;
+    width: 100%;
+    //      top: 16%;
+    //      left: 10%;
+  }
+
+  .title {
+    position: absolute;
+    width: 65%;
+    top: 5%;
+    left: 17.5%;
+  }
+
+  .btn_join {
+    position: absolute;
+    left: 3%;
+    bottom: 5%;
+    width: 44%;
+  }
+
+  .btn_share {
+    position: absolute;
+    width: 44%;
+    bottom: 5%;
+    right: 3%;
+  }
+
+  .btn_create {
+    position: absolute;
+    width: 44%;
+    bottom: 5%;
+    left: 28%;
+  }
+}

@@ -1,0 +1,60 @@
+.prize_fail.popup, .prize_fail2.popup {
+  //  display: none;
+  .box {
+    .wrap {
+
+      .fail_ercode {
+        $img-redpack-width: 40%;
+        position: absolute;
+        width: $img-redpack-width;
+        left: (100% - $img-redpack-width)/2;
+        top: 25%;
+      }
+
+      .codeTip {
+        width: 100%;
+        text-align: center;
+        font-size: .8rem;
+        font-weight: 600;
+        color: #FFFFFF;
+        position: absolute;
+        bottom: 10%;
+      }
+
+      .result {
+        $result-width: 74%;
+        animation-delay: .5s;
+        position: absolute;
+        top: 54%;
+        width: $result-width;
+        left: (100% - $result-width)/2 + 4%;
+        padding: 0;
+        margin: 0;
+        font-size: .8rem;
+        color: #484948;
+        font-weight: normal;
+        color: #FFFFFF;
+
+        tr {
+          margin: auto 10px;
+          //                 white-space: nowrap;
+          :nth-child(1) {
+            width: 40%;
+            text-align: left;
+            vertical-align: top;
+          }
+
+          :nth-child(2) {
+            width: 60%;
+            text-align: left;
+          }
+
+          .red {
+            color: #E13533;
+          }
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.showcard.page {
+  display: none;
+
+  .showname {
+    position: absolute;
+    width: 100%;
+    top: 5%;
+    left: 0%;
+    color: #FFFFFF;
+  }
+
+  .showcard {
+    position: absolute;
+    width: 80%;
+    top: 16%;
+    left: 10%;
+
+  }
+
+  .btn_shuo {
+    position: absolute;
+    left: 28%;
+    bottom: 5%;
+    width: 44%;
+  }
+}

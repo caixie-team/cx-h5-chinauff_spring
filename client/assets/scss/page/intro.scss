@@ -1,0 +1,103 @@
+.intro.page{
+//  background: url(../resources/img/bg/BG.png) no-repeat left top;
+//  background-size: 100% 100%;
+    display: none;
+    .introbg{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+    .title_intro{
+        position: absolute;
+        width: 77%;
+        top: 10%;
+        left: 11.5%;
+    }
+    .title{
+        position: absolute;
+        width: 75%;
+        bottom: 14%;
+        left: 16%;
+    }
+    .man{
+        position: absolute;
+        width: 40%;
+        bottom: 21%;
+        left: 20%;
+        .snowman{
+            width: 100%;
+            position: relative;
+        }
+        .hand{
+            position: absolute;
+            width: 50%;
+            top: 13%;
+            left: -25%;
+            transform-origin:55% 100%;
+            animation:rotatehand 1.8s linear infinite;
+        }
+        @-webkit-keyframes rotatehand{
+            0%{ transform: rotate(0deg)}
+            50%{ transform: rotate(10deg) }
+            100% {
+              transform: rotate(0deg);
+            }
+        }
+    }
+    .ani{
+        position: absolute;
+        width: 50%;
+        bottom: 21%;
+        right: 7%;
+        .wazhi{
+            position: absolute;
+            width: 13%;
+            top: 36%;
+            left: 59%;
+            transform-origin:54% 0;
+            animation:rotateimg 1.8s linear infinite;
+        }
+        .tree{
+            width: 100%;
+        }
+        .light{
+            position: absolute;
+            width: 70%;
+            height: 52%;
+            top: 29%;
+            left: 15%;
+            background: url(../resources/img/game/light.png);
+            background-position: 0 0;
+            background-size: 2000% 100%;
+            -webkit-animation:light_ani 1.8s steps(20) infinite;
+        }
+        @-webkit-keyframes light_ani{
+            0%{ background-position: 0 0 }
+            100% {
+               background-position:-2000% 0;
+            }
+        }
+        @-webkit-keyframes rotateimg{
+            0%{ transform: rotate(0deg)}
+            25%{ transform: rotate(-20deg) }
+            50%{ transform: rotate(0deg) }
+            75%{ transform: rotate(20deg) }
+            100% {
+              transform: rotate(0deg);
+            }
+        }
+    }
+    .btn_gift{
+        position: absolute;
+        left: 3%;
+        bottom: 5%;
+        width: 44%;
+    }
+    .btn_shuo{
+        position: absolute;
+        width: 44%;
+        bottom: 5%;
+        right: 3%;
+    }
+}

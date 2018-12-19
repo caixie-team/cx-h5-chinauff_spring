@@ -1,7 +1,8 @@
 /**
  * @file Api config / Commonjs module
  * @module eslint.config
- */
+ * @author Surmon <https://github.com/surmon-china>
+*/
 
 const { isProdMode } = require('./environment')
 
@@ -641,15 +642,15 @@ module.exports = {
     // 注释格式要求JSDoc格式
     "require-jsdoc": [0, {
 
-      "require": {
+        "require": {
 
-        "FunctionDeclaration": true,
+            "FunctionDeclaration": true,
 
-        "MethodDefinition": false,
+            "MethodDefinition": false,
 
-        "ClassDeclaration": false
+            "ClassDeclaration": false
 
-      }
+        }
 
     }],
 
@@ -736,7 +737,7 @@ module.exports = {
     // 该规则可以定义不允许在应用中导入的模块
     "no-restricted-imports": [0,
 
-      "assert", "buffer", "child_process", "cluster", "crypto", "dgram", "dns", "domain", "events", "freelist", "fs", "http", "https", "module", "net", "os", "path", "punycode", "querystring", "readline", "repl", "smalloc", "stream", "string_decoder", "sys", "timers", "tls", "tracing", "tty", "url", "util", "vm", "zlib"
+        "assert", "buffer", "child_process", "cluster", "crypto", "dgram", "dns", "domain", "events", "freelist", "fs", "http", "https", "module", "net", "os", "path", "punycode", "querystring", "readline", "repl", "smalloc", "stream", "string_decoder", "sys", "timers", "tls", "tracing", "tty", "url", "util", "vm", "zlib"
 
     ],
 

@@ -1,0 +1,90 @@
+.rule.popup{
+    display: none;
+    .box{
+        .wrap{
+            .text{
+                $text-width: 78%;
+                text-align: left;
+                position: absolute;
+                width: $text-width;
+                margin-left: -($text-width/2);
+                left: 50%;
+                top: 23%;
+                height: 62%;
+                overflow: scroll;
+                color:#FFFFFF;
+                .result{
+                    $result-width: 100%;
+                    animation-delay: .5s;
+//                  position: absolute;
+//                  bottom: 31%;
+                    width: $result-width;
+//                  left: (100% - $result-width)/2 + 4%;
+                    padding: 0;
+                    margin: 0;
+                    font-size: .6rem;
+//                  color: #484948;
+                    font-weight: normal;
+                    
+                    tr{
+                       margin: auto 10px;
+    //                 white-space: nowrap;
+    
+                       :nth-child(1){
+                            width: 34%;
+                            text-align: left;
+                            vertical-align: top;
+                        }
+                        :nth-child(2){
+                            width: 33%;
+                            text-align: left;
+                            text-align: justify;
+                        }
+                        :nth-child(3){
+                            width: 33%;
+                            text-align: left;
+                            color: $main-font-color-y;
+                        }  
+//                      .shop_detail{
+//                          color: $main-font-color-r;
+//                      }
+                    }
+                    
+                }
+                .red{
+                    color: $main-font-color-y;
+                }
+                t1{
+                    display: block;
+                    font-size: .8rem;
+                    line-height: 1.6rem;
+                    font-weight: bold;
+                }
+                p{
+                    padding: 0;
+                    margin: 0;
+                    line-height: 1.4rem;
+                    font-size: .6rem;
+                    position: relative;
+                }
+//              .shop_detail{
+//                  color: #FFFFFF;
+////                  font-weight: bold;
+//                  position: absolute;
+//                  top: 25%;
+//                  right: 5%;
+//              }
+
+            }
+            
+            .sure-btn{
+                $sure-btn-width: 50%;
+                position: absolute;
+                width: $sure-btn-width;
+                margin-left: -($sure-btn-width/2);
+                bottom: 8%;
+                left: 50%;
+            }
+        }
+    }
+}

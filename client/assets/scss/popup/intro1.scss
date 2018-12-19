@@ -1,0 +1,27 @@
+.intro1.popup{
+    display: none;
+    .box{
+        .wrap{
+            .title{
+                height: 10%;
+                top: 24%;
+            }
+//          .btn_close{
+//              position: absolute;
+//              width: 15%;
+//              top: 13%;
+//              right: 2%;
+//          }
+            .content{
+                $content-width: 70%;
+                position: absolute;
+                width: $content-width;
+                left: (100%-$content-width)/2;
+                top: 38%;
+            }
+            .btn_edit{
+                bottom: 8%;
+            }
+        }
+    }
+}

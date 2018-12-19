@@ -1,0 +1,94 @@
+//@import "./phone.scss";
+//@import "./rule.scss";
+//@import "./feedback.scss";
+//@import "./addr.scss";
+//@import "./upload.scss";
+//@import "./fail.scss";
+//@import "./success.scss";
+//@import "./success2.scss";
+//@import "./sub.scss";
+//@import "./auditing.scss";
+//@import "./prize.scss";
+//@import "./share.scss";
+//@import "./toast.scss";
+//@import "./select.scss";
+//@import "./prize_fail.scss";
+//@import "./game.scss";
+//@import "./intro1.scss";
+//@import "./gift38.scss";
+//@import "./gift78.scss";
+//@import "./problem.scss";
+//@import "./myfeedback.scss";
+//@import "./myselect38.scss";
+//@import "./myselect78.scss";
+//@import "./myprize.scss";
+//@import "./copy.scss";
+//@import "./shouhuo.scss";
+
+//默认的popup样式
+.popup {
+  @include abs_full_page();
+  overflow: hidden;
+  text-align: center;
+
+  .mask {
+    background: rgba(0, 0, 0, 0.6);
+    @include abs_full_page();
+  }
+
+  .nomask {
+    background: none;
+  }
+
+  .title {
+    //      $title-width: 34%;
+    position: absolute;
+    height: 6%;
+    //      width: $title-width;
+    //      margin-left: -($title-width/2);
+    top: 15%;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+
+  .box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    @include display_flex(vertical);
+
+    .mask2 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .wrap {
+      position: relative;
+      width: 95%;
+      top: 2%;
+
+      > .bg {
+        width: 100%;
+      }
+
+      .sure-btn {
+        $sure-btn-width: 48%;
+        position: absolute;
+        width: $sure-btn-width;
+        margin-left: -($sure-btn-width/2);
+        left: 50%;
+        bottom: 5%;
+      }
+
+      .btn_close {
+        position: absolute;
+        width: 12%;
+        top: -3%;
+        right: 6%;
+      }
+    }
+  }
+}

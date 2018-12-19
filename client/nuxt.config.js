@@ -69,6 +69,9 @@ module.exports = {
   },
 
   styleResources: {
+    // scss: [
+    //   './assets/scss/libs/mixin.scss'
+    // ],
     stylus: [
       './assets/stylus/variable.styl',
       './assets/stylus/mixin.styl'
@@ -78,6 +81,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+     // '~/assets/scss/main.scss'
     // '~/assets/css/tailwind.css'
     './assets/stylus/index.styl'
     // '~/assets/test.styl'

@@ -1,0 +1,126 @@
+.marketdetail2.page {
+  display: none;
+  @include abs_full_page();
+  //  background: url(../resources/img/bg/bg.png) no-repeat left top;
+  //  background-size: 100% 100%;
+
+  overflow: hidden;
+
+  .container {
+
+    @include display_flex(vertical);
+
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mackets-popup-bg {
+      $mackets-popup-bg-width: 97%;
+      position: relative;
+      width: $mackets-popup-bg-width;
+
+      .title_market {
+        width: 70%;
+        position: absolute;
+        left: 15%;
+        top: 5%;
+      }
+
+      .mackets-popup-img2 {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+      }
+
+      .choose_market {
+        position: absolute;
+        width: 35%;
+        top: -6%;
+        right: 6.5%;
+      }
+
+      .mackets-tip {
+        $mackets-tip-width: 100%;
+        position: absolute;
+        width: $mackets-tip-width;
+        text-align: center;
+        font-size: .80rem;
+        color: $main-font-color-g;
+        white-space: nowrap;
+        top: 10%;
+      }
+
+      .link {
+        position: absolute;
+        width: 85%;
+        top: 23%;
+        left: 7.5%;
+      }
+
+      .detail {
+
+        position: absolute;
+        width: 85%;
+        top: 58%;
+        left: 7.5%;
+        text-align: center;
+
+        .btn_link {
+          width: 100%;
+        }
+
+        .detailtext {
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          font-size: .55rem;
+          top: 7%;
+          margin: 0;
+
+          span {
+            color: $main-font-color-g;
+            font-size: .9rem;
+          }
+        }
+
+        .time {
+          width: 40%;
+          position: absolute;
+          bottom: 6%;
+          left: 28%;
+          padding: 1% 1%;
+          font-size: .7rem;
+          color: #FFFFFF;
+          background-color: #f8b614;
+          margin: 0;
+          border-radius: 10px;
+        }
+      }
+
+      .yugou {
+        position: absolute;
+        width: 85%;
+        left: 7.5%;
+        top: 70%;
+        text-align: center;
+        font-size: .6rem;
+        color: #a6a6a6;
+        line-height: 1rem;
+
+        .date, .marketname {
+          color: #4cbceb;
+        }
+
+        .money {
+          color: #f44341;
+        }
+      }
+
+    }
+
+  }
+}

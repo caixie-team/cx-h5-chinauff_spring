@@ -1,0 +1,30 @@
+.sub.popup{
+    display: none;
+    .box{
+        .wrap{
+            width: 80%;
+            .title{
+                top: 8%;
+            }
+            .img_sub{
+                $img_sub-width: 54%;
+                position: absolute;
+                width: $img_sub-width;
+                left: (100% - $img_sub-width)/2;
+                top: 22%;
+            }
+            .ercode{
+                $ercode-width: 48%;
+                position: absolute;
+                width: $ercode-width;
+                padding-bottom: $ercode-width;
+                background-size: 100% 100%;
+                top: 23%;
+                left: (100% - $ercode-width)/2;
+                >img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

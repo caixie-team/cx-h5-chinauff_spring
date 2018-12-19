@@ -1,0 +1,119 @@
+.market.page {
+  display: none;
+  @include abs_full_page();
+
+  .container {
+    position: relative;
+    width: 95%;
+    top: 2%;
+    margin-left: 2.5%;
+    height: auto;
+    //          @include display_flex(vertical);
+    > .bg {
+      width: 100%;
+    }
+
+    .title {
+      //      $title-width: 34%;
+      position: absolute;
+      height: 6%;
+      //      width: $title-width;
+      //      margin-left: -($title-width/2);
+      top: 15%;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+  }
+
+  //      .mackets-popup-bg{
+  //          $mackets-popup-bg-width: 88%;
+  //          position: absolute;
+  //          width: $mackets-popup-bg-width;
+  //         top: 15%;
+  //         left: 6%;
+  .forScale {
+    $mackets-popup-bg-width: 80%;
+    position: absolute;
+    width: $mackets-popup-bg-width;
+    top: 23%;
+    left: 10%;
+    overflow: scroll;
+    height: 62%;
+    //              position: absolute;
+    //              top: 0%;
+    //              left: 0;
+    //              width: 100%;
+    //              padding: 0% 7%;
+    //              & tr,td{
+    //                  position: relative;
+    //              }
+    .marketbox {
+      position: relative;
+      width: 50%;
+      float: left;
+      text-align: center;
+      //                  background: url(../resources/img/bg/marketbg.png) no-repeat left top;
+      //                  background-size: 100% 100%;
+    }
+
+    .marketbg {
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      position: absolute;
+      left: 5%;
+      bottom: 20%;
+      color: $main-font-color-g;
+      width: 90%;
+      text-align: center;
+      margin: 0;
+      font-size: .6rem;
+
+      span {
+        font-size: .6rem;
+      }
+    }
+
+    .macket-img {
+      //                  $macket-width: 100%;
+      //                  width: $macket-width;
+      //                  margin-top: 3%;
+      position: absolute;
+      width: 45%;
+      top: 20%;
+      //                  height: 20%;
+      //                  transform: translateX(-50%);
+      //                  left: 50%;
+      left: 27.5%;
+    }
+
+    .status_icon {
+      width: 100%;
+      position: absolute;
+      top: 1.3%;
+      right: 0%;
+    }
+
+    .market1, .market5 {
+      .macket-img {
+        top: 12%;
+        width: 32%;
+        left: 34%;
+      }
+
+    }
+
+    .market10 {
+      .macket-img {
+        top: 8%;
+        width: 28%;
+        left: 36%;
+      }
+    }
+  }
+
+
+  //      }
+}
