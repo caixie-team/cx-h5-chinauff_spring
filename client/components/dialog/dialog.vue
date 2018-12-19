@@ -8,7 +8,14 @@
       type="dialog"
       @mask-click="maskClick"
     >
+
       <div class="c-dialog-main">
+        <span
+          v-if="icon"
+          class="c-dialog-icon">
+          <img
+            src="~assets/images/icon/longtou.png">
+        </span>
         <span
           v-show="showClose"
           class="c-dialog-close"
@@ -16,18 +23,16 @@
           <img
             src="~assets/images/icon/close.png">
         </span>
-        <span
-          v-if="icon"
-          class="c-dialog-icon">
-          <img
-            src="~assets/images/icon/longtou.png">
-        </span>
         <div :class="containerClass">
           <h2
             v-if="title || $slots.title"
             class="c-dialog-title">
             <slot name="title">
-              <p class="c-dialog-title-def">{{ title }}</p>
+              <p
+                class="c-dialog-title-def"
+                v-html="title">
+                <!--{{ title }}-->
+              </p>
             </slot>
           </h2>
           <div class="c-dialog-content">
@@ -80,7 +85,7 @@
   const EVENT_CANCEL = 'cancel'
   const EVENT_CLOSE = 'close'
 
-// eslint-disable-next-line no-script-url
+  // eslint-disable-next-line no-script-url
   const defHref = 'javascript:;'
   const defConfirmBtn = {
     textType: 'ok',
@@ -101,7 +106,7 @@
       }
     }
     const text = defBtn && this.$t(defBtn.textType)
-    return Object.assign({}, defBtn, { text }, btn)
+    return Object.assign({}, defBtn, {text}, btn)
   }
 
   export default {
@@ -118,7 +123,7 @@
       },
       prompt: {
         type: Object,
-        default() {
+        default () {
           return {
             value: '',
             placeholder: ''
@@ -143,7 +148,7 @@
       },
       confirmBtn: {
         type: [Object, String],
-        default() {
+        default () {
           return {
             ...defConfirmBtn
           }
@@ -151,33 +156,33 @@
       },
       cancelBtn: {
         type: [Object, String],
-        default() {
+        default () {
           return {
             ...defCancelBtn
           }
         }
       }
     },
-    data() {
+    data () {
       return {
         defHref,
         promptValue: this.prompt.value
       }
     },
     computed: {
-      _confirmBtn() {
+      _confirmBtn () {
         return parseBtn.call(this, this.confirmBtn, defConfirmBtn)
       },
-      _cancelBtn() {
+      _cancelBtn () {
         return parseBtn.call(this, this.cancelBtn, defCancelBtn)
       },
-      isConfirm() {
+      isConfirm () {
         return this.type === 'confirm'
       },
-      isPrompt() {
+      isPrompt () {
         return this.type === 'prompt'
       },
-      containerClass() {
+      containerClass () {
         return `c-dialog-${this.type}`
       }
     },
@@ -189,24 +194,24 @@
       }
     },
     methods: {
-      maskClick(e) {
+      maskClick (e) {
         this.maskClosable && this.cancel(e)
       },
-      confirm(e) {
+      confirm (e) {
         if (this._confirmBtn.disabled) {
           return
         }
         this.hide()
         this.$emit(EVENT_CONFIRM, e, this.promptValue)
       },
-      cancel(e) {
+      cancel (e) {
         if (this._cancelBtn.disabled) {
           return
         }
         this.hide()
         this.$emit(EVENT_CANCEL, e)
       },
-      close(e) {
+      close (e) {
         this.hide()
         this.$emit(EVENT_CLOSE, e)
       }
@@ -217,9 +222,16 @@
 <style lang="stylus" rel="stylesheet/stylus">
   /*@require "../../common/stylus/variable.styl"*/
   /*@require "../../common/stylus/mixin.styl"*/
-
+  .c-popup-content
+    display: flex
+    flex-direction: column
+    text-align: center
+    overflow: hidden
+    align-items: center
+    justify-content: center
   .c-dialog-main
-    width: 418px
+    width: 460px
+    height: 880px
     padding: 0
     display: flex
     flex-direction: column
@@ -227,27 +239,29 @@
     overflow: hidden
     align-items: center
     justify-content: center
-    // background-color: $dialog-bgc
+
+  // background-color: $dialog-bgc
   .c-dialog-confirm, .c-dialog-alert
     position: relative
     overflow: hidden
-    border: 8px solid #000
-    border-radius: 20px
     background: url('~assets/images/bg/page_bg_light.jpg') no-repeat
     background-size: 640px 1136px
+    border: 8px solid #000
+    border-radius: 20px
+    padding: 5px
     width: 400px
-    heigth: 500px
+    height: 730px
+
   .c-dialog-icon
     display: flex
     align-items: center
     justify-content: center
     z-index: 100
-    position: relative
-    top: 100px
-    botton: 100px
+    position: absolute
     width: 229px
     height: 194px
     color: $dialog-close-color
+    top: 0px
     img
       width: 229px
       height: 194px
@@ -265,33 +279,32 @@
     line-height: 1
     +
     .c-dialog-content
-      margin-top: 12px
+      margin-top: 24px
 
   .c-dialog-title-def
     margin: 30px 16px 0
     overflow: hidden
     white-space: nowrap
+    img
+      padding-top: 100px
+      width: 332px
+      height: 108px
 
   .c-dialog-content
     margin: 16px 0
     text-align: left
     color: $dialog-color
-    font-size: $fontsize-large-xx
-    line-height: 30px
+    font-size: $fontsize-large
+    line-height: 24px
     display: flex
-    flex-direction:column
-
+    flex-direction: column
   .c-dialog-content-def
     padding: 0 16px
-    img
-      width: 332px
-      height: 108px
     > p
       display: table
       margin: auto
       + .c-input
         margin-top: 12px
-
 
   .c-dialog-confirm, .c-dialog-prompt
     .c-dialog-btns
@@ -318,6 +331,7 @@
     img
       width: 27px
       height: 26px
+
   .c-dialog-btns
     overflow: hidden
     width: 100%
