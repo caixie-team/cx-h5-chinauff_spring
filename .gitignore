@@ -102,5 +102,3 @@ data/barrages.json
 static/scripts/analytics.js
 /static/scripts/analytics.js
 runtime
-.nuxt
-
