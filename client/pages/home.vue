@@ -9,7 +9,7 @@
           @click="showAlert"/>
         <nuxt-link
           class="btn wdfbBtn"
-          to="/about"/>
+          to="/aaaa"/>
       </div>
       <img
         src="~assets/images/home/bt.png"
@@ -42,6 +42,7 @@
     },
     methods: {
       showAlert () {
+        alert('lalala')
         console.log('clickc ....c.c.c.c.c')
         this.dialog = this.$createDialog({
           type: 'alert',
