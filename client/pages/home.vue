@@ -5,6 +5,7 @@
       class="home">
       <div class="topButtons">
         <a
+          href="javascript:;"
           class="btn hdjsBtn"
           @click="showAlert"/>
         <nuxt-link
@@ -15,7 +16,9 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        <a @click="showAlert">
+        <a
+          href="javascript:;"
+          @click="showAlert">
           <img
             src="~assets/images/home/sys.png">
         </a>
