@@ -16,6 +16,7 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
+        <button @click="showAlert">点我。。。</button>
         <a
           href="javascript:;"
           @click="showAlert">
