@@ -94,7 +94,8 @@ module.exports = {
     // },
     // analyze: true
     // 设置 CDN 地址，将 nuxt 内容传至 cdn 加速
-    publicPath: 'https://weixin.chinauff.com/spring/_nuxt/',
+    // publicPath: 'https://weixin.chinauff.com/spring/_nuxt/',
+    publicPath: '/spring/_nuxt/',
     // publicPath: apiConfig.cdnUrl + '/_nuxt/',
     // publicPath: '/spring/_nuxt/',
     postcss: {
@@ -187,7 +188,8 @@ module.exports = {
   router: {
     scrollBehavior (to, from, savedPosition) {
       return {x: 0, y: 0}
-    }
+    },
+    extendRoutes(routes) {}
   },
   /*
   ** Plugins to load before mounting the App
