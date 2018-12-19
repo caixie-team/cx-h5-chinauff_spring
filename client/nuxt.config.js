@@ -187,6 +187,9 @@ module.exports = {
     },
   },
   router: {
+    router: {
+      base: '/spring/'
+    },
     scrollBehavior (to, from, savedPosition) {
       return {x: 0, y: 0}
     },
