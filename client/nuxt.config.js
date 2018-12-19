@@ -94,8 +94,8 @@ module.exports = {
     // },
     // analyze: true
     // 设置 CDN 地址，将 nuxt 内容传至 cdn 加速
-    // publicPath: 'https://weixin.chinauff.com/spring/_nuxt/',
-    publicPath: 'https://weixin.chinauff.com/spring/_static/',
+    publicPath: 'http://spring.chinauff.com/static/',
+    // publicPath: 'https://weixin.chinauff.com/spring/_static/',
     // publicPath: '/spring/_nuxt/',
     // publicPath: apiConfig.cdnUrl + '/_nuxt/',
     // publicPath: '/spring/_nuxt/',
@@ -144,7 +144,7 @@ module.exports = {
         // 'webpack-hot-middleware/client?path=/__what&timeout=2000&overlay=false'
         // config.hotMiddleware.path = '/h5'
         // 解决路径找不到资源
-        // config.output.publicPath = '_nuxt/'
+        // config.output.publicPath = '/spring/_nuxt'
         // config.output.publicPath = 'https://weixin.chinauff.com/spring/_nuxt/'
         config.module.rules.push({
           enforce: 'pre',
