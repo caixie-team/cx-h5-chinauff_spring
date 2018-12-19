@@ -42,6 +42,7 @@
     },
     methods: {
       showAlert () {
+        console.log('clickc ....c.c.c.c.c')
         this.dialog = this.$createDialog({
           type: 'alert',
           showClose: true,
