@@ -9,8 +9,6 @@
   export default {
     methods: {
       showme() {
-        alert('who am i...')
-        console.log('who ami .....')
       }
 
     }

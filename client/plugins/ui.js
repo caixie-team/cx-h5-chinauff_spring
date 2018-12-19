@@ -131,7 +131,6 @@ components.forEach((Component) => {
   C[name] = Component
 })
 if (isBrowser) {
-  console.log('is bro....')
   // if (typeof window !== 'undefined' && window.Vue) {
     Vue.use(install)
   // }
