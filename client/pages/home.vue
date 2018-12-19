@@ -15,7 +15,7 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        <a href="">
+        <a @click="showAlert">
           <img
             src="~assets/images/home/sys.png">
         </a>
