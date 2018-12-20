@@ -3,20 +3,11 @@
     <div
       slot="content"
       class="home">
-      <div class="topButtons">
-        <a
-          href="javascript:;"
-          class="btn hdjsBtn"
-          @click="showAlert"/>
-        <nuxt-link
-          class="btn wdfbBtn"
-          to="/aaaa"/>
-      </div>
+      <top-buttons />
       <img
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        <button @click="showAlert">点我。。。</button>
         <a
           href="javascript:;"
           @click="showAlert">
@@ -30,7 +21,7 @@
 <script>
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
-  import titleImg from '~/assets/images/text/jifuyoli.png'
+  import TopButtons from '../components/top-buttons'
 
   export default {
     name: 'Index',
@@ -41,6 +32,7 @@
     },
     components: {
       CPage,
+      TopButtons
     },
     data () {
       return {}
@@ -84,24 +76,7 @@
     .imgSys
       width: 543px
       height: 528px
-    .topButtons
-      position: absolute
-      right: 30px
-      top: 0
-      height: 150px
-      width: 111px
-      z-index: 100
-      display: flex
-      justify-content: space-between
-      .btn
-        width: 51px
-        heigth: 144px
-        &.hdjsBtn
-          background: url('~assets/images/buttons/hdjsm.png') no-repeat
-          background-size: 51px 144px
-        &.wdfbBtn
-          background: url('~assets/images/buttons/wdfbm.png') no-repeat
-          background-size: 51px 144px
+
     h1
       font-size: 48px
       font-weight: bold

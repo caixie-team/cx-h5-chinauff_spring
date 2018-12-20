@@ -28,6 +28,8 @@
         <success
           v-if="type === 'success'"
           @close="close"/>
+        <jdfl
+          v-if="type === 'jdfl'"/>
           <!--<div :class="containerClass"></div>-->
       </div>
     </c-popup>
@@ -45,6 +47,7 @@
   import Share from './popup-share'
   import Prize from './popup-prize'
   import Success from './popup-success'
+  import Jdfl from './popup-jdfl'
 
   const COMPONENT_NAME = 'c-dialog'
   const EVENT_CONFIRM = 'confirm'
@@ -84,7 +87,8 @@
       Limit,
       Share,
       Prize,
-      Success
+      Success,
+      Jdfl
     },
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {

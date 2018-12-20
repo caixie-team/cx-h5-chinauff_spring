@@ -108,22 +108,33 @@
         height: 50px
 
       .word
-        margin-top: 20px
-        width: 120px
-        height: 120px
-        background-size: 120px 120px
+        margin-top: 30px
+        width: 80px
+        height: 80px
 
-        &-heng
-          background-image: url("~assets/img/word/word_heng.png")
+        &-yi
+          background-image: url("~assets/img/word/word_yi2.png")
+          background-size: 60px 14px
+          width: 60px
+          height: 14px
 
         &-kou
-          background-image: url("~assets/img/word/word_kou.png")
+          background-image: url("~assets/img/word/word_kou2.png")
+          background-size: 53px 43px
+          width: 53px
+          height: 43px
 
-        &-shizipang
-          background-image: url("~assets/img/word/word_shizipang.png")
+        &-shi
+          background-image: url("~assets/img/word/word_shi2.png")
+          background-size: 61px 62px
+          width: 61px
+          height: 62px
 
-        &-shizipang
-          background-image: url("~assets/img/word/word_tian.png")
+        &-tian
+          background-image: url("~assets/img/word/word_tian2.png")
+          background-size: 59px 47px
+          width: 59px
+          height: 47px
 
     .section1
       margin-top: 200px
