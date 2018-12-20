@@ -37,6 +37,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  /* eslint-disable */
   import CPopup from '../popup/popup.vue'
   import CInput from '../input/input.vue'
   import visibilityMixin from '../../common/mixins/visibility'
@@ -54,7 +55,6 @@
   const EVENT_CANCEL = 'cancel'
   const EVENT_CLOSE = 'close'
 
-  // eslint-disable-next-line no-script-url
   const defHref = 'javascript:;'
   const defConfirmBtn = {
     textType: 'ok',

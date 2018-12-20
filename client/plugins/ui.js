@@ -41,16 +41,16 @@ import {
   // Drawer,
   // ImagePreview,
   // scroll
-  // Scroll,
+  Scroll,
   // Slide,
-  // IndexList,
+  IndexList,
   // Swipe,
   // Sticky,
   // ScrollNav,
   // ScrollNavBar,
   // RecycleList,
   // module
-  // BetterScroll,
+  BetterScroll,
   createAPI
 } from '../modules/module'
 import { processComponentName } from '../common/helpers/util'
@@ -92,9 +92,9 @@ const components = [
   // Drawer,
   // ImagePreview,
   // scroll
-  // Scroll,
+  Scroll,
   // Slide,
-  // IndexList,
+  IndexList,
   // Swipe,
   // Sticky,
   // ScrollNav,
@@ -120,7 +120,7 @@ const C = {
   /* eslint-disable no-undef */
   // version: __VERSION__,
   install,
-  // BScroll: BetterScroll,
+  BScroll: BetterScroll,
   createAPI
 }
 

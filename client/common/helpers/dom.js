@@ -1,12 +1,12 @@
 /* eslint-disable func-style */
-import { inBrowser } from './env'
+import {inBrowser} from './env'
 
-export function hasClass(el, className) {
+export function hasClass (el, className) {
   const reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
   return reg.test(el.className)
 }
 
-export function addClass(el, className) {
+export function addClass (el, className) {
   /* istanbul ignore if */
   if (hasClass(el, className)) {
     return
@@ -17,7 +17,7 @@ export function addClass(el, className) {
   el.className = newClass.join(' ')
 }
 
-export function removeClass(el, className) {
+export function removeClass (el, className) {
   /* istanbul ignore if */
   if (!hasClass(el, className)) {
     return
@@ -27,12 +27,12 @@ export function removeClass(el, className) {
   el.className = el.className.replace(reg, ' ')
 }
 
-export function getData(el, name) {
+export function getData (el, name) {
   const prefix = 'data-'
   return el.getAttribute(prefix + name)
 }
 
-export function getRect(el) {
+export function getRect (el) {
   return {
     top: el.offsetTop,
     left: el.offsetLeft,
@@ -41,13 +41,13 @@ export function getRect(el) {
   }
 }
 
-let vendor = (() => {
+const vendor = (() => {
   /* istanbul ignore if */
   if (!inBrowser) {
     return false
   }
-  let elementStyle = document.createElement('div').style
-  let transformNames = {
+  const elementStyle = document.createElement('div').style
+  const transformNames = {
     standard: 'transform',
     webkit: 'webkitTransform',
     Moz: 'MozTransform',
@@ -55,7 +55,7 @@ let vendor = (() => {
     ms: 'msTransform'
   }
 
-  for (let key in transformNames) {
+  for (const key in transformNames) {
     if (elementStyle[transformNames[key]] !== undefined) {
       return key
     }
@@ -65,7 +65,7 @@ let vendor = (() => {
   return false
 })()
 
-export function prefixStyle(style) {
+export function prefixStyle (style) {
   /* istanbul ignore if */
   if (vendor === false) {
     return false
@@ -81,7 +81,7 @@ export function prefixStyle(style) {
   return vendor + style.charAt(0).toUpperCase() + style.substr(1)
 }
 
-export function getMatchedTarget(e, targetClassName) {
+export function getMatchedTarget (e, targetClassName) {
   let el = e.target
 
   while (el && !hasClass(el, targetClassName)) {
@@ -92,7 +92,7 @@ export function getMatchedTarget(e, targetClassName) {
   return el
 }
 
-export function dispatchEvent(ele, name, { type = 'Event', bubbles = true, cancelable = true } = {}) {
+export function dispatchEvent (ele, name, {type = 'Event', bubbles = true, cancelable = true} = {}) {
   const e = document.createEvent(type)
   e.initEvent(name, bubbles, cancelable)
   ele.dispatchEvent(e)

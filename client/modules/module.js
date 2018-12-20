@@ -38,9 +38,9 @@ import Dialog from './dialog'
 // import ImagePreview from './modules/image-preview'
 
 // Scroll
-// import Scroll from './modules/scroll'
+import Scroll from './scroll'
 // import Slide from './modules/slide'
-// import IndexList from './modules/index-list'
+import IndexList from './index-list'
 // import Swipe from './modules/swipe'
 // import Sticky from './modules/sticky'
 // import ScrollNav from './modules/scroll-nav'
@@ -48,7 +48,7 @@ import Dialog from './dialog'
 // import RecycleList from './modules/recycle-list'
 //
 // module
-// import BetterScroll from './modules/better-scroll'
+import BetterScroll from './better-scroll'
 import createAPI from './create-api'
 
 // const FormGroup = Form.Group
@@ -110,10 +110,10 @@ export {
   // Drawer,
   // ImagePreview,
   // scroll
-  // Scroll,
+  Scroll,
   // SlideItem,
   // Slide,
-  // IndexList,
+  IndexList,
   // SwipeItem,
   // Swipe,
   // StickyEle,
@@ -123,6 +123,6 @@ export {
   // ScrollNavBar,
   // RecycleList,
   // module
-  // BetterScroll,
+  BetterScroll,
   createAPI
 }

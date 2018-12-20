@@ -94,7 +94,8 @@ function matchesSelector (element, selector) {
     element.webkitMatchesSelector
 
   if (matches) {
-    return matches.apply(element, [selector])
+    return Reflect.apply(element, [selector])
+    // return matches.apply(element, [selector])
   } else {
     log('Unable to match')
     return false
@@ -180,9 +181,10 @@ function eventData (event) {
     data.visit_token = event.visit_token
     data.visitor_token = event.visitor_token
   }
-
-  delete event.visit_token
-  delete event.visitor_token
+  Reflect.deleteProperty(event, 'visit_token')
+  Reflect.deleteProperty(event, 'visitor_token')
+  // delete event.visit_token
+  // delete event.visitor_token
   return data
 }
 
@@ -209,7 +211,8 @@ function trackEventNow (event) {
     if (param && token) data[param] = token
     // stringify so we keep the type
     data.events_json = JSON.stringify(data.events)
-    delete data.events
+    Reflect.deleteProperty(data, 'events')
+    // delete data.events
     window.navigator.sendBeacon(eventsUrl(), objectToFormData(data))
   })
 }
@@ -226,7 +229,8 @@ function cleanObject (obj) {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (obj[key] === null) {
-        delete obj[key]
+        Reflect.deleteProperty(obj, key)
+        // delete obj[key]
       }
     }
   }

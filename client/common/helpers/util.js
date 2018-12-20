@@ -1,7 +1,8 @@
-/* eslint-disable func-style,array-callback-return */
-import { camelize } from '../lang/string'
+// /* eslint-disable func-style,array-callback-return, prefer-reflect: [0, { "exceptions": ["call"] }]} */
+/* eslint-disable */
+import {camelize} from '../lang/string'
 
-function findIndex(ary, fn) {
+function findIndex (ary, fn) {
   if (ary.findIndex) {
     return ary.findIndex(fn)
   }
@@ -19,8 +20,8 @@ function findIndex(ary, fn) {
   return index
 }
 
-function deepAssign(to, from) {
-  for (let key in from) {
+function deepAssign (to, from) {
+  for (const key in from) {
     if (!to[key] || typeof to[key] !== 'object') {
       to[key] = from[key]
     } else {
@@ -29,8 +30,8 @@ function deepAssign(to, from) {
   }
 }
 
-function createAddAPI(baseObj) {
-  return function add(...args) {
+function createAddAPI (baseObj) {
+  return function add (...args) {
     if (typeof args[0] === 'string') {
       args[0] = {
         [args[0]]: args[1]
@@ -48,19 +49,19 @@ function judgeTypeFnCreator (type) {
 }
 
 const typesReset = {
-  _set(obj, key, value) {
+  _set (obj, key, value) {
     obj[key] = value
   },
-  string(obj, key) {
+  string (obj, key) {
     typesReset._set(obj, key, '')
   },
-  number(obj, key) {
+  number (obj, key) {
     typesReset._set(obj, key, 0)
   },
-  boolean(obj, key) {
+  boolean (obj, key) {
     typesReset._set(obj, key, false)
   },
-  object(obj, key, value) {
+  object (obj, key, value) {
     if (Array.isArray(value)) {
       typesReset._set(obj, key, [])
     } else {
@@ -68,7 +69,8 @@ const typesReset = {
     }
   }
 }
-function resetTypeValue(obj, key, defVal) {
+
+function resetTypeValue (obj, key, defVal) {
   if (defVal !== undefined) {
     return typesReset._set(obj, key, defVal)
   }
@@ -83,9 +85,9 @@ function resetTypeValue(obj, key, defVal) {
   }
 }
 
-function parallel(tasks, cb) {
+function parallel (tasks, cb) {
   let doneCount = 0
-  let results = []
+  const results = []
   const tasksLen = tasks.length
   if (!tasksLen) {
     return cb(results)
@@ -102,7 +104,7 @@ function parallel(tasks, cb) {
   })
 }
 
-function cb2PromiseWithResolve(cb) {
+function cb2PromiseWithResolve (cb) {
   let promise
   if (typeof window.Promise !== 'undefined') {
     const _cb = cb
@@ -117,14 +119,15 @@ function cb2PromiseWithResolve(cb) {
   return promise
 }
 
-function debounce(func, wait, immediate, initValue) {
+function debounce (func, wait, immediate, initValue) {
   let timeout
   let result = initValue
 
   const later = function (context, args) {
     timeout = null
     if (args) {
-      result = func.apply(context, args)
+      // result = func.apply(context, args)
+      result = Reflect.apply(func, context, args)
     }
   }
 
@@ -136,7 +139,8 @@ function debounce(func, wait, immediate, initValue) {
       const callNow = !timeout
       timeout = setTimeout(later, wait)
       if (callNow) {
-        result = func.apply(this, args)
+        // result = func.apply(this, args)
+        result = Reflect.apply(func, this, args)
       }
     } else {
       timeout = setTimeout(() => {
@@ -155,11 +159,11 @@ function debounce(func, wait, immediate, initValue) {
   return debounced
 }
 
-function processComponentName(Component, { prefix = '', firstUpperCase = false } = {}) {
+function processComponentName (Component, {prefix = '', firstUpperCase = false} = {}) {
   const name = Component.name
   const pureName = name.replace(/^c-/i, '')
   let camelizeName = `${camelize(`${prefix}${pureName}`)}`
-   /* istanbul ignore if */
+  /* istanbul ignore if */
   if (firstUpperCase) {
     camelizeName = camelizeName.charAt(0).toUpperCase() + camelizeName.slice(1)
   }
@@ -171,7 +175,7 @@ function parsePath (obj, path = '') {
   let result = obj
   for (let i = 0; i < segments.length; i++) {
     const key = segments[i]
-     /* istanbul ignore if */
+    /* istanbul ignore if */
     if (isUndef(result[key])) {
       result = ''
       break

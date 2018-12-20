@@ -19,7 +19,7 @@ export const state = () => ({
     oauthCache: 'oauth-cache'
   },
   jssdkConfig: {
-    appId: '',
+    appId: 'wxb44ce8b8c5cfdc0a',
     nonceStr: '',
     signature: '',
     jsApiList: [

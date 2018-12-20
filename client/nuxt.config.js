@@ -11,6 +11,8 @@ const {isProdMode, isDevMode} = require('./environment')
 //   root: path.resolve(__dirname, '../'),
 //   client: path.resolve(__dirname, '../client')
 // }
+// const API_THIRD = apiConfig.thirdUrl
+
 const PATHS = {
   root: path.resolve(__dirname, '../'),
   client: path.resolve(__dirname, '../client')
@@ -58,13 +60,28 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
+    // Doc: https://github.com/nuxt-community/proxy-module
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources'
   ],
-
+  proxy: {
+    '/proxy': {
+      target: apiConfig.proxyUrl,
+      pathRewrite: {'^/proxy/': ''}
+    }
+  },
+  // proxy: [
+  //   '/api2',
+  //   {
+  //     target: apiConfig.proxyUrl, // api主机
+  //     pathRewrite: {'^/api2': '/'}
+  //   }
+  // ],
   /*
   ** Axios module configuration
   */
   axios: {
+    // proxy: true
     // See https://github.com/nuxt-community/axios-module#options
   },
 
@@ -81,7 +98,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-     // '~/assets/scss/main.scss'
+    // '~/assets/scss/main.scss'
     // '~/assets/css/tailwind.css'
     './assets/stylus/index.styl'
     // '~/assets/test.styl'
@@ -158,7 +175,7 @@ module.exports = {
 
     vendor: [
       'axios',
-      'vant'
+      // 'vant'
     ],
     maxChunkSize: 350000,
     // 为 JS 和 Vue 文件定制 babel 配置。https://nuxtjs.org/api/configuration-build/#analyze
@@ -204,7 +221,7 @@ module.exports = {
     {src: '~/plugins/wechat-jssdk.js', ssr: false},
     {src: '~/plugins/router.js', ssr: false},
     {src: '~/plugins/ui.js', ssr: false},
-    {src: '~/plugins/tracker.js'},
+    // {src: '~/plugins/tracker.js'},
     // {src: '~/plugins/ahoy-analytics.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},
   ]

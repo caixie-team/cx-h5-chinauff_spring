@@ -22,14 +22,14 @@ const getResData = response => {
 const resIsSuccess = response => {
   // HTTP2
   if (response.data) {
-    return response.errno === 0 || response.errcode === 0 && response.data
+    return response.errno === 0 || response.errcode === 0 || response.errcode === '0' && response.data
     // return response.status && response.data && Object.is(response.data.code, 1)
   } else {
     return response
   }
 }
 const getBaseUrl = (req) => {
-  return req.protocol + '://' + req.headers['x-forwarded-host'] + '/'
+  return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + '/'
 }
 // 初始化配置 Wechat JSSDK
 const clientInitWechatJSSDK = async (config) => {
@@ -82,7 +82,7 @@ export const actions = {
 
     const initAppData = [
       // 获取微信JSSDK配置
-      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -100,8 +100,8 @@ export const actions = {
   async nuxtClientInit ({ commit }, context) {
     // console.log('client init...')
     // console.log('Client init...')
-    // const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
-    // await clientInitWechatJSSDK(jssdkConfig)
+    const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
+    await clientInitWechatJSSDK(jssdkConfig)
     // window.app = this;
     // getCurrentPath() {
     //   return this.$store.state.section && this.$store.state.section != '/' ? `/${this.$store.state.section}` : '/';
@@ -121,12 +121,14 @@ export const actions = {
         console.warn('获取 oauth url 错误', err)
       })
   },
-  loadJSSDKConfig ({ commit }, host) {
+  loadJSSDKConfig ({ commit }, url) {
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(location.href)}`)
     // http://demo.micvs.com/lnj-weixin/console/activity/weChat/getConfigMessage?url=https://www.baidu.com
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(host)}`)
-    return this.$axios.$get(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(host)}`)
+    // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
+    return this.$axios.$post(`/proxy/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
       .then(response => {
+        console.log(response)
         resIsSuccess(response)
           ? commit('option/SET_JSSDK_CONFIG', getResData(response))
           : console.log('微信签名信息获取失败：', response)
@@ -138,8 +140,8 @@ export const actions = {
   loadImplicitOAuthInfo ({ commit }, code) {
     return this.$axios.$get(`${API_PREFIX}/wechat/oauth?code=${code}`)
       .then(response => {
-        console.log(response)
-        // resIsSuccess(response)
+        // console.log(response)
+        resIsSuccess(response)
         //   ? commit('option/SET_JSSDK_CONFIG', getResData(response))
         //   : console.log('微信签名信息获取失败：', response)
       })
