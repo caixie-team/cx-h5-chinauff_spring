@@ -27,6 +27,11 @@
             class: this.type === 'main' ? 'btn-hdjsm' : 'btn-hdjs'
           },
           {
+            name: 'dhff',
+            text: '活动介绍',
+            class: this.type === 'main' ? 'btn-dhff' : 'btn-dhff'
+          },
+          {
             name: 'wdhb',
             text: '我的红包',
             class: this.type === 'main' ? 'btn-wdhbm' : 'btn-wdhb'
@@ -38,6 +43,8 @@
           }
         ]
       }
+    },
+    computed: {
     },
     methods: {
       show (name) {
@@ -77,6 +84,10 @@
         background: url('~assets/img/btn/btn_hdjsm.png') no-repeat
         background-size: 51px 144px
 
+      &-dhffm
+        background: url('~assets/img/btn/btn_dhffm.png') no-repeat
+        background-size: 51px 144px
+
       &-wdhbm
         background: url('~assets/img/btn/btn_wdfbm.png') no-repeat
         background-size: 51px 144px
@@ -89,6 +100,10 @@
 
       &-hdjs
         background: url('~assets/img/btn/btn_hdjs.png') no-repeat
+        background-size: 51px 144px
+
+      &-dhff
+        background: url('~assets/img/btn/btn_dhff.png') no-repeat
         background-size: 51px 144px
 
       &-wdhb
