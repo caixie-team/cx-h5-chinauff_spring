@@ -1,7 +1,6 @@
 <template>
   <div
-    :class="type"
-    class="c-page">
+    :class="typeClass">
     <div class="wrapper">
       <section
         v-show="desc"
@@ -24,7 +23,7 @@
       },
       type: {
         type: String,
-        default: ''
+        default: 'main'
       },
       desc: {
         type: String,
@@ -35,11 +34,19 @@
         default: ''
       }
     },
+    computed: {
+      typeClass () {
+        return [
+          'c-page',
+          this.type === 'main' ? 'bg1' : 'bg2'
+        ]
+      }
+    },
     methods: {
       back () {
         this.$router.back()
       }
-    }
+    },
   }
 </script>
 
@@ -52,15 +59,23 @@
     left: 0
     width: 100%
     height: 100%
-    background: #efeff4
-    background: url('~assets/images/bg/page_bg.min.jpg')
-    background-size: 640px 1136px;
+    //background: #efeff4
     overflow: hidden
+
+    &.bg1
+      background: url('~assets/img/bg/page_bgr.jpg')
+      background-size: 640px 1136px;
+
+    &.bg2
+      background: url('~assets/img/bg/page_bgm.jpg')
+      background-size: 640px 1136px;
+
     > .wrapper
       // height: calc(100% - 44px)
       overflow-x: hidden
       overflow-y: auto
       // -webkit-overflow-scrolling: touch
+
       .desc
         padding: 10px
         margin: 10px 0

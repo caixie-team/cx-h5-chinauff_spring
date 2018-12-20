@@ -8,66 +8,29 @@
       type="dialog"
       @mask-click="maskClick"
     >
-
       <div class="c-dialog-main">
-        <span
-          v-if="icon"
-          class="c-dialog-icon">
-          <img
-            src="~assets/images/icon/longtou.png">
-        </span>
         <span
           v-show="showClose"
           class="c-dialog-close"
           @click="close">
-          <img
-            src="~assets/images/icon/close.png">
+          <img src="~assets/img/btn/btn_close_r.png">
         </span>
-        <div :class="containerClass">
-          <h2
-            v-if="title || $slots.title"
-            class="c-dialog-title">
-            <slot name="title">
-              <p
-                class="c-dialog-title-def"
-                v-html="title">
-                <!--{{ title }}-->
-              </p>
-            </slot>
-          </h2>
-          <div class="c-dialog-content">
-            <slot name="content">
-              <div class="c-dialog-content-def">
-                <p
-                  v-if="content"
-                  v-html="content"/>
-                <c-input
-                  v-if="isPrompt"
-                  v-bind="prompt"
-                  v-model="promptValue"/>
-              </div>
-            </slot>
-          </div>
-          <!--
-          <div
-            :class="{'border-right-1px': isConfirm || isPrompt}"
-            class="c-dialog-btns">
-            <slot name="btns">
-              <a
-                v-if="isConfirm || isPrompt"
-                :href="_cancelBtn.href"
-                :class="{'c-dialog-btn_highlight': _cancelBtn.active, 'c-dialog-btn_disabled': _cancelBtn.disabled}"
-                class="c-dialog-btn border-top-1px"
-                @click="cancel">{{ _cancelBtn.text }}</a>
-              <a
-                :href="_confirmBtn.href"
-                :class="{'c-dialog-btn_highlight': _confirmBtn.active, 'c-dialog-btn_disabled': _confirmBtn.disabled}"
-                class="c-dialog-btn border-top-1px"
-                @click="confirm">{{ _confirmBtn.text }}</a>
-            </slot>
-          </div>
-          -->
-        </div>
+        <intro v-if="type === 'intro'"/>
+        <limit
+          v-if="type === 'limit'"
+          @close="close"/>
+        <share
+          v-if="type === 'share'"/>
+        <prize
+          v-if="type === 'prize'"
+          :coupon="coupon"
+          :word="word"/>
+        <success
+          v-if="type === 'success'"
+          @close="close"/>
+        <jdfl
+          v-if="type === 'jdfl'"/>
+          <!--<div :class="containerClass"></div>-->
       </div>
     </c-popup>
   </transition>
@@ -79,6 +42,12 @@
   import visibilityMixin from '../../common/mixins/visibility'
   import popupMixin from '../../common/mixins/popup'
   import localeMixin from '../../common/mixins/locale'
+  import Intro from './popup-intro'
+  import Limit from './popup-limit'
+  import Share from './popup-share'
+  import Prize from './popup-prize'
+  import Success from './popup-success'
+  import Jdfl from './popup-jdfl'
 
   const COMPONENT_NAME = 'c-dialog'
   const EVENT_CONFIRM = 'confirm'
@@ -113,10 +82,24 @@
     name: COMPONENT_NAME,
     components: {
       CPopup,
-      CInput
+      CInput,
+      Intro,
+      Limit,
+      Share,
+      Prize,
+      Success,
+      Jdfl
     },
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {
+      coupon: {
+        type: String,
+        default: ''
+      },
+      word: {
+        type: String,
+        default: ''
+      },
       type: {
         type: String,
         default: 'alert'
@@ -229,9 +212,9 @@
     overflow: hidden
     align-items: center
     justify-content: center
+
   .c-dialog-main
     width: 460px
-    height: 880px
     padding: 0
     display: flex
     flex-direction: column
@@ -244,8 +227,8 @@
   .c-dialog-confirm, .c-dialog-alert
     position: relative
     overflow: hidden
-    background: url('~assets/images/bg/page_bg_light.jpg') no-repeat
-    background-size: 640px 1136px
+    /*background: url('~assets/images/bg/page_bg_light.jpg') no-repeat*/
+    /*background-size: 640px 1136px*/
     border: 8px solid #000
     border-radius: 20px
     padding: 5px
@@ -262,13 +245,16 @@
     height: 194px
     color: $dialog-close-color
     top: 0px
+
     img
       width: 229px
       height: 194px
+
     +
     .c-dialog-title
       .c-dialog-title-def
         margin-top: 0
+
     +
     .c-dialog-content
       margin-top: -4px
@@ -277,6 +263,7 @@
     color: $dialog-title-color
     font-size: $fontsize-large
     line-height: 1
+
     +
     .c-dialog-content
       margin-top: 24px
@@ -285,6 +272,7 @@
     margin: 30px 16px 0
     overflow: hidden
     white-space: nowrap
+
     img
       padding-top: 100px
       width: 332px
@@ -298,11 +286,14 @@
     line-height: 24px
     display: flex
     flex-direction: column
+
   .c-dialog-content-def
     padding: 0 16px
+
     > p
       display: table
       margin: auto
+
       + .c-input
         margin-top: 12px
 
@@ -311,6 +302,7 @@
       .c-dialog-btn
         width: 50%
         float: left
+
       &.border-right-1px
         &::after
           right: 50%
@@ -328,6 +320,7 @@
     height: 32px
     color: $dialog-close-color
     font-size: $fontsize-large-x
+
     img
       width: 27px
       height: 26px
@@ -350,23 +343,27 @@
     background-color: $dialog-btn-bgc
     background-clip: padding-box
     box-sizing: border-box
+
     &:active
       background-color: $dialog-btn-active-bgc
 
   .c-dialog-btn_highlight
     color: $dialog-btn-highlight-color
+
     &:active
       background-color: $dialog-btn-highlight-active-bgc
 
   .c-dialog-btn_disabled
     color: $dialog-btn-disabled-color
+
     &:active
       background-color: $dialog-btn-disabled-active-bgc
 
   .c-dialog-fade-enter-active
     animation: dialog-fadein .4s
-    .c-dialog-main
-      animation: dialog-zoom .4s
+
+  //    .c-dialog-main
+  /*animation: dialog-zoom .4s*/
 
   @keyframes dialog-fadein
     0%

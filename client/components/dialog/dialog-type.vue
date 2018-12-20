@@ -272,7 +272,6 @@
       margin: auto
       + .c-input
         margin-top: 12px
-
   .c-dialog-confirm, .c-dialog-prompt
     .c-dialog-btns
       .c-dialog-btn

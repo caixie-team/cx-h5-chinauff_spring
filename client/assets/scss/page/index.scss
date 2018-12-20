@@ -1,0 +1,51 @@
+@import "./intro.scss";
+@import "./intro2.scss";
+@import "./home.scss";
+@import "./play.scss";
+@import "./makecard.scss";
+@import "./showcard.scss";
+@import "./macket.scss";
+//默认的page样式
+.page {
+  // background: url(../resources/img/bg/bg2.png) no-repeat left top;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  > .bg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bg-topic {
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    top: 12%;
+  }
+
+  .logo {
+    position: absolute;
+    left: 5%;
+    top: 2%;
+    width: 27%;
+  }
+
+  .mask {
+    @include abs_full_page();
+    background: rgba(0, 0, 0, .65);
+  }
+
+  .nomask {
+    @include abs_full_page();
+    background: none;
+  }
+
+  .container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+}

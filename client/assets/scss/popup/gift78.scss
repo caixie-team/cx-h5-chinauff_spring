@@ -1,0 +1,77 @@
+.gift78.popup {
+  display: none;
+
+  .title {
+    height: 4%;
+    //      top: 24%;
+  }
+
+  .scroll {
+    $mackets-popup-bg-width: 72%;
+    position: absolute;
+    width: $mackets-popup-bg-width;
+    top: 22%;
+    left: (100%-$mackets-popup-bg-width)/2;
+    height: 71%;
+    overflow: scroll;
+  }
+
+  .giftbox {
+    $mackets-popup-bg-width: 100%;
+    position: relative;
+    width: $mackets-popup-bg-width;
+    top: 0%;
+    float: left;
+    //      left: (100%-$mackets-popup-bg-width)/2;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 3%;
+
+    .giftimg {
+      position: absolute;
+      width: 20%;
+      top: 26%;
+      left: 5%;
+    }
+
+    .giftintro {
+      width: 67%;
+      margin-left: 33%;
+      text-align: left;
+      font-size: .5rem;
+      color: $main-font-color-g;
+      line-height: .9rem;
+      padding: 4% 0%;
+
+      span {
+        font-size: .8rem;
+        color: $main-font-color-r;
+      }
+    }
+  }
+
+  .huafei {
+    //      top: 25%;
+    .giftintro {
+      padding: 7.6% 0%;
+    }
+
+  }
+
+  .guoyuan {
+    //      top: 50%;
+    .giftintro {
+      padding: 7.5% 0%;
+    }
+  }
+
+  .aiqiy {
+    //      top: 75%;
+    margin-bottom: 0;
+
+    .giftintro {
+      padding: 7.6% 0%;
+    }
+  }
+
+}

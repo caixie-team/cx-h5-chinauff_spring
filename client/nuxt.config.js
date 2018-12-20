@@ -69,6 +69,9 @@ module.exports = {
   },
 
   styleResources: {
+    // scss: [
+    //   './assets/scss/libs/mixin.scss'
+    // ],
     stylus: [
       './assets/stylus/variable.styl',
       './assets/stylus/mixin.styl'
@@ -78,6 +81,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+     // '~/assets/scss/main.scss'
     // '~/assets/css/tailwind.css'
     './assets/stylus/index.styl'
     // '~/assets/test.styl'
@@ -96,9 +100,6 @@ module.exports = {
     // 设置 CDN 地址，将 nuxt 内容传至 cdn 加速
     // publicPath: 'http://spring.chinauff.com/static/',
     // publicPath: 'https://weixin.chinauff.com/spring/_static/',
-    // publicPath: 'http://lab.com/spring/_nuxt/',
-    // publicPath: apiConfig.cdnUrl + '/_nuxt/',
-    // publicPath: '/spring/_nuxt/',
     postcss: {
       // Add plugin names as key and arguments as value
       // Install them before as dependencies with npm or yarn
@@ -201,9 +202,9 @@ module.exports = {
     // { src: '~/plugins/loaded-task.js'},
     {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~/plugins/wechat-jssdk.js', ssr: false},
-    // {src: '~/plugins/router.js', ssr: false},
-    // {src: '~/plugins/ui.js', ssr: false},
-    // {src: '~/plugins/tracker.js'},
+    {src: '~/plugins/router.js', ssr: false},
+    {src: '~/plugins/ui.js', ssr: false},
+    {src: '~/plugins/tracker.js'},
     // {src: '~/plugins/ahoy-analytics.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},
   ]

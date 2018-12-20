@@ -30,6 +30,7 @@
 <script>
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
+  import titleImg from '~/assets/images/text/jifuyoli.png'
 
   export default {
     name: 'Index',
@@ -46,12 +47,10 @@
     },
     methods: {
       showAlert () {
-        alert('lalala')
-        console.log('clickc ....c.c.c.c.c')
         this.dialog = this.$createDialog({
           type: 'alert',
           showClose: true,
-          title: `<img src="/assets/images/text/jifuyoli.png">`,
+          title: `<img src="${titleImg}">`,
           content: `
 <p>
 集福活动时间：

@@ -98,7 +98,7 @@ export const actions = {
    * @returns {Promise<void>}
    */
   async nuxtClientInit ({ commit }, context) {
-    console.log('client init...')
+    // console.log('client init...')
     // console.log('Client init...')
     // const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
     // await clientInitWechatJSSDK(jssdkConfig)

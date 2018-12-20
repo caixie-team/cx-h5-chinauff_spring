@@ -1,0 +1,126 @@
+.donateover.popup {
+  display: none;
+
+  .box {
+    .wrap {
+      .title {
+        top: 16%;
+      }
+
+      .back-home {
+        width: 24%;
+        position: absolute;
+        bottom: 1%;
+        left: 37%;
+        padding: 2% 0;
+      }
+
+      .sure-btn {
+        bottom: 7%;
+      }
+
+      .img-redpack {
+        $img-redpack-width: 48%;
+        position: absolute;
+        width: $img-redpack-width;
+        left: (100% - $img-redpack-width)/2;
+        top: 23%;
+      }
+
+      .jifen {
+        $img-redpack-width: 66%;
+        position: absolute;
+        width: $img-redpack-width;
+        left: (100% - $img-redpack-width)/2;
+        bottom: 18%;
+
+        .intergation {
+          width: 100%;
+        }
+
+        .jifen_text {
+          position: absolute;
+          top: 0;
+          right: 6%;
+          font-size: .6rem;
+          text-align: left;
+          color: #FFFFFF;
+
+          p {
+            margin: 0;
+          }
+
+          p:nth-child(1) {
+            font-size: .7rem;
+            margin: 3px 0;
+          }
+
+          span {
+            font-size: .9rem;
+            font-weight: 600;
+          }
+        }
+
+        .btn_usejifen {
+          width: 56%;
+          position: absolute;
+          right: 13%;
+          bottom: 6%;
+        }
+      }
+
+      .huifu {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 34%;
+        font-size: 12px;
+        color: $main-font-color-r;
+      }
+
+      .result {
+        $result-width: 75%;
+        animation-delay: .5s;
+        position: absolute;
+        bottom: 42%;
+        width: $result-width;
+        left: (100% - $result-width)/2;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        font-size: 13px;
+        color: $main-font-color;
+        font-weight: normal;
+
+        li {
+          margin-bottom: .2rem;
+        }
+
+        p {
+          margin: auto 8px;
+          white-space: nowrap;
+
+          span {
+            display: inline-block;
+          }
+
+          :nth-child(1) {
+            width: 46%;
+            text-align: right;
+            padding-right: 4%;
+          }
+
+          :nth-child(2) {
+            width: 50%;
+            text-align: left;
+            //                      padding-left: 10px;
+          }
+        }
+
+        .time {
+          /*font-size: 11px;*/
+        }
+      }
+    }
+  }
+}

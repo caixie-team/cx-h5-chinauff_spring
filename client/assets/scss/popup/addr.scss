@@ -1,0 +1,99 @@
+.addr.popup {
+  display: none;
+
+  .mask {
+    background: rgba(0, 0, 0, 0);
+    @include abs_full_page();
+  }
+
+  .box {
+    .wrap {
+      .activity-shop {
+        position: absolute;
+        top: 20%;
+        width: 100%;
+        font-size: .8rem;
+        color: #FFFFFF;
+      }
+
+      .table-wrap {
+        $table-wrap-width: 80%;
+        position: absolute;
+        width: $table-wrap-width;
+        margin-left: -($table-wrap-width/2);
+        left: 50%;
+        top: 28%;
+        height: 58%;
+        overflow: auto;
+        color: #FFFFFF;
+
+        table {
+          width: 100%;
+          border: 1px solid $table-border-color;
+          border-collapse: collapse;
+
+          tr:nth-child(1) {
+            line-height: 1.9rem;
+            font-size: .7rem;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-align: left;
+
+            th {
+              border-width: 1px;
+              border-style: solid;
+              border-top-color: $table-border-color;
+              border-bottom-color: $table-border-color;
+              border-left-color: rgba(0, 0, 0, 0);
+              border-right-color: rgba(0, 0, 0, 0);
+
+
+            }
+
+            th:nth-child(1) {
+              width: 30%;
+              padding-left: .2rem;
+            }
+
+            th:nth-child(2) {
+              width: 70%;
+              padding-left: .6rem;
+            }
+          }
+
+          tr {
+            color: #FFFFFF;
+            font-size: .6rem;
+            line-height: 1rem;
+            vertical-align: top;
+
+            td {
+              border-width: 1px;
+              border-style: solid;
+              border-top-color: $table-border-color;
+              border-bottom-color: $table-border-color;
+              border-left-color: rgba(0, 0, 0, 0);
+              border-right-color: $table-border-color;
+              text-align: left;
+            }
+
+            td:nth-child(2) {
+              text-align: left;
+              padding-left: .6rem;
+              border-right: 1px solid rgba(0, 0, 0, 0);
+            }
+          }
+        }
+      }
+
+      //          .sure-btn{
+      //              $sure-btn-width: 50%;
+      //              position: absolute;
+      //              width: $sure-btn-width;
+      //              margin-left: -($sure-btn-width/2);
+      //              left: 50%;
+      //              bottom: 4%;
+      //          }
+    }
+  }
+}
