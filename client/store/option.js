@@ -33,7 +33,8 @@ export const state = () => ({
       // 'updateTimelineShareData',
     ],
     url: ''
-  }
+  },
+  logInfo: {}
 })
 
 export const getters = {
@@ -59,5 +60,9 @@ export const mutations = {
   SET_JSSDK_CONFIG (state, action) {
     state.jssdkConfig = Object.assign({}, state.jssdkConfig, action)
     // console.log(state.jssdkConfig)
+  },
+
+  SET_LOG_INFO (state, action) {
+    state.logInfo = Object.assign({}, state.logInfo, action)
   }
 }

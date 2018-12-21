@@ -65,6 +65,10 @@ module.exports = {
     '@nuxtjs/style-resources'
   ],
   proxy: {
+    '/cx': {
+      target: apiConfig.caixieUrl,
+      pathRewrite: {'^/cx/': ''}
+    },
     '/proxy': {
       target: apiConfig.proxyUrl,
       pathRewrite: {'^/proxy/': ''}
@@ -221,6 +225,7 @@ module.exports = {
     {src: '~/plugins/wechat-jssdk.js', ssr: false},
     {src: '~/plugins/router.js', ssr: false},
     {src: '~/plugins/ui.js', ssr: false},
+    {src: '~/plugins/json-view.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
     {src: '~/plugins/ahoy-analytics.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},

@@ -42,6 +42,9 @@
     "thinkjs": "^3.0.0",
     "vant": "^1.4.8",
     "vue-create-api": "^0.2.0",
+    "vue-json-pretty": "^1.4.1",
+    "vue-json-tree-view": "^2.1.4",
+    "vue-json-viewer": "^2.0.6",
     "wechat-jssdk": "^4.0.0-alpha.2"
   },
   "devDependencies": {

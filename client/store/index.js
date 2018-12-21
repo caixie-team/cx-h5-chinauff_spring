@@ -29,10 +29,11 @@ const resIsSuccess = response => {
   }
 }
 const getBaseUrl = (req) => {
-  return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + '/'
+  return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + req.originalUrl
+  // return req.headers['x-forwarded-host']
 }
 // 初始化配置 Wechat JSSDK
-const clientInitWechatJSSDK = async (config) => {
+const clientInitWechatJSSDK = async (config, commit) => {
 
   const wechatObj = new window.WechatJSSDK(config)
   wechatObj.initialize()
@@ -44,10 +45,16 @@ const clientInitWechatJSSDK = async (config) => {
         title: 'onMenuShareTimeline test title',
         type: 'link',
         success: function() {
+          commit('option/SET_LOG_INFO', {
+            msg: 'share on moment success'
+          })
           console.log('share on moment success')
         },
         cancel: function() {
           console.log('share on moment canceled')
+          commit('option/SET_LOG_INFO', {
+            msg: 'share on moment canceled'
+          })
         },
         imgUrl: img
       })
@@ -65,6 +72,7 @@ const clientInitWechatJSSDK = async (config) => {
       })
     })
     .catch(err => {
+      commit('option/SET_LOG_INFO', err)
       console.error(err)
     })
 }
@@ -74,6 +82,7 @@ export const actions = {
 
   // 全局服务初始化
   nuxtServerInit (store, { req, params, route }) {
+    // console.log(req)
     // 检查设备类型
     // const userAgent = isServer ? req.headers['user-agent'] : navigator.userAgent
     // const { isWechat } = uaDevice(userAgent || '')
@@ -82,6 +91,7 @@ export const actions = {
 
     const initAppData = [
       // 获取微信JSSDK配置
+      // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
       store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
@@ -101,7 +111,8 @@ export const actions = {
     // console.log('client init...')
     // console.log('Client init...')
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
-    await clientInitWechatJSSDK(jssdkConfig)
+    console.log('iniit jssdkConfig')
+    await clientInitWechatJSSDK(jssdkConfig, commit)
     // window.app = this;
     // getCurrentPath() {
     //   return this.$store.state.section && this.$store.state.section != '/' ? `/${this.$store.state.section}` : '/';
@@ -121,14 +132,28 @@ export const actions = {
         console.warn('获取 oauth url 错误', err)
       })
   },
+  loadCxJSSDKConfig ({ commit }, url) {
+    const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
+    return this.$axios.$get(getUrl)
+      .then(response => {
+        console.log(response)
+        resIsSuccess(response)
+          ? commit('option/SET_JSSDK_CONFIG', getResData(response))
+          : console.log('微信签名信息获取失败：', response)
+      })
+      .catch(err => {
+        console.warn('获取签名信息错误', err)
+      })
+  },
   loadJSSDKConfig ({ commit }, url) {
+    console.log(url)
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(location.href)}`)
     // http://demo.micvs.com/lnj-weixin/console/activity/weChat/getConfigMessage?url=https://www.baidu.com
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(host)}`)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
-    return this.$axios.$post(`/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`)
+    const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    return this.$axios.$post(postUrl)
       .then(response => {
-        console.log(response)
         resIsSuccess(response)
           ? commit('option/SET_JSSDK_CONFIG', getResData(response))
           : console.log('微信签名信息获取失败：', response)

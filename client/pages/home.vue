@@ -3,7 +3,7 @@
     <div
       slot="content"
       class="home">
-      <top-buttons />
+      <top-buttons/>
       <img
         src="~assets/images/home/bt.png"
         class="imgBt">
@@ -14,6 +14,13 @@
           <img
             src="~assets/images/home/sys.png">
         </a>
+        <!--<input-->
+        <!--id="upload"-->
+        <!--type="file"-->
+        <!--accept="image/*"-->
+        <!--capture="camera"-->
+        <!--@change="upload">-->
+        <!--<label for="upload">上传</label>-->
       </div>
     </div>
   </c-page>
@@ -44,6 +51,12 @@
           showClose: true
         })
         this.dialog.show()
+      },
+      upload (e) {
+        const files = e.target.files || e.dataTransfer.files
+        if (!files.length) return
+        // this.picValue = files[0]
+        // this.imgPreview(this.picValue)
       }
     }
   }
@@ -69,10 +82,12 @@
     background: url('~assets/images/home/hn.png')
     background-size: 640px 1136px
     overflow: hidden
+
     .imgBt
       padding: 145px 112px 0 112px
       width: 444px
       height: 176px
+
     .imgSys
       width: 543px
       height: 528px
@@ -83,9 +98,11 @@
       line-height: 100px
       text-shadow: 0 1px 30px rgba(0, 0, 0, 0.30);
       opacity: .8
+
     p
       font-size: $fontsize-large-xxx
       font-weight: bold
+
     .footer
       flex: 1
       display: flex
@@ -94,6 +111,7 @@
       justify-content: flex-end;
       align-items: flex-end;
       color: #e6daa2;
+
       a
         width: 266px
         height: 200px
@@ -103,6 +121,7 @@
         display: flex
         align-items: center
         justify-content: center
+
         img
           width: 266px
           height: 64px
