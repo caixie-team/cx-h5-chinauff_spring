@@ -19,11 +19,12 @@ const PATHS = {
 }
 
 module.exports = {
+  // globalName: 'caixie',
   mode: 'universal',
   dev: isDevMode,
   rootDir: PATHS.root,
   srcDir: PATHS.client,
-  // buildDir: './build/',
+  // buildDir: 'dist/',
   env: {
     baseUrl: apiConfig.baseUrl,
     HOST_URL: apiConfig.socketHost
@@ -227,7 +228,7 @@ module.exports = {
     {src: '~/plugins/ui.js', ssr: false},
     {src: '~/plugins/json-view.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
-    {src: '~/plugins/ahoy-analytics.js', ssr: false},
+    // {src: '~/plugins/ahoy-analytics.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},
   ]
 }

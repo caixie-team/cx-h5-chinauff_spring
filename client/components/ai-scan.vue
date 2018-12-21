@@ -1,17 +1,25 @@
 <template>
-  <div class="upload">
-    <div class="box">
-      <div class="wrap">
-        <label
-          for="theFile"
-          class="select-btn">
-          <img src="~assets/img/btn/btn_sys.png">
-        </label>
-        <input
-          id="theFile"
-          type="file"
-          class="file"
-          capture="camera">
+  <div>
+    <div class="show">
+      <div
+        :style="'backgroundImage:url('+headerImage+')'"
+        class="picture"/>
+    </div>
+    <div class="upload">
+      <div class="box">
+        <div class="wrap">
+          <label
+            for="theFile"
+            class="select-btn">
+            <img src="~assets/img/btn/btn_sys.png">
+          </label>
+          <input
+            id="theFile"
+            type="file"
+            class="file"
+            capture="camera"
+            @change="upload">
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +28,12 @@
   import Exif from 'exif-js'
 
   export default {
+    data () {
+      return {
+        headerImage: '',
+        picValue: ''
+      }
+    },
     methods: {
       upload (e) {
         const files = e.target.files || e.dataTransfer.files
@@ -65,10 +79,11 @@
         // 这里写接口
         // console.log(this.headerImage)
         const imageData = this.headerImage.replace(/^data:image\/(png|jpg|jpeg);base64,/, '')
-        const res = await $.post('/ai/image', {
-          file: imageData
-        })
-        console.log(res.data.data.score)
+
+        // const res = await $.post('/ai/image', {
+        //   file: imageData
+        // })
+        // console.log(res.data.data.score)
       },
       rotateImg (img, direction, canvas) {
         // 最小与最大旋转方向，图片旋转4次后回到原方向
@@ -79,9 +94,9 @@
         const height = img.height
         const width = img.width
         let step = 2
-        if (step == null) {
-          step = min_step
-        }
+        // if (step == null) {
+        //   step = min_step
+        // }
         if (direction === 'right') {
           step++
           // 旋转到原位置，即超过最大值
@@ -201,16 +216,21 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .upload
+    width: 200px
+    height: 100px
+
     .box
       .wrap
         label
           position: absolute
           width: 266px
           height: 64px
-        .select-btn{
-          width: 100%;
-    .file
-      display: none
+
+        .select-btn
+          width: 100%
+
+        .file
+          display: none
 
 </style>
 

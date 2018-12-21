@@ -1,5 +1,6 @@
 <template>
   <c-page>
+
     <div
       slot="content"
       class="home">
@@ -8,27 +9,29 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        <a
-          href="javascript:;"
-          @click="showAlert">
-          <img
-            src="~assets/images/home/sys.png">
-        </a>
-        <!--<input-->
-        <!--id="upload"-->
-        <!--type="file"-->
-        <!--accept="image/*"-->
-        <!--capture="camera"-->
-        <!--@change="upload">-->
-        <!--<label for="upload">上传</label>-->
+        <div class="upload">
+          <label
+            for="theFile">
+            <img src="~assets/img/btn/btn_sys.png">
+          </label>
+          <input
+            id="theFile"
+            type="file"
+            class="file"
+            capture="camera"
+            @change="upload">
+        </div>
       </div>
     </div>
+    <ai-scan class="scan"/>
+
   </c-page>
 </template>
 <script>
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
   import TopButtons from '../components/top-buttons'
+  import AiScan from '../components/ai-scan'
 
   export default {
     name: 'Index',
@@ -39,7 +42,8 @@
     },
     components: {
       CPage,
-      TopButtons
+      TopButtons,
+      AiScan
     },
     data () {
       return {}
@@ -63,6 +67,9 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .scan
+    z-index: 100
+
   .c-dialog-content-def
     img
       width: 332px
@@ -75,7 +82,7 @@
     flex-direction: column
     min-height: 100vh
     position: absolute
-    z-index: 10
+    z-index: 1
     left: 0
     width: 100%
     height: 100%
@@ -111,6 +118,17 @@
       justify-content: flex-end;
       align-items: flex-end;
       color: #e6daa2;
+
+      .upload
+        width: 266px
+        height: 100px
+        label
+          position: absolute
+          img
+            width: 266px
+            height: 64px
+        .file
+          display: none
 
       a
         width: 266px

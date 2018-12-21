@@ -3,6 +3,10 @@
 build/*.js
 config/*.js
 
+dist/*
+dist/*.js
+dist/*.vue
+
 static/*
 static/*.js
 
