@@ -126,7 +126,7 @@ export const actions = {
     // http://demo.micvs.com/lnj-weixin/console/activity/weChat/getConfigMessage?url=https://www.baidu.com
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(host)}`)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
-    return this.$axios.$post(`/proxy/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
+    return this.$axios.$post(`/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`)
       .then(response => {
         console.log(response)
         resIsSuccess(response)

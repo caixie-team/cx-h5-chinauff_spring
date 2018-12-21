@@ -222,7 +222,7 @@ module.exports = {
     {src: '~/plugins/router.js', ssr: false},
     {src: '~/plugins/ui.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
-    // {src: '~/plugins/ahoy-analytics.js', ssr: false},
+    {src: '~/plugins/ahoy-analytics.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},
   ]
 }
