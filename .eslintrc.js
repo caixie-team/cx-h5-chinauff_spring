@@ -28,6 +28,7 @@ module.exports = {
   globals: {
     Set: true,
     Howl: true,
+    think: true,
     window: true,
     Reflect: true,
     Promise: true,

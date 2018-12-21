@@ -5,14 +5,14 @@
  * @author Baisheng <baisheng@caixie.top>
  */
 
-import Vue from 'vue'
+// import Vue from 'vue'
 import apiConfig from '~/api.config'
-import uaDevice from '~/utils/ua-device'
-import { isBrowser, isServer } from '~/environment'
-import { browserParse, osParse } from '~/utils/ua-os-browser'
+// import uaDevice from '~/utils/ua-device'
+import {isBrowser, isServer} from '~/environment'
+import {browserParse, osParse} from '~/utils/ua-os-browser'
 
 const API_PREFIX = apiConfig.baseUrl
-const API_THIRD = apiConfig.thirdUrl
+// const API_THIRD = apiConfig.thirdUrl
 
 // 兼容 Axios 在不同协议的不同表现
 const getResData = response => {
@@ -44,13 +44,13 @@ const clientInitWechatJSSDK = async (config, commit) => {
       wechatObj.shareOnMoment({
         title: 'onMenuShareTimeline test title',
         type: 'link',
-        success: function() {
+        success: function () {
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment success'
           })
           console.log('share on moment success')
         },
-        cancel: function() {
+        cancel: function () {
           console.log('share on moment canceled')
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment canceled'
@@ -62,10 +62,10 @@ const clientInitWechatJSSDK = async (config, commit) => {
         title: 'onMenuShareAppMessage test title',
         type: 'link',
         desc: 'onMenuShareAppMessage share description',
-        success: function() {
+        success: function () {
           console.log('share on chat success')
         },
-        cancel: function() {
+        cancel: function () {
           console.log('share on chat canceled')
         },
         imgUrl: img
@@ -81,7 +81,7 @@ const clientInitWechatJSSDK = async (config, commit) => {
 export const actions = {
 
   // 全局服务初始化
-  nuxtServerInit (store, { req, params, route }) {
+  nuxtServerInit (store, {req, params, route}) {
     // console.log(req)
     // 检查设备类型
     // const userAgent = isServer ? req.headers['user-agent'] : navigator.userAgent
@@ -107,7 +107,7 @@ export const actions = {
    * @param context
    * @returns {Promise<void>}
    */
-  async nuxtClientInit ({ commit }, context) {
+  async nuxtClientInit ({commit}, context) {
     // console.log('client init...')
     // console.log('Client init...')
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
@@ -120,7 +120,7 @@ export const actions = {
   },
 
   // 获取 generateOAuthUrl 地址信息
-  loadOauthUrls ({ commit }) {
+  loadOauthUrls ({commit}) {
     // SET_WECHAT_OAUTHS
     return this.$axios.$get(`${API_PREFIX}/wechat`)
       .then(response => {
@@ -132,7 +132,7 @@ export const actions = {
         console.warn('获取 oauth url 错误', err)
       })
   },
-  loadCxJSSDKConfig ({ commit }, url) {
+  loadCxJSSDKConfig ({commit}, url) {
     const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
     return this.$axios.$get(getUrl)
       .then(response => {
@@ -145,11 +145,7 @@ export const actions = {
         console.warn('获取签名信息错误', err)
       })
   },
-  loadJSSDKConfig ({ commit }, url) {
-    console.log(url)
-    // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(location.href)}`)
-    // http://demo.micvs.com/lnj-weixin/console/activity/weChat/getConfigMessage?url=https://www.baidu.com
-    // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(host)}`)
+  loadJSSDKConfig ({commit}, url) {
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
     const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
     return this.$axios.$post(postUrl)
@@ -162,7 +158,19 @@ export const actions = {
         console.warn('获取签名信息错误', err)
       })
   },
-  loadImplicitOAuthInfo ({ commit }, code) {
+  loadUserInfo ({commit}, openId) {
+    const getUrl = `/proxy/dcApi/member/isLogin?openId=${openId}`
+    return this.$axios.$get(getUrl)
+      .then(response => {
+        resIsSuccess(response)
+          ? commit('option/SET_JSSDK_CONFIG', getResData(response))
+          : console.log('微信签名信息获取失败：', response)
+      })
+      .catch(err => {
+        console.warn('获取签名信息错误', err)
+      })
+  },
+  loadImplicitOAuthInfo ({commit}, code) {
     return this.$axios.$get(`${API_PREFIX}/wechat/oauth?code=${code}`)
       .then(response => {
         // console.log(response)
@@ -175,7 +183,7 @@ export const actions = {
       })
   },
   // 加载用户信息
-  loadWechatUserInfo ({ commit }, code) {
+  loadWechatUserInfo ({commit}, code) {
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(location.href)}`)
     return this.$axios.$get(`${API_PREFIX}/wechat/oauth?code=${code}`)
       .then(response => {

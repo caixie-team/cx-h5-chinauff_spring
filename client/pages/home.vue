@@ -1,6 +1,5 @@
 <template>
   <c-page>
-
     <div
       slot="content"
       class="home">
@@ -24,7 +23,6 @@
       </div>
     </div>
     <ai-scan class="scan"/>
-
   </c-page>
 </template>
 <script>
@@ -80,8 +78,9 @@
     display: flex
     align-items: center
     flex-direction: column
+    justify-content: space-between
     min-height: 100vh
-    position: absolute
+    /*position: absolute*/
     z-index: 1
     left: 0
     width: 100%
@@ -95,9 +94,9 @@
       width: 444px
       height: 176px
 
-    .imgSys
-      width: 543px
-      height: 528px
+    /*.imgSys*/
+      /*width: 543px*/
+      /*height: 528px*/
 
     h1
       font-size: 48px
@@ -111,12 +110,15 @@
       font-weight: bold
 
     .footer
-      flex: 1
-      display: flex
-      height: 300px
-      flex-direction: column
-      justify-content: flex-end;
-      align-items: flex-end;
+      /*top: 200px*/
+      /*position: relative*/
+      /*flex: 1*/
+      /*display: flex*/
+      /*height: 300px*/
+      /*flex-direction: column*/
+      /*justify-content: flex-end;*/
+      /*align-items: flex-end;*/
+      margin-bottom: 2%
       color: #e6daa2;
 
       .upload
