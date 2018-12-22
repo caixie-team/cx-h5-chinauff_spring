@@ -1,6 +1,6 @@
 <!-- 3.1.1、集满福兑好礼 -->
 <template>
-  <c-page type="second">
+  <c-page type="bg2">
     <div
       slot="content"
       class="page263">
@@ -12,13 +12,40 @@
         {{ total }}人已集满 “福”, 您 已集满 {{ count }}个 “福”
       </h1>
       <div class="content">
-        <span class="fuzi fuzi-fu1"/>
+        <!--<span class="fuzi fuzi-fu1"/>-->
+        <div
+          ref="slideWrapper"
+          class="slide-container">
+          <c-slide
+            ref="slide"
+            :data="items"
+            :initial-index="initialIndex"
+            :loop="loop"
+            :auto-play="autoPlay"
+            :interval="interval"
+            :threshold="threshold"
+            :speed="speed"
+            :options="options"
+            @change="changePage"
+            @click="clickPage">
+            <template
+              v-if="dotsSlot"
+              slot="dots"
+              slot-scope="props">
+              <span
+                v-for="(item, index) in props.dots"
+                :class="{active: props.current === index}"
+                :key="index"
+                class="my-dot">{{ index + 1 }}</span>
+            </template>
+          </c-slide>
+        </div>
         <nuxt-link
           to="/pageYydh"
           class="">
           <img
             src="~assets/img/btn/btn_yydhh.png"
-            class="btn">
+            class="btn-yydh">
         </nuxt-link>
         <img
           src="~assets/img/page311/qtqst.png"
@@ -50,12 +77,17 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import fu1 from '~/assets/img/common/fu1.png'
+  import fu2 from '~/assets/img/common/fu2.png'
+  import fu3 from '~/assets/img/common/fu3.png'
+  import fu4 from '~/assets/img/common/fu4.png'
+  import {has} from 'lodash'
 
   export default {
     name: 'Index',
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米'
+        title: '老娘舅新春集福瓜分18吨福米',
       }
     },
     components: {
@@ -76,13 +108,36 @@
     data () {
       return {
         total: '12,345',
-        count: '2',
+        count: '3',
         tip1,
         tip2,
-        limit: 2
+        limit: 3,
+        items: [
+          {
+            image: fu1
+          }, {
+            image: fu2
+          }, {
+            image: fu3
+          }
+        ],
+        loop: true,
+        autoPlay: false,
+        interval: 4000,
+        threshold: 0.3,
+        speed: 400,
+        allowVertical: false,
+        initialIndex: 0,
+        dotsSlot: false,
+        addItem3: false
       }
     },
     computed: {
+      options () {
+        return {
+          eventPassthrough: this.allowVertical ? 'vertical' : ''
+        }
+      },
       _couponClass () {
         return [
           'coupon',
@@ -96,11 +151,30 @@
         ]
       }
     },
+    mounted () {
+      // 集满福进入手弹窗
+      // this.showDialog('jdfl')
+    },
     methods: {
+      changePage (current) {
+        console.log('当前序号为:' + current)
+      },
+      clickPage (item, index) {
+        console.log(item, index)
+      },
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'intro',
           showClose: true
+        })
+        this.dialog.show()
+      },
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          word: has(option, 'word') ? option.word : '',
+          coupon: has(option, 'coupon') ? option.coupon : '',
+          showClose: has(option, 'showClose') ? option.showClose : true
         })
         this.dialog.show()
       }
@@ -108,7 +182,8 @@
   }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus">
+
   .page263
     color: $color-dark
     display: flex
@@ -121,12 +196,32 @@
     height: 100%
     justify-content: flex-start
     overflow: hidden
-    .btn
+
+    .slide-container
+      width: 400px
+      height: 436px
+      margin-bottom: 5px
+      transform: translateZ(0px)
+      /*border-radius: 2px*/
+      overflow: hidden
+      /*box-shadow: 0 2px 9px #ddd*/
+      .c-slide-item
+        padding: 20px
+      .c-slide-dots
+        .my-dot
+          height: auto
+          font-size: 24px
+          background: none
+          &.active
+            color: #fc9153
+    .btn-yydh
       padding: 20px
       width: 248px
+
     .imgQtqst
       width: 158px
       height: 22px
+
     .imgShiba
       width: 263px
       height: 85px
@@ -142,6 +237,7 @@
       display: flex
       flex-direction: column
       align-items: center
+
       .fuzi
         width: 400px
         height: 436px

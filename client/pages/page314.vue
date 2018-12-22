@@ -1,6 +1,6 @@
 <!-- 3.1.1、集满福兑好礼 -->
 <template>
-  <c-page type="second">
+  <c-page type="bg2">
     <div
       slot="content"
       class="page263">

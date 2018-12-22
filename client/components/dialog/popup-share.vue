@@ -1,7 +1,9 @@
-<!-- 活动介绍 -->
+<!-- 邀请好友助力 -->
 <template>
   <div class="popup share">
-    <div class="buttons">
+    <div
+      class="buttons"
+      @click="share">
       <img
         :src="btn1"
         class="btn1">
@@ -14,6 +16,7 @@
 <script>
   import btn1 from '~/assets/img/btn/btn_friend.png'
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
+  import EventBus from '~/utils/event-bus.js'
 
   export default {
     data () {
@@ -23,10 +26,18 @@
       }
     },
     methods: {
+      share () {
+        EventBus.$emit('share', true);
+      }
     }
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .icon-share
+    position: absolute
+    top: 0
+    width: 317px
+    height: 92px
   .popup.share
     width: 418px
     height: 474px

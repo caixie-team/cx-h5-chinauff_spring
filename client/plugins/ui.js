@@ -42,7 +42,7 @@ import {
   // ImagePreview,
   // scroll
   Scroll,
-  // Slide,
+  Slide,
   IndexList,
   // Swipe,
   // Sticky,
@@ -93,7 +93,7 @@ const components = [
   // ImagePreview,
   // scroll
   Scroll,
-  // Slide,
+  Slide,
   IndexList,
   // Swipe,
   // Sticky,

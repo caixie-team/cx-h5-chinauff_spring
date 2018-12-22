@@ -21,9 +21,11 @@
     </div>
     <div class="section2">
       <span :class="_couponClass"/>
+      <!-- 立即领取 -->
       <img
         src="~assets/img/btn/btn_ljlqh.png"
-        class="btn-lijilq">
+        class="btn-lijilq"
+        @click="getCoupon">
       <img
         :src="tips"
         class="tips">
@@ -37,6 +39,8 @@
   import tips from '~/assets/img/text/text_yhqlqlcyx.png'
   import btn1 from '~/assets/img/btn/btn_friend.png'
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
+  import {isBrowser} from '~/environment'
+  import apiConfig from '~/api.config'
 
   export default {
     props: {
@@ -73,7 +77,22 @@
         ]
       }
     },
-    methods: {}
+    methods: {
+      getCoupon () {
+        // 验证用户是否登录，未登录跳转
+        this.redirectLogin()
+        // 是
+        // 发劵
+        // 否
+        // 注册\登录
+      },
+      redirectLogin () {
+        if (isBrowser) {
+          const encodeUrl = encodeURIComponent(window.location.href)
+          window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?callback=${encodeUrl}`
+        }
+      }
+    }
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -140,10 +159,12 @@
       margin-top: 200px
       padding-bottom: 20px
       border-bottom: 1px solid #808080
+
       .title1
         margin-bottom: 8px
         width: 326px
         height: 31px
+
       .icon
         width: 157px
         height: 166px

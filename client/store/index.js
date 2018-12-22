@@ -136,7 +136,7 @@ export const actions = {
     const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
     return this.$axios.$get(getUrl)
       .then(response => {
-        console.log(response)
+        // console.log(response)
         resIsSuccess(response)
           ? commit('option/SET_JSSDK_CONFIG', getResData(response))
           : console.log('微信签名信息获取失败：', response)

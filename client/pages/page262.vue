@@ -26,7 +26,9 @@
       </div>
       <div class="footer">
         <a>
-          <img src="~assets/img/btn/btn_yqhyzl.png">
+          <img
+            src="~assets/img/btn/btn_yqhyzl.png"
+            @click="showDialog('share')">
         </a>
         <a>
           <img src="~assets/img/btn/btn_zlycl.png">
@@ -43,6 +45,7 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import {has} from 'lodash'
 
   export default {
     name: 'Index',
@@ -89,11 +92,24 @@
         ]
       }
     },
+    mounted () {
+      this.showDialog('jdfl')
+
+    },
     methods: {
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'intro',
           showClose: true
+        })
+        this.dialog.show()
+      },
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          word: has(option, 'word') ? option.word : '',
+          coupon: has(option, 'coupon') ? option.coupon : '',
+          showClose: has(option, 'showClose') ? option.showClose : true
         })
         this.dialog.show()
       }

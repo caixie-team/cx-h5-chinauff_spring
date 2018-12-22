@@ -39,7 +39,7 @@ import Dialog from './dialog'
 
 // Scroll
 import Scroll from './scroll'
-// import Slide from './modules/slide'
+import Slide from './slide'
 import IndexList from './index-list'
 // import Swipe from './modules/swipe'
 // import Sticky from './modules/sticky'
@@ -53,7 +53,7 @@ import createAPI from './create-api'
 
 // const FormGroup = Form.Group
 // const FormItem = Form.Item
-// const SlideItem = Slide.Item
+const SlideItem = Slide.Item
 // const Radio = RadioGroup.Radio
 // const SwipeItem = Swipe.Item
 // const DrawerPanel = Drawer.Panel
@@ -111,8 +111,8 @@ export {
   // ImagePreview,
   // scroll
   Scroll,
-  // SlideItem,
-  // Slide,
+  SlideItem,
+  Slide,
   IndexList,
   // SwipeItem,
   // Swipe,

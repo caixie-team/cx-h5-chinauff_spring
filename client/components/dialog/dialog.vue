@@ -30,6 +30,8 @@
           @close="close"/>
         <jdfl
           v-if="type === 'jdfl'"/>
+        <dhff
+          v-if="type === 'dhff'"/>
           <!--<div :class="containerClass"></div>-->
       </div>
     </c-popup>
@@ -49,6 +51,8 @@
   import Prize from './popup-prize'
   import Success from './popup-success'
   import Jdfl from './popup-jdfl'
+  import Dhff from './popup-dhff'
+  import EventBus from '~/utils/event-bus.js'
 
   const COMPONENT_NAME = 'c-dialog'
   const EVENT_CONFIRM = 'confirm'
@@ -88,7 +92,8 @@
       Share,
       Prize,
       Success,
-      Jdfl
+      Jdfl,
+      Dhff
     },
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {
@@ -195,6 +200,7 @@
         this.$emit(EVENT_CANCEL, e)
       },
       close (e) {
+        EventBus.$emit('share', false);
         this.hide()
         this.$emit(EVENT_CLOSE, e)
       }

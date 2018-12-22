@@ -16,9 +16,6 @@ module.exports = options => {
   let err = null
 
   const middleware = async (ctx, next) => {
-    const userOpenId = await ctx.cookie('userOpenId')
-    await ctx.cookie('userOpenId', 'userlll')
-    // console.log(userOpenId)
     if (options.unless) {
       for (const item of options.unless) {
         if (ctx.url.match(ctx.url.match(item))) {

@@ -23,7 +23,7 @@
       },
       type: {
         type: String,
-        default: 'main'
+        default: 'bg1'
       },
       desc: {
         type: String,
@@ -38,7 +38,7 @@
       typeClass () {
         return [
           'c-page',
-          this.type === 'main' ? 'bg1' : 'bg2'
+          this.type
         ]
       }
     },
@@ -68,6 +68,10 @@
 
     &.bg2
       background: url('~assets/img/bg/page_bgm.jpg')
+      background-size: 640px 1136px;
+
+    &.bg3
+      background: url('~assets/img/bg/page_bg3.png')
       background-size: 640px 1136px;
 
     > .wrapper

@@ -28,7 +28,7 @@
           },
           {
             name: 'dhff',
-            text: '活动介绍',
+            text: '兑换方法',
             class: this.type === 'main' ? 'btn-dhff' : 'btn-dhff'
           },
           {
@@ -44,12 +44,13 @@
         ]
       }
     },
-    computed: {
-    },
+    computed: {},
     methods: {
       show (name) {
         if (name === 'hdjs') {
           this.showDialog('intro')
+        } else if (name === 'dhff') {
+          this.showDialog('dhff')
         } else {
           this.$router.push(`/${name}`)
         }
