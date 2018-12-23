@@ -70,15 +70,17 @@
     },
     watch: {
       score () {
-        this.$store.commit('ai/RESET_SCORE')
+        setTimeout(() => this.dialog.hide(), 3000)
         if (this.score > 40) {
           // 跳转到集福动画页
         } else {
           this.picValue = ''
+          this.$store.commit('ai/RESET_SCORE')
         }
       },
       isMatching () {
         setTimeout(() => this.dialog.hide(), 3000)
+        this.$store.commit('ai/RESET_SCORE')
       }
     },
     mounted () {
