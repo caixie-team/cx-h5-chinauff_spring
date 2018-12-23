@@ -11,7 +11,13 @@ module.exports = options => {
   // let err = null
 
   const middleware = async (ctx, next) => {
-
+    if (options.unless) {
+      for (const item of options.unless) {
+        if (ctx.url.match(ctx.url.match(item))) {
+          return next()
+        }
+      }
+    }
     // cookie
     // query 参数
     const openId = ctx.cookie('openId')

@@ -65,7 +65,20 @@ module.exports = {
     '@nuxtjs/proxy',
     '@nuxtjs/style-resources'
   ],
+  /*
+  ** Axios module configuration
+  */
+  axios: {
+    proxy: true,
+    // credentials: true
+    // See https://github.com/nuxt-community/axios-module#options
+  },
+
   proxy: {
+    '/server': {
+      target: apiConfig.baseUrl,
+      pathRewrite: {'^/server/': ''}
+    },
     '/cx': {
       target: apiConfig.caixieUrl,
       pathRewrite: {'^/cx/': ''}
@@ -82,13 +95,6 @@ module.exports = {
   //     pathRewrite: {'^/api2': '/'}
   //   }
   // ],
-  /*
-  ** Axios module configuration
-  */
-  axios: {
-    // proxy: true
-    // See https://github.com/nuxt-community/axios-module#options
-  },
 
   styleResources: {
     // scss: [
@@ -222,6 +228,7 @@ module.exports = {
   */
   plugins: [
     // { src: '~/plugins/loaded-task.js'},
+    {src: '~plugins/axios.js'},
     {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~/plugins/wechat-jssdk.js', ssr: false},
     {src: '~/plugins/router.js', ssr: false},

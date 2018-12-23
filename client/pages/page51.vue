@@ -4,25 +4,24 @@
     <div
       slot="content"
       class="page51">
-      <div class="qrcode">
-        <!--<img src="http://spring.chinauff.com/spring/qrcode">-->
-        <img src="http://spring.chinauff.com/qrcode/?size=360">
-      </div>
       <top-buttons/>
-      <h1>
-        请将该二维码展示给收银员
-      </h1>
       <div class="content">
-        <nuxt-link
-          to="/pageYydh"
-          class="">
-          <img
-            src="~assets/img/btn/btn_yydhh.png"
-            class="btn">
-        </nuxt-link>
+        <div class="qrcode">
+          <img src="http://spring.chinauff.com/qrcode/?size=360">
+        </div>
         <img
-          src="~assets/img/page311/qtqst.png"
-          class="imgQtqst">
+          src="~assets/img/text/text_qjrwmzsgsyy.png"
+          class="text-qjrwmzsgsyy">
+        <div class="exchange-form">
+          <div class="exchange-form__content">
+            <span class="date">
+              2019年1月27日—2月7日
+            </span>
+            <span class="shop">
+              湖州总部自由港店
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </c-page>
@@ -105,98 +104,48 @@
     height: 100%
     justify-content: center
     overflow: hidden
-    .qrcode
-      display: flex
-      justify-content: center
-      width: 380px
-      height: 380px
-      background: #E5D9A1
-      img
-        width: 340px
-        height: 340px
-    .btn
-      padding: 20px
-      width: 248px
-    .imgQtqst
-      width: 158px
-      height: 22px
-    .imgShiba
-      width: 263px
-      height: 85px
-      padding-top: 130px
-
-    h1
-      font-size: 22px
-      font-weight: bold
-      margin-top: 10px
-      margin-bottom: 10px
-      color: #E3C97C
     .content
       display: flex
       flex-direction: column
       align-items: center
-      .fuzi
-        width: 400px
-        height: 436px
-        background-size: 400px 436px
-
-        &-fu1
-          background-image: url("~assets/img/common/fu1.png")
-
-        &-fu2
-          background-image: url("~assets/img/common/fu2.png")
-
-        &-fu3
-          background-image: url("~assets/img/common/fu3.png")
-
-        &-fu4
-          background-image: url("~assets/img/common/fu4.png")
-
-        &-fu5
-          background-image: url("~assets/img/common/fu5.png")
-
-        &-fu6
-          background-image: url("~assets/img/common/fu6.png")
-
-        &-fu7
-          background-image: url("~assets/img/common/fu7.png")
-
-        &-fu8
-          background-image: url("~assets/img/common/fu8.png")
-
-        &-fu9
-          background-image: url("~assets/img/common/fu9.png")
-
-        &-fu10
-          background-image: url("~assets/img/common/fu10.png")
-
-        &-fu11
-          background-image: url("~assets/img/common/fu11.png")
-
-      section
+      .qrcode
         display: flex
-        flex-direction: column
+        justify-content: center
         align-items: center
-        width: 360px
-
-        a
-          color: #000
-          font-weight: bold
-          font-size: $fontsize-large-xxx
-          top: 50px
+        text-align: center
+        width: 380px
+        height: 380px
+        background: #E5D9A1
+        img
+          width: 340px
+          height: 340px
+      .text-qjrwmzsgsyy
+        margin: 20px 0 30px 0
+        width: 299px
+        height: 25px
+      .exchange-form
+        width: 419px
+        height: 235px
+        background-image: url("~assets/img/bg/form_yydh.png")
+        background-size: 419px 235px
+        display: flex
+        justify-content: flex-end
+        &__content
           position: relative
-          text-decoration: underline
-
-        &.section1
+          top: 110px
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          height: 80px
+          width: 300px
+        span
+          font-weight: 500
+          font-size: 22px
           position: relative
-          top: 180px
-
-          img
-            width: 266px
-            height: 64px
-            position: relative
-            top: 100px
-
+          &.date
+            left: 30px
+          &.shop
+            left: 30px
     .footer
       display: flex
       position: absolute
@@ -206,100 +155,4 @@
       background-image: url("~assets/img/common/footer_bsbg.png")
       background-size: 640px 167px
       justify-content: center
-
-      .toolbar
-        width: 90%;
-        display: flex
-        flex-direction: row
-        justify-content: space-between
-        align-items: center;
-        font-size: 20px
-
-        .icon
-          width: 120px
-          height: 120px
-          position: relative
-          display: inline-block
-
-          sub
-            display: flex
-            align-content: center
-            justify-content: center
-            align-items: center
-            font-weight: bold
-            position: absolute
-            right: 0
-            height: 30px
-            width: 30px
-            border-radius: 100%
-            min-width: 30px
-            font-size: 22px;
-            background: #e6daa2;
-            color: #a28e31;
-            text-align: center;
-            white-space: nowrap;
-            z-index: 10;
-
-          &-yi
-            background: url("~assets/img/word/word_yi.png") no-repeat
-            background-size: 120px 120px
-
-          &-kou
-            background: url("~assets/img/word/word_kou.png") no-repeat
-            background-size: 120px 120px
-
-          &-shi
-            background: url("~assets/img/word/word_shi.png") no-repeat
-            background-size: 120px 120px
-
-          &-tian
-            background: url("~assets/img/word/word_tian.png") no-repeat
-            background-size: 120px 120px
-
-      p
-        line-height: 30px
-        font-size: $fontsize-large-x
-        font-weight: bold
-
-      a
-        width: 266px
-        height: 64px
-        display: flex
-        align-items: center
-        justify-content: center
-        padding: 10px
-
-        img
-          width: 266px
-          height: 64px
-
-    .coupon
-      position: relative
-      top: 20px
-      width: 248px
-      height: 88px
-      background-size: 248px 88px
-
-      &-bayuan
-        background-image: url("~assets/img/gift/coupon_bayuan.png")
-
-      &-bazhe
-        background-image: url("~assets/img/gift/coupon_bazhe.png")
-
-      &-liuzhe
-        background-image: url("~assets/img/gift/coupon_liuzhe.png")
-
-      &-mianfei
-        background-image: url("~assets/img/gift/coupon_mianfei.png")
-
-      &-qizhe
-        background-image: url("~assets/img/gift/coupon_qizhe.png")
-
-      &-siyuan
-        background-image: url("~assets/img/gift/coupon_siyuan.png")
-
-      &-wuzhe
-        background-image: url("~assets/img/gift/coupon_wuzhe.png")
-
-
 </style>

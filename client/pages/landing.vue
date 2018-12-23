@@ -37,7 +37,6 @@
     //   }
     // },
     // async fetch ({ store, params }) {
-    // console.log('lalala.......')
     // console.log(params)
     // let { data } = await axios.get('http://my-api/stars')
     // store.commit('setStars', data)

@@ -34,7 +34,7 @@ module.exports = [
     handle: 'payload',
     options: {
       keepExtensions: true,
-      limit: '20mb'
+      limit: '200mb'
     }
   },
   {
@@ -42,13 +42,16 @@ module.exports = [
     options: {}
   },
   {
-    handle: chinauff
+    handle: chinauff,
+    options: {
+      unless: [/^\/spring\/api?/, /^\/landing?/, /^\/callback?/]
+    }
   },
   {
     handle: nuxt,
     options: {
       config: nuxtConfig,
-      unless: [/^\/api?/, /^\/landing?/, /^\/callback?/],
+      unless: [/^\/spring\/api?/, /^\/landing?/, /^\/callback?/],
       isDev: isDev
     }
   },

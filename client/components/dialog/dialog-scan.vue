@@ -15,26 +15,9 @@
           @click="close">
           <img src="~assets/img/btn/btn_close_r.png">
         </span>
-        <intro v-if="type === 'intro'"/>
-        <limit
-          v-if="type === 'limit'"
-          @close="close"/>
-        <share
-          v-if="type === 'share'"/>
-        <prize
-          v-if="type === 'prize'"
-          :coupon="coupon"
-          :word="word"/>
-        <success
-          v-if="type === 'success'"
-          @close="close"/>
-        <jdfl
-          v-if="type === 'jdfl'"/>
-        <dhff
-          v-if="type === 'dhff'"/>
-        <popup-scan
-          v-if="type === 'scan'"
-          :imgsrc="imgsrc"/>
+        <popup-scan :imgsrc="imgsrc">
+          <preloader/>
+        </popup-scan>
       </div>
     </c-popup>
   </transition>
@@ -47,15 +30,9 @@
   import visibilityMixin from '../../common/mixins/visibility'
   import popupMixin from '../../common/mixins/popup'
   import localeMixin from '../../common/mixins/locale'
-  import Intro from './popup-intro'
-  import Limit from './popup-limit'
-  import Share from './popup-share'
-  import Prize from './popup-prize'
-  import Success from './popup-success'
-  import Jdfl from './popup-jdfl'
-  import Dhff from './popup-dhff'
   import EventBus from '~/utils/event-bus.js'
   import PopupScan from "./popup-scan";
+  import Preloader from "../../components/preloader";
 
   const COMPONENT_NAME = 'c-dialog'
   const EVENT_CONFIRM = 'confirm'
@@ -91,25 +68,19 @@
       PopupScan,
       CPopup,
       CInput,
-      Intro,
-      Limit,
-      Share,
-      Prize,
-      Success,
-      Jdfl,
-      Dhff
+      Preloader
     },
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {
+      imgsrc: {
+        type: String,
+        default: ''
+      },
       coupon: {
         type: String,
         default: ''
       },
       word: {
-        type: String,
-        default: ''
-      },
-      imgsrc: {
         type: String,
         default: ''
       },

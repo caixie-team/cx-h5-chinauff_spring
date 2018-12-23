@@ -1,4 +1,4 @@
-<!-- 6.2.1、助力者打开邀请助力链接 -->
+<!-- 6.2.2、已完成助力 -->
 <template>
   <c-page>
     <div
@@ -34,9 +34,15 @@
             src="~assets/img/page621/zhulizhuli.png"
             class="text-zhulizhuli">
         </div>
-        <img
-          src="~assets/img/btn/btn_ljzl.png"
-          class="btn-ljzl">
+        <div class="actions">
+          <img
+            src="~assets/img/btn/btn_ywczlg.png"
+            class="btn-ywczl">
+          <img
+            src="~assets/img/text/text_djccqwjf.png"
+            class="text-djccqwjf">
+        </div>
+
       </div>
       <div class="footer"/>
     </div>
@@ -175,15 +181,21 @@
           .text-weihaoyou
             width: 128px
             height: 21px
+      .actions
+        display: flex
+        flex-direction: column
+        justify-content: center
+        position: relative
+        bottom: 50px
+        .btn-ywczl
+          width: 218px
+          margin-bottom: 20px
+        .text-djccqwjf
+          width: 230px
+          height: 27px
       .text-zhulizhuli
         width: 185px
         height: 53px
-      .btn-ljzl
-        position: relative
-        bottom: 100px
-        width: 218px
-        /*width: 266px*/
-        /*height: 64px*/
       .moredot
         color: $color-white
         letter-spacing: 3px

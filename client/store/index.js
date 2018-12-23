@@ -1,5 +1,6 @@
 /* eslint-disable valid-jsdoc */
 /**
+ *
  * @file 根数据状态,存放全局数据和异步方法 / ES module
  * @module store/entry
  * @author Baisheng <baisheng@caixie.top>
@@ -12,6 +13,7 @@ import {isBrowser, isServer} from '~/environment'
 import {browserParse, osParse} from '~/utils/ua-os-browser'
 
 const API_PREFIX = apiConfig.baseUrl
+const HOST_API = apiConfig.hostUrl + '/api'
 // const API_THIRD = apiConfig.thirdUrl
 
 // 兼容 Axios 在不同协议的不同表现
@@ -187,13 +189,32 @@ export const actions = {
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(location.href)}`)
     return this.$axios.$get(`${API_PREFIX}/wechat/oauth?code=${code}`)
       .then(response => {
-        console.log(response)
         // resIsSuccess(response)
         //   ? commit('option/SET_JSSDK_CONFIG', getResData(response))
         //   : console.log('微信签名信息获取失败：', response)
       })
       .catch(err => {
         console.warn('获取签名信息错误', err)
+      })
+  },
+  // AI 图片
+  checkImage ({commit}, data) {
+    commit('ai/POST_IMAGE')
+    // return this.$axios.$post(`/spring/cx/ai/jimage`, data)
+    return this.$axios.$post(`${HOST_API}/ai`, data)
+      .then(response => {
+        const data = getResData(response)
+        if (resIsSuccess(response)) {
+          commit('ai/POST_IMAGE_SUCCESS', data)
+          return Promise.resolve(data)
+        } else {
+          commit('ai/POST_IMAGE_FAILURE')
+          return Promise.reject(data)
+        }
+      })
+      .catch(err => {
+        commit('ai/POST_IMAGE_FAILURE', err)
+        return Promise.reject(err)
       })
   }
   // 获取同构常量
