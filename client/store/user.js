@@ -27,6 +27,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  SET_USER_INFO (state, action) {
+    state.info.data = action
+  },
   // 获取用户信息
   REQUEST_USER_INFO (state) {
     state.info.fetching = true

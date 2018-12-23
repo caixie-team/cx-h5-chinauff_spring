@@ -83,7 +83,6 @@
         this.dialog.show()
       },
       picker () {
-        // Post 领取字
         this.$router.push('/page241')
       },
       log () {

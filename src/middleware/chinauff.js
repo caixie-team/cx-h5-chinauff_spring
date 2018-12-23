@@ -20,13 +20,14 @@ module.exports = options => {
     }
     // cookie
     // query 参数
-    const openId = ctx.cookie('openId')
+    const openId = await ctx.cookie('openId') || await ctx.session('openId')
     const query = ctx.query
     const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${apiConfig.hostUrl}`
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
       return ctx.redirect(callbackUrl)
     } else if (_.has(query, 'openId')) {
-      ctx.cookie('openId', query.openId)
+      await ctx.cookie('openId', query.openId)
+      await ctx.session('openId', query.openId)
       // 创建或查询活动账户
       // post openId 查询活动账户信息
       return next()

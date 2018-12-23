@@ -84,13 +84,17 @@ export const actions = {
 
   // 全局服务初始化
   nuxtServerInit (store, {req, params, route}) {
+    // console.log(JSON.stringify(req.session.openId) + 'x-x-x-x-')
     // console.log(req)
     // 检查设备类型
     // const userAgent = isServer ? req.headers['user-agent'] : navigator.userAgent
     // const { isWechat } = uaDevice(userAgent || '')
     // store.commit('option/SET_USER_AGENT', userAgent)
     // store.commit('option/SET_MOBILE_LAYOUT', isWechat)
-
+    // 设置用户信息
+    store.commit('user/SET_USER_INFO', {
+      openId: req.session.openId
+    })
     const initAppData = [
       // 获取微信JSSDK配置
       // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
@@ -215,6 +219,23 @@ export const actions = {
       .catch(err => {
         commit('ai/POST_IMAGE_FAILURE', err)
         return Promise.reject(err)
+      })
+  },
+  // 奖品, 集福、字、劵
+  loadPrizeBlessing ({commit}, data) {
+    return this.$axios.$post(`${API_PREFIX}/blessing/scan`, {
+      // openId: this.state.user.info.data.openId
+      openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+    }).then(response => {
+        const data = getResData(response)
+        if (resIsSuccess(response)) {
+          commit('prize/REQUEST_BLESSING', data)
+          return Promise.resolve(data)
+        }
+      })
+      .catch(err => {
+        // commit('ai/POST_IMAGE_FAILURE', err)
+        // return Promise.reject(err)
       })
   }
   // 获取同构常量

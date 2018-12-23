@@ -45,11 +45,27 @@
       TopButtons,
       AiScan
     },
-    data () {
-      return {}
+    fetch ({store}) {
+      return Promise.all([
+        // 福
+        store.dispatch('loadPrizeBlessing'),
+        // 劵
+        // store.dispatch('loadPrizeCoupon')
+      ])
+    },
+    computed: {
+      blessing () {
+        return this.$store.state.blessing
+      },
+      coupon () {
+        return this.$store.state.coupon
+      }
     },
     mounted () {
-      this.showDialog('prize', {word: 'kou', coupon: 'mianfei'})
+      this.showDialog('prize', {
+        word: 'kou',
+        coupon: 'mianfei'
+      })
     },
     methods: {
       showDialog (type, option) {
