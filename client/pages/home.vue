@@ -62,7 +62,7 @@
         return this.$store.state.ai.posting
       },
       isMatching () {
-        return this.$store.state.ai.data.score > 55
+        return this.$store.state.ai.data.score > 40
       },
       score () {
         return this.$store.state.ai.data.score
@@ -70,10 +70,10 @@
     },
     watch: {
       score () {
+        this.$store.commit('ai/RESET_SCORE')
         if (this.score > 40) {
           // 跳转到集福动画页
         } else {
-          this.$store.commit('ai/RESET_SCORE')
           this.picValue = ''
         }
       },
