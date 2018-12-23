@@ -17,7 +17,7 @@
       class="container container3">
       <h1 class="msg">
         <span
-          v-if="isMatching"
+          v-if="score > 40"
           class="color2">
           “米” 的匹配值
           <br><br>

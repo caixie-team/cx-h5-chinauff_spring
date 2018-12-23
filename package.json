@@ -46,6 +46,7 @@
     "vue-json-pretty": "^1.4.1",
     "vue-json-tree-view": "^2.1.4",
     "vue-json-viewer": "^2.0.6",
+    "vue-timers": "^1.10.0",
     "wechat-jssdk": "^4.0.0-alpha.2"
   },
   "devDependencies": {

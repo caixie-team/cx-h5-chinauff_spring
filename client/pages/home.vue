@@ -70,17 +70,23 @@
     },
     watch: {
       score () {
-        setTimeout(() => this.dialog.hide(), 3000)
         if (this.score > 40) {
           // 跳转到集福动画页
+          setTimeout(() => {
+            this.dialog.hide()
+            this.$store.commit('ai/RESET_SCORE')
+            this.$router.push('/page22')
+          }, 3000)
+
         } else {
+          setTimeout(() => {
+            this.dialog.hide()
+          }, 3000)
           this.picValue = ''
-          this.$store.commit('ai/RESET_SCORE')
         }
       },
       isMatching () {
         setTimeout(() => this.dialog.hide(), 3000)
-        this.$store.commit('ai/RESET_SCORE')
       }
     },
     mounted () {
@@ -126,7 +132,6 @@
           // 读取成功后的回调
           reader.onloadend = function () {
             const result = this.result
-
             const img = new Image()
             img.src = result
             self.showDialog('scan', {
