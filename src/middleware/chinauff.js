@@ -2,7 +2,7 @@
 const path = require('path');
 const apiConfig = require(path.join(think.ROOT_PATH, 'client/api.config.js'))
 const _ = require('lodash')
-
+const openIdKey = 'bacd$!#@'
 module.exports = options => {
   // if (!options.config) {
   //   options.config = require(path.join(think.ROOT_PATH, 'client/api.config.js'))
@@ -24,8 +24,10 @@ module.exports = options => {
     const query = ctx.query
     const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${apiConfig.hostUrl}`
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
+
       return ctx.redirect(callbackUrl)
     } else if (_.has(query, 'openId')) {
+      // 加密 openId
       await ctx.cookie('openId', query.openId)
       await ctx.session('openId', query.openId)
       // 创建或查询活动账户

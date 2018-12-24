@@ -8,6 +8,11 @@ export default ({app, store}) => {
       path: to.fullPath
     });
 
+    if (to.path === '/page51') {
+      console.log('page51 请求二维码状态')
+      // window.clearInterval(this.myInterval);
+      // next();
+    }
     // console.log(from.fullPath)
     // console.log(to.fullPath)
     // ga('set', 'page', to.fullPath)

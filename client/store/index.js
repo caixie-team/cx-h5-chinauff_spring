@@ -43,6 +43,27 @@ const clientInitWechatJSSDK = async (config, commit) => {
       // w is same as window.wechatObj
       const img = 'http://pic1.ooopic.com/uploadfilepic/shiliang/2009-10-05/OOOPIC_00cyl_20091005e2c6eb1c889e342e.jpg'
       // sugar method
+      wechatObj.shareOnChat({
+        title: '',
+        type: 'link',
+        link: location.href,
+        imgUrl: img,
+        desc: 'description',
+        surccess: () => {
+        },
+        cancel: () => {
+        }
+      })
+      // wx.getLocation({
+      //   type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+      //   success: function (res) {
+      //     var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+      //     var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+      //     var speed = res.speed; // 速度，以米/每秒计
+      //     var accuracy = res.accuracy; // 位置精度
+      //   }
+      // });
+
       wechatObj.shareOnMoment({
         title: 'onMenuShareTimeline test title',
         type: 'link',
@@ -71,6 +92,20 @@ const clientInitWechatJSSDK = async (config, commit) => {
           console.log('share on chat canceled')
         },
         imgUrl: img
+      })
+      commit('user/REQUEST_USER_LOCATION')
+      // 获取当前地理定位
+      w.callWechatApi('getLocation', {
+        type: 'wgs84',
+        success: function (res) {
+          // console.log('getLocation')
+          // const latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+          // const longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+          // const speed = res.speed; // 速度，以米/每秒计
+          // const accuracy = res.accuracy; // 位置精度
+          console.log(res)
+          commit('user/REQUEST_USER_LOCATION_SUCCESS', res)
+        }
       })
     })
     .catch(err => {
@@ -118,6 +153,7 @@ export const actions = {
     // console.log('Client init...')
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
     console.log('iniit jssdkConfig')
+    console.log(jssdkConfig)
     await clientInitWechatJSSDK(jssdkConfig, commit)
     // window.app = this;
     // getCurrentPath() {
@@ -153,9 +189,10 @@ export const actions = {
   },
   loadJSSDKConfig ({commit}, url) {
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
-    const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
     return this.$axios.$post(postUrl)
       .then(response => {
+        // console.log(response)
         resIsSuccess(response)
           ? commit('option/SET_JSSDK_CONFIG', getResData(response))
           : console.log('微信签名信息获取失败：', response)
@@ -227,12 +264,12 @@ export const actions = {
       // openId: this.state.user.info.data.openId
       openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
     }).then(response => {
-        const data = getResData(response)
-        if (resIsSuccess(response)) {
-          commit('prize/REQUEST_BLESSING', data)
-          return Promise.resolve(data)
-        }
-      })
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('prize/REQUEST_BLESSING', data)
+        return Promise.resolve(data)
+      }
+    })
       .catch(err => {
         // commit('ai/POST_IMAGE_FAILURE', err)
         // return Promise.reject(err)

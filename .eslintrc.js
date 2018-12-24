@@ -130,7 +130,7 @@ module.exports = {
     "use-isnan": 2,
 
     // 用来检测JSDoc是否完整和合法
-    "valid-jsdoc": 2,
+    "valid-jsdoc": 0,
 
     // typeof操作符返回的结果会是 "undefined",  "object",  "boolean", "number", "string", 和  "function"之一。
 

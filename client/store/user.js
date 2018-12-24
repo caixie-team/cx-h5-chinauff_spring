@@ -19,6 +19,19 @@ export const state = () => ({
       privilege: [],
       unionid: ''
     }
+  },
+  location: {
+    fetching: false,
+    data: {
+      // 纬度，浮点数，范围为90 ~ -90
+      latitude: 0,
+      // 经度，浮点数，范围为180 ~ -180。
+      longitude: 0,
+      // 速度，以米/每秒计
+      speed: 0,
+      // 位置精度
+      accuracy: 0
+    }
   }
   // 福字
   // 获奖
@@ -39,6 +52,19 @@ export const mutations = {
     state.info.data = action
   },
   REQUEST_USER_INFO_FAILURE (state) {
+    state.info.fetching = false
+    state.info.data = {}
+  },
+
+  REQUEST_USER_LOCATION (state) {
+    state.location.fetching = true
+  },
+  REQUEST_USER_LOCATION_SUCCESS (state, action) {
+    state.location.fetching = false
+    state.location.data = Object.assign({}, state.data, action)
+  },
+
+  REQUEST_USER_LOCATION_FAILURE (state) {
     state.info.fetching = false
     state.info.data = {}
   }

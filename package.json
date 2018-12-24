@@ -42,6 +42,7 @@
     "think-view-nunjucks": "^1.0.1",
     "thinkjs": "^3.0.0",
     "vant": "^1.4.8",
+    "vue-browser-geolocation": "^1.5.0",
     "vue-create-api": "^0.2.0",
     "vue-json-pretty": "^1.4.1",
     "vue-json-tree-view": "^2.1.4",

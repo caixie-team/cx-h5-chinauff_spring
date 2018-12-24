@@ -12605,6 +12605,13 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-browser-geolocation@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/vue-browser-geolocation/-/vue-browser-geolocation-1.5.0.tgz#bbae3a01e8066c5526b921d7762aca8866cfd16f"
+  integrity sha512-VLKwm9jpRkg5jpjQDRE89djNiXhmhhzBXX4FUAsTl5QsO+H3z4a5GRaLmtHFdgdoXRUgaSmZFLnoxCajZTIdHg==
+  dependencies:
+    vue "^2.0.1"
+
 vue-create-api@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/vue-create-api/-/vue-create-api-0.2.0.tgz#abeb70ff1af2fa3881f024754d49034a7951c6ef"
@@ -12723,7 +12730,7 @@ vue-timers@^1.10.0:
   resolved "https://registry.yarnpkg.com/vue-timers/-/vue-timers-1.10.0.tgz#96031623d8388eb6b70e97bfed067a34b9cafe3f"
   integrity sha512-hxGDUSsKFPFxNtg6sp3ELO7ZqQ10kddvrld5vepXZIeQrg7ScIAYlx7Dk9UJNU1Dny1OlIl9URJocz/nhx2j9w==
 
-vue@^2.5.16, vue@^2.5.17, vue@^2.5.2:
+vue@^2.0.1, vue@^2.5.16, vue@^2.5.17, vue@^2.5.2:
   version "2.5.21"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.21.tgz#3d33dcd03bb813912ce894a8303ab553699c4a85"
   integrity sha512-Aejvyyfhn0zjVeLvXd70h4hrE4zZDx1wfZqia6ekkobLmUZ+vNFQer53B4fu0EjWBSiqApxPejzkO1Znt3joxQ==

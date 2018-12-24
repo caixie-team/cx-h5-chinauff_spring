@@ -19,12 +19,16 @@ export const state = () => ({
     oauthCache: 'oauth-cache'
   },
   jssdkConfig: {
-    appId: 'wxb44ce8b8c5cfdc0a',
+    // appId: 'wx40f58df735cd2868',
+    // appId: 'wxb44ce8b8c5cfdc0a',
+    // 老娘舅测试
+    appId: 'wxa8299eb7fc27ef04',
     nonceStr: '',
     signature: '',
     jsApiList: [
       'hideMenuItems',
-      'onMenuShareTimeline'
+      'onMenuShareTimeline',
+      'getLocation'
       // 'chooseCard',
       // 'addCard',
       // 'openCard',
