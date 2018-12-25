@@ -28,9 +28,9 @@ export const state = () => ({
       // 经度，浮点数，范围为180 ~ -180。
       longitude: 0,
       // 速度，以米/每秒计
-      speed: 0,
+      // speed: 0,
       // 位置精度
-      accuracy: 0
+      // accuracy: 0
     }
   }
   // 福字

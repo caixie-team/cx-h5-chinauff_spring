@@ -37,6 +37,8 @@ module.exports = {
     localStorage: true,
     FaceDetector: true,
     requestAnimFrame: true,
+    createjs: true,
+    PIXI: true
   },
   //  add your custom rules here
   rules: {

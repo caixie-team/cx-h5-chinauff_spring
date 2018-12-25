@@ -31,6 +31,7 @@ const resIsSuccess = response => {
   }
 }
 const getBaseUrl = (req) => {
+  console.log(req)
   return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + req.originalUrl
   // return req.headers['x-forwarded-host']
 }
@@ -54,15 +55,6 @@ const clientInitWechatJSSDK = async (config, commit) => {
         cancel: () => {
         }
       })
-      // wx.getLocation({
-      //   type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-      //   success: function (res) {
-      //     var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-      //     var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-      //     var speed = res.speed; // 速度，以米/每秒计
-      //     var accuracy = res.accuracy; // 位置精度
-      //   }
-      // });
 
       wechatObj.shareOnMoment({
         title: 'onMenuShareTimeline test title',
@@ -81,6 +73,7 @@ const clientInitWechatJSSDK = async (config, commit) => {
         },
         imgUrl: img
       })
+
       w.callWechatApi('onMenuShareAppMessage', {
         title: 'onMenuShareAppMessage test title',
         type: 'link',
@@ -98,12 +91,14 @@ const clientInitWechatJSSDK = async (config, commit) => {
       w.callWechatApi('getLocation', {
         type: 'wgs84',
         success: function (res) {
+          console.log('reqeust user location ...')
           // console.log('getLocation')
           // const latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
           // const longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
           // const speed = res.speed; // 速度，以米/每秒计
           // const accuracy = res.accuracy; // 位置精度
           console.log(res)
+          console.log('request user location usss....')
           commit('user/REQUEST_USER_LOCATION_SUCCESS', res)
         }
       })
@@ -132,8 +127,8 @@ export const actions = {
     })
     const initAppData = [
       // 获取微信JSSDK配置
-      // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
+      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -160,7 +155,6 @@ export const actions = {
     //   return this.$store.state.section && this.$store.state.section != '/' ? `/${this.$store.state.section}` : '/';
     // }
   },
-
   // 获取 generateOAuthUrl 地址信息
   loadOauthUrls ({commit}) {
     // SET_WECHAT_OAUTHS
@@ -274,7 +268,21 @@ export const actions = {
         // commit('ai/POST_IMAGE_FAILURE', err)
         // return Promise.reject(err)
       })
-  }
+  },
+  // 店铺列表
+  loadShopList ({commit}, params) {
+    commit('shop/REQUEST_LIST')
+
+    return this.$axios.$post(`${API_PREFIX}/shop`, params)
+      .then(response => {
+        resIsSuccess(response)
+          ? commit('shop/GET_LIST_SUCCESS', getResData(response))
+          : commit('shop/GET_LIST_FAILURE')
+      })
+      .catch(err => {
+        commit('shop/GET_LIST_FAILURE', err)
+      })
+  },
   // 获取同构常量
   // loadConstants ({ commit }) {
   //   return this.$axios.$get(`${API_PREFIX}/constants`)

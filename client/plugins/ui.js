@@ -18,8 +18,8 @@ import {
   // Checkbox,
   // CheckboxGroup,
   // Checker,
-  // Radio,
-  // RadioGroup,
+  Radio,
+  RadioGroup,
   Input,
   // Textarea,
   // Select,
@@ -69,8 +69,8 @@ const components = [
   // Checkbox,
   // CheckboxGroup,
   // Checker,
-  // Radio,
-  // RadioGroup,
+  Radio,
+  RadioGroup,
   Input,
   // Textarea,
   // Select,
@@ -109,9 +109,9 @@ function install(Vue) {
   install.installed = true
   components.forEach((Component) => {
     // ignore radio
-    // if (Component === Radio) {
-    //   return
-    // }
+    if (Component === Radio) {
+      return
+    }
     Component.install(Vue)
   })
 }

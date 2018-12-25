@@ -199,7 +199,7 @@
   .c-input
     display: flex
     align-items: center
-    font-size: $fontsize-large-xxx
+    font-size: $fontsize-large-xx
     line-height: 1.429
     background-color: $input-bgc
     //border-1px($input-border-color)

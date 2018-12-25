@@ -19,9 +19,18 @@
               @click="showDatePicker">
               选择日期
             </span>
-            <span class="shop">
-              选择门店
+            <!--// to: {name: 'people/team', params: {type: 'team'}},-->
+            <span>
+              <nuxt-link
+                :to="{name: 'page43', params: userLocation}"
+                class="shop">
+                选择门店
+              </nuxt-link>
             </span>
+
+            <!--<span class="shop">-->
+            <!--选择门店-->
+            <!--</span>-->
           </div>
         </div>
       </div>
@@ -68,6 +77,9 @@
       }
     },
     computed: {
+      userLocation () {
+        return this.$store.state.user.location.data
+      },
       _couponClass () {
         return [
           'coupon',

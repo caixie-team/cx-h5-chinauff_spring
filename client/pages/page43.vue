@@ -24,30 +24,44 @@
               @pulling-down="onPullingDown"
               @pulling-up="onPullingUp">
               <ul class="foods-wrapper">
-                <li
-                  v-for="(food, index) in items"
-                  :key="index"
-                  class="food-item border-1px">
-                  <div class="icon">
-                    <img
-                      :src="food.icon"
-                      width="57"
-                      height="57">
-                  </div>
-                  <div class="food-content">
-                    <h2 class="name">{{ food.name }}</h2>
-                    <p class="description">{{ food.description }}</p>
-                    <div class="extra">
-                      <span class="count">月售{{ food.sellCount }}份</span><span>好评率{{ food.rating }}%</span>
-                    </div>
-                    <div class="price">
-                      <span class="now">￥{{ food.price }}</span>
-                      <span
-                        v-show="food.oldPrice"
-                        class="old">￥{{ food.oldPrice }}</span>
-                    </div>
-                  </div>
-                </li>
+                <c-radio-group>
+                  <c-radio
+                    v-for="(shop, index) in shopList"
+                    :option="{
+                      label: shop.shop_name,
+                      value: shop.shop_code
+                    }"
+                    :key="index"
+                    v-model="selected">
+                    <li
+                      class="food-item border-1px">
+                      <div class="icon">
+                        <img
+                          src="~assets/img/bg/shop_bg.jpg"
+                          width="100"
+                          height="59">
+                      </div>
+                      <div class="shop-content">
+                        <h2 class="name">{{ shop.shop_name }}</h2>
+                        <p class="description">{{ shop.address }}</p>
+                        <div
+                          v-if="shop.distance"
+                          class="extra">
+                          <span>距您 {{ shop.distance / 1000 }} 公里</span>
+                        </div>
+                        <!--<div class="extra">-->
+                        <!--<span class="count">月售{{ food.sellCount }}份</span><span>好评率{{ food.rating }}%</span>-->
+                        <!--</div>-->
+                        <!--<div class="price">-->
+                        <!--<span class="now">￥{{ food.price }}</span>-->
+                        <!--<span-->
+                        <!--v-show="food.oldPrice"-->
+                        <!--class="old">￥{{ food.oldPrice }}</span>-->
+                        <!--</div>-->
+                      </div>
+                    </li>
+                  </c-radio>
+                </c-radio-group>
               </ul>
               <template
                 v-if="customPullDown"
@@ -100,6 +114,9 @@
   })
   export default {
     name: 'Index',
+    fetch ({store, params}) {
+      return store.dispatch('loadShopList', params)
+    },
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
@@ -122,6 +139,7 @@
     },
     data () {
       return {
+        selected: '',
         value: '',
         items: _foods,
         pullDownRefresh: false,
@@ -141,6 +159,12 @@
       }
     },
     computed: {
+      userLocation () {
+        return this.$store.state.user.location.data
+      },
+      shopList () {
+        return this.$store.state.shop.list.data
+      },
       options () {
         return {
           pullDownRefresh: this.pullDownRefreshObj,
@@ -176,6 +200,14 @@
           'word',
           'word-' + this.word
         ]
+      }
+    },
+    async mounted () {
+      if (isBrowser) {
+        // const wx = window.wechatObj.getOriginalWx()
+        // console.log(wx)
+        // console.log('mounted page43')
+        // await this.$store.dispatch('loadShopList', this.userLocation)
       }
     },
     methods: {
@@ -310,10 +342,12 @@
       height: 780px
       background-image: url("~assets/img/page43/list_bg.png")
       background-size: 475px 780px
+
     .input-search
       height: 50px
       width: 90%
       margin-top: 20px
+
     .content
       display: flex
       flex-direction: column
@@ -413,45 +447,22 @@
         flex: 0 0 57px
         margin-right: 10px
 
-      .food-content
+      .shop-content
         flex: 1
-
         .name
-          margin: 2px 0 8px 0
+          margin: 4px 0 16px 0
           height: 14px
           line-height: 14px
-          font-size: 14px
+          font-size: 18px
           color: rgb(7, 17, 27)
 
         .description, .extra
-          line-height: 10px
-          font-size: 10px
+          line-height: 14px
+          font-size: 14px
           color: rgb(147, 153, 159)
 
         .description
           line-height: 12px
           margin-bottom: 8px
 
-        .extra
-          .count
-            margin-right: 12px
-
-        .price
-          font-weight: 700
-          line-height: 24px
-
-          .now
-            margin-right: 8px
-            font-size: 14px
-            color: rgb(240, 20, 20)
-
-          .old
-            text-decoration: line-through
-            font-size: 10px
-            color: rgb(147, 153, 159)
-
-        .cartcontrol-wrapper
-          position: absolute
-          right: 0
-          bottom: 12px
 </style>

@@ -34,6 +34,11 @@ module.exports = {
   */
   head: {
     title: '老娘舅新春集福享好礼',
+    // script: [
+    //   {
+        // src: 'https://18anniversary.obs.cn-east-2.myhwclouds.com/resources/js/create.js'
+      // }
+    // ],
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -234,6 +239,7 @@ module.exports = {
     {src: '~/plugins/router.js', ssr: false},
     {src: '~/plugins/ui.js', ssr: false},
     {src: '~/plugins/json-view.js', ssr: false},
+    {src: '~/plugins/pixi', ssr: false}
     // {src: '~/plugins/geolocation.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
     // {src: '~/plugins/ahoy-analytics.js', ssr: false},

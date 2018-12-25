@@ -14,7 +14,7 @@ import Locale from './locale'
 // import Checkbox from './modules/checkbox'
 // import CheckboxGroup from './modules/checkbox-group'
 // import Checker from './modules/checker'
-// import RadioGroup from './modules/radio-group'
+import RadioGroup from './radio-group'
 import Input from './input'
 // import Textarea from './modules/textarea'
 // import Select from './modules/select'
@@ -54,7 +54,7 @@ import createAPI from './create-api'
 // const FormGroup = Form.Group
 // const FormItem = Form.Item
 const SlideItem = Slide.Item
-// const Radio = RadioGroup.Radio
+const Radio = RadioGroup.Radio
 // const SwipeItem = Swipe.Item
 // const DrawerPanel = Drawer.Panel
 // const DrawerItem = Drawer.Item
@@ -83,8 +83,8 @@ export {
   // CheckboxGroup,
   // CheckerItem,
   // Checker,
-  // Radio,
-  // RadioGroup,
+  Radio,
+  RadioGroup,
   Input,
   // Textarea,
   // Select,
