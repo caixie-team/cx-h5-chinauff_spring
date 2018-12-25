@@ -199,10 +199,10 @@
   .c-input
     display: flex
     align-items: center
-    font-size: $fontsize-medium
+    font-size: $fontsize-large-xxx
     line-height: 1.429
     background-color: $input-bgc
-    border-1px($input-border-color)
+    //border-1px($input-border-color)
   .c-input-field
     display: block
     flex: 1
@@ -227,6 +227,7 @@
   .c-input-prepend, .c-input-append
     display: flex
     align-items: center
+    padding: 10px
   .c-input-clear, .c-input-eye
     width: 1em
     height: 1em

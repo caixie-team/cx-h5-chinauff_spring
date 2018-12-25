@@ -7,11 +7,16 @@
       <top-buttons/>
       <div class="content">
         <div class="shopList">
+          <div class="input-search">
+            <c-input
+              v-model="value"
+              placeholder="请输入门店关键字">
+              <i
+                slot="append"
+                class="cubeic-search"/>
+            </c-input>
+          </div>
           <div class="scroll-list-wrap">
-            <!--<c-input-->
-            <!--v-model="value"-->
-            <!--:eye="'true'"-->
-            <!--placeholder="请输入门店关键字"/>-->
             <c-scroll
               ref="scroll"
               :data="items"
@@ -75,7 +80,6 @@
             </c-scroll>
           </div>
         </div>
-
       </div>
     </div>
   </c-page>
@@ -118,6 +122,7 @@
     },
     data () {
       return {
+        value: '',
         items: _foods,
         pullDownRefresh: false,
         pullDownRefreshThreshold: 60,
@@ -191,7 +196,7 @@
         setTimeout(() => {
           if (Math.random() > 0.5) {
             // 如果有新数据
-            let newPage = _foods.slice(0, 5)
+            const newPage = _foods.slice(0, 5)
             this.items = this.items.concat(newPage)
           } else {
             // 如果没有新数据
@@ -276,6 +281,13 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .c-input
+    background: #ffebd9
+    border-radius: 10px
+
+  .c-input-field
+    border-radius: 10px
+
   .page43
     color: $color-dark
     display: flex
@@ -298,7 +310,10 @@
       height: 780px
       background-image: url("~assets/img/page43/list_bg.png")
       background-size: 475px 780px
-
+    .input-search
+      height: 50px
+      width: 90%
+      margin-top: 20px
     .content
       display: flex
       flex-direction: column

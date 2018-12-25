@@ -4,10 +4,10 @@
     <div
       slot="content"
       class="page51">
-      <top-buttons/>
+      <!--<top-buttons/>-->
       <div class="content">
         <div class="qrcode">
-          <img src="https://weixin.chinauff.com/spring/qrcode/?size=360&txt=HZi3BryjzVF7TP4sFkHNP">
+          <img src="https://weixin.chinauff.com/spring/qrcode/?size=360&txt=mPhkHZgWef4a5Bjsxestt">
         </div>
         <img
           src="~assets/img/text/text_qjrwmzsgsyy.png"
