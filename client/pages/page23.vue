@@ -4,6 +4,7 @@
     <div
       slot="content"
       class="page23">
+      <pixi-background/>
       <div class="content">
         <span
           class="c-btn"
@@ -21,13 +22,15 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import PixiBackground from '../components/pixi/pixi-background'
 
   export default {
     name: 'Index',
     components: {
       CPage,
       TopButtons,
-      PageContent
+      PageContent,
+      PixiBackground
     },
 
     head () {

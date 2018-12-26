@@ -23,7 +23,7 @@
       },
       type: {
         type: String,
-        default: 'bg1'
+        default: ''
       },
       desc: {
         type: String,

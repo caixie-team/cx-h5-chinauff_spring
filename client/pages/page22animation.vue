@@ -1,17 +1,18 @@
 <!-- 5.1、二维码兑换 -->
 <template>
-  <c-page>
-    <div slot="content">
-      <pixi-index-bg class="bg"/>
-    </div>
-  </c-page>
+  <!--<c-page type="bg2">-->
+  <!--<div slot="content">-->
+  <div>
+    <pixi-background/>
+  </div>
+  <!--</c-page>-->
 </template>
 <script>
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
   import TopButtons from '../components/top-buttons'
   import PageContent from '../components/page-content'
-  import PixiIndexBg from '../components/pixi/pixi-indexbg'
+  import PixiBackground from '../components/pixi/pixi-background'
   // import bunny from '../components/bunnyPlayground'
 
   export default {
@@ -20,7 +21,7 @@
       CPage,
       TopButtons,
       PageContent,
-      PixiIndexBg
+      PixiBackground
     },
 
     head () {
@@ -125,5 +126,76 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .page22
+    color: $color-dark
+    display: flex
+    align-items: center
+    flex-direction: column
+    min-height: 100vh
+    position: absolute
+    left: 0
+    width: 100%
+    height: 100%
+    justify-content: center
     overflow: hidden
+
+    .content
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      .qrcode
+        display: flex
+        justify-content: center
+        align-items: center
+        text-align: center
+        width: 380px
+        height: 380px
+        background: #E5D9A1
+
+        img
+          width: 340px
+          height: 340px
+
+      .text-qjrwmzsgsyy
+        margin: 20px 0 30px 0
+        width: 299px
+        height: 25px
+
+      .exchange-form
+        width: 419px
+        height: 235px
+        background-image: url("~assets/img/bg/form_yydh.png")
+        background-size: 419px 235px
+        display: flex
+        justify-content: flex-end
+
+        &__content
+          position: relative
+          top: 110px
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          height: 80px
+          width: 300px
+
+        span
+          font-weight: 500
+          font-size: 22px
+          position: relative
+
+          &.date
+            left: 30px
+
+          &.shop
+            left: 30px
+
+    .footer
+      display: flex
+      position: absolute
+      bottom: 0
+      width: 100%;
+      height: 167px;
+      background-image: url("~assets/img/common/footer_bsbg.png")
+      background-size: 640px 167px
+      justify-content: center
 </style>

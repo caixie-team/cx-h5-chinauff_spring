@@ -1,0 +1,80 @@
+{"frames": {
+
+"lantern_12s_00033":
+{
+	"frame": {"x":905,"y":803,"w":450,"h":797},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":797},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00034":
+{
+	"frame": {"x":1357,"y":803,"w":450,"h":797},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":797},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00066":
+{
+	"frame": {"x":1,"y":803,"w":450,"h":799},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":799},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00067":
+{
+	"frame": {"x":453,"y":803,"w":450,"h":799},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":799},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00082":
+{
+	"frame": {"x":1,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00083":
+{
+	"frame": {"x":453,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00110":
+{
+	"frame": {"x":905,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+},
+"lantern_12s_00111":
+{
+	"frame": {"x":1357,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+}},
+"animations": {
+	"lantern_12s": ["lantern_12s_00033","lantern_12s_00034","lantern_12s_00066","lantern_12s_00067","lantern_12s_00082","lantern_12s_00083","lantern_12s_00110","lantern_12s_00111"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "data-4.webp",
+	"format": "RGBA8888",
+	"size": {"w":1808,"h":1603},
+	"scale": "0.41667",
+	"related_multi_packs": [ "data-0.json", "data-1.json", "data-2.json", "data-3.json", "data-5.json", "data-6.json", "data-7.json", "data-8.json", "data-9.json", "data-10.json", "data-11.json", "data-12.json", "data-13.json", "data-14.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:199555f81406a01a9313edf8807ed0f4:6085a2394c6aaa995d2ac5f25558e8f8:5f24bc2d3c40599f6a55b213a6b01d2c$"
+}
+}

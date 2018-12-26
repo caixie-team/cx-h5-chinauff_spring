@@ -239,7 +239,8 @@ module.exports = {
     {src: '~/plugins/router.js', ssr: false},
     {src: '~/plugins/ui.js', ssr: false},
     {src: '~/plugins/json-view.js', ssr: false},
-    {src: '~/plugins/pixi', ssr: false}
+    {src: '~/plugins/pixi', ssr: false},
+    // {src: '~/plugins/pixi-viewport', ssr: false},
     // {src: '~/plugins/geolocation.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
     // {src: '~/plugins/ahoy-analytics.js', ssr: false},

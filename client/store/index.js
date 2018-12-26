@@ -109,6 +109,18 @@ const clientInitWechatJSSDK = async (config, commit) => {
     })
 }
 
+export const state = () => ({
+  pageLayouts: null
+})
+export const mutations = {
+  setPageLayout (state, data) {
+    state.pageLayouts = data
+  }
+}
+
+export const getters = {
+  pageLayout: state => state.pageLayouts
+}
 // global actions
 export const actions = {
 

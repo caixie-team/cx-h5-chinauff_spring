@@ -1,0 +1,224 @@
+{"frames": {
+
+"dragon_12s_00004":
+{
+	"frame": {"x":857,"y":1634,"w":329,"h":384},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":113,"y":198,"w":329,"h":384},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00012":
+{
+	"frame": {"x":1672,"y":752,"w":250,"h":348},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":126,"y":239,"w":250,"h":348},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00015":
+{
+	"frame": {"x":1277,"y":752,"w":273,"h":393},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":105,"y":196,"w":273,"h":393},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00018":
+{
+	"frame": {"x":1,"y":1695,"w":289,"h":393},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":94,"y":198,"w":289,"h":393},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00020":
+{
+	"frame": {"x":480,"y":1652,"w":308,"h":365},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":88,"y":228,"w":308,"h":365},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00024":
+{
+	"frame": {"x":1669,"y":1027,"w":271,"h":362},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":117,"y":233,"w":271,"h":362},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00025":
+{
+	"frame": {"x":1188,"y":1665,"w":248,"h":378},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":140,"y":218,"w":248,"h":378},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00030":
+{
+	"frame": {"x":1262,"y":1341,"w":322,"h":391},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":124,"y":209,"w":322,"h":391},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00033":
+{
+	"frame": {"x":1724,"y":331,"w":307,"h":368},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":121,"y":234,"w":307,"h":368},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00037":
+{
+	"frame": {"x":857,"y":1341,"w":291,"h":403},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":90,"y":202,"w":291,"h":403},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00046":
+{
+	"frame": {"x":1655,"y":1307,"w":294,"h":384},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":76,"y":229,"w":294,"h":384},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00047":
+{
+	"frame": {"x":1277,"y":1027,"w":278,"h":390},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":224,"w":278,"h":390},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00062":
+{
+	"frame": {"x":1394,"y":1,"w":328,"h":471},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":63,"y":156,"w":328,"h":471},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00068":
+{
+	"frame": {"x":480,"y":1235,"w":375,"h":415},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":41,"y":219,"w":375,"h":415},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00073":
+{
+	"frame": {"x":917,"y":1,"w":348,"h":475},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":102,"y":164,"w":348,"h":475},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00083":
+{
+	"frame": {"x":388,"y":881,"w":352,"h":471},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":38,"y":180,"w":352,"h":471},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00084":
+{
+	"frame": {"x":513,"y":389,"w":359,"h":490},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":32,"y":162,"w":359,"h":490},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00085":
+{
+	"frame": {"x":1,"y":457,"w":358,"h":510},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":33,"y":143,"w":358,"h":510},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00088":
+{
+	"frame": {"x":1,"y":817,"w":385,"h":482},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":14,"y":176,"w":385,"h":482},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00089":
+{
+	"frame": {"x":874,"y":873,"w":401,"h":466},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":193,"w":401,"h":466},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00091":
+{
+	"frame": {"x":1,"y":1,"w":415,"h":454},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":208,"w":415,"h":454},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00101":
+{
+	"frame": {"x":1245,"y":351,"w":399,"h":477},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":51,"y":199,"w":399,"h":477},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00103":
+{
+	"frame": {"x":1,"y":1301,"w":392,"h":477},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":42,"y":202,"w":392,"h":477},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00104":
+{
+	"frame": {"x":874,"y":389,"w":369,"h":482},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":30,"y":199,"w":369,"h":482},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00105":
+{
+	"frame": {"x":418,"y":1,"w":386,"h":497},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":185,"w":386,"h":497},
+	"sourceSize": {"w":450,"h":800}
+},
+"dragon_12s_00124":
+{
+	"frame": {"x":1568,"y":1693,"w":269,"h":268},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":171,"w":269,"h":268},
+	"sourceSize": {"w":450,"h":800}
+}},
+"animations": {
+	"dragon_12s": ["dragon_12s_00004","dragon_12s_00012","dragon_12s_00015","dragon_12s_00018","dragon_12s_00020","dragon_12s_00024","dragon_12s_00025","dragon_12s_00030","dragon_12s_00033","dragon_12s_00037","dragon_12s_00046","dragon_12s_00047","dragon_12s_00062","dragon_12s_00068","dragon_12s_00073","dragon_12s_00083","dragon_12s_00084","dragon_12s_00085","dragon_12s_00088","dragon_12s_00089","dragon_12s_00091","dragon_12s_00101","dragon_12s_00103","dragon_12s_00104","dragon_12s_00105","dragon_12s_00124"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "data-2.webp",
+	"format": "RGBA8888",
+	"size": {"w":2032,"h":2019},
+	"scale": "0.41667",
+	"related_multi_packs": [ "data-0.json", "data-1.json", "data-3.json", "data-4.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:e5b5bf2f1b30f28f89b7a2f23defd219:5fc79156cadbda14a16646a965ec7d3a:3f2de8df34124d9f7ac044319a016acc$"
+}
+}
