@@ -8,7 +8,7 @@ export const state = () => ({
   info: {
     fetching: false,
     data: {
-      openid: '',
+      openId: '',
       nickname: '请好好说话🌱',
       sex: 1,
       language: 'zh_CN',
@@ -17,7 +17,13 @@ export const state = () => ({
       country: '中国',
       headimgurl: 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epTImibsmcibWuh9CMGNugXagRxCWy8N1cVSoaBPvs4KGdib7zuSEQHDBuu1lFrZ5ruhxiaaMN3BGNOUQ/132',
       privilege: [],
-      unionid: ''
+      unionid: '',
+    }
+  },
+  lucky: {
+    fetching: false,
+    data: {
+      times: 0
     }
   },
   location: {
@@ -41,7 +47,7 @@ export const state = () => ({
 
 export const mutations = {
   SET_USER_INFO (state, action) {
-    state.info.data = action
+    state.info.data = Object.assign({}, state.info.data, action)
   },
   // 获取用户信息
   REQUEST_USER_INFO (state) {
@@ -61,11 +67,24 @@ export const mutations = {
   },
   REQUEST_USER_LOCATION_SUCCESS (state, action) {
     state.location.fetching = false
-    state.location.data = Object.assign({}, state.data, action)
+    state.location.data = Object.assign({}, state.location.data, action)
   },
 
   REQUEST_USER_LOCATION_FAILURE (state) {
-    state.info.fetching = false
-    state.info.data = {}
+    state.location.fetching = false
+    state.location.data = {}
+  },
+
+  REQUEST_LUCKY (state) {
+    state.lucky.fetching = true
+  },
+  GET_LUCKY_SUCCESS (state, action) {
+    state.lucky.fetching = false
+    state.lucky.data = Object.assign({}, state.lucky.data, action)
+  },
+
+  GET_LUCKY_FAILURE (state) {
+    state.lucky.fetching = false
+    state.lucky.data = {}
   }
 }

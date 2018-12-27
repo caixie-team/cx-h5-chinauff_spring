@@ -52,7 +52,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: {color: '#fff'},
+  loading: {color: '#fdd32a'},
 
   cache: {
     max: 100,

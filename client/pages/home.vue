@@ -1,5 +1,5 @@
 <template>
-  <c-page>
+  <c-page type="bg1">
     <div
       slot="content"
       class="home">
@@ -8,17 +8,27 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        <div class="upload">
-          <label
-            for="theFile">
+        <div
+          v-if="luckyTimes > 0"
+          class="upload">
+          <label for="theFile">
             <img src="~assets/img/btn/btn_sys.png">
           </label>
           <input
             id="theFile"
+            ref="camera"
             type="file"
             class="file"
             capture="camera"
             @change="upload">
+        </div>
+        <div
+          v-else
+          class="upload"
+          @click="showDialog('limit')">
+          <label>
+            <img src="~assets/img/btn/btn_sys.png">
+          </label>
         </div>
       </div>
     </div>
@@ -35,7 +45,9 @@
   // import apiConfig from '~/api.config'
 
   export default {
+    transition: 'fade',
     name: 'Index',
+
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
@@ -66,6 +78,12 @@
       },
       score () {
         return this.$store.state.ai.data.score
+      },
+      luckyTimes () {
+        return this.$store.state.user.lucky.data.times
+      },
+      userInfo () {
+        return this.$store.state.user.info.data
       }
     },
     watch: {
@@ -91,6 +109,9 @@
     },
     mounted () {
       this.$store.commit('ai/RESET_SCORE')
+      this.$store.dispatch('luckyTimes', {
+        openId: this.userInfo.openId
+      })
     },
     methods: {
       showAlert () {
@@ -308,12 +329,13 @@
     flex-direction: column
     justify-content: space-between
     min-height: 100vh
-    /*position: absolute*/
+    position: absolute
     z-index: 1
     left: 0
     width: 100%
     height: 100%
-    background: url('~assets/images/home/hn.png')
+    /*background: #ab2d2f;*/
+    background-image: url('~assets/images/home/hn.png')
     background-size: 640px 1136px
     overflow: hidden
 
@@ -321,10 +343,6 @@
       padding: 145px 112px 0 112px
       width: 444px
       height: 176px
-
-    /*.imgSys*/
-    /*width: 543px*/
-    /*height: 528px*/
 
     h1
       font-size: 48px

@@ -91,11 +91,15 @@
         viewport.addChild(bg)
 
         this.loader = new PIXI.loaders.Loader()
-        // this.loader.add('/assets/animation/6s/data.webp')
-        this.loader.add('assets/animation/6s/data.json').load(() => {
-          const sheet = this.loader.resources['assets/animation/6s/data.json'].spritesheet
-          console.log(sheet)
+        // const sound = PIXI.sound.Sound.from('assets/audio/6s.mp3')
+        this.loader.add([
+          'assets/animation/6s/data.json',
+          'assets/audio/6s.mp3'
+        ]).load(() => {
+          // const sheet = this.loader.resources['assets/animation/6s/data.json'].spritesheet
           // console.log(sheet.animations['6s'])
+          const happyMusic = this.loader.resources['assets/audio/6s.mp3']
+          // console.log(happy.sound.)
           const frames = []
           for (let i = 0; i < 61; i++) {
             frames.push(new PIXI.Texture.fromFrame('6s_001' + (26 + i)))
@@ -111,6 +115,7 @@
           anim.width = worldWidth / 2
           anim.height = worldHeight / 2
           this.App.stage.addChild(anim)
+          happyMusic.sound.play()
         })
 
         this.$refs.bgRenderer.appendChild(this.App.view)
@@ -141,7 +146,8 @@
     left: 0;
     z-index: 0;
   }
-  .c-btn{
+
+  .c-btn {
     position: absolute;
     z-index: 100;
   }

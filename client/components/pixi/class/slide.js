@@ -2,7 +2,7 @@
 import bgLightImg from '~/assets/images/bg/page_bg_light.jpg'
 export default () => {
   const container = new PIXI.Container()
-  let spriteBG = new PIXI.Sprite.fromImage(bgLightImg)
+  const spriteBG = new PIXI.Sprite.fromImage(bgLightImg)
   // let currentSprite = spriteBG
   // let shader = null
   // let displacementSprite = null

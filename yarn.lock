@@ -8825,6 +8825,11 @@ pixi-gl-core@^1.1.4:
   resolved "https://registry.yarnpkg.com/pixi-gl-core/-/pixi-gl-core-1.1.4.tgz#8b4b5c433b31e419bc379dc565ce1b835a91b372"
   integrity sha1-i0tcQzsx5Bm8N53FZc4bg1qRs3I=
 
+pixi-sound@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/pixi-sound/-/pixi-sound-2.0.4.tgz#50168c97d68732448b54396f0f968018ccd47cd0"
+  integrity sha512-mXMHnHGTHVb52CSsh3g2R1NlVGc5u4DkkEOxkXeruPSReY/UJ65n3dtEMPd/e5OIlL7rsELTAbBlk9GEEigdEQ==
+
 pixi-viewport@^3.14.2:
   version "3.14.2"
   resolved "https://registry.yarnpkg.com/pixi-viewport/-/pixi-viewport-3.14.2.tgz#46ae40635d062b057cc58f6695b270d21e70fd34"

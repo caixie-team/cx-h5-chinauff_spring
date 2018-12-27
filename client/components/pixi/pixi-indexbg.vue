@@ -7,6 +7,11 @@
         <span class="timer">
           {{ time }} 秒
         </span>
+        <span
+          class="jump"
+          @click="jump">
+          跳过
+        </span>
       </div>
     </div>
   </div>
@@ -17,7 +22,7 @@
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
   /* global PIXI */
   // import Viewport from 'pixi-viewport/bundle/pixi-viewport.min'
-  import Slider from './class/slide'
+  // import Slider from './class/slide'
 
   const path12s = 'assets/animation/12s'
   // import {mapGetters} from 'vuex'
@@ -56,12 +61,23 @@
       this.init()
     },
     methods: {
+      jump () {
+        if (this.happyMusic) {
+          this.happyMusic.sound.stop()
+        }
+        setTimeout(() => {
+          this.$router.push('/page23')
+          // this.dialog.hide()
+        }, 1000)
+
+      },
       timer () {
         if (this.time > 0) {
           this.time--
           setTimeout(this.timer, 1000);
         } else {
-          this.$router.push('/page23')
+          this.happyMusic.sound.stop()
+          // this.$router.push('/page23')
         }
       },
       init () {
@@ -93,6 +109,7 @@
         // viewport.fit(true)
         this.loader = new PIXI.loaders.Loader()
         // * const loader = new PIXI.loaders.Loader();
+
         const objSprites = {
           dragon: {
             ani: {
@@ -171,6 +188,9 @@
         for (const obj in objSprites) {
           this.loader.add(objSprites[obj].json) // resource load for eatch objSprites
         }
+        // this.happyMusic = this.loader.resources['assets/audio/12s.mp3']
+
+        this.loader.add('assets/audio/12s.mp3')
         this.loader.load() // Start(callback)'added'↓↓↓
 
         this.loader.onLoad.add(function (loader, data) {
@@ -264,8 +284,9 @@
           this.App.ticker.add(() => {
             this.App.renderer.render(this.App.stage)
           })
+          this.happyMusic = this.loader.resources['assets/audio/12s.mp3']
           this.timer()
-
+          this.happyMusic.sound.play()
         })
         this.$refs.bgRenderer.appendChild(this.App.view)
 
@@ -279,15 +300,15 @@
       playMountain () {
       },
       setup () {
-        this.Slide = Slider()
-        this.App.stage.addChild(this.Slide)
-        this.Slide.x = 0
-        this.Slide.y = 0
-        this.Slide.loadSlides(this.slides)
-        this.Slide.addShader()
-        this.App.ticker.add(() => {
-          this.App.renderer.render(this.App.stage)
-        })
+        // this.Slide = Slider()
+        // this.App.stage.addChild(this.Slide)
+        // this.Slide.x = 0
+        // this.Slide.y = 0
+        // this.Slide.loadSlides(this.slides)
+        // this.Slide.addShader()
+        // this.App.ticker.add(() => {
+        //   this.App.renderer.render(this.App.stage)
+        // })
       }
     }
   }
@@ -300,10 +321,12 @@
     top: 0
     left: 0
     z-index: 0
+
   .topbar
     display: flex
     flex-direction: row
     justify-content: space-between
+
     span
       display: flex
       font-size: 20px
@@ -311,19 +334,22 @@
       justify-content: center
       flex-direction: column
       text-align: center
-
-    .timer
-      position: absolute;
-      top: 20px
-      left: 20px
+      opacity: 0.5
       background: #000;
-      opacity: 0.4
       width: 100px
       height: 40px
       border-radius: 100px
       text-align: center
       vertical-align: middle
-      /*display: inline-block*/
-      /*font-size: 20px*/
       color: #fff
+
+    .jump
+      position: absolute;
+      top: 20px
+      right: 20px
+
+    .timer
+      position: absolute;
+      top: 20px
+      left: 20px
 </style>

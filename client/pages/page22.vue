@@ -97,7 +97,7 @@
       // setTimeout(() => {
       //   this.$router.push('/')
       // }, 6000)
-      // this.timer()
+      this.timer()
       // }
     },
     methods: {

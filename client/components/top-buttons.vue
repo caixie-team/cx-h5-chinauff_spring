@@ -2,6 +2,7 @@
   <div class="topButtons">
     <a
       v-for="btn in buttons"
+      v-if="isAction(btn.name, actions)"
       :key="btn.name"
       :class="btn.class"
       class="btn"
@@ -11,11 +12,22 @@
 </template>
 
 <script>
+  import {oneOf} from '../utils/assist.js'
+
   export default {
     props: {
       type: {
         type: String,
         default: 'main'
+      },
+      actions: {
+        type: Array,
+        default: () => {
+          return [
+            'hdjs',
+            'wdfb'
+          ]
+        }
       }
     },
     data () {
@@ -32,8 +44,8 @@
             class: this.type === 'main' ? 'btn-dhff' : 'btn-dhff'
           },
           {
-            name: 'wdhb',
-            text: '我的红包',
+            name: 'wdfb',
+            text: '我的福包',
             class: this.type === 'main' ? 'btn-wdhbm' : 'btn-wdhb'
           },
           {
@@ -46,13 +58,22 @@
     },
     computed: {},
     methods: {
+      isAction (value, array) {
+        return oneOf(value, array)
+      },
       show (name) {
+        console.log(name)
         if (name === 'hdjs') {
           this.showDialog('intro')
         } else if (name === 'dhff') {
           this.showDialog('dhff')
-        } else {
-          this.$router.push(`/${name}`)
+        } else if (name === 'wdfb') { // 我的福包页
+          setTimeout(() => {
+            // this.dialog.hide()
+            // this.$store.commit('ai/RESET_SCORE')
+            this.$router.push('/page311')
+            // this.$router.push('/page22')
+          }, 100)
         }
       },
       showDialog (type, option) {
@@ -68,7 +89,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .topButtons
     position: absolute
-    right: 30px
+    right: 20px
     top: 0
     height: 150px
     width: auto

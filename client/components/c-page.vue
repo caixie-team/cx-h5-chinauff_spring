@@ -59,7 +59,7 @@
     left: 0
     width: 100%
     height: 100%
-    //background: #efeff4
+    background: #d92530
     overflow: hidden
 
     &.bg1

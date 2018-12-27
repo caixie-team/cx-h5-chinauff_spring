@@ -8,8 +8,7 @@ export const mutations = {
     state.currentImage = data
   },
   setSlides (state, data) {
-    console.log(data)
-    for (let slide of data) {
+    for (const slide of data) {
       state.slides.push(slide._embedded['wp:featuredmedia'][0].source_url)
     }
   }

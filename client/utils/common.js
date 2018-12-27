@@ -1,5 +1,5 @@
 /* eslint-disable func-style */
-import lottie from 'lottie-web';
+// import lottie from 'lottie-web';
 
 export const qs = (selector, ctx = document) => ctx.querySelector(selector);
 
@@ -90,21 +90,21 @@ export function degToRad(deg) {
 }
 
 
-export function lottieAnimation(el, data, loop = false, ratio = true, autoplay = true) {
-  const anim = lottie.loadAnimation({
-    container: el,
-    renderer: 'svg',
-    loop,
-    autoplay,
-    animationData: data,
-    rendererSettings: {
-      clearCanvas: true,
-      preserveAspectRatio: ratio ? 'xMidYMid meet' : 'none',
-    },
-  });
-
-  return anim;
-}
+// export function lottieAnimation(el, data, loop = false, ratio = true, autoplay = true) {
+//   const anim = lottie.loadAnimation({
+//     container: el,
+//     renderer: 'svg',
+//     loop,
+//     autoplay,
+//     animationData: data,
+//     rendererSettings: {
+//       clearCanvas: true,
+//       preserveAspectRatio: ratio ? 'xMidYMid meet' : 'none',
+//     },
+//   });
+//
+//   return anim;
+// }
 
 export function sortObject(object, key) {
   if (typeof object !== 'object') return { };
@@ -116,4 +116,13 @@ export function sortObject(object, key) {
     sorted[curKey] = object[curKey];
   });
   return sorted;
+}
+
+export function oneOf (value, validList) {
+  for (let i = 0; i < validList.length; i++) {
+    if (value === validList[i]) {
+      return true;
+    }
+  }
+  return false;
 }

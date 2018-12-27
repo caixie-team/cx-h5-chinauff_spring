@@ -25,6 +25,7 @@
   import PixiBackground from '../components/pixi/pixi-background'
 
   export default {
+    transition: 'bounce',
     name: 'Index',
     components: {
       CPage,

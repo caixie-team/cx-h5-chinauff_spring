@@ -12,6 +12,8 @@ import apiConfig from '~/api.config'
 import {isBrowser, isServer} from '~/environment'
 import {browserParse, osParse} from '~/utils/ua-os-browser'
 
+// import shareIcon from '~/assets/img/icon/icon_gift.png'
+
 const API_PREFIX = apiConfig.baseUrl
 const HOST_API = apiConfig.hostUrl + '/api'
 // const API_THIRD = apiConfig.thirdUrl
@@ -31,25 +33,27 @@ const resIsSuccess = response => {
   }
 }
 const getBaseUrl = (req) => {
-  console.log(req)
+  // console.log(req)
   return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + req.originalUrl
   // return req.headers['x-forwarded-host']
 }
 // 初始化配置 Wechat JSSDK
-const clientInitWechatJSSDK = async (config, commit) => {
+const clientInitWechatJSSDK = async (config, commit, openId) => {
 
   const wechatObj = new window.WechatJSSDK(config)
   wechatObj.initialize()
     .then(w => {
       // w is same as window.wechatObj
       const img = 'http://pic1.ooopic.com/uploadfilepic/shiliang/2009-10-05/OOOPIC_00cyl_20091005e2c6eb1c889e342e.jpg'
+      // const img = 'http://wx.caixie.top/spring/_nuxt/client/assets/images/bg/page_bg_light.jpg'
       // sugar method
       wechatObj.shareOnChat({
-        title: '',
+        title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
         type: 'link',
-        link: location.href,
+        link: 'https://weixin.chinauff.com/spring/page621?openId=' + openId,
+        // link: location.href,
         imgUrl: img,
-        desc: 'description',
+        desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
         surccess: () => {
         },
         cancel: () => {
@@ -59,6 +63,8 @@ const clientInitWechatJSSDK = async (config, commit) => {
       wechatObj.shareOnMoment({
         title: 'onMenuShareTimeline test title',
         type: 'link',
+        // link: location.href,
+        link: 'https://weixin.chinauff.com/spring/page621?openId=' + openId,
         success: function () {
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment success'
@@ -74,31 +80,31 @@ const clientInitWechatJSSDK = async (config, commit) => {
         imgUrl: img
       })
 
-      w.callWechatApi('onMenuShareAppMessage', {
-        title: 'onMenuShareAppMessage test title',
-        type: 'link',
-        desc: 'onMenuShareAppMessage share description',
-        success: function () {
-          console.log('share on chat success')
-        },
-        cancel: function () {
-          console.log('share on chat canceled')
-        },
-        imgUrl: img
-      })
+      // w.callWechatApi('onMenuShareAppMessage', {
+      //   title: 'onMenuShareAppMessage test title',
+      //   type: 'link',
+      //   desc: 'onMenuShareAppMessage share description',
+      //   success: function () {
+      //     console.log('share on chat success')
+      //   },
+      //   cancel: function () {
+      //     console.log('share on chat canceled')
+      //   },
+      //   imgUrl: img
+      // })
       commit('user/REQUEST_USER_LOCATION')
       // 获取当前地理定位
       w.callWechatApi('getLocation', {
         type: 'wgs84',
         success: function (res) {
-          console.log('reqeust user location ...')
+          // console.log('reqeust user location ...')
           // console.log('getLocation')
           // const latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
           // const longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
           // const speed = res.speed; // 速度，以米/每秒计
           // const accuracy = res.accuracy; // 位置精度
-          console.log(res)
-          console.log('request user location usss....')
+          // console.log(res)
+          // console.log('request user location usss....')
           commit('user/REQUEST_USER_LOCATION_SUCCESS', res)
         }
       })
@@ -119,7 +125,8 @@ export const mutations = {
 }
 
 export const getters = {
-  pageLayout: state => state.pageLayouts
+  pageLayout: state => state.pageLayouts,
+  openId: state => state.user.info.data.openId
 }
 // global actions
 export const actions = {
@@ -134,13 +141,13 @@ export const actions = {
     // store.commit('option/SET_USER_AGENT', userAgent)
     // store.commit('option/SET_MOBILE_LAYOUT', isWechat)
     // 设置用户信息
-    store.commit('user/SET_USER_INFO', {
-      openId: req.session.openId
-    })
+    // console.log(req.session.activity_user)
+    // console.log(req.session.activity_user)
+    store.commit('user/SET_USER_INFO', JSON.parse(req.session.activity_user))
     const initAppData = [
       // 获取微信JSSDK配置
-      store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -159,9 +166,9 @@ export const actions = {
     // console.log('client init...')
     // console.log('Client init...')
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
-    console.log('iniit jssdkConfig')
-    console.log(jssdkConfig)
-    await clientInitWechatJSSDK(jssdkConfig, commit)
+    // console.log('iniit jssdkConfig')
+    // console.log(jssdkConfig)
+    await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.openId)
     // window.app = this;
     // getCurrentPath() {
     //   return this.$store.state.section && this.$store.state.section != '/' ? `/${this.$store.state.section}` : '/';
@@ -295,6 +302,21 @@ export const actions = {
         commit('shop/GET_LIST_FAILURE', err)
       })
   },
+  luckyTimes ({commit}, params) {
+    // console.log(this.getters.openId)
+    commit('user/REQUEST_LUCKY')
+    return this.$axios.$post(`${API_PREFIX}/blessing/times`, {
+      openId: this.getters.openId
+    })
+      .then(response => {
+        resIsSuccess(response)
+          ? commit('user/GET_LUCKY_SUCCESS', getResData(response))
+          : commit('user/GET_LUCKY_FAILURE')
+      })
+      .catch(err => {
+        commit('user/GET_LUCK_FAILURE', err)
+      })
+  }
   // 获取同构常量
   // loadConstants ({ commit }) {
   //   return this.$axios.$get(`${API_PREFIX}/constants`)

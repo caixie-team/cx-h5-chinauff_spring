@@ -84,6 +84,7 @@
   import {has} from 'lodash'
 
   export default {
+    transition: 'page',
     name: 'Index',
     head () {
       return {

@@ -8,7 +8,9 @@
       <img
         :src="btn1"
         @click="close">
-      <img :src="btn2">
+      <img
+        :src="btn2"
+        @click="showDialog('share', {showClose: true})">
     </div>
   </div>
 </template>
@@ -16,6 +18,7 @@
   import text from '~/assets/img/text/text_popup_limit.png'
   import btn1 from '~/assets/img/btn/btn_zdlh.png'
   import btn2 from '~/assets/img/btn/btn_yqhyl.png'
+
   const EVENT_CLOSE = 'close'
   export default {
     data () {
@@ -28,6 +31,14 @@
     methods: {
       close (e) {
         this.$emit(EVENT_CLOSE, e)
+      },
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
+        this.close()
       }
     }
   }
