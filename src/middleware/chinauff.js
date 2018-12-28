@@ -33,7 +33,7 @@ module.exports = options => {
           openId: query.openId
         }
       })).body
-      // console.log(res)
+      console.log(res)
       // console.log('----chinauff.js')
       // const userData = JSON.parse(res)
       await ctx.session('activity_user', JSON.stringify(res.data))

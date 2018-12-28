@@ -43,78 +43,82 @@
     mounted () {
       this.init()
     },
+    beforeDestroy () {
+      console.log('before destory')
+    },
     methods: {
       init () {
-        // this.uniforms.iTime = { type: 'f', value: 0.1 }
-        // this.uniforms.resolution = { type: 'v2', value: {x: window.width, y: window.height} }
-        // this.$bus.$on('changeImage', this.changeImage)
-        this.App = new PIXI.Application({
-          width: window.innerWidth,
-          height: window.innerHeight,
-          antialias: true,
-          autoResize: true,
-          sharedTicker: true,
-          backgroundColor: 0xFFFFFF
-        })
-        const worldWidth = 640
-        const worldHeight = 1136
-        const viewport = new PIXI.extras.Viewport({
-          screenWidth: window.innerWidth,
-          screenHeight: window.innerHeight,
-          worldWidth: worldWidth,
-          worldHeight: worldHeight
-        })
-        viewport.fitWidth(worldWidth, false, false)
-          .fitHeight(worldHeight, false, false)
-        this.App.stage.addChild(viewport)
-        // this.App.renderer.view.style.objectFit = 'cover'
-        // this.App.renderer = PIXI.autoDetectRenderer(640, 1338);
-        // this.App.renderer.view.style.width = '100%'
-        // this.App.renderer.view.style.height = '100%'
-        // this.App.renderer.view.style.top = '50%'
-        // this.App.renderer.view.style.left = '50%'
-        // this.App.renderer.view.style.webkitTransform = 'scale(1.1)'
-        // this.App.renderer.view.style.transform = 'scale(1.1)'
+        if (!this.App) {
+          // this.uniforms.iTime = { type: 'f', value: 0.1 }
+          // this.uniforms.resolution = { type: 'v2', value: {x: window.width, y: window.height} }
+          // this.$bus.$on('changeImage', this.changeImage)
+          this.App = new PIXI.Application({
+            width: window.innerWidth,
+            height: window.innerHeight,
+            antialias: true,
+            autoResize: true,
+            sharedTicker: true,
+            backgroundColor: 0xFFFFFF
+          })
+          const worldWidth = 640
+          const worldHeight = 1136
+          const viewport = new PIXI.extras.Viewport({
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+            worldWidth: worldWidth,
+            worldHeight: worldHeight
+          })
+          viewport.fitWidth(worldWidth, false, false)
+            .fitHeight(worldHeight, false, false)
+          this.App.stage.addChild(viewport)
+          // this.App.renderer.view.style.objectFit = 'cover'
+          // this.App.renderer = PIXI.autoDetectRenderer(640, 1338);
+          // this.App.renderer.view.style.width = '100%'
+          // this.App.renderer.view.style.height = '100%'
+          // this.App.renderer.view.style.top = '50%'
+          // this.App.renderer.view.style.left = '50%'
+          // this.App.renderer.view.style.webkitTransform = 'scale(1.1)'
+          // this.App.renderer.view.style.transform = 'scale(1.1)'
 
-        // const sprite = viewport.addChild(new PIXI.Sprite(PIXI.Texture.WHITE));
-        // const bgContainer = new PIXI.Container()
-        // 添加背景容器
-        const bg = viewport.addChild(new PIXI.Container())
-        // 添加背景图
-        bg.addChild(new PIXI.Sprite.fromImage(bgLightImg))
-        // 添加背景
-        viewport.addChild(bg)
+          // const sprite = viewport.addChild(new PIXI.Sprite(PIXI.Texture.WHITE));
+          // const bgContainer = new PIXI.Container()
+          // 添加背景容器
+          const bg = viewport.addChild(new PIXI.Container())
+          // 添加背景图
+          bg.addChild(new PIXI.Sprite.fromImage(bgLightImg))
+          // 添加背景
+          viewport.addChild(bg)
 
-        this.loader = new PIXI.loaders.Loader()
-        // const sound = PIXI.sound.Sound.from('assets/audio/6s.mp3')
-        this.loader.add([
-          'assets/animation/6s/data.json',
-          'assets/audio/6s.mp3'
-        ]).load(() => {
-          // const sheet = this.loader.resources['assets/animation/6s/data.json'].spritesheet
-          // console.log(sheet.animations['6s'])
-          const happyMusic = this.loader.resources['assets/audio/6s.mp3']
-          // console.log(happy.sound.)
-          const frames = []
-          for (let i = 0; i < 61; i++) {
-            frames.push(new PIXI.Texture.fromFrame('6s_001' + (26 + i)))
-          }
-          const anim = new PIXI.extras.AnimatedSprite(frames)
-          anim.x = window.innerWidth / 2
-          anim.y = window.innerHeight / 2 - 50
-          // anim.x = 0
-          // anim.y = 0
-          anim.anchor.set(0.5)
-          anim.animationSpeed = 0.2
-          anim.play()
-          anim.width = worldWidth / 2
-          anim.height = worldHeight / 2
-          this.App.stage.addChild(anim)
-          happyMusic.sound.play()
-        })
+          this.loader = new PIXI.loaders.Loader()
+          // const sound = PIXI.sound.Sound.from('assets/audio/6s.mp3')
+          this.loader.add([
+            'assets/animation/6s/data.json',
+            'assets/audio/6s.mp3'
+          ]).load(() => {
+            // const sheet = this.loader.resources['assets/animation/6s/data.json'].spritesheet
+            // console.log(sheet.animations['6s'])
+            this.happyMusic = this.loader.resources['assets/audio/6s.mp3']
+            // console.log(happy.sound.)
+            const frames = []
+            for (let i = 0; i < 61; i++) {
+              frames.push(new PIXI.Texture.fromFrame('6s_001' + (26 + i)))
+            }
+            const anim = new PIXI.extras.AnimatedSprite(frames)
+            anim.x = window.innerWidth / 2
+            anim.y = window.innerHeight / 2 - 50
+            // anim.x = 0
+            // anim.y = 0
+            anim.anchor.set(0.5)
+            anim.animationSpeed = 0.2
+            anim.play()
+            anim.width = worldWidth / 2
+            anim.height = worldHeight / 2
+            this.App.stage.addChild(anim)
+            this.happyMusic.sound.play()
+          })
 
-        this.$refs.bgRenderer.appendChild(this.App.view)
-
+          this.$refs.bgRenderer.appendChild(this.App.view)
+        }
       },
       changeImage (newImage) {
         this.Slide.changeImage(newImage)
