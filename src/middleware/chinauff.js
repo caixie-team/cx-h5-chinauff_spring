@@ -27,12 +27,12 @@ module.exports = options => {
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
       return ctx.redirect(callbackUrl)
     } else if (_.has(query, 'openId') || !_.isEmpty(openId)) { // 请求地址中包含 openId
-      const openId = _.has(query, 'openId') ? query.openId : openId
+      const _openId = _.has(query, 'openId') ? query.openId : openId
       // 加密 openId
       await ctx.cookie('openId', query.openId)
       await ctx.session('openId', query.openId)
       let postData = {
-        openId: query.openId,
+        openId: _openId,
         avatar: ''
       }
       if (_.has(query, 'headimgurl')) {
