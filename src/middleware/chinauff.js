@@ -17,12 +17,13 @@ module.exports = options => {
     const openId = await ctx.cookie('openId') || await ctx.session('openId')
     const query = ctx.query
     // console.log(ctx)
-    const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${apiConfig.domain}${ctx.req.url}`
+    const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=encodeURIComponent(${apiConfig.domain}${ctx.req.url})`
     console.log(callbackUrl)
     console.log('s-s-s-s--sss-s sin.......')
+    // 请求地址中不包含 openId
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
       return ctx.redirect(callbackUrl)
-    } else if (_.has(query, 'openId')) {
+    } else if (_.has(query, 'openId')) { // 请求地址中包含 openId
       // 加密 openId
       await ctx.cookie('openId', query.openId)
       await ctx.session('openId', query.openId)
@@ -39,8 +40,9 @@ module.exports = options => {
         form: true,
         body: postData
       })).body
-      // console.log(res)
-      // console.log('----chinauff.js')
+
+      console.log(res)
+      console.log('----chinauff.js')
       // const userData = JSON.parse(res)
       await ctx.session('activity_user', JSON.stringify(res.data))
       // ctx.req.session = await ctx.session()
