@@ -16,13 +16,12 @@ module.exports = options => {
     }
     const openId = await ctx.cookie('openId') || await ctx.session('openId')
     const query = ctx.query
-    console.log(ctx)
-    const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${apiConfig.hostUrl}`
+    // console.log(ctx)
+    const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${apiConfig.domain}${ctx.req.url}`
     console.log(callbackUrl)
     console.log('s-s-s-s--sss-s sin.......')
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
       return ctx.redirect(callbackUrl)
-
     } else if (_.has(query, 'openId')) {
       // 加密 openId
       await ctx.cookie('openId', query.openId)

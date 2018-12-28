@@ -8,6 +8,7 @@ const {isProdMode} = require('./environment')
 // 线上 DEV 测试
 module.exports = {
   // hostUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://weixin.chinauff.com/spring',
+  domain: isProdMode ? 'https://weixin.chinauff.com' : 'http://weixin.chinauff.com',
   hostUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://weixin.chinauff.com/spring',
   // hostUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://wx.caixie.top/spring',
   cdnUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://spring.chinauff.com/spring',
