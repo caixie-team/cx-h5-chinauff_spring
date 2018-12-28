@@ -46,7 +46,7 @@
           {
             name: 'wdfb',
             text: '我的福包',
-            class: this.type === 'main' ? 'btn-wdhbm' : 'btn-wdhb'
+            class: this.type === 'main' ? 'btn-wdfbm' : 'btn-wdfb'
           },
           {
             name: 'wdjb',
@@ -110,11 +110,11 @@
         background: url('~assets/img/btn/btn_dhffm.png') no-repeat
         background-size: 51px 144px
 
-      &-wdhbm
-        background: url('~assets/img/btn/btn_wdfbm.png') no-repeat
-        background-size: 51px 144px
-        margin-left: 10px
-        margin-right: 10px
+      /*&-wdhbm*/
+        /*background: url('~assets/img/btn/btn_wdfbm.png') no-repeat*/
+        /*background-size: 51px 144px*/
+        /*margin-left: 10px*/
+        /*margin-right: 10px*/
 
       &-wdfbm
         background: url('~assets/img/btn/btn_wdfbm.png') no-repeat

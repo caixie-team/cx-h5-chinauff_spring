@@ -1,10 +1,12 @@
 <!-- 6.2.1、助力者打开邀请助力链接 -->
 <template>
-  <c-page>
+  <c-page type="bg1">
     <div
       slot="content"
       class="page621">
-      <top-buttons type="second"/>
+      <top-buttons
+        :actions="actions"
+        type="second"/>
       <span class="title"/>
       <div class="content">
         <div class="info">
@@ -54,7 +56,8 @@
     name: 'Index',
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米'
+        title: '老娘舅新春集福瓜分18吨福米',
+        actions: ['hdjs']
       }
     },
     components: {
