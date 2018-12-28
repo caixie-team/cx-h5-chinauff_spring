@@ -25,6 +25,8 @@
             </ul>
           </div>
           <span class="moredot">••••••</span>
+          <a @click="encode">编码一下</a>
+
           <div class="total">
             <img
               src="~assets/img/page621/deng.png"
@@ -35,12 +37,40 @@
               class="text-weihaoyou">
           </div>
           <img
+            v-if="helper === 1 || helper === 2"
             src="~assets/img/page621/zhulizhuli.png"
             class="text-zhulizhuli">
+          <div
+            v-if="helper === 3"
+            class="helperInfo">
+            <h2>
+              邀请好友为你助力集满“福”
+            </h2>
+            <span>
+              参与助力的好友也将获得优惠券奖励
+            </span>
+          </div>
         </div>
         <img
+          v-if="helper === 1"
           src="~assets/img/btn/btn_ljzl.png"
-          class="btn-ljzl">
+          class="btn-ljzl"
+          @click="helpAction">
+        <span
+          v-else-if="helper === 2"
+          class="helpLucky">
+          <img
+            src="~assets/img/btn/btn_ywczlg.png"
+            class="btn-ywczlg">
+          <nuxt-link to="/">
+            点击此处前往集福
+          </nuxt-link>
+        </span>
+        <img
+          v-else-if="helper === 3"
+          src="~assets/img/btn/btn_jxyqhyzl.png"
+          class="btn-jxyqhyzl"
+          @click="showDialog('share', { showClose: true })">
       </div>
       <div class="footer"/>
     </div>
@@ -62,10 +92,15 @@
     validate ({query}) {
       return query.beOpenId
     },
-    fetch ({store, params, error}) {
-      return store.dispatch('loadActivityHelps', params).catch(err => {
-        error({statusCode: 404, message: '找不到页面'})
-      })
+    fetch ({store, query, error}) {
+      return Promise.all([
+        store.dispatch('loadActivityHelperStatus', {beOpenId: decodeURIComponent(query.beOpenId)}),
+        // 加载活动参与的关联信息
+        store.dispatch('loadActivityHelps')
+      ])
+      // return store.dispatch('loadActivityHelps', params).catch(err => {
+      //   error({statusCode: 404, message: '找不到页面'})
+      // })
     },
     head () {
       return {
@@ -78,14 +113,14 @@
       PageContent
     },
     props: {
-      coupon: {
-        type: String,
-        default: 'mianfei'
-      },
-      word: {
-        type: String,
-        default: 'kou'
-      }
+      // coupon: {
+      //   type: String,
+      //   default: 'mianfei'
+      // },
+      // word: {
+      //   type: String,
+      //   default: 'kou'
+      // }
     },
     data () {
       return {
@@ -108,6 +143,15 @@
       helps () {
         return this.$store.state.activity.helps.data
       },
+      helper () {
+        return this.$store.state.activity.helper.status
+      },
+      blessing () {
+        return this.$store.state.prize.blessing.data
+      },
+      coupon () {
+        return this.$store.state.prize.coupon.data
+      },
       _couponClass () {
         return [
           'coupon',
@@ -121,20 +165,58 @@
         ]
       }
     },
+    watch: {
+      blessing (newVal) {
+        console.log(newVal)
+        // if (newVal) {
+        // this.showDialog('prize')
+        // }
+      },
+      coupon (newVal) {
+        // if (newVal) {
+        // this.showDialog('prize', {coupon: 'qizhe'})
+        // this.showDialog('prize', {
+          // word: this.blessing,
+          // coupon: ''
+        // })
+        // }
+        // console.log(newVal)
+      }
+    },
     methods: {
-      showAlert () {
+      encode () {
+        const en = encodeURIComponent('8+72oVMpZ6zETKNVFZ8Di/cjzIt1gxFudFt/xuQsHKs=')
+        console.log('8+72oVMpZ6zETKNVFZ8Di/cjzIt1gxFudFt/xuQsHKs=')
+        console.log(en)
+        console.log(decodeURIComponent(en))
+      },
+      async helpAction () {
+        const beOpenId = this.$route.query.beOpenId
+        // console.log(this.$route.query)
+        // 检查助力者信息
+        // this.$store.dispatch('loadPrizeBlessing')
+        const isSuccess = await this.$store.dispatch('dealHelpAction', {
+          openId: this.$store.getters.openId,
+          beOpenId: decodeURIComponent(this.$route.query.beOpenId)
+        })
+        if (isSuccess) {
+          await this.$store.dispatch('loadActivityHelperStatus', {beOpenId})
+          await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
+          await this.$store.dispatch('loadPrizeCoupon', {openId: beOpenId, encrypt: true})
+        }
+      },
+      showDialog (type, option) {
         this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
+          type: type,
+          ...option
         })
         this.dialog.show()
-      }
+      },
     },
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
 
   .page621
     color: $color-dark
@@ -150,6 +232,37 @@
     overflow: hidden
     background: url('~assets/img/page621/topbg.png') no-repeat left top
     background-size: 566px 301px
+
+    .helpLucky
+      display: flex
+      align-content: flex-start
+      flex-direction: column
+      align-items: center
+      position: relative
+      bottom: 100px
+
+      a
+        font-size: 24px
+        font-weight: 500
+        color: $color-white
+
+      .btn-ywczlg
+        position: relative
+        width: 266px
+        margin-bottom: 20px
+
+    .helperInfo
+      color: $color-white
+      display: flex
+      flex-direction: column
+      align-content: flex-start
+      align-items: center
+      line-height: 30px
+      font-size: 18px
+
+      h2
+        font-weight: 500
+        font-size: 24px
 
     .title
       top: 50px
@@ -208,6 +321,11 @@
         position: relative
         bottom: 100px
         width: 218px
+
+      .btn-jxyqhyzl
+        position: relative
+        bottom: 100px
+        width: 266px
 
       .moredot
         color: $color-white

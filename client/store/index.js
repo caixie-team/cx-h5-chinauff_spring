@@ -41,7 +41,7 @@ const getBaseUrl = (req) => {
   // return req.headers['x-forwarded-host']
 }
 // 初始化配置 Wechat JSSDK
-const clientInitWechatJSSDK = async (config, commit, openId) => {
+const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
 
   const wechatObj = new window.WechatJSSDK(config)
   wechatObj.initialize()
@@ -50,10 +50,11 @@ const clientInitWechatJSSDK = async (config, commit, openId) => {
       const img = 'http://pic1.ooopic.com/uploadfilepic/shiliang/2009-10-05/OOOPIC_00cyl_20091005e2c6eb1c889e342e.jpg'
       // const img = 'http://wx.caixie.top/spring/_nuxt/client/assets/images/bg/page_bg_light.jpg'
       // sugar method
+      const encodeBeOpenId = encodeURIComponent(beOpenId)
       wechatObj.shareOnChat({
         title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
         // type: 'link',
-        link: apiConfig.hostUrl + '/page621?beOpenId=' + openId,
+        link: apiConfig.hostUrl + '/page621?beOpenId=' + encodeBeOpenId,
         // link: location.href,
         imgUrl: img,
         desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
@@ -67,7 +68,7 @@ const clientInitWechatJSSDK = async (config, commit, openId) => {
         title: 'onMenuShareTimeline test title',
         type: 'link',
         // link: location.href,
-        link: apiConfig.hostUrl + '/page621?beOpenId=' + openId,
+        link: apiConfig.hostUrl + '/page621?beOpenId=' + encodeBeOpenId,
         success: function () {
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment success'
@@ -129,7 +130,8 @@ export const mutations = {
 
 export const getters = {
   pageLayout: state => state.pageLayouts,
-  openId: state => state.user.info.data.openId
+  openId: state => state.user.info.data.openId,
+  beOpenId: state => state.user.info.data.beOpenId
 }
 // global actions
 export const actions = {
@@ -171,7 +173,7 @@ export const actions = {
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
     // console.log('iniit jssdkConfig')
     // console.log(jssdkConfig)
-    await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.openId)
+    await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
     // window.app = this;
     // getCurrentPath() {
     //   return this.$store.state.section && this.$store.state.section != '/' ? `/${this.$store.state.section}` : '/';
@@ -204,6 +206,7 @@ export const actions = {
       })
   },
   loadJSSDKConfig ({commit}, url) {
+    console.log(url)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
     const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
@@ -275,20 +278,38 @@ export const actions = {
         return Promise.reject(err)
       })
   },
-  // 奖品, 集福、字、劵
-  loadPrizeBlessing ({commit}, data) {
-    return this.$axios.$post(`${API_PREFIX}/blessing/scan`, {
-      // openId: this.state.user.info.data.openId
-      openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+  // 抽奖，领劵
+  loadPrizeCoupon ({commit}, data) {
+    commit('prize/REQUEST_COUPON')
+    return this.$axios.$post(`${API_PREFIX}/coupon/hit`, {
+      ...data
     }).then(response => {
       const data = getResData(response)
       if (resIsSuccess(response)) {
-        commit('prize/REQUEST_BLESSING', data)
+        commit('prize/GET_COUPON_SUCCESS', data)
         return Promise.resolve(data)
       }
     })
       .catch(err => {
-        // commit('ai/POST_IMAGE_FAILURE', err)
+        commit('prize/GET_COUPON_FAILURE', err)
+        // return Promise.reject(err)
+      })
+  },
+  // 集福
+  loadPrizeBlessing ({commit}, data) {
+    commit('prize/REQUEST_BLESSING')
+    return this.$axios.$post(`${API_PREFIX}/blessing/scan`, {
+      ...data
+      // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('prize/GET_BLESSING_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('prize/GET_BLESSING_FAILURE', err)
         // return Promise.reject(err)
       })
   },
@@ -306,6 +327,7 @@ export const actions = {
         commit('shop/GET_LIST_FAILURE', err)
       })
   },
+  // 获取抽奖次数
   luckyTimes ({commit}, params) {
     // console.log(this.getters.openId)
     commit('user/REQUEST_LUCKY')
@@ -335,6 +357,39 @@ export const actions = {
       .catch(err => {
         commit('activity/GET_HELPS_FAILURE', err)
       })
+  },
+  // 获取助力者状态
+  loadActivityHelperStatus ({commit}, params) {
+    console.log(params)
+    commit('activity/REQUEST_HELPER_STATUS')
+    return this.$axios.$post(`${API_PREFIX}/blessing/helpStatus`, {
+      openId: this.getters.openId,
+      beOpenId: params.beOpenId
+    })
+      .then(response => {
+        console.log(response)
+
+        resIsSuccess(response)
+          ? commit('activity/GET_HELPER_STATUS_SUCCESS', getResData(response))
+          : commit('activity/GET_HELPER_STATUS_FAILURE')
+      })
+      .catch(err => {
+        commit('activity/GET_HELPS_FAILURE', err)
+      })
+  },
+  // 好友助力
+  async dealHelpAction ({commit}, params) {
+    const res = await this.$axios.$post(`${API_PREFIX}/blessing/help`, {
+      openId: this.getters.openId,
+      beOpenId: params.beOpenId
+    })
+    // console.log(res)
+    // console.log(data)
+    if (res && res.errno === 0) {
+      return true
+    } else {
+      return false
+    }
   },
   // 获取同构常量
   // loadConstants ({ commit }) {

@@ -21,7 +21,7 @@
     </div>
     <div class="section2">
       <span :class="_couponClass"/>
-      <!-- 立即领取 -->
+      <!-- 立即领取, 发劵 -->
       <img
         src="~assets/img/btn/btn_ljlqh.png"
         class="btn-lijilq"
