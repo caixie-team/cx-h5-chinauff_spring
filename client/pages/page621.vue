@@ -10,10 +10,12 @@
       <span class="title"/>
       <div class="content">
         <div class="info">
-          <div class="members members--overlap">
+          <div
+            v-if="helps.avatars.length > 0"
+            class="members members--overlap">
             <ul>
               <li
-                v-for="(item, index) in headimgs"
+                v-for="(item, index) in helps.avatars"
                 :key="index"
                 class="member">
                 <img
@@ -27,7 +29,7 @@
             <img
               src="~assets/img/page621/deng.png"
               class="text-deng">
-            <span class="count">{{ total }}</span>
+            <span class="count">{{ helps.total }}</span>
             <img
               src="~assets/img/page621/weihaoyou.png"
               class="text-weihaoyou">
@@ -54,7 +56,18 @@
 
   export default {
     name: 'Index',
-    validate ({ params }) {},
+    // beOpenId 被助力者
+    // openId 助力者
+    // 分享时带上 beOpenId
+    validate ({query}) {
+      console.log(query)
+      return query.openId && query.beOpenId
+    },
+    fetch ({store, params, error}) {
+      return store.dispatch('loadActivityHelps', params).catch(err => {
+        error({statusCode: 404, message: '找不到页面'})
+      })
+    },
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米',
@@ -93,6 +106,9 @@
       }
     },
     computed: {
+      helps () {
+        return this.$store.state.activity.helps.data
+      },
       _couponClass () {
         return [
           'coupon',
@@ -156,6 +172,7 @@
       background-size: 394px 584px
       width: 394px
       height: 600px
+
       .info
         position: relative
         top: 160px
@@ -163,6 +180,7 @@
         flex-direction: column
         justify-content space-between
         align-items: center
+
         .total
           color: $color-white
           font-size: 21px
@@ -170,37 +188,44 @@
           flex-direction: row
           justify-content: center
           margin-bottom: 50px
+
           .count
             font-weight: 500
             margin: 0 4px 0 4px
+
           .text-deng
             width: 18px
             height: 21px
+
           .text-weihaoyou
             width: 128px
             height: 21px
+
       .text-zhulizhuli
         width: 185px
         height: 53px
+
       .btn-ljzl
         position: relative
         bottom: 100px
         width: 218px
-        /*width: 266px*/
-        /*height: 64px*/
+
       .moredot
         color: $color-white
         letter-spacing: 3px
         font-size: 18px
         padding: 10px
+
       .members
         ul
           float: left
+
         &--overlap
           .member
             margin-left: -15px
             float: right
             font-size: 10px
+
       .c-avatar
         display: inline-block
         text-align: center

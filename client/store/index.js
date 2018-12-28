@@ -52,9 +52,9 @@ const clientInitWechatJSSDK = async (config, commit, openId) => {
       // sugar method
       wechatObj.shareOnChat({
         title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
-        type: 'link',
-        // link: apiConfig.hostUrl + '/page621?openId=' + openId,
-        link: location.href,
+        // type: 'link',
+        link: apiConfig.hostUrl + '/page621?beOpenId=' + openId,
+        // link: location.href,
         imgUrl: img,
         desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
         surccess: () => {
@@ -66,8 +66,8 @@ const clientInitWechatJSSDK = async (config, commit, openId) => {
       wechatObj.shareOnMoment({
         title: 'onMenuShareTimeline test title',
         type: 'link',
-        link: location.href,
-        // link: apiConfig.hostUrl + '/page621?openId=' + openId,
+        // link: location.href,
+        link: apiConfig.hostUrl + '/page621?beOpenId=' + openId,
         success: function () {
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment success'
