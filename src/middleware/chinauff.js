@@ -15,14 +15,14 @@ module.exports = options => {
       }
     }
     const openId = await ctx.cookie('openId') || await ctx.session('openId')
-    console.log(openId)
-    console.log('has opeId .....')
+    // console.log(openId)
+    // console.log('has opeId .....')
     const query = ctx.query
-    // console.log(ctx)
+    console.log(ctx)
     const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
     const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
-    console.log(callbackUrl)
-    console.log('s-s-s-s--sss-s sin.......')
+    // console.log(callbackUrl)
+    // console.log('s-s-s-s--sss-s sin.......')
     // 请求地址中不包含 openId
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
       return ctx.redirect(callbackUrl)
