@@ -54,6 +54,7 @@
 
   export default {
     name: 'Index',
+    validate ({ params }) {},
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米',

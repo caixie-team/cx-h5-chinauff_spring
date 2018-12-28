@@ -6,7 +6,7 @@
 export const state = () => {
   return {
 
-    help: {
+    helps: {
       fetching: false,
       data: {
         // 当前助力人数
@@ -26,6 +26,15 @@ export const state = () => {
 }
 
 export const mutations = {
+  REQUEST_HELPS (state, action) {
+    state.help.fetching = true
+  },
+  GET_HELPS_SUCCESS (state, action) {
+    state.help.data = action
+  },
+  GET_HELPS_FAILURE (state) {
+    state.list.fetching = false
+  },
   REQUEST_BLESSING (state, action) {
     state.blessing.fetching = true
     console.log(action)

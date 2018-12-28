@@ -34,6 +34,7 @@ const resIsSuccess = response => {
 }
 const getBaseUrl = (req) => {
   // console.log(req)
+  console.log(req.protocol)
   return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + req.originalUrl
   // return req.headers['x-forwarded-host']
 }
@@ -317,7 +318,22 @@ export const actions = {
       .catch(err => {
         commit('user/GET_LUCK_FAILURE', err)
       })
-  }
+  },
+  // 获取助力信息
+  loadActivityHelps ({commit}, params) {
+    commit('activity/REQUEST_HELPS')
+    return this.$axios.$post(`${API_PREFIX}/blessing/helps`, {
+      openId: this.getters.openId
+    })
+      .then(response => {
+        resIsSuccess(response)
+          ? commit('activity/GET_HELPS_SUCCESS', getResData(response))
+          : commit('activity/GET_HELPS_FAILURE')
+      })
+      .catch(err => {
+        commit('activity/GET_HELPS_FAILURE', err)
+      })
+  },
   // 获取同构常量
   // loadConstants ({ commit }) {
   //   return this.$axios.$get(`${API_PREFIX}/constants`)
