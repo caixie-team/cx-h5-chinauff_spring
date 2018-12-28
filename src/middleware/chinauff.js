@@ -15,6 +15,8 @@ module.exports = options => {
       }
     }
     const openId = await ctx.cookie('openId') || await ctx.session('openId')
+    console.log(openId)
+    console.log('has opeId .....')
     const query = ctx.query
     // console.log(ctx)
     const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
