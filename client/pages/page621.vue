@@ -60,8 +60,7 @@
     // openId 助力者
     // 分享时带上 beOpenId
     validate ({query}) {
-      console.log(query)
-      return query.openId && query.beOpenId
+      return query.beOpenId
     },
     fetch ({store, params, error}) {
       return store.dispatch('loadActivityHelps', params).catch(err => {
