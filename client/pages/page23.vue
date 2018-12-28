@@ -6,11 +6,12 @@
       class="page23">
       <pixi-background/>
       <div class="content">
+        <!--<img-->
+        <!--src="~assets/img/btn/btn_sxfq.png"-->
+        <!--class="btn-sxfq">-->
         <span
           class="c-btn"
-          @click="picker">
-          收下福气
-        </span>
+          @click="picker"/>
       </div>
     </div>
   </c-page>
@@ -119,11 +120,15 @@
         display: flex
         justify-content: center
         align-items: center
-        border: 2px solid #222222
-        background: #ab2d2f
-        color: #ffffff
-        height: 48px
-        width: 218px
+        /*border: 2px solid #222222*/
+        /*background: #ab2d2f*/
+        background-image: url('~assets/img/btn/btn_sxfq.png')
+        /*color: #ffffff*/
+        position: absolute;
+        z-index: 100;
+        background-size: 248px 60px
+        height: 60px
+        width: 248px
         font-size: 24px
 
     .footer

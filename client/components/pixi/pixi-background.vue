@@ -1,12 +1,7 @@
 <template>
   <div
     ref="bgRenderer"
-    class="pixibackground">
-    <span
-      class="c-btn">
-      收下福气
-    </span>
-  </div>
+    class="pixibackground"/>
 </template>
 
 <script>
@@ -147,8 +142,10 @@
     z-index: 0;
   }
 
-  .c-btn {
-    position: absolute;
-    z-index: 100;
-  }
+  /*.c-btn {*/
+    /*position: absolute;*/
+    /*z-index: 100;*/
+    /*width: 248px;*/
+    /*height: 60px;*/
+  /*}*/
 </style>

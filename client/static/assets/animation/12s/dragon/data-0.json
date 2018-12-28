@@ -174,11 +174,11 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "data-0.webp",
+	"image": "data-0.png",
 	"format": "RGBA8888",
 	"size": {"w":1963,"h":2041},
 	"scale": "0.41667",
 	"related_multi_packs": [ "data-1.json", "data-2.json", "data-3.json", "data-4.json" ],
-	"smartupdate": "$TexturePacker:SmartUpdate:e5b5bf2f1b30f28f89b7a2f23defd219:5fc79156cadbda14a16646a965ec7d3a:3f2de8df34124d9f7ac044319a016acc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f781fa2b5e8dc8b27126816f667f3d6c:5fc79156cadbda14a16646a965ec7d3a:1b354341a454f8f258d35a687ff39edf$"
 }
 }
