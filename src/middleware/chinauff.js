@@ -26,7 +26,7 @@ module.exports = options => {
     // 请求地址中不包含 openId
     if (_.isEmpty(openId) && !_.has(query, 'openId')) {
       return ctx.redirect(callbackUrl)
-    } else if (_.has(query, 'openId') || think.isEmpty(openId)) { // 请求地址中包含 openId
+    } else if (_.has(query, 'openId') || !_.isEmpty(openId)) { // 请求地址中包含 openId
       // 加密 openId
       await ctx.cookie('openId', query.openId)
       await ctx.session('openId', query.openId)
