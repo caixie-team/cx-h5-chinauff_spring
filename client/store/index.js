@@ -5,6 +5,7 @@
  * @module store/entry
  * @author Baisheng <baisheng@caixie.top>
  */
+const {isProdMode} = require('./environment')
 
 // import Vue from 'vue'
 import apiConfig from '~/api.config'
@@ -34,8 +35,9 @@ const resIsSuccess = response => {
 }
 const getBaseUrl = (req) => {
   // console.log(req)
-  console.log(req.protocol)
-  return (req.protocol ? req.protocol : 'http') + '://' + req.headers['x-forwarded-host'] + req.originalUrl
+  // console.log(req.protocol)
+  const protocol = isProdMode ? 'https' : 'http'
+  return protocol + '://' + req.headers['x-forwarded-host'] + req.originalUrl
   // return req.headers['x-forwarded-host']
 }
 // 初始化配置 Wechat JSSDK
