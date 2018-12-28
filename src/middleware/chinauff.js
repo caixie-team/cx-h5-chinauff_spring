@@ -16,6 +16,7 @@ module.exports = options => {
     }
     const openId = await ctx.cookie('openId') || await ctx.session('openId')
     const query = ctx.query
+    console.log(ctx)
     const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${apiConfig.hostUrl}`
     console.log(callbackUrl)
     console.log('s-s-s-s--sss-s sin.......')
