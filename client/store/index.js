@@ -5,7 +5,7 @@
  * @module store/entry
  * @author Baisheng <baisheng@caixie.top>
  */
-const {isProdMode} = require('./environment')
+const {isProdMode} = require('../environment')
 
 // import Vue from 'vue'
 import apiConfig from '~/api.config'
