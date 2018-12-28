@@ -128,13 +128,13 @@
         background: url('~assets/img/btn/btn_dhff.png') no-repeat
         background-size: 51px 144px
 
-      &-wdhb
+      &-wdfb
         background: url('~assets/img/btn/btn_wdfb.png') no-repeat
         background-size: 51px 144px
         margin-left: 10px
         margin-right: 10px
 
-      &-wdfb
-        background: url('~assets/img/btn/btn_wdfb.png') no-repeat
-        background-size: 51px 144px
+      /*&-wdfb*/
+        /*background: url('~assets/img/btn/btn_wdfb.png') no-repeat*/
+        /*background-size: 51px 144px*/
 </style>

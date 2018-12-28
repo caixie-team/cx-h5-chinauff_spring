@@ -3,7 +3,7 @@
     <div
       slot="content"
       class="home">
-      <top-buttons/>
+      <top-buttons :actions="actions"/>
       <img
         src="~assets/images/home/bt.png"
         class="imgBt">
@@ -66,7 +66,8 @@
       return {
         isScan: false,
         headerImage: '',
-        picValue: ''
+        picValue: '',
+        actions: ['hdjs', 'wdfb']
       }
     },
     computed: {

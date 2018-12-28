@@ -57,7 +57,6 @@
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米',
-        actions: ['hdjs']
       }
     },
     components: {
@@ -77,6 +76,7 @@
     },
     data () {
       return {
+        actions: ['hdjs'],
         total: '12,345',
         count: '2',
         tip1,

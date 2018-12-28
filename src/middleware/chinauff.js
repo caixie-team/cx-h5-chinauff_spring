@@ -24,16 +24,20 @@ module.exports = options => {
       // 加密 openId
       await ctx.cookie('openId', query.openId)
       await ctx.session('openId', query.openId)
-
+      let postData = {
+        openId: query.openId,
+        avatar: ''
+      }
+      if (_.has(query, 'headimgurl')) {
+        postData.avatar = query.headimgurl
+      }
       // 创建或查询活动账户
       const res = (await think.got.post(apiConfig.baseUrl + '/account/take', {
         json: true,
         form: true,
-        body: {
-          openId: query.openId
-        }
+        body: postData
       })).body
-      console.log(res)
+      // console.log(res)
       // console.log('----chinauff.js')
       // const userData = JSON.parse(res)
       await ctx.session('activity_user', JSON.stringify(res.data))

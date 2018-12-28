@@ -43,7 +43,7 @@
     // },
     fetch ({store, route}) {
       const query = route.query
-      console.log(query)
+      // console.log(query)
       if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
         return store.dispatch('loadWechatUserInfo', query.code)
         // console.log('a')
@@ -53,7 +53,7 @@
     async asyncData ({context, route}) {
       const query = route.query
       if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
-        console.log('a')
+        // console.log('a')
       }
     },
     computed: {
