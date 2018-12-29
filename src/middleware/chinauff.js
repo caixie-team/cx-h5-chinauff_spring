@@ -2,7 +2,8 @@
 const path = require('path');
 const apiConfig = require(path.join(think.ROOT_PATH, 'client/api.config.js'))
 const _ = require('lodash')
-const openIdKey = 'bacd$!#@'
+const openIdKey = '09e96454730650a6'
+// this.key = '09e96454730650a6'
 const crypto = require('crypto');
 
 const globalEncrypt = (text, key) => {
@@ -32,16 +33,10 @@ module.exports = options => {
         return ctx.redirect(callbackUrl)
       } else if (_.has(query, 'openId') || !_.isEmpty(openId)) { // 请求地址中包含 openId
         const _openId = _.has(query, 'openId') ? query.openId : openId
-        // if (!_.has(query, 'openId')) {
-        //   ctx.querystring += `openId=${openId}`
-        // }
 
         await ctx.cookie('openId', _openId)
         await ctx.session('openId', _openId)
-        // const openId = encrypt(data.openId, openIdKey)
-        // return openId
-        // 处理加密的 openId
-        // await ctx.session('beOpenId', encrypt(_openId, openIdKey))
+
         const postData = {
           openId: _openId,
           avatar: ''
@@ -58,6 +53,8 @@ module.exports = options => {
         res.data.beOpenId = encrypt(_openId, openIdKey)
         // console.log(res.data.beOpenId)
         // console.info(encrypt('oQJYBw_YWDZFWp5DBoVDFPH1JX7A', openIdKey))
+        // 活动账户的信息，包括登录状态和会员信息
+        // if Login status === 1
         await ctx.session('activity_user', JSON.stringify(res.data))
 
         return next()

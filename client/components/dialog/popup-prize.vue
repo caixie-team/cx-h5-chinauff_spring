@@ -41,16 +41,26 @@
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
   import {isBrowser} from '~/environment'
   import apiConfig from '~/api.config'
-
+  // 免费劵 3409
+  // 4 元劵 (3410)
+  // 8 元劵 (3411)
+  // 5 折劵 (3412,3413,3414,3415,3416,3417,3418,3419)
+  // 6 折劵 (3420,3421,3422,3423,3424,3425,3426,3427,3428)
+  // 7 折劵 (3429,3430,3431,3432,3433,3434,3435)
+  // 8 折劵 (3436,3437,3438,3439,3440,3441,3442,3443,3444)
   export default {
     props: {
-      coupon: {
+      coupon_code: {
         type: String,
         default: ''
       },
-      word: {
-        type: String,
-        default: ''
+      coupon_type: {
+        type: Number,
+        default: 0
+      },
+      blessing_type: {
+        type: Number,
+        default: 0
       },
     },
     data () {
@@ -61,6 +71,74 @@
       }
     },
     computed: {
+      userInfo () {
+        return this.$store.state.user.info.data
+      },
+      coupon () {
+        switch (this.coupon_type) {
+          case 3409:
+            return 'mianfei'
+          case 3410:
+            return 'siyuan'
+          case 3411:
+            return 'bayuan'
+          case 3412:
+          case 3413:
+          case 3414:
+          case 3415:
+          case 3416:
+          case 3417:
+          case 3418:
+          case 3419:
+            return 'wuzhe'
+          case 3420:
+          case 3421:
+          case 3422:
+          case 3423:
+          case 3424:
+          case 3425:
+          case 3426:
+          case 3427:
+          case 3428:
+            return 'liuzhe'
+          case 3429:
+          case 3430:
+          case 3431:
+          case 3432:
+          case 3433:
+          case 3434:
+          case 3435:
+            return 'qizhe'
+          case 3436:
+          case 3437:
+          case 3438:
+          case 3439:
+          case 3440:
+          case 3441:
+          case 3442:
+          case 3443:
+          case 3444:
+            return 'bazhe'
+          case 50:
+            return 'huiyuanka'
+          default:
+            return 'aaaa'
+        }
+      },
+      word () {
+        switch (this.blessing_type) {
+          case 1:
+            return 'shi'
+          case 2:
+            return 'yi'
+          case 3:
+            return 'kou'
+          case 4:
+            return 'tian'
+          default:
+            return ''
+        }
+      },
       _title () {
         return this.word ? title : title1
       },
@@ -79,8 +157,18 @@
     },
     methods: {
       getCoupon () {
+        console.log(this.userInfo)
+        if (this.userInfo.status === 1) {
+          // 领劵
+          // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
+          this.$store.dispatch('loadPrizeCoupon', {
+            coupon_code: this.coupon_code
+          })
+        } else {
+          this.redirectLogin()
+        }
         // 验证用户是否登录，未登录跳转
-        this.redirectLogin()
+        // this.redirectLogin()
         // 是
         // 发劵
         // 否
@@ -88,8 +176,11 @@
       },
       redirectLogin () {
         if (isBrowser) {
-          const encodeUrl = encodeURIComponent(window.location.href)
-          window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?callback=${encodeUrl}`
+          let locationHref = window.location.href
+          locationHref += `&coupon_code=${this.coupon_code}`
+          const encodeUrl = encodeURIComponent(locationHref)
+          // https://demo.micvs.com/lnj-weixin/console/weixin/page/loginPage?callback2=http%3A%2F%2Fweixin.chinauff.com%2Fspring%2Fpage241&channel2=18
+          window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?&channel2=18&callback2=${encodeUrl}`
         }
       }
     }
@@ -208,4 +299,8 @@
 
         &-wuzhe
           background-image: url("~assets/img/gift/coupon_wuzhe.png")
+
+        &-huiyuanka
+          background-image: url("~assets/img/gift/coupon_huiyuanka.png")
+
 </style>

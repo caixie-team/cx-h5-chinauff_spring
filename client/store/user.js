@@ -7,6 +7,8 @@
 export const state = () => ({
   info: {
     fetching: false,
+    // 活动账户的信息，包括登录状态和会员信息
+    // if Login status === 1
     data: {
       openId: '',
       nickname: '请好好说话🌱',
@@ -18,6 +20,7 @@ export const state = () => ({
       headimgurl: 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epTImibsmcibWuh9CMGNugXagRxCWy8N1cVSoaBPvs4KGdib7zuSEQHDBuu1lFrZ5ruhxiaaMN3BGNOUQ/132',
       privilege: [],
       unionid: '',
+      status: 0
     }
   },
   lucky: {
@@ -53,11 +56,11 @@ export const mutations = {
   REQUEST_USER_INFO (state) {
     state.info.fetching = true
   },
-  REQUEST_USER_INFO_SUCCESS (state, action) {
+  GET_USER_INFO_SUCCESS (state, action) {
     state.info.fetching = false
     state.info.data = action
   },
-  REQUEST_USER_INFO_FAILURE (state) {
+  GET_USER_INFO_FAILURE (state) {
     state.info.fetching = false
     state.info.data = {}
   },
@@ -65,12 +68,12 @@ export const mutations = {
   REQUEST_USER_LOCATION (state) {
     state.location.fetching = true
   },
-  REQUEST_USER_LOCATION_SUCCESS (state, action) {
+  GET_USER_LOCATION_SUCCESS (state, action) {
     state.location.fetching = false
     state.location.data = Object.assign({}, state.location.data, action)
   },
 
-  REQUEST_USER_LOCATION_FAILURE (state) {
+  GET_USER_LOCATION_FAILURE (state) {
     state.location.fetching = false
     state.location.data = {}
   },

@@ -50,11 +50,11 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
       const img = 'http://pic1.ooopic.com/uploadfilepic/shiliang/2009-10-05/OOOPIC_00cyl_20091005e2c6eb1c889e342e.jpg'
       // const img = 'http://wx.caixie.top/spring/_nuxt/client/assets/images/bg/page_bg_light.jpg'
       // sugar method
-      const encodeBeOpenId = encodeURIComponent(beOpenId)
+      // const encodeBeOpenId = encodeURIComponent(beOpenId)
       wechatObj.shareOnChat({
         title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
         // type: 'link',
-        link: apiConfig.hostUrl + '/page621?beOpenId=' + encodeBeOpenId,
+        link: apiConfig.hostUrl + '/page621?beOpenId=' + beOpenId,
         // link: location.href,
         imgUrl: img,
         desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
@@ -68,7 +68,7 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
         title: 'onMenuShareTimeline test title',
         type: 'link',
         // link: location.href,
-        link: apiConfig.hostUrl + '/page621?beOpenId=' + encodeBeOpenId,
+        link: apiConfig.hostUrl + '/page621?beOpenId=' + beOpenId,
         success: function () {
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment success'
@@ -109,7 +109,7 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
           // const accuracy = res.accuracy; // 位置精度
           // console.log(res)
           // console.log('request user location usss....')
-          commit('user/REQUEST_USER_LOCATION_SUCCESS', res)
+          commit('user/GET_USER_LOCATION_SUCCESS', res)
         }
       })
     })
@@ -138,7 +138,6 @@ export const actions = {
 
   // 全局服务初始化
   nuxtServerInit (store, {req, params, route}) {
-    // console.log(JSON.stringify(req.session.openId) + 'x-x-x-x-')
     // console.log(req)
     // 检查设备类型
     // const userAgent = isServer ? req.headers['user-agent'] : navigator.userAgent
@@ -258,6 +257,21 @@ export const actions = {
         console.warn('获取签名信息错误', err)
       })
   },
+  reloadUserInfo ({commit}, data) {
+    commit('user/REQUEST_USER_INFO')
+    return this.$axios.$post(`${API_PREFIX}/account/take`, {
+      ...data
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('prize/GET_LUCKY_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('prize/GET_LUCKY_FAILURE', err)
+      })
+  },
   // AI 图片
   checkImage ({commit}, data) {
     commit('ai/POST_IMAGE')
@@ -278,10 +292,27 @@ export const actions = {
         return Promise.reject(err)
       })
   },
-  // 抽奖，领劵
-  loadPrizeCoupon ({commit}, data) {
-    commit('prize/REQUEST_COUPON')
+  // 抽奖
+  loadPrizeLucky ({commit}, data) {
+    commit('prize/REQUEST_LUCKY')
     return this.$axios.$post(`${API_PREFIX}/coupon/hit`, {
+      ...data
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('prize/GET_LUCKY_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('prize/GET_LUCKY_FAILURE', err)
+      })
+  },
+  // 领劵、发劵
+  loadPrizeCoupon ({commit}, data) {
+    // console.log(data)
+    commit('prize/REQUEST_COUPON')
+    return this.$axios.$post(`${API_PREFIX}/coupon/receiveCoupon`, {
       ...data
     }).then(response => {
       const data = getResData(response)
@@ -292,7 +323,6 @@ export const actions = {
     })
       .catch(err => {
         commit('prize/GET_COUPON_FAILURE', err)
-        // return Promise.reject(err)
       })
   },
   // 集福
@@ -347,7 +377,7 @@ export const actions = {
   loadActivityHelps ({commit}, params) {
     commit('activity/REQUEST_HELPS')
     return this.$axios.$post(`${API_PREFIX}/blessing/helps`, {
-      openId: this.getters.openId
+      ...params
     })
       .then(response => {
         resIsSuccess(response)

@@ -25,7 +25,6 @@
             </ul>
           </div>
           <span class="moredot">••••••</span>
-          <a @click="encode">编码一下</a>
 
           <div class="total">
             <img
@@ -93,11 +92,16 @@
       return query.beOpenId
     },
     fetch ({store, query, error}) {
+      // console.log('query.beopenid....')
+      // console.log(query.beOpenId)
       return Promise.all([
-        store.dispatch('loadActivityHelperStatus', {beOpenId: decodeURIComponent(query.beOpenId)}),
+        store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
         // 加载活动参与的关联信息
-        store.dispatch('loadActivityHelps')
+        store.dispatch('loadActivityHelps', {beOpenId: query.beOpenId})
       ])
+      // if (query.coupon_code) {
+      //
+      // }
       // return store.dispatch('loadActivityHelps', params).catch(err => {
       //   error({statusCode: 404, message: '找不到页面'})
       // })
@@ -136,19 +140,31 @@
           'https://i.loli.net/2017/08/21/599a521472424.jpg',
           'https://i.loli.net/2017/08/21/599a521472424.jpg',
           'https://i.loli.net/2017/08/21/599a521472424.jpg',
-        ]
+        ],
+        blessing_type: 0
       }
     },
     computed: {
+      userInfo () {
+        return this.$store.state.user.info.data
+      },
+      // 助力页数据
       helps () {
         return this.$store.state.activity.helps.data
       },
+      // 助力者
       helper () {
         return this.$store.state.activity.helper.status
       },
+      // 集福数据
       blessing () {
         return this.$store.state.prize.blessing.data
       },
+      // 抽奖数据
+      lucky () {
+        return this.$store.state.prize.lucky.data
+      },
+      // 领劵数据
       coupon () {
         return this.$store.state.prize.coupon.data
       },
@@ -166,30 +182,47 @@
       }
     },
     watch: {
-      blessing (newVal) {
-        console.log(newVal)
-        // if (newVal) {
-        // this.showDialog('prize')
-        // }
+      // blessing (newVal) {
+      //   if (newVal) {
+      //     this.blessing_type = newVal.blessing_type
+      //   }
+      // },
+      lucky (newVal) {
+        let coupon_type = 0
+        let coupon_code = ''
+        if (newVal.type === 1) {
+          coupon_type = newVal.coupon.type_code
+          coupon_code = newVal.coupon.coupon_code
+        } else if (newVal.type === 2) {
+          coupon_type = newVal.card.card_code
+          coupon_code = newVal.card.card_code.toString()
+        }
+        this.showDialog('prize', {
+          blessing_type: this.blessing.blessing_type,
+          coupon_type,
+          coupon_code
+        })
       },
       coupon (newVal) {
-        // if (newVal) {
-        // this.showDialog('prize', {coupon: 'qizhe'})
-        // this.showDialog('prize', {
-          // word: this.blessing,
-          // coupon: ''
-        // })
-        // }
-        // console.log(newVal)
+        if (newVal.status === 2) {
+          this.showDialog('success', {showClose: false})
+        }
       }
     },
+    mounted () {
+      const coupon_code = this.$route.query.coupon_code
+      // console.log(this.$route.query)
+      // this.$nextTick(() => {
+      if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
+        // 领劵
+        // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
+        this.$store.dispatch('loadPrizeCoupon', {
+          coupon_code: this.$route.query.coupon_code
+        })
+      }
+      // })
+    },
     methods: {
-      encode () {
-        const en = encodeURIComponent('8+72oVMpZ6zETKNVFZ8Di/cjzIt1gxFudFt/xuQsHKs=')
-        console.log('8+72oVMpZ6zETKNVFZ8Di/cjzIt1gxFudFt/xuQsHKs=')
-        console.log(en)
-        console.log(decodeURIComponent(en))
-      },
       async helpAction () {
         const beOpenId = this.$route.query.beOpenId
         // console.log(this.$route.query)
@@ -197,12 +230,14 @@
         // this.$store.dispatch('loadPrizeBlessing')
         const isSuccess = await this.$store.dispatch('dealHelpAction', {
           openId: this.$store.getters.openId,
-          beOpenId: decodeURIComponent(this.$route.query.beOpenId)
+          beOpenId: this.$route.query.beOpenId
         })
         if (isSuccess) {
           await this.$store.dispatch('loadActivityHelperStatus', {beOpenId})
-          await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
-          await this.$store.dispatch('loadPrizeCoupon', {openId: beOpenId, encrypt: true})
+          const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
+          if (blessingData) {
+            await this.$store.dispatch('loadPrizeLucky', {openId: beOpenId, encrypt: true})
+          }
         }
       },
       showDialog (type, option) {

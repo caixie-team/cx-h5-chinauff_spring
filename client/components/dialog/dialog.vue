@@ -23,8 +23,9 @@
           v-if="type === 'share'"/>
         <prize
           v-if="type === 'prize'"
-          :coupon="coupon"
-          :word="word"/>
+          :coupon_type="coupon_type"
+          :coupon_code="coupon_code"
+          :blessing_type="blessing_type"/>
         <success
           v-if="type === 'success'"
           @close="close"/>
@@ -101,13 +102,17 @@
     },
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {
-      coupon: {
+      coupon_type: {
+        type: Number,
+        default: 0
+      },
+      coupon_code: {
         type: String,
         default: ''
       },
-      word: {
-        type: String,
-        default: ''
+      blessing_type: {
+        type: Number,
+        default: 0
       },
       imgsrc: {
         type: String,
