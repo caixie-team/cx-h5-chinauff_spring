@@ -164,6 +164,8 @@
           this.$store.dispatch('loadPrizeCoupon', {
             coupon_code: this.coupon_code
           })
+          // this.redirectLogin()
+
         } else {
           this.redirectLogin()
         }
@@ -177,9 +179,8 @@
       redirectLogin () {
         if (isBrowser) {
           let locationHref = window.location.href
-          locationHref += `&coupon_code=${this.coupon_code}`
+          locationHref = locationHref + '&coupon_code=' + this.coupon_code
           const encodeUrl = encodeURIComponent(locationHref)
-          // https://demo.micvs.com/lnj-weixin/console/weixin/page/loginPage?callback2=http%3A%2F%2Fweixin.chinauff.com%2Fspring%2Fpage241&channel2=18
           window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?&channel2=18&callback2=${encodeUrl}`
         }
       }
