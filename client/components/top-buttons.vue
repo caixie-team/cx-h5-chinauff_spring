@@ -13,7 +13,7 @@
 
 <script>
   import {oneOf} from '../utils/assist.js'
-
+  import apiConfig from '~/api.config'
   export default {
     props: {
       type: {
@@ -49,9 +49,14 @@
             class: this.type === 'main' ? 'btn-wdfbm' : 'btn-wdfb'
           },
           {
-            name: 'wdjb',
+            name: 'wdqb',
             text: '我的劵包',
-            class: this.type === 'main' ? 'btn-wdfbm' : 'btn-wdfb'
+            class: this.type === 'main' ? 'btn-wdqbm' : 'btn-wdqb'
+          },
+          {
+            name: 'ckkb',
+            text: '查看卡包',
+            class: this.type === 'main' ? 'btn-ckkbm' : 'btn-ckkb'
           }
         ]
       }
@@ -62,19 +67,29 @@
         return oneOf(value, array)
       },
       show (name) {
-        console.log(name)
         if (name === 'hdjs') {
           this.showDialog('intro')
         } else if (name === 'dhff') {
           this.showDialog('dhff')
         } else if (name === 'wdfb') { // 我的福包页
           setTimeout(() => {
-            // this.dialog.hide()
-            // this.$store.commit('ai/RESET_SCORE')
             this.$router.push('/page311')
-            // this.$router.push('/page22')
+          }, 100)
+        } else if (name === 'wdqb') {
+          setTimeout(() => {
+            this.redirectUserCenter()
+          }, 100)
+        } else if (name === 'ckkb') {
+          setTimeout(() => {
+            this.$router.push('/pageCard')
           }, 100)
         }
+      },
+      redirectUserCenter () {
+          let locationHref = window.location.href
+          locationHref = locationHref + '&coupon_code=' + this.coupon_code
+          const encodeUrl = encodeURIComponent(locationHref)
+          window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage`
       },
       showDialog (type, option) {
         this.dialog = this.$createDialog({
@@ -101,20 +116,17 @@
     .btn
       width: 51px
       heigth: 144px
-
+      padding: 3px
       &-hdjsm
         background: url('~assets/img/btn/btn_hdjsm.png') no-repeat
+        background-size: 51px 144px
+      &-hdjs
+        background: url('~assets/img/btn/btn_hdjs.png') no-repeat
         background-size: 51px 144px
 
       &-dhffm
         background: url('~assets/img/btn/btn_dhffm.png') no-repeat
         background-size: 51px 144px
-
-      /*&-wdhbm*/
-        /*background: url('~assets/img/btn/btn_wdfbm.png') no-repeat*/
-        /*background-size: 51px 144px*/
-        /*margin-left: 10px*/
-        /*margin-right: 10px*/
 
       &-wdfbm
         background: url('~assets/img/btn/btn_wdfbm.png') no-repeat
@@ -131,10 +143,17 @@
       &-wdfb
         background: url('~assets/img/btn/btn_wdfb.png') no-repeat
         background-size: 51px 144px
-        margin-left: 10px
-        margin-right: 10px
+      &-wdqb
+        background: url('~assets/img/btn/btn_wdqb.png') no-repeat
+        background-size: 51px 144px
 
-      /*&-wdfb*/
-        /*background: url('~assets/img/btn/btn_wdfb.png') no-repeat*/
-        /*background-size: 51px 144px*/
+      &-wdqbm
+        background: url('~assets/img/btn/btn_wdqb.png') no-repeat
+        background-size: 51px 144px
+      &-ckkb
+        background: url('~assets/img/btn/btn_ckkb.png') no-repeat
+        background-size: 51px 144px
+      &-ckkbm
+        background: url('~assets/img/btn/btn_ckkbm.png') no-repeat
+        background-size: 51px 144px
 </style>

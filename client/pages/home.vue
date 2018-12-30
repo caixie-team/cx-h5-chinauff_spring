@@ -36,6 +36,10 @@
   </c-page>
 </template>
 <script>
+  /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
+  /* global PIXI, Game */
+  import EventBus from '~/utils/event-bus.js'
+
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment'
   import TopButtons from '../components/top-buttons'
@@ -59,9 +63,6 @@
       AiScan,
       DialogScan
     },
-    // async asyncData ({$axios}) {
-    //   const {data} = await $axios.get('/server/ai')
-    // },
     data () {
       return {
         isScan: false,
@@ -94,8 +95,9 @@
           setTimeout(() => {
             this.dialog.hide()
             this.$store.commit('ai/RESET_SCORE')
-            this.$router.push('/page22')
-          }, 3000)
+            EventBus.$emit('show12s', true)
+            // this.$router.push('/page22')
+          }, 2000)
 
         } else {
           setTimeout(() => {
@@ -115,6 +117,49 @@
       })
     },
     methods: {
+      initGame () {
+        if (isBrowser) {
+          const [w, h] = [window.innerWidth, window.innerHeight]
+          const Ratio = window.devicePixelRatio
+          console.log(Ratio)
+          this.W = w * Ratio
+          this.H = h * Ratio
+          this.worldWidth = 640
+          this.worldHeight = 1136
+
+          this.app = new PIXI.Application(
+            window.innerWidth * Ratio,
+            window.innerHeight * Ratio,
+            {
+              transparent: true
+            })
+          this.isHaveLoad = false
+          this.isLoadFirst = false
+          // this.game = Game.getInstance()
+          const viewport = new PIXI.extras.Viewport({
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+            worldWidth: this.worldWidth,
+            worldHeight: this.worldHeight
+          })
+          viewport.fitWidth(this.worldWidth, false, false)
+            .fitHeight(this.worldHeight, false, false)
+          this.app.stage.addChild(viewport)
+          // 添加背景容器
+          const bg = viewport.addChild(new PIXI.Container())
+          // 添加背景图
+          bg.addChild(new PIXI.Sprite.fromImage(bgLightImg))
+          // 添加背景
+          viewport.addChild(bg)
+
+          this.$refs.gameContainer.appendChild(this.app.view)
+          this.loadRes(() => {
+            this.init6s()
+            console.log('loading end...')
+            // this.$store.dispatch('showLoading', {show: false})
+          })
+        }
+      },
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'intro',

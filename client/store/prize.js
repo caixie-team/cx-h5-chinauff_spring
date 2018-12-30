@@ -9,7 +9,15 @@ export const state = () => {
     data: {
       data: []
     },
-    // 集福
+    // 集福数据统计
+    stats: {
+      fetching: false,
+      data: {
+        peopleNumber: 0,
+        myblessingNumber: 0
+      }
+    },
+    // 集福字操作
     blessing: {
       fetching: false,
       data: {
@@ -18,7 +26,7 @@ export const state = () => {
         full: false
       }
     },
-    // 抽奖
+    // 抽奖操作
     lucky: {
       fetching: false,
       data: {
@@ -37,7 +45,7 @@ export const state = () => {
         }
       }
     },
-    // 领劵
+    // 领劵操作
     coupon: {
       fetching: false,
       data: {
@@ -83,5 +91,16 @@ export const mutations = {
   },
   GET_COUPON_FAILURE (state) {
     state.coupon.fetching = false
+  },
+
+  // 获取集福统计数据
+  REQUEST_STATS (state, action) {
+    state.stats.fetching = true
+  },
+  GET_STATS_SUCCESS(state, action) {
+    state.stats.data = action
+  },
+  GET_STATS_FAILURE (state) {
+    state.stats.fetching = false
   }
 }

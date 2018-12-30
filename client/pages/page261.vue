@@ -4,9 +4,9 @@
     <div
       slot="content"
       class="page261">
-      <top-buttons/>
+      <top-buttons :actions="actions"/>
       <h1>
-        {{ total }}人已集满 “福”, 您 已集满 {{ count }}个 “福”
+        {{ stats.peopleNumber }}人已集满 “福”, 您 已集满 {{ stats.myblessingNumber }}个 “福”
       </h1>
       <div class="content">
         <section class="section1">
@@ -25,13 +25,15 @@
         </section>
       </div>
       <div class="footer">
-        <a>
+        <a @click="showDialog('share', { showClose: true })">
           <img src="~assets/img/btn/btn_yqhyzl.png">
         </a>
-        <a>
+        <nuxt-link
+          v-if="luckyTimes > 1"
+          to="/home">
           <img src="~assets/img/btn/btn_zlycl.png">
-        </a>
-        <p>今天日还可参与 {{ limit }} 次</p>
+        </nuxt-link>
+        <p>今天日还可参与 {{ luckyTimes }} 次</p>
       </div>
     </div>
   </c-page>
@@ -50,6 +52,18 @@
       return {
         title: '老娘舅新春集福瓜分18吨福米',
       }
+    },
+    // validate ({query}) {
+    //   return query.beOpenId
+    // },
+    fetch ({store, query, error}) {
+      return Promise.all([
+        store.dispatch('loadBlessingStatistics')
+        // 获取集福统计数
+        // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
+        // 加载活动参与的关联信息
+        // store.dispatch('loadActivityHelps', {beOpenId: query.beOpenId})
+      ])
     },
     components: {
       CPage,
@@ -72,10 +86,33 @@
         count: '2',
         tip1,
         tip2,
-        limit: 2
+        limit: 2,
+        actions: ['hdjs', 'wdqb', 'wdfb']
       }
     },
     computed: {
+      luckyTimes () {
+        return this.$store.state.user.lucky.data.times
+      },
+      stats () {
+        return this.$store.state.prize.stats.data
+      },
+      userInfo () {
+        return this.$store.state.user.info.data
+      },
+      // 抽奖数据
+      // 集福数据
+      blessing () {
+        return this.$store.state.prize.blessing.data
+      },
+      // 抽奖数据
+      lucky () {
+        return this.$store.state.prize.lucky.data
+      },
+      // 领劵数据
+      // coupon () {
+      //   return this.$store.state.prize.coupon.data
+      // },
       _couponClass () {
         return [
           'coupon',
@@ -90,6 +127,13 @@
       }
     },
     methods: {
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
+      },
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'intro',

@@ -11,7 +11,7 @@
   import Slider from './class/slide'
   // import {mapGetters} from 'vuex'
   // import Shader from './Class/Shader/Glitch'
-  import bgLightImg from '~/assets/images/bg/page_bg_light.jpg'
+  import bgLightImg from '~/assets/img/bg/page_bgr.jpg'
   // import {Picker} from "../../modules/module";
   // import animationJson from '~/static/assets/animation/6s/data.json'
   export default {
@@ -99,6 +99,7 @@
             // console.log(sheet.animations['6s'])
             this.happyMusic = this.loader.resources['assets/audio/6s.mp3']
             // console.log(happy.sound.)
+
             const frames = []
             for (let i = 0; i < 61; i++) {
               frames.push(new PIXI.Texture.fromFrame('6s_001' + (26 + i)))
@@ -133,6 +134,9 @@
         this.App.ticker.add(() => {
           this.App.renderer.render(this.App.stage)
         })
+      },
+      preLoad (progress, complete) {
+
       }
     }
   }

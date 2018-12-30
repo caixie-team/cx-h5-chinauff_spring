@@ -1,36 +1,25 @@
-<!-- 4.1、预约兑换 -->
+<!-- 5.1、二维码兑换 -->
 <template>
   <c-page>
     <div
       slot="content"
-      class="page41">
-      <top-buttons/>
+      class="page51">
+      <!--<top-buttons/>-->
       <div class="content">
-        <div class="gift">
-          <img src="~assets/img/page41/gift.png">
+        <div class="qrcode">
+          <img :src="'https://weixin.chinauff.com/spring/qrcode/?size=360&txt='+blessingCode">
         </div>
         <img
-          src="~assets/img/page41/text_jzc.png"
-          class="text-jzc">
+          src="~assets/img/text/text_qjrwmzsgsyy.png"
+          class="text-qjrwmzsgsyy">
         <div class="exchange-form">
           <div class="exchange-form__content">
-            <span
-              class="date"
-              @click="showDatePicker">
-              选择日期
+            <span class="date">
+              2019年1月27日—2月7日
             </span>
-            <!--// to: {name: 'people/team', params: {type: 'team'}},-->
-            <span>
-              <nuxt-link
-                :to="{name: 'page43', params: userLocation}"
-                class="shop">
-                选择门店
-              </nuxt-link>
+            <span class="shop">
+              湖州总部自由港店
             </span>
-
-            <!--<span class="shop">-->
-            <!--选择门店-->
-            <!--</span>-->
           </div>
         </div>
       </div>
@@ -38,10 +27,10 @@
   </c-page>
 </template>
 <script>
-  import CPage from '../components/c-page.vue'
+  import CPage from '~/components/c-page.vue'
   import {isBrowser} from '~/environment'
-  import TopButtons from '../components/top-buttons'
-  import PageContent from '../components/page-content'
+  import TopButtons from '~/components/top-buttons'
+  import PageContent from '~/components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
 
@@ -51,6 +40,14 @@
       return {
         title: '老娘舅新春集福瓜分18吨福米'
       }
+    },
+    validate ({params, query}) {
+      return !!params.code
+    },
+
+    fetch ({store, params, error}) {
+      // console.log(params)
+      // return store.dispatch('')
     },
     components: {
       CPage,
@@ -73,13 +70,11 @@
         count: '2',
         tip1,
         tip2,
-        limit: 2
+        limit: 2,
+        blessingCode: ''
       }
     },
     computed: {
-      userLocation () {
-        return this.$store.state.user.location.data
-      },
       _couponClass () {
         return [
           'coupon',
@@ -93,38 +88,18 @@
         ]
       }
     },
+    mounted () {
+      this.blessingCode = this.$route.params.code
+      // clearInterval(this.timer);
+      // this.setTimer();
+    },
+    destroyed () {
+      console.log('destoryed....')
+      // clearInterval(this.timer)
+    },
     methods: {
-      showDatePicker () {
-        if (!this.datePicker) {
-          this.datePicker = this.$createDatePicker({
-            title: '预约兑换时间',
-            min: new Date(2018, 12, 5),
-            max: new Date(2019, 1, 4),
-            value: new Date(),
-            onSelect: this.selectHandle,
-            onCancel: this.cancelHandle,
-            onChange: () => {
-              console.log('change')
-            }
-          })
-        }
-
-        this.datePicker.show()
-      },
-      selectHandle (date, selectedVal, selectedText) {
-        console.log(date)
-        // this.$createDialog({
-        //   type: 'warn',
-        //   content: `Selected Item: <br/> - date: ${date} <br/> - value: ${selectedVal.join(', ')} <br/> - text: ${selectedText.join(' ')}`,
-        //   icon: 'cubeic-alert'
-        // }).show()
-      },
-      cancelHandle () {
-        // this.$createToast({
-        //   type: 'correct',
-        //   txt: 'Picker canceled',
-        //   time: 1000
-        // }).show()
+      checkBlessing () {
+        this.$axios.$get()
       },
       showAlert () {
         this.dialog = this.$createDialog({
@@ -133,12 +108,12 @@
         })
         this.dialog.show()
       }
-    }
+    },
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .page41
+  .page51
     color: $color-dark
     display: flex
     align-items: center
@@ -156,47 +131,51 @@
       flex-direction: column
       align-items: center
 
-      .gift
+      .qrcode
         display: flex
         justify-content: center
         align-items: center
         text-align: center
-        width: 383px
-        height: 382px
+        width: 380px
+        height: 380px
         background: #E5D9A1
 
         img
-          width: 383px
-          height: 382px
+          width: 340px
+          height: 340px
 
-      .text-jzc
+      .text-qjrwmzsgsyy
         margin: 20px 0 30px 0
-        width: 416px
+        width: 299px
         height: 25px
 
       .exchange-form
         width: 419px
-        height: 165px
-        background-image: url("~assets/img/page41/form_mdbg.png")
-        background-size: 419px 165px
+        height: 235px
+        background-image: url("~assets/img/bg/form_yydh.png")
+        background-size: 419px 235px
         display: flex
         justify-content: flex-end
 
         &__content
           position: relative
-          top: 40px
+          top: 110px
           display: flex
           flex-direction: column
           justify-content: space-between
-          height: 90px
-          width: 200px
+          height: 80px
+          width: 300px
 
         span
           font-weight: 500
-          font-size: 24px
+          font-size: 22px
           position: relative
-          text-align: right
-          right: 30px
+
+          &.date
+            left: 30px
+
+          &.shop
+            left: 30px
 
     .footer
       display: flex

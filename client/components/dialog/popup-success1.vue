@@ -7,7 +7,7 @@
     <div class="buttons">
       <img
         :src="btn1"
-        @click="close">
+        @click="toPage261">
     </div>
   </div>
 </template>
@@ -36,9 +36,13 @@
     computed: {
     },
     methods: {
-      close (e) {
+      toPage261 (e) {
+        this.$router.push('/page261')
         this.$emit(EVENT_CLOSE, e)
       }
+      // close (e) {
+      //   this.$emit(EVENT_CLOSE, e)
+      // }
     }
   }
 </script>

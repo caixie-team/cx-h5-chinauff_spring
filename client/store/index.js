@@ -1,4 +1,6 @@
 /* eslint-disable valid-jsdoc */
+/* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
+/* global PIXI, Game */
 /**
  *
  * @file 根数据状态,存放全局数据和异步方法 / ES module
@@ -167,16 +169,8 @@ export const actions = {
    * @returns {Promise<void>}
    */
   async nuxtClientInit ({commit}, context) {
-    // console.log('client init...')
-    // console.log('Client init...')
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
-    // console.log('iniit jssdkConfig')
-    // console.log(jssdkConfig)
     await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
-    // window.app = this;
-    // getCurrentPath() {
-    //   return this.$store.state.section && this.$store.state.section != '/' ? `/${this.$store.state.section}` : '/';
-    // }
   },
   // 获取 generateOAuthUrl 地址信息
   loadOauthUrls ({commit}) {
@@ -343,6 +337,60 @@ export const actions = {
         // return Promise.reject(err)
       })
   },
+  // 获取集福统计（集满福的人数，我的集满福个数）
+  loadBlessingStatistics ({commit}) {
+    commit('prize/REQUEST_STATS')
+    return this.$axios.$post(`${API_PREFIX}/blessing/blessingStatistics`, {
+      openId: this.getters.openId
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('prize/GET_STATS_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('prize/GET_STATS_FAILURE', err)
+        // return Promise.reject(err)
+      })
+  },
+
+  // 获取我的满福
+  loadMyBlessing ({commit}) {
+    commit('my/REQUEST_BLESSING')
+    return this.$axios.$post(`${API_PREFIX}/blessing/my`, {
+      // openId: this.getters.openId
+      // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+      openId: 'oQJYBw8oF3eJVigfu_T9Wi3nYoDA'
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('my/GET_BLESSING_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('my/GET_BLESSING_FAILURE', err)
+        // return Promise.reject(err)
+      })
+  },
+  // 获取我的福字记录
+  loadMyBlessingRecords ({commit}) {
+    commit('my/REQUEST_BLESSING_RECORDS')
+    return this.$axios.$post(`${API_PREFIX}/blessing/records`, {
+      openId: this.getters.openId
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('my/GET_BLESSING_RECORDS_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('my/GET_BLESSING_RECORDS_FAILURE', err)
+        // return Promise.reject(err)
+      })
+  },
   // 店铺列表
   loadShopList ({commit}, params) {
     commit('shop/REQUEST_LIST')
@@ -390,15 +438,12 @@ export const actions = {
   },
   // 获取助力者状态
   loadActivityHelperStatus ({commit}, params) {
-    console.log(params)
     commit('activity/REQUEST_HELPER_STATUS')
     return this.$axios.$post(`${API_PREFIX}/blessing/helpStatus`, {
       openId: this.getters.openId,
       beOpenId: params.beOpenId
     })
       .then(response => {
-        console.log(response)
-
         resIsSuccess(response)
           ? commit('activity/GET_HELPER_STATUS_SUCCESS', getResData(response))
           : commit('activity/GET_HELPER_STATUS_FAILURE')
@@ -413,8 +458,6 @@ export const actions = {
       openId: this.getters.openId,
       beOpenId: params.beOpenId
     })
-    // console.log(res)
-    // console.log(data)
     if (res && res.errno === 0) {
       return true
     } else {

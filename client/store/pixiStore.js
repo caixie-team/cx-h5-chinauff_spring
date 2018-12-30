@@ -26,47 +26,22 @@
 
 export const state = () => {
   return {
+    preLoad: null,
     fetching: false,
-    data: {
-      data: []
-    },
-    // 集福
-    blessing: {
+    data: [],
+    cacheData: {},
+    getResourceByTag: null,
+    s6: {
       fetching: false,
-      data: {
-        name: '',
-        blessing_type: '',
-        full: false
-      }
+      data: [
+        'assets/animation/6s/data.json',
+        'assets/audio/6s.mp3'
+      ]
     },
-    // 抽奖
-    lucky: {
+    s12: {
       fetching: false,
-      data: {
-        // 1 是优惠劵
-        // 2 是会员充值卡
-        type: 0,
-        card: {
-          card_name: '',
-          card_type: 0
-        },
-        coupon: {
-          coupon_code: '',
-          openid: '',
-          coupon_name: '',
-          type_code: ''
-        }
-      }
+      data: [],
     },
-    // 领劵
-    coupon: {
-      fetching: false,
-      data: {
-        status: 0,
-        coupon_code: '',
-        crm_coupon_code: ''
-      }
-    }
   }
 }
 

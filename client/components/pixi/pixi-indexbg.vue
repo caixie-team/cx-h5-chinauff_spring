@@ -37,19 +37,6 @@
         App: null
       }
     },
-    computed: {
-      // currentImage () {
-      //   return this.$store.getters['pixiStore/currentImage']
-      // },
-      // slides () {
-      //   return this.$store.getters['pixiStore/slides']
-      // }
-    },
-    watch: {
-      // currentImage () {
-      //   this.changeImage(this.currentImage)
-      // }
-    },
     mounted () {
       this.init()
     },
@@ -97,7 +84,6 @@
         // .fitWorld(true)
         // viewport.fit(true)
         this.loader = new PIXI.loaders.Loader()
-        // * const loader = new PIXI.loaders.Loader();
 
         const objSprites = {
           dragon: {
@@ -196,6 +182,7 @@
           console.log('data: ', data, '|Progress:' + loader.progress, '|FileName:' + ((data.url).slice(32)), '|Named:' + data.name, '|Ext:' + data.extension);
         })
         const allTexture = {}
+
         this.loader.onComplete.add((loader, data) => {
           // called once when finish queued resources load. (callback)
           const val = function (i) {
@@ -209,7 +196,6 @@
             }
             // return i < 10 ? '0000' + i : '00' + i;
           }; // return a number valur increment (callBack)↓↓↓
-
           for (const resourceName in data) { // apply loop setup only on .json, They hold the textures && compile all texture inside a variable
             // console.log(data[resourceName].extension)
             if (data[resourceName].extension === 'json') {

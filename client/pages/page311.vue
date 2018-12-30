@@ -3,22 +3,25 @@
   <c-page type="bg2">
     <div
       slot="content"
-      class="page263">
-      <top-buttons type="second"/>
+      class="page311">
+      <top-buttons
+        :actions="actions"
+        type="second"/>
       <img
         src="~assets/img/page311/shiba.png"
         class="imgShiba">
       <h1>
-        {{ total }}人已集满 “福”, 您 已集满 {{ count }}个 “福”
+        {{ stats.peopleNumber }}人已集满 “福”, 您 已集满 {{ stats.myblessingNumber }}个 “福”
       </h1>
-      <div class="content">
-        <!--<span class="fuzi fuzi-fu1"/>-->
+      <div
+        v-if="myBlessingList.length > 0"
+        class="content">
         <div
           ref="slideWrapper"
           class="slide-container">
           <c-slide
             ref="slide"
-            :data="items"
+            :data="myBlessingList"
             :initial-index="initialIndex"
             :loop="loop"
             :auto-play="autoPlay"
@@ -40,30 +43,40 @@
             </template>
           </c-slide>
         </div>
-        <nuxt-link
-          to="/pageYydh"
-          class="">
-          <img
-            src="~assets/img/btn/btn_yydhh.png"
-            class="btn-yydh">
-        </nuxt-link>
         <img
+          v-if="currentBlessing.status === 1"
+          src="~assets/img/btn/btn_yydhh.png"
+          class="btn-yydh"
+          @click="toPage41">
+        <img
+          v-if="currentBlessing.status === 2"
+          src="~assets/img/btn/btn_dkdhmh.png"
+          class="btn-yydh"
+          @click="toPage51">
+        <img
+          v-if="currentBlessing.status === 3"
+          src="~assets/img/btn/btn_ydhg.png"
+          class="btn-yydh">
+        <p>兑换于 {{ currentBlessing.exchange_time }}</p>
+        <img
+          v-if="currentBlessing.status === 1"
           src="~assets/img/page311/qtqst.png"
           class="imgQtqst">
       </div>
+      <div
+        v-else>
+        <img
+          src="~assets/img/icon/icon_hhdj.png"
+          class="icon-hhdj"
+          @click="showDialog('share', { showClose: true })">
+      </div>
       <div class="footer">
         <div class="toolbar">
-          <span class="icon icon-shi">
-            <sub>1</sub>
-          </span>
-          <span class="icon icon-yi">
-            <sub>5</sub>
-          </span>
-          <span class="icon icon-kou">
-            <sub>3</sub>
-          </span>
-          <span class="icon icon-tian">
-            <sub>0</sub>
+          <span
+            v-for="icon in blessingIconList"
+            :key="icon.blessing_type"
+            :class="icon.class">
+            <sub>{{ icon.num }}</sub>
           </span>
         </div>
       </div>
@@ -77,11 +90,6 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
-  import fu1 from '~/assets/img/common/fu1.png'
-  import fu2 from '~/assets/img/common/fu2.png'
-  import fu3 from '~/assets/img/common/fu3.png'
-  import fu4 from '~/assets/img/common/fu4.png'
-  import {has} from 'lodash'
 
   export default {
     transition: 'page',
@@ -90,6 +98,14 @@
       return {
         title: '老娘舅新春集福瓜分18吨福米',
       }
+    },
+    fetch ({store, query, error}) {
+      return Promise.all([
+        // 加载我的满福
+        store.dispatch('loadMyBlessing'),
+        // 加载我的福字记录
+        store.dispatch('loadMyBlessingRecords')
+      ])
     },
     components: {
       CPage,
@@ -108,20 +124,12 @@
     },
     data () {
       return {
+        actions: ['hdjs', 'dhff', 'ckkb'],
         total: '12,345',
         count: '3',
         tip1,
         tip2,
         limit: 3,
-        items: [
-          {
-            image: fu1
-          }, {
-            image: fu2
-          }, {
-            image: fu3
-          }
-        ],
         loop: true,
         autoPlay: false,
         interval: 4000,
@@ -130,10 +138,68 @@
         allowVertical: false,
         initialIndex: 0,
         dotsSlot: false,
-        addItem3: false
+        addItem3: false,
+        currentBlessing: {},
       }
     },
     computed: {
+      myBlessingList () {
+        return this.$store.state.my.blessing.data
+      },
+      myBlessingRecords () {
+        return this.$store.state.my.blessingRecords.data
+      },
+      // 集到的福字Icon 处理
+      blessingIconList () {
+        const icons = [{
+          class: 'icon icon-shi',
+          blessing_type: 1,
+          name: 'shi',
+          num: 0
+        }, {
+          class: 'icon icon-yi',
+          blessing_type: 2,
+          name: 'yi',
+          num: 0
+        }, {
+          class: 'icon icon-kou',
+          blessing_type: 3,
+          name: 'kou',
+          num: 0
+        }, {
+          class: 'icon icon-tian',
+          blessing_type: 4,
+          name: 'tian',
+          num: 0
+        }]
+        if (this.myBlessingRecords.length > 0) {
+          for (let i = 0; i < icons.length; i++) {
+            const record = this.myBlessingRecords[i]
+            if (icons[i].blessing_type === record.blessing_type) {
+              icons[i].num = record.num
+            }
+          }
+        }
+        return icons
+      },
+      luckyTimes () {
+        return this.$store.state.user.lucky.data.times
+      },
+      stats () {
+        return this.$store.state.prize.stats.data
+      },
+      userInfo () {
+        return this.$store.state.user.info.data
+      },
+      // 抽奖数据
+      // 集福数据
+      blessing () {
+        return this.$store.state.prize.blessing.data
+      },
+      // 抽奖数据
+      lucky () {
+        return this.$store.state.prize.lucky.data
+      },
       options () {
         return {
           eventPassthrough: this.allowVertical ? 'vertical' : ''
@@ -153,39 +219,45 @@
       }
     },
     mounted () {
-      // 集满福进入手弹窗
+      // 集满福进入弹窗
       // this.showDialog('jdfl')
+      this.currentBlessing = this.myBlessingList[this.initialIndex]
+      // console.log()
     },
     methods: {
+      // 预约兑换页
+      toPage41 () {
+        this.$router.push('/page41/' + this.currentBlessing.blessing_code)
+        // this.initialIndex
+        // const blessing = this.myBlessingList[this.current]
+        // console.log(blessing)
+      },
+      // 兑换码页
+      toPage51 () {
+        this.$router.push('/page51/' + this.currentBlessing.blessing_code)
+      },
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
+      },
       changePage (current) {
+        this.currentBlessing = this.myBlessingList[current]
+        // this.current = current
         console.log('当前序号为:' + current)
       },
       clickPage (item, index) {
         console.log(item, index)
       },
-      showAlert () {
-        this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
-        })
-        this.dialog.show()
-      },
-      showDialog (type, option) {
-        this.dialog = this.$createDialog({
-          type: type,
-          word: has(option, 'word') ? option.word : '',
-          coupon: has(option, 'coupon') ? option.coupon : '',
-          showClose: has(option, 'showClose') ? option.showClose : true
-        })
-        this.dialog.show()
-      }
     },
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
 
-  .page263
+  .page311
     color: $color-dark
     display: flex
     align-items: center
@@ -206,15 +278,19 @@
       /*border-radius: 2px*/
       overflow: hidden
       /*box-shadow: 0 2px 9px #ddd*/
+
       .c-slide-item
         padding: 20px
+
       .c-slide-dots
         .my-dot
           height: auto
           font-size: 24px
           background: none
+
           &.active
             color: #fc9153
+
     .btn-yydh
       padding: 20px
       width: 248px
@@ -233,6 +309,14 @@
       font-weight: bold
       margin-top: 10px
       margin-bottom: 10px
+
+    .icon-hhdj
+      z-index: 100
+      width: 355px
+      height: 585px
+
+    /*background-size: 389px 618px*/
+    /*background: url("~assets/img/icon/icon_hhdj.png") no-repeat*/
 
     .content
       display: flex

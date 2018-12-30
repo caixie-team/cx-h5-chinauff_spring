@@ -191,6 +191,7 @@ module.exports = {
 
     vendor: [
       'axios',
+      'game'
       // 'vant'
     ],
     maxChunkSize: 350000,
@@ -240,6 +241,7 @@ module.exports = {
     {src: '~/plugins/ui.js', ssr: false},
     {src: '~/plugins/json-view.js', ssr: false},
     {src: '~/plugins/pixi', ssr: false},
+    // {src: '~/plugins/game', ssr: false},
     // {src: '~/plugins/pixi-viewport', ssr: false},
     // {src: '~/plugins/geolocation.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
