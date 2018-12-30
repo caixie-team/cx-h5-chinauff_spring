@@ -405,6 +405,9 @@ export const actions = {
         commit('shop/GET_LIST_FAILURE', err)
       })
   },
+  // setReserveForm ({commit}, params) {
+  //   commit('user/SET_RESERVER_FORM', params)
+  // },
   // 获取抽奖次数
   luckyTimes ({commit}, params) {
     // console.log(this.getters.openId)

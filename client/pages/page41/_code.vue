@@ -17,29 +17,36 @@
             <span
               class="date"
               @click="showDatePicker">
-              选择日期
+              <span v-if="selectedDate === '' && formData.reserve_date === null">
+                选择日期
+              </span>
+              <span v-else>
+                {{ formData.format_date }}
+              </span>
             </span>
             <!--// to: {name: 'people/team', params: {type: 'team'}},-->
             <span>
               <nuxt-link
                 :to="{name: 'page43', params: userLocation}"
                 class="shop">
-                选择门店
+                <span v-if="formData.shop === null">
+                  选择门店
+                </span>
+                <span v-else>
+                  {{ formData.shop_name }}
+                </span>
               </nuxt-link>
             </span>
-
-            <!--<span class="shop">-->
-            <!--选择门店-->
-            <!--</span>-->
-            <img
-              src="~assets/img/btn/btn_tjyyg.png"
-              class="exchange-form__content btn">
-            <img
-              src="~assets/img/btn/btn_tjyy.png"
-              class="exchange-form__content btn">
           </div>
         </div>
-
+        <img
+          v-if="!isDisabled"
+          src="~assets/img/btn/btn_tjyyg.png"
+          class="btn">
+        <img
+          v-else
+          src="~assets/img/btn/btn_tjyy.png"
+          class="btn">
       </div>
     </div>
   </c-page>
@@ -83,12 +90,23 @@
         count: '2',
         tip1,
         tip2,
-        limit: 2
+        limit: 2,
+        selectedDate: ''
       }
     },
     computed: {
       userLocation () {
         return this.$store.state.user.location.data
+      },
+      formData () {
+        return this.$store.state.user.reserveForm.data
+      },
+      isDisabled () {
+        for (const item in this.formData) {
+          if (item === '' || item === null) {
+            return false
+          }
+        }
       },
       _couponClass () {
         return [
@@ -103,6 +121,13 @@
         ]
       }
     },
+    mounted () {
+      this.$store.commit('user/SET_RESERVER_FORM', {
+        openId: this.$store.getters.openId,
+        blessing_code: this.$route.params.code
+      })
+      console.log(this.formData)
+    },
     methods: {
       showDatePicker () {
         if (!this.datePicker) {
@@ -111,6 +136,11 @@
             min: new Date(2018, 12, 5),
             max: new Date(2019, 1, 4),
             value: new Date(),
+            format: {
+              year: 'YYYY年',
+              month: 'MM月',
+              date: ' D 日'
+            },
             onSelect: this.selectHandle,
             onCancel: this.cancelHandle,
             onChange: () => {
@@ -122,7 +152,23 @@
         this.datePicker.show()
       },
       selectHandle (date, selectedVal, selectedText) {
-        console.log(date)
+        const days = (new Date(selectedVal) - new Date(new Date())) / 1000 / 60 / 60 / 24
+        if (days < 3) {
+          const pop = this.$createPopup({
+            type: 'xx',
+            content: '日份最早可选择第三天的日子',
+            onMaskClick: () => {
+              pop.hide()
+            }
+          })
+          pop.show()
+        } else {
+          this.selectedDate = selectedText.join(' ')
+          this.$store.commit('user/SET_RESERVER_FORM', {
+            reserve_date: new Date(selectedVal),
+            format_date: selectedText.join(' ')
+          })
+        }
         // this.$createDialog({
         //   type: 'warn',
         //   content: `Selected Item: <br/> - date: ${date} <br/> - value: ${selectedVal.join(', ')} <br/> - text: ${selectedText.join(' ')}`,
@@ -184,6 +230,12 @@
         width: 416px
         height: 25px
 
+      .btn
+        padding: 20px
+        position: relative
+        width: 266px
+        height: 64px
+
       .exchange-form
         width: 419px
         height: 165px
@@ -191,6 +243,7 @@
         background-size: 419px 165px
         display: flex
         justify-content: flex-end
+
         &__content
           position: relative
           top: 40px
@@ -199,17 +252,14 @@
           justify-content: space-between
           height: 90px
           width: 200px
-          .btn
-            position: relative
-            width: 266px
-            height: 64px
-            bottom: 0
+          justify-items: center
+
         span
           font-weight: 500
           font-size: 24px
           position: relative
           text-align: right
-          right: 30px
+          right: 20px
 
     .footer
       display: flex

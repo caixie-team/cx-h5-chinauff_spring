@@ -29,7 +29,7 @@
                     v-for="(shop, index) in shopList"
                     :option="{
                       label: shop.shop_name,
-                      value: shop.shop_code
+                      value: shop.shop_code + ':' + shop.shop_name
                     }"
                     :key="index"
                     v-model="selected">
@@ -95,6 +95,11 @@
           </div>
         </div>
       </div>
+      <img
+        v-if="selected !== null && selected !== ''"
+        src="~assets/img/btn/btn_qrxz.png"
+        class="btn"
+        @click="toPage41">
     </div>
   </c-page>
 </template>
@@ -155,7 +160,7 @@
         count: '2',
         tip1,
         tip2,
-        limit: 2
+        limit: 2,
       }
     },
     computed: {
@@ -202,15 +207,29 @@
         ]
       }
     },
-    async mounted () {
-      if (isBrowser) {
-        // const wx = window.wechatObj.getOriginalWx()
-        // console.log(wx)
-        // console.log('mounted page43')
-        // await this.$store.dispatch('loadShopList', this.userLocation)
+    watch: {
+      value (newVal) {
+        this.$store.dispatch('loadShopList', {
+          shopName: newVal
+        })
+      },
+      selected (newVal) {
+        this.$store.commit('user/SET_RESERVER_FORM', {
+          shop: newVal.split(':')[0],
+          shop_name: newVal.split(':')[1]
+        })
+        console.log(newVal)
       }
+      // shopList (newVal) {
+      //   this.shops = newVal
+      // }
+    },
+    async mounted () {
     },
     methods: {
+      toPage41 () {
+        this.$router.go(-1)
+      },
       onPullingDown () {
         // 模拟更新数据
         setTimeout(() => {
@@ -338,21 +357,23 @@
       flex-direction: column
       justify-content: center
       align-items: center
-      width: 475px
-      height: 780px
+      width: 445px
+      height: 750px
       background-image: url("~assets/img/page43/list_bg.png")
-      background-size: 475px 780px
+      background-size: 445px 750px
 
     .input-search
       height: 50px
       width: 90%
       margin-top: 20px
-
+    .btn
+      margin-top: 20px
+      width: 248px
+      height: 40x
     .content
       display: flex
       flex-direction: column
       align-items: center
-
       .gift
         display: flex
         justify-content: center
@@ -457,12 +478,12 @@
           color: rgb(7, 17, 27)
 
         .description, .extra
-          line-height: 14px
           font-size: 14px
           color: rgb(147, 153, 159)
+          line-height: 20px
 
         .description
-          line-height: 12px
           margin-bottom: 8px
+          line-height: 20px
 
 </style>

@@ -41,7 +41,25 @@ export const state = () => ({
       // 位置精度
       // accuracy: 0
     }
-  }
+  },
+  reserveForm: {
+    sending: false,
+    data: {
+      shop: null,
+      shop_name: null,
+      reserve_date: null,
+      format_date: null,
+      openId: '',
+      blessing_code: ''
+    }
+  },
+  // 预约信息
+  reserve: {
+    fetching: false,
+    sending: false,
+    data: [],
+    form: {},
+  },
   // 福字
   // 获奖
   // 兑换
@@ -89,5 +107,8 @@ export const mutations = {
   GET_LUCKY_FAILURE (state) {
     state.lucky.fetching = false
     state.lucky.data = {}
+  },
+  SET_RESERVER_FORM (state, action) {
+    state.reserveForm.data = Object.assign({}, state.reserveForm.data, action)
   }
 }

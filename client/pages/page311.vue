@@ -227,6 +227,9 @@
     methods: {
       // 预约兑换页
       toPage41 () {
+        this.$store.commit('user/SET_RESERVER_FORM', {
+          blessing_code: this.currentBlessing.blessing_code
+        })
         this.$router.push('/page41/' + this.currentBlessing.blessing_code)
         // this.initialIndex
         // const blessing = this.myBlessingList[this.current]
