@@ -157,24 +157,17 @@
     },
     methods: {
       getCoupon () {
-        console.log(this.userInfo)
+        // 1 验证用户登录状态
+        // 2 未登录跳转登录，回调地址包含验证劵码信息
         if (this.userInfo.status === 1) {
           // 领劵
           // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
           this.$store.dispatch('loadPrizeCoupon', {
             coupon_code: this.coupon_code
           })
-          // this.redirectLogin()
-
         } else {
           this.redirectLogin()
         }
-        // 验证用户是否登录，未登录跳转
-        // this.redirectLogin()
-        // 是
-        // 发劵
-        // 否
-        // 注册\登录
       },
       redirectLogin () {
         if (isBrowser) {

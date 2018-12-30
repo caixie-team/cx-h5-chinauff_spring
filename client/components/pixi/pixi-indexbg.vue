@@ -21,15 +21,8 @@
 <script>
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
   /* global PIXI */
-  // import Viewport from 'pixi-viewport/bundle/pixi-viewport.min'
-  // import Slider from './class/slide'
 
   const path12s = 'assets/animation/12s'
-  // import {mapGetters} from 'vuex'
-  // import Shader from './Class/Shader/Glitch'
-  // import bgLightImg from '~/assets/images/bg/page_bg_light.jpg'
-  // import {Picker} from "../../modules/module";
-  // import animationJson from '~/static/assets/animation/6s/data.json'
   export default {
     name: 'Pixibackground',
     data: function () {
@@ -45,17 +38,17 @@
       }
     },
     computed: {
-      currentImage () {
-        return this.$store.getters['pixiStore/currentImage']
-      },
-      slides () {
-        return this.$store.getters['pixiStore/slides']
-      }
+      // currentImage () {
+      //   return this.$store.getters['pixiStore/currentImage']
+      // },
+      // slides () {
+      //   return this.$store.getters['pixiStore/slides']
+      // }
     },
     watch: {
-      currentImage () {
-        this.changeImage(this.currentImage)
-      }
+      // currentImage () {
+      //   this.changeImage(this.currentImage)
+      // }
     },
     mounted () {
       this.init()
@@ -75,15 +68,12 @@
         if (this.time > 0) {
           this.time--
           setTimeout(this.timer, 1000);
+          this.happyMusic.sound.stop()
         } else {
           this.happyMusic.sound.stop()
-          // this.$router.push('/page23')
         }
       },
       init () {
-        // this.uniforms.iTime = { type: 'f', value: 0.1 }
-        // this.uniforms.resolution = { type: 'v2', value: {x: window.width, y: window.height} }
-        // this.$bus.$on('changeImage', this.changeImage)
         this.App = new PIXI.Application({
           width: window.innerWidth,
           height: window.innerHeight,
@@ -91,7 +81,6 @@
           autoResize: true,
           sharedTicker: true,
           backgroundColor: 0xD40E25
-          // backgroundColor: 0x008be8
         })
         const worldWidth = 640
         const worldHeight = 1136
@@ -204,7 +193,7 @@
             }
           ]
           // console.table(logTable)
-          // console.log('data: ', data, '|Progress:' + loader.progress, '|FileName:' + ((data.url).slice(32)), '|Named:' + data.name, '|Ext:' + data.extension);
+          console.log('data: ', data, '|Progress:' + loader.progress, '|FileName:' + ((data.url).slice(32)), '|Named:' + data.name, '|Ext:' + data.extension);
         })
         const allTexture = {}
         this.loader.onComplete.add((loader, data) => {
@@ -220,7 +209,6 @@
             }
             // return i < 10 ? '0000' + i : '00' + i;
           }; // return a number valur increment (callBack)↓↓↓
-          // console.log(val(10))
 
           for (const resourceName in data) { // apply loop setup only on .json, They hold the textures && compile all texture inside a variable
             // console.log(data[resourceName].extension)
@@ -228,7 +216,6 @@
               Object.assign(allTexture, data[resourceName].textures)
             }
           }
-          // console.log(allTexture.shan_12s_00126)
           for (const obj in objSprites) { // we have allTexture , now build with objSprites ani
             for (const aniType in objSprites[obj].ani) {
               const frames = []
@@ -238,12 +225,7 @@
                 // console.log(allTexture[ref + val(i)])
                 frames.push(allTexture[ref + val(i)])
               }
-              // console.log(frames)
-              // console.log(objSprites[obj].ani[aniType].texture)
               objSprites[obj].ani[aniType].texture = new PIXI.extras.AnimatedSprite(frames)
-              // objSprites[obj].ani[aniType].viewport = viewport.addChild(objSprites[obj].ani[aniType].texture)
-              // console.log(obj.toString() === 'dragon'
-
               // console.log(sprite)
               // objSprites[obj].ani[aniType].viewport.anchor.set(0.5)
               // objSprites[obj].ani[aniType].viewport.x = window.innerWidth / 2

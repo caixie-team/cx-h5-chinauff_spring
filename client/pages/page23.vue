@@ -6,12 +6,9 @@
       class="page23">
       <pixi-background/>
       <div class="content">
-        <!--<img-->
-        <!--src="~assets/img/btn/btn_sxfq.png"-->
-        <!--class="btn-sxfq">-->
         <span
           class="c-btn"
-          @click="picker"/>
+          @click="getLucky"/>
       </div>
     </div>
   </c-page>
@@ -40,16 +37,6 @@
         title: '老娘舅新春集福瓜分18吨福米'
       }
     },
-    props: {
-      coupon: {
-        type: String,
-        default: 'mianfei'
-      },
-      word: {
-        type: String,
-        default: 'kou'
-      }
-    },
     timers: {
       log: {time: 1000, autostart: true}
     },
@@ -64,35 +51,74 @@
       }
     },
     computed: {
-      _couponClass () {
-        return [
-          'coupon',
-          'coupon-' + this.coupon
-        ]
+      userInfo () {
+        return this.$store.state.user.info.data
       },
-      _wordClass () {
-        return [
-          'word',
-          'word-' + this.word
-        ]
+      // 抽奖数据
+      // 集福数据
+      blessing () {
+        return this.$store.state.prize.blessing.data
+      },
+      // 抽奖数据
+      lucky () {
+        return this.$store.state.prize.lucky.data
+      },
+      // 领劵数据
+      coupon () {
+        return this.$store.state.prize.coupon.data
+      }
+    },
+    watch: {
+      lucky (newVal) {
+        let coupon_type = 0
+        let coupon_code = ''
+        if (newVal.type === 1) {
+          coupon_type = newVal.coupon.type_code
+          coupon_code = newVal.coupon.coupon_code
+        } else if (newVal.type === 2) {
+          coupon_type = newVal.card.card_code
+          coupon_code = newVal.card.card_code.toString()
+        }
+        this.showDialog('prize', {
+          blessing_type: this.blessing.blessing_type,
+          coupon_type,
+          coupon_code
+        })
+      },
+      coupon (newVal) {
+        if (newVal.status === 2) {
+          this.showDialog('success1', {showClose: false})
+        }
       }
     },
     mounted () {
+      const coupon_code = this.$route.query.coupon_code
+      // 用于回调页面回来之后处理发劵，领劵
+      if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
+        // 领劵
+        // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
+        this.$store.dispatch('loadPrizeCoupon', {
+          coupon_code: this.$route.query.coupon_code
+        })
+      }
     },
     methods: {
-      showAlert () {
+      // 收下福气，抽奖
+      async getLucky () {
+        // 集福字
+        const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
+        if (blessingData) {
+          // 抽奖劵
+          await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
+        }
+      },
+      showDialog (type, option) {
         this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
+          type: type,
+          ...option
         })
         this.dialog.show()
       },
-      picker () {
-        this.$router.push('/page241')
-      },
-      log () {
-        console.log('Hello world')
-      }
     },
   }
 </script>

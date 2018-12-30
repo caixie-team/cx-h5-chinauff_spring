@@ -29,6 +29,9 @@
         <success
           v-if="type === 'success'"
           @close="close"/>
+        <success1
+          v-if="type === 'success1'"
+          @close="close"/>
         <jdfl
           v-if="type === 'jdfl'"/>
         <dhff
@@ -53,6 +56,7 @@
   import Share from './popup-share'
   import Prize from './popup-prize'
   import Success from './popup-success'
+  import Success1 from './popup-success1'
   import Jdfl from './popup-jdfl'
   import Dhff from './popup-dhff'
   import EventBus from '~/utils/event-bus.js'
@@ -97,6 +101,7 @@
       Share,
       Prize,
       Success,
+      Success1,
       Jdfl,
       Dhff
     },

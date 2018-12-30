@@ -92,19 +92,11 @@
       return query.beOpenId
     },
     fetch ({store, query, error}) {
-      // console.log('query.beopenid....')
-      // console.log(query.beOpenId)
       return Promise.all([
         store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
         // 加载活动参与的关联信息
         store.dispatch('loadActivityHelps', {beOpenId: query.beOpenId})
       ])
-      // if (query.coupon_code) {
-      //
-      // }
-      // return store.dispatch('loadActivityHelps', params).catch(err => {
-      //   error({statusCode: 404, message: '找不到页面'})
-      // })
     },
     head () {
       return {
@@ -116,16 +108,6 @@
       TopButtons,
       PageContent
     },
-    props: {
-      // coupon: {
-      //   type: String,
-      //   default: 'mianfei'
-      // },
-      // word: {
-      //   type: String,
-      //   default: 'kou'
-      // }
-    },
     data () {
       return {
         actions: ['hdjs'],
@@ -135,11 +117,6 @@
         tip2,
         limit: 2,
         headimgs: [
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
         ],
         blessing_type: 0
       }
@@ -182,11 +159,6 @@
       }
     },
     watch: {
-      // blessing (newVal) {
-      //   if (newVal) {
-      //     this.blessing_type = newVal.blessing_type
-      //   }
-      // },
       lucky (newVal) {
         let coupon_type = 0
         let coupon_code = ''
@@ -211,8 +183,7 @@
     },
     mounted () {
       const coupon_code = this.$route.query.coupon_code
-      // console.log(this.$route.query)
-      // this.$nextTick(() => {
+      // 用于回调页面回来之后处理发劵，领劵
       if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
         // 领劵
         // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
@@ -220,14 +191,10 @@
           coupon_code: this.$route.query.coupon_code
         })
       }
-      // })
     },
     methods: {
       async helpAction () {
         const beOpenId = this.$route.query.beOpenId
-        // console.log(this.$route.query)
-        // 检查助力者信息
-        // this.$store.dispatch('loadPrizeBlessing')
         const isSuccess = await this.$store.dispatch('dealHelpAction', {
           openId: this.$store.getters.openId,
           beOpenId: this.$route.query.beOpenId

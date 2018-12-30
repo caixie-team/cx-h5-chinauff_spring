@@ -12,7 +12,7 @@
   // import {mapGetters} from 'vuex'
   // import Shader from './Class/Shader/Glitch'
   import bgLightImg from '~/assets/images/bg/page_bg_light.jpg'
-  import {Picker} from "../../modules/module";
+  // import {Picker} from "../../modules/module";
   // import animationJson from '~/static/assets/animation/6s/data.json'
   export default {
     name: 'Pixibackground',
