@@ -15,7 +15,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import CubeRadio from './radio.vue'
+  import CRadio from './radio.vue'
 
   const COMPONENT_NAME = 'c-radio-group'
 
@@ -24,7 +24,7 @@
   export default {
     name: COMPONENT_NAME,
     components: {
-      CubeRadio
+      CRadio
     },
     props: {
       value: {

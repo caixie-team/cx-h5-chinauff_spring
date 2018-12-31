@@ -3,26 +3,26 @@
 import Locale from './locale'
 
 // Basic
-// import Button from './modules/button'
-// import Loading from './modules/loading'
+import Button from './button'
+import Loading from './loading'
 // import Tip from './modules/tip'
 // import Toolbar from './modules/toolbar'
 // import TabBar from './modules/tab-bar'
 // import TabPanels from './modules/tab-panels'
 //
 // Form
-// import Checkbox from './modules/checkbox'
-// import CheckboxGroup from './modules/checkbox-group'
-// import Checker from './modules/checker'
+import Checkbox from './checkbox'
+import CheckboxGroup from './checkbox-group'
+import Checker from './checker'
 import RadioGroup from './radio-group'
 import Input from './input'
-// import Textarea from './modules/textarea'
-// import Select from './modules/select'
-// import Switch from './modules/switch'
-// import Rate from './modules/rate'
-// import Validator from './modules/validator'
-// import Upload from './modules/upload'
-// import Form from './modules/form'
+import Textarea from './textarea'
+import Select from './select'
+import Switch from './switch'
+import Rate from './rate'
+import Validator from './validator'
+import Upload from './upload'
+import Form from './form'
 
 // Popup
 import Popup from './popup'
@@ -51,8 +51,8 @@ import IndexList from './index-list'
 import BetterScroll from './better-scroll'
 import createAPI from './create-api'
 
-// const FormGroup = Form.Group
-// const FormItem = Form.Item
+const FormGroup = Form.Group
+const FormItem = Form.Item
 const SlideItem = Slide.Item
 const Radio = RadioGroup.Radio
 // const SwipeItem = Swipe.Item
@@ -62,7 +62,7 @@ const Radio = RadioGroup.Radio
 // const ScrollNavPanel = ScrollNav.Panel
 // const Tab = TabBar.Tab
 // const TabPanel = TabPanels.Panel
-// const CheckerItem = Checker.Item
+const CheckerItem = Checker.Item
 
 export {
   // style
@@ -70,8 +70,8 @@ export {
   // locale
   Locale,
   // basic
-  // Button,
-  // Loading,
+  Button,
+  Loading,
   // Tip,
   // Toolbar,
   // TabBar,
@@ -79,22 +79,22 @@ export {
   // TabPanels,
   // TabPanel,
   // form
-  // Checkbox,
-  // CheckboxGroup,
-  // CheckerItem,
-  // Checker,
+  Checkbox,
+  CheckboxGroup,
+  CheckerItem,
+  Checker,
   Radio,
   RadioGroup,
   Input,
-  // Textarea,
-  // Select,
-  // Switch,
-  // Rate,
-  // Validator,
-  // Upload,
-  // FormItem,
-  // FormGroup,
-  // Form,
+  Textarea,
+  Select,
+  Switch,
+  Rate,
+  Validator,
+  Upload,
+  FormItem,
+  FormGroup,
+  Form,
   // popup
   Popup,
   // Toast,

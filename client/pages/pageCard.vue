@@ -1,73 +1,34 @@
-<!-- 3.1.1、集满福兑好礼 -->
+<!-- 查看领到的充值卡 -->
 <template>
   <c-page type="bg2">
     <div
       slot="content"
-      class="page263">
+      class="pageCard">
       <top-buttons
         :actions="actions"
         type="second"/>
-      <img
-        src="~assets/img/page311/shiba.png"
-        class="imgShiba">
-      <h1>
-        {{ stats.peopleNumber }}人已集满 “福”, 您 已集满 {{ stats.myblessingNumber }}个 “福”
-      </h1>
       <div class="content">
-        <!--<span class="fuzi fuzi-fu1"/>-->
-        <div
-          ref="slideWrapper"
-          class="slide-container">
-          <c-slide
-            ref="slide"
-            :data="items"
-            :initial-index="initialIndex"
-            :loop="loop"
-            :auto-play="autoPlay"
-            :interval="interval"
-            :threshold="threshold"
-            :speed="speed"
-            :options="options"
-            @change="changePage"
-            @click="clickPage">
-            <template
-              v-if="dotsSlot"
-              slot="dots"
-              slot-scope="props">
-              <span
-                v-for="(item, index) in props.dots"
-                :class="{active: props.current === index}"
-                :key="index"
-                class="my-dot">{{ index + 1 }}</span>
-            </template>
-          </c-slide>
-        </div>
-        <nuxt-link
-          to="/pageYydh"
-          class="">
+        <div class="cards">
           <img
-            src="~assets/img/btn/btn_yydhh.png"
-            class="btn-yydh">
-        </nuxt-link>
-        <img
-          src="~assets/img/page311/qtqst.png"
-          class="imgQtqst">
-      </div>
-      <div class="footer">
-        <div class="toolbar">
-          <span class="icon icon-shi">
-            <sub>1</sub>
-          </span>
-          <span class="icon icon-yi">
-            <sub>5</sub>
-          </span>
-          <span class="icon icon-kou">
-            <sub>3</sub>
-          </span>
-          <span class="icon icon-tian">
-            <sub>0</sub>
-          </span>
+            src="~assets/img/icon/icon_card_cover.png"
+            class="cards-cover">
+          <div class="cards-list">
+            <div class="cards-list__item">
+              <span class="date">2019年1月9日 </span>
+              <span class="user">
+                <span class="name">name</span>
+                <span class="phone">phone</span>
+              </span>
+              <span class="address">地址信息</span>
+              <span class="no-address">
+                未填入收件信息，卡未领取，<nuxt-link to="/pageCardReceive">点此立即领取</nuxt-link>
+              </span>
+            </div>
+          </div>
         </div>
+        <img
+          src="~assets/img/icon/icon_no_czk.png"
+          class="no-czk">
       </div>
     </div>
   </c-page>
@@ -95,7 +56,7 @@
     },
     fetch ({store, query, error}) {
       return Promise.all([
-        store.dispatch('loadBlessingStatistics')
+        // store.dispatch('loadBlessingStatistics')
         // 获取集福统计数
         // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
         // 加载活动参与的关联信息
@@ -108,17 +69,10 @@
       PageContent
     },
     props: {
-      coupon: {
-        type: String,
-        default: 'mianfei'
-      },
-      word: {
-        type: String,
-        default: 'kou'
-      }
     },
     data () {
       return {
+        cardList: [],
         actions: ['hdjs', 'dhff', 'ckkb'],
         total: '12,345',
         count: '3',
@@ -215,7 +169,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
 
-  .page263
+  .pageCard
     color: $color-dark
     display: flex
     align-items: center
@@ -228,85 +182,13 @@
     justify-content: flex-start
     overflow: hidden
 
-    .slide-container
-      width: 400px
-      height: 436px
-      margin-bottom: 5px
-      transform: translateZ(0px)
-      /*border-radius: 2px*/
-      overflow: hidden
-      /*box-shadow: 0 2px 9px #ddd*/
-      .c-slide-item
-        padding: 20px
-      .c-slide-dots
-        .my-dot
-          height: auto
-          font-size: 24px
-          background: none
-          &.active
-            color: #fc9153
-    .btn-yydh
-      padding: 20px
-      width: 248px
-
-    .imgQtqst
-      width: 158px
-      height: 22px
-
-    .imgShiba
-      width: 263px
-      height: 85px
-      padding-top: 130px
-
-    h1
-      font-size: 22px
-      font-weight: bold
-      margin-top: 10px
-      margin-bottom: 10px
-
     .content
       display: flex
       flex-direction: column
       align-items: center
-
-      .fuzi
-        width: 400px
-        height: 436px
-        background-size: 400px 436px
-
-        &-fu1
-          background-image: url("~assets/img/common/fu1.png")
-
-        &-fu2
-          background-image: url("~assets/img/common/fu2.png")
-
-        &-fu3
-          background-image: url("~assets/img/common/fu3.png")
-
-        &-fu4
-          background-image: url("~assets/img/common/fu4.png")
-
-        &-fu5
-          background-image: url("~assets/img/common/fu5.png")
-
-        &-fu6
-          background-image: url("~assets/img/common/fu6.png")
-
-        &-fu7
-          background-image: url("~assets/img/common/fu7.png")
-
-        &-fu8
-          background-image: url("~assets/img/common/fu8.png")
-
-        &-fu9
-          background-image: url("~assets/img/common/fu9.png")
-
-        &-fu10
-          background-image: url("~assets/img/common/fu10.png")
-
-        &-fu11
-          background-image: url("~assets/img/common/fu11.png")
-
+      .card-cover
+        width: 452px
+        height: 304px
       section
         display: flex
         flex-direction: column

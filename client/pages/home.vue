@@ -348,9 +348,9 @@
         }
         // 进行最小压缩
         const ndata = canvas.toDataURL('image/jpeg', 0.1)
-        console.log('压缩前：' + initSize)
-        console.log('压缩后：' + ndata.length)
-        console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + '%')
+        // console.log('压缩前：' + initSize)
+        // console.log('压缩后：' + ndata.length)
+        // console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + '%')
         tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0
 
         return ndata
@@ -410,7 +410,7 @@
       /*flex-direction: column*/
       /*justify-content: flex-end;*/
       /*align-items: flex-end;*/
-      margin-bottom: 2%
+      margin-bottom: 3%
       color: #e6daa2;
 
       .upload

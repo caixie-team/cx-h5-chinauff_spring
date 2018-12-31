@@ -341,19 +341,6 @@
             this.happyMusic.sound.stop()
           }
         })
-        // this.happyMusic.sound.play()
-        // this.app.stage.addChild(this.objSprites.mountain.ani.parallax.texture)
-        // this.app.stage.addChild(this.objSprites.dragon.ani.dance.texture)
-        // this.app.stage.addChild(this.objSprites.fire.ani.fireworks.texture)
-        // this.app.stage.addChild(this.objSprites.lantern.ani.shake.texture)
-        // this.happyMusic = this.loader.resources['assets/audio/12s.mp3']
-        // this.timer()
-        // this.happyMusic.sound.play()
-        // this.app.ticker.add(() => {
-        //   this.app.renderer.render(this.app.stage)
-        // })
-        // this.$refs.play12s.appendChild(this.app.view)
-
       },
     }
   }
