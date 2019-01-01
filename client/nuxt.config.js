@@ -246,6 +246,7 @@ module.exports = {
     // {src: '~/plugins/geolocation.js', ssr: false},
     // {src: '~/plugins/tracker.js'},
     {src: '~/plugins/ahoy-analytics.js', ssr: false},
+    {src: '~/plugins/vconsole.js', ssr: false},
     // {src: '~/plugins/vant-ui.js'},
   ]
 }
