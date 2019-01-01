@@ -15,7 +15,7 @@ module.exports = {
   proxyUrl: isProdMode ? 'http://demo.micvs.com/lnj-weixin/console' : 'http://demo.micvs.com/lnj-weixin/console',
   baseUrl: isProdMode ? 'https://weixin.chinauff.com/spring/server/api' : 'http://spring.chinauff.com/api',
   // baseUrl: isProdMode ? 'https://weixin.chinauff.com/spring/server/api' : 'https://weixin.chinauff.com/spring/server/api',
-  caixieUrl: isProdMode ? 'http://spring.chinauff.com/api' : 'http://spring.chinauff.com/api',
+  caixieUrl: isProdMode ? 'https://weixin.chinauff.com/spring/server/api' : 'http://spring.chinauff.com/api',
   thirdUrl: isProdMode ? 'https://weixin.chinauff.com/lnj-weixin/console' : 'http://demo.micvs.com/lnj-weixin/console',
   // socketHost: isProdMode ? 'https://caixie.top' : 'http://wx.caixie.top'
 }
