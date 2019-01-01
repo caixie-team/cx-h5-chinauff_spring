@@ -4,11 +4,11 @@
     id="app">
     <share-guide v-show="share"/>
     <transition
-      name="bounce">
+      name="fade">
       <play12s v-show="isShow12s"/>
     </transition>
     <transition
-      name="bounce">
+      name="fade">
       <play6s v-show="isShow6s"/>
     </transition>
     <nuxt/>
