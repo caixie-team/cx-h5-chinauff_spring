@@ -2,7 +2,7 @@
   <div
     v-cloak
     id="app">
-    <share-guide v-show="share"/>
+    <!--<share-guide v-show="share"/>-->
     <!--<transition-->
     <!--name="bounce">-->
     <!--<play12s v-show="isShow12s"/>-->
