@@ -1,6 +1,5 @@
 <template>
   <div
-    v-cloak
     id="app">
     <!--<share-guide v-show="share"/>-->
     <!--<transition-->
