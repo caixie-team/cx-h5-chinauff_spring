@@ -1,5 +1,5 @@
 /* eslint-disable func-style */
-import { isBrowser, isServer } from '~/environment'
+import { isBrowser, isServer } from '~/environment_es'
 import Vue from 'vue'
 
 import {

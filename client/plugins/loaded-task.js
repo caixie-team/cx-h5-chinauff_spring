@@ -3,7 +3,7 @@
  * @module plugins/loaded-task
  */
 
-import { isBrowser, isServer } from '~/environment'
+import { isBrowser, isServer } from '~/environment_es'
 import consoleSlogan from '~/utils/console-slogan'
 
 

@@ -3,7 +3,7 @@
  * @module utils/console-slogan
  */
 
-import { isBrowser, isProdMode } from '~/environment'
+import { isBrowser, isProdMode } from '~/environment_es'
 
 export default () => {
   if (isBrowser && isProdMode) {

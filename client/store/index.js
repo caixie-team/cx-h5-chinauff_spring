@@ -7,12 +7,11 @@
  * @module store/entry
  * @author Baisheng <baisheng@caixie.top>
  */
-const {isProdMode} = require('../environment')
-
+// const {isProdMode} = require('../environment')
 // import Vue from 'vue'
-import apiConfig from '~/api.config'
+import apiConfig from '~/api.config.es'
 // import uaDevice from '~/utils/ua-device'
-import {isBrowser, isServer} from '~/environment'
+import {isBrowser, isServer, isProdMode} from '~/environment_es'
 import {browserParse, osParse} from '~/utils/ua-os-browser'
 
 // import shareIcon from '~/assets/img/icon/icon_gift.png'

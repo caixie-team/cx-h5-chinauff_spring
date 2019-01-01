@@ -39,8 +39,8 @@
   import tips from '~/assets/img/text/text_yhqlqlcyx.png'
   import btn1 from '~/assets/img/btn/btn_friend.png'
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
-  import {isBrowser} from '~/environment'
-  import apiConfig from '~/api.config'
+  import {isBrowser} from '~/environment_es'
+  import apiConfig from '~/api.config.es'
   // 免费劵 3409
   // 4 元劵 (3410)
   // 8 元劵 (3411)

@@ -29,7 +29,7 @@
 </template>
 <script>
   import CPage from '../components/c-page.vue'
-  import {isBrowser} from '~/environment'
+  import {isBrowser} from '~/environment_es'
   import titleImg from '~/assets/images/text/jifuyoli.png'
 
   export default {

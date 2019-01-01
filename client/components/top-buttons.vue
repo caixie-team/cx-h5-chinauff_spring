@@ -13,7 +13,7 @@
 
 <script>
   import {oneOf} from '../utils/assist.js'
-  import apiConfig from '~/api.config'
+  import apiConfig from '~/api.config.es'
   export default {
     props: {
       type: {

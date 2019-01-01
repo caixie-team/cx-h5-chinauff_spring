@@ -40,7 +40,7 @@
 </template>
 <script>
   import CPage from '~/components/c-page.vue'
-  import {isBrowser} from '~/environment'
+  import {isBrowser} from '~/environment_es'
   import TopButtons from '~/components/top-buttons'
   import {provinceList, cityList, areaList} from '~/example/data/area'
 

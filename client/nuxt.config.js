@@ -41,7 +41,8 @@ module.exports = {
     // ],
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: ' width = device-width，initial-scale = 1，maximum-scale = 1，minimum-scale = 1，user-scalable = no' },
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      // { name: 'viewport', content: ' width = device-width，initial-scale = 1，maximum-scale = 1，minimum-scale = 1，user-scalable = no' },
       {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
@@ -201,14 +202,15 @@ module.exports = {
         return [
           [
             '@nuxtjs/babel-preset-app',
-            {targets: isServer ? {node: '10.4.0'} : {chrome: 69}}
+            {targets: isServer ? {node: '10.4.0'} : { browsers: ["last 2 versions"], chrome: 69}},
+            // {targets: isServer ? {node: '10.4.0'} : {chrome: 69}}
           ]
         ]
       },
-      plugins: [
-        '@babel/plugin-transform-runtime',
-        '@babel/plugin-transform-async-to-generator',
-      ],
+      // plugins: [
+      //   '@babel/plugin-transform-runtime',
+      //   '@babel/plugin-transform-async-to-generator',
+      // ],
       comments: true
     },
   },

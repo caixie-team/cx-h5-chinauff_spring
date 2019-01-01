@@ -10,7 +10,7 @@
 </template>
 <script>
   import CPage from '../components/c-page.vue'
-  import {isBrowser} from '~/environment'
+  import {isBrowser} from '~/environment_es'
 
   export default {
     name: 'Index',

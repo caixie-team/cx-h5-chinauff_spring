@@ -10,9 +10,9 @@ import ahoy from '~/lib/ahoy'
 //   startOnReady: true,
 //   trackVisits: true
 // })
-import { isBrowser, isServer } from '~/environment'
+import { isBrowser, isServer } from '~/environment_es'
 // const apiConfig = require('/api.config')
-import { baseUrl } from '~/api.config'
+import { baseUrl } from '~/api.config.es'
 
 if (isBrowser) {
 // ahoy.configure({

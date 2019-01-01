@@ -7,7 +7,7 @@ const [w, h] = [window.innerWidth, window.innerHeight]
 const Ratio = window.devicePixelRatio
 const W = w * Ratio
 const H = h * Ratio
-import { isBrowser } from '~/environment'
+import { isBrowser } from '~/environment_es'
 
 export default class Game {
   static getInstance () {

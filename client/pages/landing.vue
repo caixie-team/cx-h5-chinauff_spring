@@ -9,12 +9,12 @@
   import Vue from 'vue'
 
   import {mapState} from 'vuex'
-  import apiConfig from '~/api.config'
+  import apiConfig from '~/api.config.es'
   import CPage from '../components/c-page.vue'
 
   const API_PREFIX = apiConfig.baseUrl
-  import {isBrowser} from '~/environment'
-  import EventBus from '../utils/event-bus.js'
+  import {isBrowser} from '~/environment_es'
+  // import EventBus from '../utils/event-bus.js'
   // import { Toast, Button } from 'vant'
   // Vue.use(Button)
 

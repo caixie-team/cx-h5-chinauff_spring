@@ -11,7 +11,7 @@
 </template>
 <script>
   import CPage from '../components/c-page.vue'
-  import {isBrowser} from '~/environment'
+  import {isBrowser} from '~/environment_es'
   import TopButtons from '../components/top-buttons'
   import PageContent from '../components/page-content'
   import PixiIndexBg from '../components/pixi/pixi-indexbg'
