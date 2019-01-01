@@ -51,8 +51,6 @@ module.exports = options => {
           body: postData
         })).body
         res.data.beOpenId = encrypt(_openId, openIdKey)
-        // console.log(res.data.beOpenId)
-        // console.info(encrypt('oQJYBw_YWDZFWp5DBoVDFPH1JX7A', openIdKey))
         // 活动账户的信息，包括登录状态和会员信息
         // if Login status === 1
         await ctx.session('activity_user', JSON.stringify(res.data))

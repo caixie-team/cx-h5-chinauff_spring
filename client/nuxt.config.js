@@ -27,7 +27,7 @@ module.exports = {
   // buildDir: 'dist/',
   env: {
     baseUrl: apiConfig.baseUrl,
-    HOST_URL: apiConfig.socketHost
+    // HOST_URL: apiConfig.socketHost
   },
   /*
   ** Headers of the page
@@ -197,14 +197,14 @@ module.exports = {
     maxChunkSize: 350000,
     // 为 JS 和 Vue 文件定制 babel 配置。https://nuxtjs.org/api/configuration-build/#analyze
     babel: {
-      // presets ({isServer}) {
-      //   return [
-      //     [
-      //       '@nuxtjs/babel-preset-app'
-            // {targets: isServer ? {node: '10.4.0'} : {chrome: 69}}
-          // ]
-        // ]
-      // },
+      presets ({isServer}) {
+        return [
+          [
+            '@nuxtjs/babel-preset-app',
+            {targets: isServer ? {node: '10.4.0'} : {chrome: 69}}
+          ]
+        ]
+      },
       plugins: [
         '@babel/plugin-transform-runtime',
         '@babel/plugin-transform-async-to-generator',
