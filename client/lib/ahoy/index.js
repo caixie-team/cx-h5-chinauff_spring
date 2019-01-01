@@ -3,7 +3,7 @@ import objectToFormData from 'object-to-formdata'
 import Cookies from './cookies'
 
 const config = {
-  urlPrefix: 'http://backoffice.caixie.top/api',
+  urlPrefix: 'https://weixin.chinauff.com/spring/server/api',
   visitsUrl: '/ahoy/visits',
   eventsUrl: '/ahoy/events',
   cookieDomain: null,
