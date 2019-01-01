@@ -18,6 +18,10 @@ export const state = () => ({
     fetching: false,
     data: []
   },
+  cards: {
+    fetching: false,
+    data: {}
+  },
 // {
   // 类型
   // blessing_type: 0,
@@ -33,6 +37,24 @@ export const state = () => ({
 })
 
 export const mutations = {
+  // 获取我的充值卡信息
+  REQUEST_CARD (state) {
+    state.cards.fetching = true
+  },
+  GET_CARD_SUCCESS (state, action) {
+    state.cards.fetching = false
+    // const path = 'assets/images/blessing/'
+    // if (action.length > 0) {
+    //   for (let item of action) {
+    //     item.image = path + 'fu' + item.icon_num + '.png'
+    //   }
+    // }
+    state.cards.data = action
+  },
+  GET_CARD_FAILURE (state) {
+    state.card.fetching = false
+    state.card.data = []
+  },
   // 获取我的满福信息
   REQUEST_BLESSING (state) {
     state.blessing.fetching = true

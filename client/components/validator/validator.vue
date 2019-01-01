@@ -23,16 +23,10 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {
-    parallel,
-    cb2PromiseWithResolve,
-    isUndef,
-    isFunc,
-    isString,
-    isArray,
-    isObject
-  } from '../../common/helpers/util'
-  import {rules} from '../../common/helpers/validator'
+  /* eslint-disable */
+
+  import { parallel, cb2PromiseWithResolve, isUndef, isFunc, isString, isArray, isObject } from '../../common/helpers/util'
+  import { rules } from '../../common/helpers/validator'
   import localeMixin from '../../common/mixins/locale'
   import template from '../../common/helpers/string-template'
 
@@ -47,7 +41,6 @@
     mixins: [localeMixin],
     props: {
       model: {
-        type: Object,
         required: true
       },
       modelKey: {
@@ -56,22 +49,17 @@
       },
       rules: {
         type: Object,
-        default () {
+        default() {
           return {}
         }
       },
       messages: {
         type: [Object, String],
-        default () {
+        default() {
           return {}
         }
       },
-      value: {
-        type: Object,
-        default () {
-          return {}
-        }
-      },
+      value: {},
       disabled: {
         type: Boolean,
         default: false
@@ -81,7 +69,7 @@
         default: false
       }
     },
-    data () {
+    data() {
       return {
         valid: this.value,
         validated: false,
@@ -92,24 +80,24 @@
       }
     },
     computed: {
-      targetModel () {
+      targetModel() {
         const modelKey = this.modelKey
         const model = this.model
         return modelKey ? model[modelKey] : model
       },
-      invalid () {
+      invalid() {
         const valid = this.valid
         return isUndef(valid) ? undefined : !valid
       },
-      isDisabled () {
+      isDisabled() {
         const disabled = this.disabled
         const noRules = Object.keys(this.rules).length <= 0
         return disabled || noRules
       },
-      dirtyOrValidated () {
+      dirtyOrValidated() {
         return (this.dirty || this.validated) && !this.validating
       },
-      containerClass () {
+      containerClass() {
         const disabled = this.isDisabled
         if (disabled) {
           return
@@ -122,11 +110,11 @@
       }
     },
     watch: {
-      value (newVal) {
+      value(newVal) {
         this.valid = newVal
       },
       targetModel: {
-        handler () {
+        handler() {
           if (this.isDisabled) {
             return
           }
@@ -138,23 +126,23 @@
         },
         sync: true
       },
-      rules () {
+      rules() {
         this.validate()
       },
-      isDisabled (newVal) {
+      isDisabled(newVal) {
         if (!newVal && this.trigger && !this.validated) {
           this.validate()
         }
       }
     },
-    created () {
+    created() {
       this._validateCount = 0
       if (!this.isDisabled && this.immediate) {
         this.validate()
       }
     },
     methods: {
-      validate (cb) {
+      validate(cb) {
         const promise = cb2PromiseWithResolve(cb)
         if (promise) {
           cb = promise.resolve
@@ -218,7 +206,7 @@
         this._checkTasks(allTasks, validateCount, cb)
         return promise
       },
-      _checkTasks (allTasks, validateCount, cb) {
+      _checkTasks(allTasks, validateCount, cb) {
         const configRules = this.rules
         let isValid = true
         const result = {}
@@ -230,7 +218,7 @@
             return
           }
           this.validating = false
-          results.forEach(({key, valid, ret}) => {
+          results.forEach(({ key, valid, ret }) => {
             const msg = this.messages[key]
               ? isFunc(this.messages[key])
                 ? this.messages[key](ret, valid)
@@ -260,7 +248,7 @@
           this.$emit(EVENT_INPUT, this.valid)
         }
       },
-      _updateModel (valid, result) {
+      _updateModel(valid, result) {
         this.validated = true
         this.result = result
         if (result.required && result.required.invalid) {
@@ -274,7 +262,7 @@
         this.valid = valid
         this.$emit(EVENT_INPUT, this.valid)
       },
-      reset () {
+      reset() {
         this._validateCount++
         this.validating = false
         this.dirty = false
@@ -284,7 +272,7 @@
         this.valid = undefined
         this.$emit(EVENT_INPUT, this.valid)
       },
-      msgClickHandler () {
+      msgClickHandler() {
         this.$emit(EVENT_MSG_CLICK)
       },
       findMessage (key, config, type, val) {
@@ -316,17 +304,13 @@
   .c-validator
     .c-checkbox, .c-radio
       color: inherit
-
     .c-input
       input
         color: inherit
-
     .c-textarea
       color: inherit
-
     .c-select
       color: inherit
-
   .c-validator-msg-def
     font-size: $fontsize-medium
     color: $validator-msg-def-color

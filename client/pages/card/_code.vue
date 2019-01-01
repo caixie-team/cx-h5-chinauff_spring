@@ -1,6 +1,6 @@
 <!-- 5.1、二维码兑换 -->
 <template>
-  <c-page>
+  <c-page type="bg4">
     <div
       slot="content"
       class="pageCardForm">
@@ -9,18 +9,31 @@
         <img
           src="~assets/img/icon/icon_card_cover.png"
           class="cover">
-        <c-form
-          :model="model"
-          @validate="validateHandler"
-          @submit="submitHandler">
-          <c-form-group>
-            <c-form-item :field="fields[0]" />
-            <c-form-item :field="fields[1]" />
-          </c-form-group>
-          <c-form-group>
-            <c-button type="submit"> 提交 </c-button>
-          </c-form-group>
-        </c-form>
+        <no-ssr>
+          <div class="card-form">
+            <c-form
+              :model="model"
+              :options="options"
+              @submit="submitHandler"
+              @validate="validateHandler">
+              <c-form-group>
+                <c-form-item :field="fields[0]"/>
+                <c-form-item :field="fields[1]"/>
+                <c-form-item :field="fields[2]"/>
+                <c-form-item :field="fields[3]"/>
+              </c-form-group>
+              <c-form-group class="form-footer">
+                <c-button
+                  class="btn-submit"
+                  type="submit">
+                  <img
+                    src="~assets/img/btn/btn_tijiaolingqu.png"
+                    class="btn-tijiaolingqu">
+                </c-button>
+              </c-form-group>
+            </c-form>
+          </div>
+        </no-ssr>
       </div>
     </div>
   </c-page>
@@ -29,11 +42,12 @@
   import CPage from '~/components/c-page.vue'
   import {isBrowser} from '~/environment'
   import TopButtons from '~/components/top-buttons'
-  import { provinceList, cityList, areaList } from '~/example/data/area'
+  import {provinceList, cityList, areaList} from '~/example/data/area'
 
   // import PageContent from '~/components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+
   const cityData = provinceList
   cityData.forEach(province => {
     province.children = cityList[province.value]
@@ -45,38 +59,38 @@
     props: {
       value: {
         type: Array,
-        default() {
+        default () {
           return []
         }
       }
     },
-    data() {
+    data () {
       return {
         selected: []
       }
     },
-    render(createElement) {
+    render (createElement) {
       return createElement('c-button', {
         on: {
           click: this.showPicker
         }
-      }, this.selected.length ? this.selected.join(' ') : 'placeholder')
+      }, this.selected.length ? this.selected.join(' ') : '选择区域')
     },
-    mounted() {
+    mounted () {
       this.picker = this.$createCascadePicker({
-        title: 'PCA Select',
+        title: '区域选择',
         data: cityData,
         selectedIndex: this.value,
         onSelect: this.selectHandler
       })
     },
     methods: {
-      showPicker() {
+      showPicker () {
         this.picker.show()
       },
-      selectHandler(selectedVal, selectedIndex, selectedTxt) {
+      selectHandler (selectedVal, selectedIndex, selectedTxt) {
         this.selected = selectedTxt
-        this.$emit('input', selectedVal)
+        this.$emit('input', selectedTxt)
       }
     }
   }
@@ -91,11 +105,6 @@
     // 验证卡号
     validate ({params, query}) {
       return !!params.code
-    },
-
-    fetch ({store, params, error}) {
-      // console.log(params)
-      // return store.dispatch('')
     },
     components: {
       CPage,
@@ -116,32 +125,63 @@
         validity: {},
         valid: undefined,
         model: {
-          inputValue: '',
+          inputAddressValue: '',
+          inputNameValue: '',
+          inputPhoneValue: '',
           pcaValue: []
+        },
+        options: {
+          scrollToInvalidField: true,
         },
         fields: [
           {
-            type: 'input',
-            modelKey: 'inputValue',
-            label: 'Input',
+            component: PCA,
+            modelKey: 'pcaValue',
+            // label: '省份、城市、区县',
+            rules: {
+              required: true
+            },
             props: {
-              placeholder: '请输入'
+              placeholder: '省份、城市、区县',
+            },
+            messages: {
+              required: '请选择'
+            }
+          },
+          {
+            type: 'input',
+            modelKey: 'inputAddressValue',
+            // label: '省份、城市、区县',
+            props: {
+              placeholder: '详细地址,如街道、楼牌号'
             },
             rules: {
               required: true
             }
           },
           {
-            component: PCA,
-            modelKey: 'pcaValue',
-            label: 'PCASelect',
+            type: 'input',
+            modelKey: 'inputNameValue',
+            // label: '收件人姓名',
+            props: {
+              placeholder: '收件人姓名'
+            },
             rules: {
               required: true
-            },
-            messages: {
-              required: '请选择'
             }
-          }
+          },
+          {
+            type: 'input',
+            modelKey: 'inputPhoneValue',
+            // label: '手机号码',
+            props: {
+              placeholder: '手机号码'
+            },
+            rules: {
+              type: 'tel',
+              required: true
+            }
+          },
         ],
         total: '12,345',
         count: '2',
@@ -152,6 +192,9 @@
       }
     },
     computed: {
+      isReceive () {
+        return this.$store.state.prize.receive.data.receive_time !== null
+      },
       _couponClass () {
         return [
           'coupon',
@@ -165,26 +208,48 @@
         ]
       }
     },
-    mounted () {
-      this.blessingCode = this.$route.params.code
-      // clearInterval(this.timer);
-      // this.setTimer();
+    watch: {
+      isReceive (newVal) {
+        if (newVal === true) {
+          // 弹出预约成功
+          // this.showDialog('jdfl')
+          this.showDialog('success2')
+        }
+      }
     },
-    destroyed () {
-      console.log('destoryed....')
-      // clearInterval(this.timer)
+    mounted () {
+      this.cardCode = this.$route.params.code
     },
     methods: {
-      submitHandler (e) {
-        console.log('submit')
+      async submitHandler (e) {
+        e.preventDefault()
+        // this.$store.dispatch('postReceiveCard', this.model)
+        // console.log(this.model)
+        const form = {
+          card_code: this.cardCode,
+          address: this.model.pcaValue.join(' ') + this.model.inputAddressValue,
+          recipient_name: this.model.inputNameValue,
+          phone_number: this.model.inputPhoneValue
+        }
+        await this.$store.dispatch('postReceiveCard', form)
+        // console.log(form)
+        // console.log('submit')
+        // return
       },
-      validateHandler(result) {
+      validateHandler (result) {
         this.validity = result.validity
         this.valid = result.valid
         console.log('validity', result.validity, result.valid, result.dirty, result.firstInvalidFieldIndex)
       },
       checkBlessing () {
         // this.$axios.$get()
+      },
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
       },
       showAlert () {
         this.dialog = this.$createDialog({
@@ -197,8 +262,8 @@
   }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
-  .page51
+<style lang="stylus" rel="stylesheet/stylus">
+  .pageCardForm
     color: $color-dark
     display: flex
     align-items: center
@@ -208,31 +273,64 @@
     left: 0
     width: 100%
     height: 100%
-    justify-content: center
+    /*justify-content: center*/
     overflow: hidden
 
-    .content
+    .card-form
+      background: url("~assets/img/bg/card_form_bg.png") no-repeat
+      background-size: 489px 361px
+      width: 489px
+      height: 450px
       display: flex
       flex-direction: column
       align-items: center
 
-      .qrcode
+      .form-footer
+        margin-top: 50px
         display: flex
-        justify-content: center
+        flex-direction: column
         align-items: center
-        text-align: center
-        width: 380px
-        height: 380px
-        background: #E5D9A1
 
-        img
-          width: 340px
-          height: 340px
+      .btn-submit
+        padding: 0
+        width: 248px
+        height: 60px
 
-      .text-qjrwmzsgsyy
-        margin: 20px 0 30px 0
-        width: 299px
-        height: 25px
+      .c-form
+        background: transparent
+        margin-top: 120px
+        width: 450px
+        height: 350px
+
+      .btn-tijiaolingqu
+        width: 248px
+        height: 60px
+
+      .c-input
+        background: transparent
+
+    /*background-size: 419px 235px*/
+
+
+    .c-validator-content
+      .c-btn
+        background: transparent
+        color: $color-dark-grey
+        text-align: left
+        margin: 0
+        padding: 0
+
+    .content
+      top: 100px
+      position: relative
+      display: flex
+      flex-direction: column
+      height: 800px
+      justify-content: space-between
+
+      .cover
+        width: 452px
+        height: 304px
 
       .exchange-form
         width: 419px
@@ -261,14 +359,4 @@
 
           &.shop
             left: 30px
-
-    .footer
-      display: flex
-      position: absolute
-      bottom: 0
-      width: 100%;
-      height: 167px;
-      background-image: url("~assets/img/common/footer_bsbg.png")
-      background-size: 640px 167px
-      justify-content: center
 </style>

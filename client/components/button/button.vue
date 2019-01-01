@@ -92,10 +92,11 @@
     text-align: center
     white-space: nowrap
     cursor: pointer
-    font-size: $fontsize-large
+    font-size: $fontsize-large-xx
     line-height: 1
     color: $btn-color
-    background: $btn-bgc
+    // background: $btn-bgc
+    background: transparent
     outline: none
     border: none
     border-radius: 2px

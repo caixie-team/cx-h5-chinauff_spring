@@ -74,6 +74,10 @@
       background: url('~assets/img/bg/page_bg3.png')
       background-size: 640px 1136px;
 
+    &.bg4
+      background: url('~assets/img/bg/page_bg4.png')
+      background-size: 640px 1136px;
+
     > .wrapper
       // height: calc(100% - 44px)
       overflow-x: hidden

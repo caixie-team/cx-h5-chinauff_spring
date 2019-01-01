@@ -8,10 +8,10 @@ const typesResetMap = {
     return null
   }
 }
-const getResetValueByType = (type) => {
+const getResetValueByType = type => {
   const resetHandler = typesResetMap[type]
   return resetHandler && resetHandler()
-}
+};
 
 export {
   getResetValueByType

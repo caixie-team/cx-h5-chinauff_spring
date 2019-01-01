@@ -12651,14 +12651,6 @@ validator@^9.0.0:
   resolved "https://registry.yarnpkg.com/validator/-/validator-9.4.1.tgz#abf466d398b561cd243050112c6ff1de6cc12663"
   integrity sha512-YV5KjzvRmSyJ1ee/Dm5UED0G+1L4GZnLN3w6/T+zZm8scVua4sOhYKWTUrKa0H/tMiJyO9QLHMPN+9mB/aMunA==
 
-vant@^1.4.8:
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/vant/-/vant-1.4.8.tgz#6e1e23715dc206986fd812338677d55e3e861adc"
-  integrity sha512-SYGd2l16y+gSkB3WfU6wvTOxKvdjy2rTqYM4YHMCr4bLhEp+CbX9ohpDPsZAfpgZFWhFG9joHEvWims5BV6AeQ==
-  dependencies:
-    "@babel/runtime" "^7.1.5"
-    vue-lazyload "1.2.3"
-
 vary@^1.1.2, vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
@@ -12739,11 +12731,6 @@ vue-json-viewer@^2.0.6:
   dependencies:
     clipboard "^1.7.1"
     vue "^2.5.2"
-
-vue-lazyload@1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.2.3.tgz#901f9ec15c7e6ca78781a2bae4a343686bdedb2c"
-  integrity sha512-DC0ZwxanbRhx79tlA3zY5OYJkH8FYp3WBAnAJbrcuoS8eye1P73rcgAZhyxFSPUluJUTelMB+i/+VkNU/qVm7g==
 
 vue-loader@^15.4.2:
   version "15.4.2"

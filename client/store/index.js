@@ -199,7 +199,7 @@ export const actions = {
       })
   },
   loadJSSDKConfig ({commit}, url) {
-    console.log(url)
+    // console.log(url)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
     const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
@@ -286,6 +286,62 @@ export const actions = {
         return Promise.reject(err)
       })
   },
+  // 预约兑换满福礼品
+  postReceiveBlessing ({commit}, data) {
+    commit('prize/REQUEST_RECEIVE_BLESSING')
+    return this.$axios.$post(`${API_PREFIX}/blessing/reserve`, data)
+      .then(response => {
+        const data = getResData(response)
+        if (resIsSuccess(response)) {
+          commit('prize/POST_RECEIVE_BLESSING_SUCCESS', data)
+          return Promise.resolve(data)
+        } else {
+          commit('prize/POST_RECEIVE_BLESSING_FAILURE')
+          return Promise.reject(data)
+        }
+      })
+      .catch(err => {
+        commit('prize/POST_RECEIVE_BLESSING_FAILURE', err)
+        return Promise.reject(err)
+      })
+  },
+  // 预约充值卡
+  postReceiveCard ({commit}, data) {
+    commit('prize/REQUEST_RECEIVE_CARD')
+    return this.$axios.$post(`${API_PREFIX}/coupon/receiveCard`, data)
+      .then(response => {
+        const data = getResData(response)
+        if (resIsSuccess(response)) {
+          commit('prize/POST_RECEIVE_CARD_SUCCESS', data)
+          return Promise.resolve(data)
+        } else {
+          commit('prize/POST_RECEIVE_CARD_FAILURE')
+          return Promise.reject(data)
+        }
+      })
+      .catch(err => {
+        commit('prize/POST_RECEIVE_CARD_FAILURE', err)
+        return Promise.reject(err)
+      })
+  },
+  checkBlessingCodeStatus ({commit}, data) {
+    commit('prize/REQUEST_RECEIVE_CARD')
+    return this.$axios.$post(`${API_PREFIX}/coupon/receiveCard`, data)
+      .then(response => {
+        const data = getResData(response)
+        if (resIsSuccess(response)) {
+          commit('prize/POST_RECEIVE_CARD_SUCCESS', data)
+          return Promise.resolve(data)
+        } else {
+          commit('prize/POST_RECEIVE_CARD_FAILURE')
+          return Promise.reject(data)
+        }
+      })
+      .catch(err => {
+        commit('prize/POST_RECEIVE_CARD_FAILURE', err)
+        return Promise.reject(err)
+      })
+  },
   // 抽奖
   loadPrizeLucky ({commit}, data) {
     commit('prize/REQUEST_LUCKY')
@@ -324,6 +380,7 @@ export const actions = {
     commit('prize/REQUEST_BLESSING')
     return this.$axios.$post(`${API_PREFIX}/blessing/scan`, {
       ...data
+      // TEST
       // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
     }).then(response => {
       const data = getResData(response)
@@ -342,6 +399,8 @@ export const actions = {
     commit('prize/REQUEST_STATS')
     return this.$axios.$post(`${API_PREFIX}/blessing/blessingStatistics`, {
       openId: this.getters.openId
+      // TEST
+      // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
     }).then(response => {
       const data = getResData(response)
       if (resIsSuccess(response)) {
@@ -354,14 +413,34 @@ export const actions = {
         // return Promise.reject(err)
       })
   },
-
+  // 获取我的充值卡
+  loadMyCard ({commit}) {
+    commit('my/REQUEST_CARD')
+    return this.$axios.$post(`${API_PREFIX}/blessing/getMyCard`, {
+      // openId: this.getters.openId
+      // TEST ID
+      openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+      // openId: 'oQJYBw8oF3eJVigfu_T9Wi3nYoDA'
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        commit('my/GET_CARD_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        commit('my/GET_CARD_FAILURE', err)
+        return Promise.reject(err)
+      })
+  },
   // 获取我的满福
   loadMyBlessing ({commit}) {
     commit('my/REQUEST_BLESSING')
     return this.$axios.$post(`${API_PREFIX}/blessing/my`, {
       // openId: this.getters.openId
-      // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
-      openId: 'oQJYBw8oF3eJVigfu_T9Wi3nYoDA'
+      // TEST
+      openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+      // openId: 'oQJYBw8oF3eJVigfu_T9Wi3nYoDA'
     }).then(response => {
       const data = getResData(response)
       if (resIsSuccess(response)) {

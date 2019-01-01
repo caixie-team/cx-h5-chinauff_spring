@@ -8,25 +8,35 @@
         :actions="actions"
         type="second"/>
       <div class="content">
-        <div class="cards">
+        <div
+          v-if="card"
+          class="cards">
           <img
             src="~assets/img/icon/icon_card_cover.png"
-            class="cards-cover">
-          <div class="cards-list">
-            <div class="cards-list__item">
-              <span class="date">2019年1月9日 </span>
+            class="cover">
+          <div
+            class="cards-list">
+            <div
+              v-if="card.receive_time !== null && card.receive_time !== ''"
+              class="cards-list__item">
+              <span class="date">{{ card.receive_time }} </span>
               <span class="user">
-                <span class="name">name</span>
-                <span class="phone">phone</span>
+                <span class="name">{{ card.recipient_name }}</span>
+                <span class="phone">{{ card.phone_number }}</span>
               </span>
-              <span class="address">地址信息</span>
-              <span class="no-address">
-                未填入收件信息，卡未领取，<nuxt-link to="/pageCardReceive">点此立即领取</nuxt-link>
+              <span class="address">{{ card.address }}</span>
+            </div>
+            <div
+              v-else
+              class="cards-list__item">
+              <span class="no-info">
+                未填入收件信息，卡未领取，<nuxt-link :to="`/card/${card.card_code}`">点此立即领取</nuxt-link>
               </span>
             </div>
           </div>
         </div>
         <img
+          v-else
           src="~assets/img/icon/icon_no_czk.png"
           class="no-czk">
       </div>
@@ -56,6 +66,7 @@
     },
     fetch ({store, query, error}) {
       return Promise.all([
+        store.dispatch('loadMyCard')
         // store.dispatch('loadBlessingStatistics')
         // 获取集福统计数
         // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
@@ -68,12 +79,11 @@
       TopButtons,
       PageContent
     },
-    props: {
-    },
+    props: {},
     data () {
       return {
         cardList: [],
-        actions: ['hdjs', 'dhff', 'ckkb'],
+        actions: ['hdjs', 'dhff', 'wdfb'],
         total: '12,345',
         count: '3',
         tip1,
@@ -100,6 +110,12 @@
       }
     },
     computed: {
+      card () {
+        const list = this.$store.state.my.cards.data
+        if (list.length > 0) {
+          return list[0]
+        }
+      },
       luckyTimes () {
         return this.$store.state.user.lucky.data.times
       },
@@ -179,16 +195,71 @@
     left: 0
     width: 100%
     height: 100%
-    justify-content: flex-start
     overflow: hidden
 
     .content
       display: flex
       flex-direction: column
+      align-content: center
       align-items: center
-      .card-cover
+      justify-content: center
+      height: 100%
+      padding-top: 180px
+      .cards-list
+        margin-top: 50px
+        width: 489px
+        height: 205px
+        background: url("~assets/img/bg/card_list_bg.png") no-repeat
+        background-size: 489px 205px
+        display: flex
+        flex-direction: column
+        /*padding: 20px*/
+        /*justify-content: center*/
+        &__item
+          height: 300px
+          font-size: 18px
+          text-align: left
+          .no-info
+            font-size: 22px
+            position: relative
+            top: 120px
+            left: 15px
+          .date
+            padding: 20px
+            position: relative
+            top: 30px
+            left: 0
+          .user
+            display: flex
+            flex-direction: row
+            justify-content: flex-start
+            width: 100%
+            position: relative
+            top: 80px
+            left: 15px
+            span
+              padding-right: 20px
+          .address
+            position: relative
+            top: 100px
+            left: 15px
+
+      .no-czk
+        justify-self: center
+        width: 379px
+        height: 414px
+
+      .cover
         width: 452px
         height: 304px
+
+      .cards
+        height: 100%
+        display: flex
+        flex-direction: column
+        align-content: center
+        align-items: center
+
       section
         display: flex
         flex-direction: column

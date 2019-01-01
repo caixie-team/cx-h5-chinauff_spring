@@ -53,12 +53,12 @@
 <script>
   import { processField } from './fields/index'
   import { resetTypeValue, cb2PromiseWithResolve, debounce } from '../../common/helpers/util'
-  import CubeValidator from '../validator/validator.vue'
+  import CValidator from '../validator/validator.vue'
   import LAYOUTS from './layouts'
   import { getResetValueByType } from './fields/reset'
   import mixin from './mixin'
   import components from './components'
-  components.CubeValidator = CubeValidator
+  components.CValidator = CValidator
 
   const COMPONENT_NAME = 'c-form-item'
   const EVENT_FOCUSIN = 'focusin'

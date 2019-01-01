@@ -202,7 +202,7 @@
     font-size: $fontsize-large-xx
     line-height: 1.429
     background-color: $input-bgc
-    //border-1px($input-border-color)
+    border-1px($input-border-color)
   .c-input-field
     display: block
     flex: 1

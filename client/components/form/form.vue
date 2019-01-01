@@ -11,15 +11,17 @@
         v-for="(group, index) in groups"
         :fields="group.fields"
         :legend="group.legend"
-        :key="index"/>
+        :key="index" />
     </slot>
   </form>
 </template>
 
 <script>
-  import {dispatchEvent} from '../../common/helpers/dom'
-  import {cb2PromiseWithResolve} from '../../common/helpers/util'
-  import CubeFormGroup from './form-group.vue'
+  /* eslint-disable */
+
+  import { dispatchEvent } from '../../common/helpers/dom'
+  import { cb2PromiseWithResolve } from '../../common/helpers/util'
+  import CFormGroup from './form-group.vue'
   import LAYOUTS from './layouts'
   import mixin from './mixin'
 
@@ -33,28 +35,28 @@
   export default {
     name: COMPONENT_NAME,
     components: {
-      CubeFormGroup
+      CFormGroup
     },
     mixins: [mixin],
     props: {
-      action: {type: String, default: ''},
+      action: String,
       model: {
         type: Object,
-        default () {
+        default() {
           /* istanbul ignore next */
           return {}
         }
       },
       schema: {
         type: Object,
-        default () {
+        default() {
           /* istanbul ignore next */
           return {}
         }
       },
       options: {
         type: Object,
-        default () {
+        default() {
           return {
             scrollToInvalidField: false,
             layout: LAYOUTS.STANDARD
@@ -66,7 +68,7 @@
         default: false
       }
     },
-    data () {
+    data() {
       return {
         validatedCount: 0,
         dirty: false,
@@ -75,7 +77,7 @@
       }
     },
     computed: {
-      groups () {
+      groups() {
         const schema = this.schema
         const groups = schema.groups || []
         if (schema.fields) {
@@ -85,12 +87,12 @@
         }
         return groups
       },
-      layout () {
+      layout() {
         const options = this.options
         const layout = (options && options.layout) || LAYOUTS.STANDARD
         return layout
       },
-      formClass () {
+      formClass() {
         const invalid = this.invalid
         const valid = this.valid
         const layout = this.layout
@@ -107,7 +109,7 @@
       }
     },
     watch: {
-      validatedCount () {
+      validatedCount() {
         this.$emit(EVENT_VALIDATE, {
           validity: this.validity,
           valid: this.valid,
@@ -117,30 +119,30 @@
         })
       }
     },
-    beforeCreate () {
+    beforeCreate() {
       this.form = this
       this.fields = []
       this.validity = {}
     },
-    mounted () {
+    mounted() {
       if (this.immediateValidate) {
         this.validate()
       }
     },
-    beforeDestroy () {
+    beforeDestroy() {
       this.form = null
       this.firstInvalidField = null
     },
     methods: {
-      submit (skipValidate = false) {
+      submit(skipValidate = false) {
         this.skipValidate = skipValidate
         dispatchEvent(this.$refs.form, 'submit')
         this.skipValidate = false
       },
-      reset () {
+      reset() {
         dispatchEvent(this.$refs.form, 'reset')
       },
-      submitHandler (e) {
+      submitHandler(e) {
         if (this.skipValidate) {
           this.$emit(EVENT_SUBMIT, e, this.model)
           return
@@ -164,11 +166,11 @@
           submited(this.valid)
         }
       },
-      resetHandler (e) {
+      resetHandler(e) {
         this._reset()
         this.$emit(EVENT_RESET, e)
       },
-      _submit (cb) {
+      _submit(cb) {
         this.validate(() => {
           if (this.invalid) {
             if (this.options.scrollToInvalidField && this.firstInvalidField) {
@@ -178,7 +180,7 @@
           cb && cb(this.valid)
         })
       },
-      _reset () {
+      _reset() {
         this.fields.forEach((fieldComponent) => {
           fieldComponent.reset()
         })
@@ -186,7 +188,7 @@
         this.setValidating()
         this.setPending()
       },
-      validate (cb) {
+      validate(cb) {
         const promise = cb2PromiseWithResolve(cb)
         if (promise) {
           cb = promise.resolve
@@ -205,21 +207,21 @@
         })
         return promise
       },
-      updateValidating () {
+      updateValidating() {
         const validating = this.fields.some((fieldComponent) => fieldComponent.validating)
         this.setValidating(validating)
       },
-      updatePending () {
+      updatePending() {
         const pending = this.fields.some((fieldComponent) => fieldComponent.pending)
         this.setPending(pending)
       },
-      setValidating (validating = false) {
+      setValidating(validating = false) {
         this.validating = validating
       },
-      setPending (pending = false) {
+      setPending(pending = false) {
         this.pending = pending
       },
-      updateValidity (modelKey, valid, result, dirty) {
+      updateValidity(modelKey, valid, result, dirty) {
         const curResult = this.validity[modelKey]
         if (curResult && curResult.valid === valid && curResult.result === result && curResult.dirty === dirty) {
           return
@@ -230,7 +232,7 @@
           dirty
         })
       },
-      setValidity (key, val) {
+      setValidity(key, val) {
         const validity = {}
         if (key) {
           Object.assign(validity, this.validity)
@@ -282,26 +284,24 @@
         this.setFirstInvalid(firstInvalidFieldKey)
         this.validatedCount++
       },
-      setFirstInvalid (key) {
+      setFirstInvalid(key) {
         if (!key) {
           this.firstInvalidField = null
           this.firstInvalidFieldIndex = -1
           return
         }
-        this.fields.some(callback)
-
-        const callback = function (fieldComponent, index) {
+        this.fields.some((fieldComponent, index) => {
           if (fieldComponent.fieldValue.modelKey === key) {
             this.firstInvalidField = fieldComponent
             this.firstInvalidFieldIndex = index
-            // return true
+            return true
           }
-        };
+        })
       },
-      addField (fieldComponent) {
+      addField(fieldComponent) {
         this.fields.push(fieldComponent)
       },
-      destroyField (fieldComponent) {
+      destroyField(fieldComponent) {
         const i = this.fields.indexOf(fieldComponent)
         this.fields.splice(i, 1)
         this.setValidity(fieldComponent.fieldValue.modelKey)
@@ -320,135 +320,101 @@
     line-height: 1.429
     color: $form-color
     background-color: $form-bgc
-
   .c-form_groups
     .c-form-group-legend
       padding: 10px 15px
-
       &:empty
         padding-top: 5px
         padding-bottom: 5px
-
   .c-form_standard
     .c-form-item
       min-height: 46px
-
     .c-form-field
       flex: 1
       font-size: $fontsize-medium
-
     .c-validator
       display: flex
       align-items: center
       position: relative
-
     .c-validator_invalid
       color: $form-invalid-color
-
     .c-validator-content
       flex: 1
-
     .c-validator-msg-def
       font-size: 0
-
     .c-validator_invalid
       .c-validator-msg
         &::before
           content: "\e614"
           padding-left: 5px
-          font-family: "c-icon" !important
+          font-family: "cube-icon"!important
           font-size: $fontsize-large-xx
           font-style: normal
           -webkit-font-smoothing: antialiased
           -webkit-text-stroke-width: 0.2px
           -moz-osx-font-smoothing: grayscale
-
     .c-form-label
       width: 100px
       padding-right: 10px
-
     .c-checkbox-group, .c-radio-group
       &::before, &::after
         display: none
-
     .c-input
       input
         padding: 13px 0
         background-color: transparent
-
       &::after
         display: none
-
     .c-textarea-wrapper
       padding: 13px 0
       height: 20px
-
       &.c-textarea_expanded
         height: 60px
         padding-bottom: 20px
-
         .c-textarea-indicator
           bottom: 2px
-
       .c-textarea
         padding: 0
         background-color: transparent
-
       &::after
         display: none
-
     .c-select
       padding-left: 0
       background-color: transparent
-
       &::after
         display: none
-
     .c-upload-def
       padding: 5px 0
-
       .c-upload-btn, .c-upload-file
         margin: 5px 10px 5px 0
-
   .c-form_classic
     .c-form-item
       display: block
       padding: 15px
-
       &:last-child
         padding-bottom: 30px
-
       &::after
         display: none
-
       .c-validator-msg
         position: absolute
         margin-top: 3px
-
         &::before
           display: none
-
       .c-validator-msg-def
         font-size: $fontsize-small
-
     .c-form-item_btn
       padding-top: 0
       padding-bottom: 0
-
       &:last-child
         padding-bottom: 0
-
     .c-form-label
       padding-bottom: 15px
-
   .c-form_fresh
     .c-form-item
       display: block
       padding: 2em 15px 10px
-
       &::after
         display: none
-
       .c-validator-msg
         position: absolute
         top: 1em
@@ -456,20 +422,15 @@
         bottom: auto
         margin-top: -.4em
         font-size: $fontsize-small
-
         &::before
           display: none
-
       .c-validator-msg-def
         font-size: 100%
-
     .c-form-item_btn
       padding-top: 0
       padding-bottom: 0
-
       &:last-child
         padding-bottom: 0
-
     .c-form-label
       position: absolute
       top: 1em

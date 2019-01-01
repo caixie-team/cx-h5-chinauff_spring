@@ -6,8 +6,15 @@
       class="page51">
       <!--<top-buttons/>-->
       <div class="content">
-        <div class="qrcode">
+        <div
+          v-if="status === 0"
+          class="qrcode">
           <img :src="'https://weixin.chinauff.com/spring/qrcode/?size=360&txt='+blessingCode">
+        </div>
+        <div
+          v-else
+          class="qrcode">
+          已兑换
         </div>
         <img
           src="~assets/img/text/text_qjrwmzsgsyy.png"
@@ -33,6 +40,9 @@
   import PageContent from '~/components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import apiConfig from '~/api.config'
+
+  const API_PREFIX = apiConfig.baseUrl
 
   export default {
     name: 'Index',
@@ -71,7 +81,9 @@
         tip1,
         tip2,
         limit: 2,
-        blessingCode: ''
+        blessingCode: '',
+        status: 0,
+        myInterval: null
       }
     },
     computed: {
@@ -92,14 +104,24 @@
       this.blessingCode = this.$route.params.code
       // clearInterval(this.timer);
       // this.setTimer();
+      this.myInterval = setInterval(async () => {
+        await this.check()
+        // ajax_wx_pay_status(timer)
+      }, 2000);
     },
     destroyed () {
       console.log('destoryed....')
       // clearInterval(this.timer)
     },
     methods: {
-      checkBlessing () {
-        this.$axios.$get()
+      async check () {
+        const data = await this.$axios.$post(`${API_PREFIX}/blessing/checkCode`, {
+          blessing_code: this.blessingCode
+        })
+        if (data.errno > 0) {
+          this.status = 1
+          window.clearInterval(this.myInterval);
+        }
       },
       showAlert () {
         this.dialog = this.$createDialog({
@@ -109,6 +131,10 @@
         this.dialog.show()
       }
     },
+    beforeRouteLeave (to, from, next) {
+      window.clearInterval(this.myInterval);
+      next()
+    }
   }
 </script>
 

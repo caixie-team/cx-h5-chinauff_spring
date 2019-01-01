@@ -40,13 +40,14 @@
           </div>
         </div>
         <img
-          v-if="!isDisabled"
+          v-if="isDisabled || isSubmit"
           src="~assets/img/btn/btn_tjyyg.png"
           class="btn">
         <img
           v-else
           src="~assets/img/btn/btn_tjyy.png"
-          class="btn">
+          class="btn"
+          @click="submit">
       </div>
     </div>
   </c-page>
@@ -86,6 +87,7 @@
     },
     data () {
       return {
+        isSubmit: false,
         total: '12,345',
         count: '2',
         tip1,
@@ -101,12 +103,17 @@
       formData () {
         return this.$store.state.user.reserveForm.data
       },
+      reserve () {
+        return this.$store.state.prize.receiveBlessing.data
+      },
       isDisabled () {
-        for (const item in this.formData) {
-          if (item === '' || item === null) {
-            return false
+        const data = this.formData
+        for (const i in data) {
+          if (data[i] === '' || data[i] == null) {
+            return true
           }
         }
+        return false
       },
       _couponClass () {
         return [
@@ -121,14 +128,47 @@
         ]
       }
     },
+    watch: {
+      reserve (newVal) {
+        if (newVal.errno > 0) {
+          console.log(newVal)
+        }
+        if (newVal && newVal.receive_time !== null) {
+          this.showDialog('success3', {showClose: false})
+        }
+      }
+    },
     mounted () {
       this.$store.commit('user/SET_RESERVER_FORM', {
         openId: this.$store.getters.openId,
         blessing_code: this.$route.params.code
       })
-      console.log(this.formData)
+      // console.log(this.formData)
     },
     methods: {
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
+      },
+      async submit () {
+        this.isSubmit = true
+        // console.log(this.formData)
+        // shop: null,
+        //   shop_name: null,
+        //   reserve_date: null,
+        //   format_date: null,
+        //   openId: '',
+        //   blessing_code: ''
+        await this.$store.dispatch('postReceiveBlessing', {
+          openId: this.formData.openId,
+          shop_id: this.formData.shop,
+          blessing_code: this.formData.blessing_code,
+          reserve_date: this.formData.reserve_date
+        })
+      },
       showDatePicker () {
         if (!this.datePicker) {
           this.datePicker = this.$createDatePicker({
@@ -235,6 +275,12 @@
         position: relative
         width: 266px
         height: 64px
+
+      .shop
+        span
+          color: $color-dark
+          font-size: 14px
+          line-height: 20px
 
       .exchange-form
         width: 419px

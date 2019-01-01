@@ -32,6 +32,14 @@
         <success1
           v-if="type === 'success1'"
           @close="close"/>
+        <!-- 预约领取卡成功 -->
+        <success2
+          v-if="type === 'success2'"
+          @close="close"/>
+        <!-- 预约满福礼品成功 -->
+        <success3
+          v-if="type === 'success3'"
+          @close="close"/>
         <jdfl
           v-if="type === 'jdfl'"/>
         <dhff
@@ -57,6 +65,8 @@
   import Prize from './popup-prize'
   import Success from './popup-success'
   import Success1 from './popup-success1'
+  import Success2 from './popup-success2'
+  import Success3 from './popup-success3'
   import Jdfl from './popup-jdfl'
   import Dhff from './popup-dhff'
   import EventBus from '~/utils/event-bus.js'
@@ -102,6 +112,8 @@
       Prize,
       Success,
       Success1,
+      Success2,
+      Success3,
       Jdfl,
       Dhff
     },

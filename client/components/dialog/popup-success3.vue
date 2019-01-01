@@ -1,4 +1,4 @@
-<!--领取成功、今日已领完 -->
+<!-- 预约成功 page45 -->
 <template>
   <div class="popup success">
     <img
@@ -7,16 +7,15 @@
     <div class="buttons">
       <img
         :src="btn1"
-        @click="close">
+        @click="toPage311">
     </div>
   </div>
 </template>
 <script>
   // import text_limit from '~/assets/img/text/text_popup_limit.png'
   // 领取成功
-  import text from '~/assets/img/text/text_lqcg_1.png'
-  import btn1 from '~/assets/img/btn/btn_zdlh.png'
-  import btn2 from '~/assets/img/btn/btn_yqhyl.png'
+  import text from '~/assets/img/text/text_yycg.png'
+  import btn1 from '~/assets/img/btn/btn_zdlm.png'
 
   const EVENT_CLOSE = 'close'
   export default {
@@ -29,14 +28,12 @@
     data () {
       return {
         text,
-        btn1,
-        btn2
+        btn1
       }
     },
-    computed: {
-    },
     methods: {
-      close (e) {
+      toPage311 (e) {
+        this.$router.push('/page311')
         this.$emit(EVENT_CLOSE, e)
       }
     }
@@ -47,7 +44,7 @@
     width: 418px
     height: 474px
     overflow: hidden
-    background: url('~assets/img/bg/popup_bg_small.png') no-repeat
+    background: url('~assets/img/bg/popup_bg_smallr.png') no-repeat
     background-size: 418px 474px
     display: flex
     flex-direction: column
@@ -57,8 +54,8 @@
     .text
       position: absolute
       top: 200px
-      width: 342px
-      height: 66px
+      width: 291px
+      height: 102px
 
     .buttons
       position: absolute

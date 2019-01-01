@@ -53,8 +53,23 @@ export const state = () => {
         coupon_code: '',
         crm_coupon_code: ''
       }
+    },
+    // 预约领取卡
+    receiveCard: {
+      posting: false,
+      data: {
+        receive_time: null
+      }
+    },
+    // 预约领取满福礼
+    receiveBlessing: {
+      posting: false,
+      data: {
+        receive_time: null
+      }
     }
   }
+
 }
 
 export const mutations = {
@@ -62,7 +77,6 @@ export const mutations = {
     state.blessing.fetching = true
   },
   GET_BLESSING_SUCCESS (state, action) {
-    console.log(action)
     state.blessing.data = action
   },
   GET_BLESSING_FAILURE (state) {
@@ -102,5 +116,28 @@ export const mutations = {
   },
   GET_STATS_FAILURE (state) {
     state.stats.fetching = false
+  },
+
+  // 预约兑换卡
+  REQUEST_RECEIVE_CARD(state) {
+    state.receiveCard.posting = true
+  },
+  POST_RECEIVE_CARD_SUCCESS(state, action) {
+    state.receiveCard.posting = false
+    state.receiveCard.data = action
+  },
+  POST_RECEIVE_CARD_FAILURE(state) {
+    state.receiveCard.posting = false
+  },
+  // 预约福
+  REQUEST_RECEIVE_BLESSING(state) {
+    state.receiveBlessing.posting = true
+  },
+  POST_RECEIVE_BLESSING_SUCCESS(state, action) {
+    state.receiveBlessing.posting = false
+    state.receiveBlessing.data = action
+  },
+  POST_RECEIVE_BLESSING_FAILURE(state) {
+    state.receiveBlessing.posting = false
   }
 }

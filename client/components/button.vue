@@ -2,14 +2,14 @@
   <button
     :type="type"
     :class="btnClass"
-    class="cube-btn"
+    class="c-btn"
     @click="handleClick">
     <slot/>
   </button>
 </template>
 
 <script>
-  const COMPONENT_NAME = 'cube-button'
+  const COMPONENT_NAME = 'c-button'
   export default {
     name: COMPONENT_NAME,
     props: {
@@ -49,13 +49,13 @@
     computed: {
       btnClass () {
         return {
-          'cube-btn_active': this.active,
-          'cube-btn_disabled': this.disabled,
-          'cube-btn-inline': this.inline,
-          'cube-btn-primary': this.primary,
-          'cube-btn-outline': this.outline,
-          'cube-btn-outline-primary': this.outline && this.primary,
-          'cube-btn-light': this.light
+          'c-btn_active': this.active,
+          'c-btn_disabled': this.disabled,
+          'c-btn-inline': this.inline,
+          'c-btn-primary': this.primary,
+          'c-btn-outline': this.outline,
+          'c-btn-outline-primary': this.outline && this.primary,
+          'c-btn-light': this.light
         }
       }
     },
@@ -76,12 +76,12 @@
   /*@require "../../common/stylus/variable.styl"*/
   /*@require "../../common/stylus/mixin.styl"*/
   btn-active($bg, $border = null)
-  &.cube-btn_active, &:active
+  &.c-btn_active, &:active
     background: $bg
     if $border != null
       border-1px($border)
 
-  .cube-btn
+  .c-btn
     display: block
     margin: 0
     padding: 17px 16px
@@ -107,7 +107,7 @@
       transform: scale(1.13)
       transform-origin: right center
 
-  .cube-btn-inline
+  .c-btn-inline
     width: auto
     display: inline-block
     vertical-align: middle
@@ -117,30 +117,30 @@
       margin-right: 2px
       transform: scale(1.14)
 
-  .cube-btn-primary
+  .c-btn-primary
     color: $btn-primary-color
     background: $btn-primary-bgc
     btn-active($btn-primary-active-bgc)
 
-  .cube-btn-light
+  .c-btn-light
     color: $btn-light-color
     background: $btn-light-bgc
     box-shadow: $box-shadow-content
     btn-active($btn-light-active-bgc)
 
-  .cube-btn-outline
+  .c-btn-outline
     color: $btn-outline-color
     background: $btn-outline-bgc
     border-1px($btn-outline-bdc)
     btn-active($btn-outline-active-bgc, $btn-outline-active-bdc)
 
-  .cube-btn-outline-primary
+  .c-btn-outline-primary
     color: $btn-outline-primary-color
     background: $btn-outline-primary-bgc
     border-1px($btn-outline-primary-bdc)
     btn-active($btn-outline-primary-active-bgc, $btn-outline-primary-active-bdc)
 
-  .cube-btn_disabled
+  .c-btn_disabled
     color: $btn-disabled-color
     background: $btn-disabled-bgc
     border-1px($btn-disabled-bdc)

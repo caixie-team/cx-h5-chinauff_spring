@@ -57,7 +57,10 @@
           v-if="currentBlessing.status === 3"
           src="~assets/img/btn/btn_ydhg.png"
           class="btn-yydh">
-        <p>兑换于 {{ currentBlessing.exchange_time }}</p>
+        <p
+          v-if="currentBlessing.status === 3">
+          兑换于 {{ currentBlessing.exchange_time }}
+        </p>
         <img
           v-if="currentBlessing.status === 1"
           src="~assets/img/page311/qtqst.png"
@@ -249,10 +252,10 @@
       changePage (current) {
         this.currentBlessing = this.myBlessingList[current]
         // this.current = current
-        console.log('当前序号为:' + current)
+        // console.log('当前序号为:' + current)
       },
       clickPage (item, index) {
-        console.log(item, index)
+        // console.log(item, index)
       },
     },
   }
