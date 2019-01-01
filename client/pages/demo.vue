@@ -3,7 +3,7 @@
     <h1> 兑换页</h1>
     <a
       href="#"
-      @click="clickHandler"/>
+      @click="clickHandler">点我吧。。。。</a>
   </div>
 </template>
 <script>
