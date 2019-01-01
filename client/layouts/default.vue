@@ -12,7 +12,6 @@
       <play6s v-show="isShow6s"/>
     </transition>
     <nuxt/>
-
   </div>
 </template>
 <script>
