@@ -29,7 +29,7 @@
           <img src="~assets/img/btn/btn_yqhyzl.png">
         </a>
         <nuxt-link
-          v-if="luckyTimes > 1"
+          v-if="luckyTimes > 0"
           to="/home">
           <img src="~assets/img/btn/btn_zlycl.png">
         </nuxt-link>

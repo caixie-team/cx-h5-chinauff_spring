@@ -416,9 +416,9 @@ export const actions = {
   loadMyCard ({commit}) {
     commit('my/REQUEST_CARD')
     return this.$axios.$post(`${API_PREFIX}/blessing/getMyCard`, {
-      // openId: this.getters.openId
+      openId: this.getters.openId
       // TEST ID
-      openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+      // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
       // openId: 'oQJYBw8oF3eJVigfu_T9Wi3nYoDA'
     }).then(response => {
       const data = getResData(response)
@@ -436,9 +436,9 @@ export const actions = {
   loadMyBlessing ({commit}) {
     commit('my/REQUEST_BLESSING')
     return this.$axios.$post(`${API_PREFIX}/blessing/my`, {
-      // openId: this.getters.openId
+      openId: this.getters.openId
       // TEST
-      openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
+      // openId: 'on47MszZBY86ceDBh1BvZKy-GMSg'
       // openId: 'oQJYBw8oF3eJVigfu_T9Wi3nYoDA'
     }).then(response => {
       const data = getResData(response)

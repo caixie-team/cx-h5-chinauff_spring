@@ -176,10 +176,12 @@
           num: 0
         }]
         if (this.myBlessingRecords.length > 0) {
-          for (let i = 0; i < icons.length; i++) {
+          for (let i = 0; i < this.myBlessingRecords.length; i++) {
             const record = this.myBlessingRecords[i]
-            if (icons[i].blessing_type === record.blessing_type) {
-              icons[i].num = record.num
+            for (let j = 0; j < icons.length; j++) {
+              if (icons[j].blessing_type === record.blessing_type) {
+                icons[j].num = record.num
+              }
             }
           }
         }
@@ -222,6 +224,7 @@
       }
     },
     mounted () {
+      console.log(this.myBlessingRecords)
       // 集满福进入弹窗
       // this.showDialog('jdfl')
       this.currentBlessing = this.myBlessingList[this.initialIndex]

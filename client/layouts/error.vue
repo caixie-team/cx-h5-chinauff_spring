@@ -35,10 +35,10 @@
       'error'
     ],
     mounted () {
-      this.$store.commit('option/SET_ERROR_COLUMU', true)
+      // this.$store.commit('option/SET_ERROR_COLUMU', true)
     },
     beforeDestroy () {
-      this.$store.commit('option/SET_ERROR_COLUMU', false)
+      // this.$store.commit('option/SET_ERROR_COLUMU', false)
     }
   }
 </script>

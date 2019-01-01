@@ -57,6 +57,24 @@
         title: '老娘舅新春集福瓜分18吨福米'
       }
     },
+    fetch ({store, route}) {
+      console.log('-------fetch ....')
+      store.dispatch('luckyTimes', {
+        openId: store.getters.openId
+      })
+      // const query = route.query
+      // console.log(query)
+      // if (query.code !== undefined && query.state !== undefined && query.state === 'userAuth') {
+      //   return store.dispatch('loadWechatUserInfo', query.code)
+      //   console.log('a')
+      // }
+      // return store.dispatch('loadGithubRepositories')
+    },
+    // fetch () {
+    //   this.$store.dispatch('luckyTimes', {
+    //     openId: this.userInfo.openId
+    //   })
+    // },
     components: {
       CPage,
       TopButtons,
@@ -112,9 +130,6 @@
     },
     mounted () {
       this.$store.commit('ai/RESET_SCORE')
-      this.$store.dispatch('luckyTimes', {
-        openId: this.userInfo.openId
-      })
     },
     methods: {
       initGame () {
@@ -403,14 +418,14 @@
 
     .footer
       /*top: 200px*/
-      /*position: relative*/
+      position: relative
       /*flex: 1*/
       /*display: flex*/
       /*height: 300px*/
       /*flex-direction: column*/
       /*justify-content: flex-end;*/
       /*align-items: flex-end;*/
-      margin-bottom: 3%
+      margin-bottom: 40px
       color: #e6daa2;
 
       .upload

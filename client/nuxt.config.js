@@ -192,7 +192,7 @@ module.exports = {
 
     vendor: [
       'axios',
-      'game'
+      // 'game'
       // 'vant'
     ],
     maxChunkSize: 350000,

@@ -17,7 +17,6 @@ export default class Game {
     return Game.instance
   }
   print () {
-    console.log('a-a-a----')
   }
   constructor () {
     console.log('intid....a.df')
