@@ -9,26 +9,27 @@
         class="imgBt">
       <div class="footer">
         <div
-          v-if="luckyTimes > 0"
           class="upload">
           <label for="theFile">
-            <img src="~assets/img/btn/btn_sys.png">
+            <img
+              src="~assets/img/btn/btn_sys.png"
+              @click="picker">
           </label>
-          <input
-            id="theFile"
-            ref="camera"
-            type="file"
-            class="file"
-            capture="camera"
-            @change="upload">
-        </div>
-        <div
-          v-else
-          class="upload"
-          @click="showDialog('limit')">
-          <label>
-            <img src="~assets/img/btn/btn_sys.png">
-          </label>
+          <!--<input-->
+          <!--id="theFile"-->
+          <!--ref="camera"-->
+          <!--type="file"-->
+          <!--class="file"-->
+          <!--capture="camera"-->
+          <!--@change="upload">-->
+        <!--</div>-->
+        <!--<div-->
+          <!--v-else-->
+          <!--class="upload"-->
+          <!--@click="showDialog('limit')">-->
+          <!--<label>-->
+          <!--<img src="~assets/img/btn/btn_sys.png">-->
+          <!--</label>-->
         </div>
       </div>
     </div>
@@ -117,6 +118,18 @@
       })
     },
     methods: {
+      picker () {
+        console.log('choose image ....')
+        wx.chooseImage({
+          count: 1, // 默认9
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+          success: function (res) {
+            const localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+            console.log(localIds)
+          }
+        })
+      },
       initGame () {
         if (isBrowser) {
           const [w, h] = [window.innerWidth, window.innerHeight]

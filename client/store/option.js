@@ -28,7 +28,11 @@ export const state = () => ({
     jsApiList: [
       'hideMenuItems',
       'onMenuShareTimeline',
-      'getLocation'
+      'getLocation',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage'
       // 'chooseCard',
       // 'addCard',
       // 'openCard',
@@ -51,7 +55,7 @@ export const mutations = {
   },
 
   // 设置是否移动端状态
-  SET_MOBILE_LAYOUT(state, action) {
+  SET_MOBILE_LAYOUT (state, action) {
     state.mobileLayout = action
   },
 
