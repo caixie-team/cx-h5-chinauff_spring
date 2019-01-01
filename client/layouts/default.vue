@@ -1,15 +1,16 @@
 <template>
   <div
+    v-cloak
     id="app">
-    <!--<share-guide v-show="share"/>-->
-    <!--<transition-->
-    <!--name="bounce">-->
-    <!--<play12s v-show="isShow12s"/>-->
-    <!--</transition>-->
-    <!--<transition-->
-    <!--name="bounce">-->
-    <!--<play6s v-show="isShow6s"/>-->
-    <!--</transition>-->
+    <share-guide v-show="share"/>
+    <transition
+      name="bounce">
+      <play12s v-show="isShow12s"/>
+    </transition>
+    <transition
+      name="bounce">
+      <play6s v-show="isShow6s"/>
+    </transition>
     <nuxt/>
 
   </div>

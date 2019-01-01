@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1> 兑换页</h1>
-    <a href="#">
-      aaa
-    </a>
+    <a
+      href="#"
+      @click="clickHandler"/>
   </div>
 </template>
 <script>
@@ -11,6 +11,11 @@
     head () {
       return {
         title: '兑换福利'
+      }
+    },
+    methods: {
+      clickHandler () {
+        alert('点击事件')
       }
     }
   }
