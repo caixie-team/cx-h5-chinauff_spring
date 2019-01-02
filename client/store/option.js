@@ -66,7 +66,17 @@ export const mutations = {
 
   // 设置 JSSDK
   SET_JSSDK_CONFIG (state, action) {
-    state.jssdkConfig = Object.assign({}, state.jssdkConfig, action)
+    state.jssdkConfig = action
+    state.jssdkConfig.jsApiList = [
+      'hideMenuItems',
+      'onMenuShareTimeline',
+      'getLocation',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage'
+    ]
+    // state.jssdkConfig = Object.assign({}, state.jssdkConfig, action)
     // console.log(state.jssdkConfig)
   },
 
