@@ -130,23 +130,38 @@
           // sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
           success: function (res) {
             const tempFilePaths = res.tempFilePaths
-            console.log(tempFilePaths)
+            // console.log(tempFilePaths)
             const localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
             // console.log(localIds)
             self.localId = localIds[0]
+            if (self.localId) {
+              wx.uploadImage({
+                localId: self.localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                  alert('上传成功')
+                  self.serverId = res.serverId; // 返回图片的服务器端ID
+                  console.log(self.serverId)
+                }
+              });
+            }
           }
         })
-        if (self.localId) {
-          wx.uploadImage({
-            localId: self.localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-            isShowProgressTips: 1, // 默认为1，显示进度提示
-            success: function (res) {
-              self.serverId = res.serverId; // 返回图片的服务器端ID
-              console.log(self.serverId)
-            }
-          });
-        }
+
       },
+      // syncUpload() {
+      //   if (!localIds.length) {
+      //     alert('上传成功!');
+      //   } else {
+      //     var localId = localIds.pop();
+      //     wx.uploadImage({
+      //       localId: localId,
+      //       success: function() {
+      //         syncUpload();
+      //       }
+      //     });
+      //   }
+      // },
       initGame () {
         if (isBrowser) {
           const [w, h] = [window.innerWidth, window.innerHeight]
