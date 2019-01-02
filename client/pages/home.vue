@@ -136,7 +136,7 @@
         if (isBrowser) {
           const [w, h] = [window.innerWidth, window.innerHeight]
           const Ratio = window.devicePixelRatio
-          console.log(Ratio)
+          // console.log(Ratio)
           this.W = w * Ratio
           this.H = h * Ratio
           this.worldWidth = 640

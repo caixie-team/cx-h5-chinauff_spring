@@ -153,8 +153,8 @@ export const actions = {
     store.commit('user/SET_USER_INFO', JSON.parse(req.session.activity_user))
     const initAppData = [
       // 获取微信JSSDK配置
-      // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
+      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -203,7 +203,6 @@ export const actions = {
     // console.log(url)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
-    console.log(url)
     const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
     return this.$axios.$post(postUrl)
       .then(response => {
