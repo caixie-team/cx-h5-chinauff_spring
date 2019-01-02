@@ -153,8 +153,8 @@ export const actions = {
     store.commit('user/SET_USER_INFO', JSON.parse(req.session.activity_user))
     const initAppData = [
       // 获取微信JSSDK配置
-      store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -187,10 +187,7 @@ export const actions = {
       })
   },
   loadCxJSSDKConfig ({commit}, url) {
-    // const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
-    const getUrl = `https://weixin.chinauff.com/spring/server/api/wechat/signature?url=${encodeURIComponent(url)}`
-    console.log(getUrl)
-    console.log('请求微信签名')
+    const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
     return this.$axios.$get(getUrl)
       .then(response => {
         // console.log(response)
