@@ -187,7 +187,8 @@ export const actions = {
       })
   },
   loadCxJSSDKConfig ({commit}, url) {
-    const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
+    // const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
+    const getUrl = `https://weixin.chinauff.com/spring/server/api/wechat/signature?url=${encodeURIComponent(url)}`
     console.log(getUrl)
     console.log('请求微信签名')
     return this.$axios.$get(getUrl)
