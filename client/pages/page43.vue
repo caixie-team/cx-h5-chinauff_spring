@@ -4,7 +4,7 @@
     <div
       slot="content"
       class="page43">
-      <top-buttons/>
+      <top-buttons :actions="[]"/>
       <div class="content">
         <div class="shopList">
           <div class="input-search">
@@ -124,7 +124,7 @@
     },
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米'
+        title: '选择预约门店'
       }
     },
     components: {
