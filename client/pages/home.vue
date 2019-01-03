@@ -78,8 +78,8 @@
     },
     watch: {
       score (newVal) {
-        console.log('score .......')
-        console.log(newVal)
+        // console.log('score .......')
+        // console.log(newVal)
         if (this.score === 100) {
           // 跳转到集福动画页
           setTimeout(() => {
@@ -87,12 +87,12 @@
             this.$store.commit('ai/RESET_SCORE')
             EventBus.$emit('show12s', true)
             // this.$router.push('/page22')
-          }, 2000)
+          }, 2500)
 
         } else {
           setTimeout(() => {
             this.dialog.hide()
-          }, 3000)
+          }, 2500)
           this.picValue = ''
         }
       },
