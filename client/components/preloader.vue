@@ -17,14 +17,12 @@
       class="container container3">
       <h1 class="msg">
         <span
-          v-if="score > 40"
+          v-if="score === 100"
           class="color2">
-          “米” 的匹配值
-          <br><br>
-          {{ score.toFixed(2) }}%
+          识别成功
         </span>
         <span v-else>
-          不能匹配 “米”
+          识别失败
           <br><br>
           请重新 “扫一扫”
         </span>
@@ -47,7 +45,7 @@
         return this.$store.state.ai.posting
       },
       isMatching () {
-        return this.$store.state.ai.data.score > 55
+        return this.$store.state.ai.data.score === 100
       },
       score () {
         return this.$store.state.ai.data.score

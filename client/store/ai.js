@@ -7,7 +7,7 @@ export const state = () => {
   return {
     posting: false,
     data: {
-      score: -1
+      score: 0
     }
   }
 }
@@ -25,6 +25,8 @@ export const mutations = {
   },
 
   RESET_SCORE (state) {
-    state.data.score = -1
+    if (state.data.score > 0) {
+      state.data.score = 0
+    }
   }
 }

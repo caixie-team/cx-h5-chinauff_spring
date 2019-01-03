@@ -15,21 +15,6 @@
               src="~assets/img/btn/btn_sys.png"
               @click="picker">
           </label>
-          <!--<input-->
-          <!--id="theFile"-->
-          <!--ref="camera"-->
-          <!--type="file"-->
-          <!--class="file"-->
-          <!--capture="camera"-->
-          <!--@change="upload">-->
-          <!--</div>-->
-          <!--<div-->
-          <!--v-else-->
-          <!--class="upload"-->
-          <!--@click="showDialog('limit')">-->
-          <!--<label>-->
-          <!--<img src="~assets/img/btn/btn_sys.png">-->
-          <!--</label>-->
         </div>
       </div>
     </div>
@@ -75,12 +60,12 @@
       }
     },
     computed: {
-      isChecking () {
-        return this.$store.state.ai.posting
-      },
-      isMatching () {
-        return this.$store.state.ai.data.score > 40
-      },
+      // isChecking () {
+      //   return this.$store.state.ai.posting
+      // },
+      // isMatching () {
+      //   return this.$store.state.ai.data.score
+      // },
       score () {
         return this.$store.state.ai.data.score
       },
@@ -92,8 +77,10 @@
       }
     },
     watch: {
-      score () {
-        if (this.score > 40) {
+      score (newVal) {
+        console.log('score .......')
+        console.log(newVal)
+        if (this.score === 100) {
           // 跳转到集福动画页
           setTimeout(() => {
             this.dialog.hide()
@@ -109,9 +96,6 @@
           this.picValue = ''
         }
       },
-      isMatching () {
-        setTimeout(() => this.dialog.hide(), 3000)
-      }
     },
     mounted () {
       this.$store.commit('ai/RESET_SCORE')
@@ -121,7 +105,7 @@
     },
     methods: {
       picker () {
-        console.log('choose image ....')
+        // console.log('choose image ....')
         const self = this
         wx.chooseImage({
           count: 1, // 默认9
@@ -145,76 +129,13 @@
         wx.uploadImage({
           localId: src, // 需要上传的图片的本地ID，由chooseImage接口获得
           isShowProgressTips: 1, // 默认为1，显示进度提示
-          success: (res) => {
-            this.$store.dispatch('checkImage', {
+          success: async (res) => {
+            await this.$store.dispatch('checkImage', {
               mediaId: res.serverId,
               openId: this.$store.getters.openId
-              // file: res.serverId
             })
-            // alert('上传成功')
-            // self.serverId = res.serverId; // 返回图片的服务器端ID
-            // console.log(self.serverId)
           }
         })
-      },
-      // saveAndCheckImage (imageData) {
-      //
-      // },
-      // syncUpload() {
-      //   if (!localIds.length) {
-      //     alert('上传成功!');
-      //   } else {
-      //     var localId = localIds.pop();
-      //     wx.uploadImage({
-      //       localId: localId,
-      //       success: function() {
-      //         syncUpload();
-      //       }
-      //     });
-      //   }
-      // },
-      initGame () {
-        if (isBrowser) {
-          const [w, h] = [window.innerWidth, window.innerHeight]
-          const Ratio = window.devicePixelRatio
-          // console.log(Ratio)
-          this.W = w * Ratio
-          this.H = h * Ratio
-          this.worldWidth = 640
-          this.worldHeight = 1136
-
-          this.app = new PIXI.Application(
-            window.innerWidth * Ratio,
-            window.innerHeight * Ratio,
-            {
-              transparent: true
-            })
-          this.isHaveLoad = false
-          this.isLoadFirst = false
-          // this.game = Game.getInstance()
-          const viewport = new PIXI.extras.Viewport({
-            screenWidth: window.innerWidth,
-            screenHeight: window.innerHeight,
-            worldWidth: this.worldWidth,
-            worldHeight: this.worldHeight
-          })
-          viewport.fitWidth(this.worldWidth, false, false)
-            .fitHeight(this.worldHeight, false, false)
-          this.app.stage.addChild(viewport)
-          // 添加背景容器
-          const bg = viewport.addChild(new PIXI.Container())
-          // 添加背景图
-          bg.addChild(new PIXI.Sprite.fromImage(bgLightImg))
-          // 添加背景
-          viewport.addChild(bg)
-
-          this.$refs.gameContainer.appendChild(this.app.view)
-          this.loadRes(() => {
-            this.init6s()
-            console.log('loading end...')
-            // this.$store.dispatch('showLoading', {show: false})
-          })
-        }
       },
       showAlert () {
         this.dialog = this.$createDialog({
@@ -229,187 +150,6 @@
           ...option
         })
         this.dialog.show()
-      },
-      upload (e) {
-        const files = e.target.files || e.dataTransfer.files
-        if (!files.length) return
-        this.picValue = files[0]
-        this.imgPreview(this.picValue)
-
-      },
-      imgPreview (file) {
-        const self = this
-        let Orientation
-        // 去获取拍照时的信息，解决拍出来的照片旋转问题
-        Exif.getData(file, function () {
-          Orientation = Exif.getTag(this, 'Orientation')
-        })
-        // 看支持不支持FileReader
-        if (!file || !window.FileReader) return
-
-        if (/^image/.test(file.type)) {
-          // 创建一个reader
-          const reader = new FileReader()
-          // 将图片2将转成 base64 格式
-          reader.readAsDataURL(file)
-          // 读取成功后的回调
-          reader.onloadend = function () {
-            const result = this.result
-            const img = new Image()
-            img.src = result
-            self.showDialog('scan', {
-              imgsrc: img.src
-            })
-            // 判断图片是否大于100K,是就直接上传，反之压缩图片
-            if (this.result.length <= (100 * 1024)) {
-              self.headerImage = this.result
-              self.postImg()
-            } else {
-              img.onload = function () {
-                const data = self.compress(img, Orientation)
-                self.headerImage = data
-                self.postImg()
-              }
-            }
-          }
-        }
-      },
-      async postImg () {
-        // 这里写接口
-        // console.log(this.headerImage)
-        const imageData = this.headerImage.replace(/^data:image\/(png|jpg|jpeg);base64,/, '')
-        await this.$store.dispatch('checkImage', {
-          file: imageData
-        })
-        // const res = await this.$axios.$post(`${apiConfig.hostUrl}/api/ai`, {
-        //   file: imageData
-        // })
-        // console.log(res.data.score)
-      },
-      rotateImg (img, direction, canvas) {
-        // 最小与最大旋转方向，图片旋转4次后回到原方向
-        const min_step = 0
-        const max_step = 3
-        if (img == null) return
-        // img的高度和宽度不能在img元素隐藏后获取，否则会出错
-        const height = img.height
-        const width = img.width
-        let step = 2
-        // if (step == null) {
-        //   step = min_step
-        // }
-        if (direction === 'right') {
-          step++
-          // 旋转到原位置，即超过最大值
-          step > max_step && (step = min_step)
-        } else {
-          step--
-          step < min_step && (step = max_step)
-        }
-        // 旋转角度以弧度值为参数
-        const degree = step * 90 * Math.PI / 180
-        const ctx = canvas.getContext('2d')
-        switch (step) {
-          case 0:
-            canvas.width = width
-            canvas.height = height
-            ctx.drawImage(img, 0, 0)
-            break
-          case 1:
-            canvas.width = height
-            canvas.height = width
-            ctx.rotate(degree)
-            ctx.drawImage(img, 0, -height)
-            break
-          case 2:
-            canvas.width = width
-            canvas.height = height
-            ctx.rotate(degree)
-            ctx.drawImage(img, -width, -height)
-            break
-          case 3:
-            canvas.width = height
-            canvas.height = width
-            ctx.rotate(degree)
-            ctx.drawImage(img, -width, 0)
-            break
-          default:
-            console.log('step')
-        }
-      },
-      compress (img, Orientation) {
-        const canvas = document.createElement('canvas')
-        const ctx = canvas.getContext('2d')
-        // 瓦片canvas
-        const tCanvas = document.createElement('canvas')
-        const tctx = tCanvas.getContext('2d')
-        const initSize = img.src.length
-        let width = img.width
-        let height = img.height
-        // 如果图片大于四百万像素，计算压缩比并将大小压至400万以下
-        let ratio
-        if ((ratio = width * height / 5000000) > 1) {
-          // console.log('大于400万像素')
-          ratio = Math.sqrt(ratio)
-          width /= ratio
-          height /= ratio
-        } else {
-          ratio = 1
-        }
-        canvas.width = width
-        canvas.height = height
-        // 铺底色
-        ctx.fillStyle = '#fff'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        // 如果图片像素大于100万则使用瓦片绘制
-        let count
-        if ((count = width * height / 3000000) > 1) {
-          console.log('超过100W像素')
-          // 计算要分成多少块瓦片
-          count = ~~(Math.sqrt(count) + 1)
-          // 计算每块瓦片的宽和高
-          const nw = ~~(width / count)
-          const nh = ~~(height / count)
-          tCanvas.width = nw
-          tCanvas.height = nh
-          for (let i = 0; i < count; i++) {
-            for (let j = 0; j < count; j++) {
-              tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh)
-              ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh)
-            }
-          }
-        } else {
-          ctx.drawImage(img, 0, 0, width, height)
-        }
-        // 修复ios上传图片的时候 被旋转的问题
-        if (Orientation !== '' && Orientation !== 1) {
-          switch (Orientation) {
-            case 6:
-              // 需要顺时针（向左）90度旋转
-              this.rotateImg(img, 'left', canvas)
-              break
-            case 8:
-              // 需要逆时针（向右）90度旋转
-              this.rotateImg(img, 'right', canvas)
-              break
-            case 3:
-              // 需要180度旋转
-              // 转两次
-              this.rotateImg(img, 'right', canvas)
-              this.rotateImg(img, 'right', canvas)
-              break
-            default:
-              console.log('rotate')
-          }
-        }
-        // 进行最小压缩
-        const ndata = canvas.toDataURL('image/jpeg', 0.1)
-        // console.log('压缩前：' + initSize)
-        // console.log('压缩后：' + ndata.length)
-        // console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + '%')
-        tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0
-
-        return ndata
       }
     },
   }
