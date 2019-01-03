@@ -31,7 +31,7 @@
   import TopButtons from '../components/top-buttons'
   import AiScan from '../components/ai-scan'
   import DialogScan from '../components/dialog/dialog-scan'
-  import Exif from 'exif-js'
+  // import Exif from 'exif-js'
   // import apiConfig from '~/api.config'
 
   export default {

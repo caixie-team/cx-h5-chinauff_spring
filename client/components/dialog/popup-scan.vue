@@ -110,7 +110,7 @@
         border-radius: 18px
         z-index: 1
 
-      > cover
+      > img.cover
         border-radius: 14px
         width: 93%
         height: 93%

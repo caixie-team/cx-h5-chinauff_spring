@@ -19,12 +19,12 @@
       class="container container3">
       <h1 class="msg">
         <span
-          v-if="scan.score === 100"
+          v-show="scan.score === 100"
           class="color2">
           识别成功
         </span>
         <span
-          v-if="scan.score > 100">
+          v-show="scan.score > 100">
           识别失败
           <br><br>
           请重新 “扫一扫”
