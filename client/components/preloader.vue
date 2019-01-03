@@ -12,6 +12,7 @@
       v-show="scan.score !== 100 && !(scan.score > 100)"
       class="container container2">
       <p class="msg">
+        {{ scan }}
         <span class="color1">AI 智能识别中...</span>
       </p>
     </div>

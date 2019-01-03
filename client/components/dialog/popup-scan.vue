@@ -7,7 +7,7 @@
       <preloader
         class="index"/>
       <img
-        v-show="isClose"
+        v-if="isShow"
         :src="btn1"
         class="btn-zdl"
         @click="close">
@@ -43,20 +43,20 @@
         text,
         btn1,
         btn2,
-        isClose: false
+        isShow: false
       }
     },
     mounted () {
       EventBus.$on('scan-failure', () => {
-        this.isClose = true
+        this.isShow = true
         // this.picValue = ''
       })
     },
     methods: {
       close (e) {
+        this.isShow = false
         this.$store.commit('ai/RESET_SCORE')
         this.$emit(EVENT_CLOSE, e)
-        this.isClose = false
       }
     },
   }
