@@ -22,8 +22,8 @@
           <!--class="file"-->
           <!--capture="camera"-->
           <!--@change="upload">-->
-        <!--</div>-->
-        <!--<div-->
+          <!--</div>-->
+          <!--<div-->
           <!--v-else-->
           <!--class="upload"-->
           <!--@click="showDialog('limit')">-->
@@ -134,21 +134,35 @@
             const localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
             // console.log(localIds)
             self.localId = localIds[0]
+
             if (self.localId) {
-              wx.uploadImage({
-                localId: self.localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
-                success: function (res) {
-                  alert('上传成功')
-                  self.serverId = res.serverId; // 返回图片的服务器端ID
-                  console.log(self.serverId)
-                }
-              });
+              self.showDialog('scan', {
+                imgsrc: self.localId
+              })
+              self.upToWeixinServer(self.localId)
             }
           }
         })
-
       },
+      upToWeixinServer (src) {
+        wx.uploadImage({
+          localId: src, // 需要上传的图片的本地ID，由chooseImage接口获得
+          isShowProgressTips: 1, // 默认为1，显示进度提示
+          success: function (res) {
+            self.$store.dispatch('checkImage', {
+              mediaId: res.serverId,
+              openId: self.$store.getters.openId
+              // file: res.serverId
+            })
+            // alert('上传成功')
+            // self.serverId = res.serverId; // 返回图片的服务器端ID
+            // console.log(self.serverId)
+          }
+        })
+      },
+      // saveAndCheckImage (imageData) {
+      //
+      // },
       // syncUpload() {
       //   if (!localIds.length) {
       //     alert('上传成功!');

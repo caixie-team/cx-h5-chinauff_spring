@@ -30,7 +30,7 @@ import {
   Form,
   // popup
   Popup,
-  // Toast,
+  Toast,
   Picker,
   CascadePicker,
   DatePicker,
@@ -81,7 +81,7 @@ const components = [
   Form,
   // popup
   Popup,
-  // Toast,
+  Toast,
   Picker,
   CascadePicker,
   DatePicker,

@@ -66,8 +66,9 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
       })
 
       wechatObj.shareOnMoment({
-        title: 'onMenuShareTimeline test title',
+        title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
         type: 'link',
+        desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
         // link: location.href,
         link: apiConfig.hostUrl + '/page621?beOpenId=' + beOpenId,
         success: function () {
@@ -271,7 +272,8 @@ export const actions = {
   checkImage ({commit}, data) {
     commit('ai/POST_IMAGE')
     // return this.$axios.$post(`/spring/cx/ai/jimage`, data)
-    return this.$axios.$post(`${HOST_API}/ai`, data)
+    return this.$axios.$post(`${API_PREFIX}/wechat/oneMedia`, data)
+    // return this.$axios.$post(`${HOST_API}/ai`, data)
       .then(response => {
         const data = getResData(response)
         if (resIsSuccess(response)) {
