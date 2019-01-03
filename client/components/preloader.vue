@@ -1,6 +1,7 @@
 <template>
   <div class="preloader">
     <div
+      v-show="scan.score !== 100 && !(scan.score > 100)"
       class="container container1">
       <div class="circle"/>
       <div class="circle circle1"/>
@@ -8,6 +9,7 @@
       <div class="circle circle3"/>
     </div>
     <div
+      v-show="scan.score !== 100 && !(scan.score > 100)"
       class="container container2">
       <p class="msg">
         <span class="color1">AI 智能识别中...</span>
@@ -17,11 +19,12 @@
       class="container container3">
       <h1 class="msg">
         <span
-          v-if="score === 100"
+          v-if="scan.score === 100"
           class="color2">
           识别成功
         </span>
-        <span v-else>
+        <span
+          v-if="scan.score > 100">
           识别失败
           <br><br>
           请重新 “扫一扫”
@@ -33,6 +36,8 @@
 </template>
 
 <script>
+  /* eslint-disable no-undef */
+  import EventBus from '~/utils/event-bus.js'
   export default {
     props: {
       show: {
@@ -41,14 +46,19 @@
       }
     },
     computed: {
-      isChecking () {
-        return this.$store.state.ai.posting
-      },
-      isMatching () {
-        return this.$store.state.ai.data.score === 100
-      },
-      score () {
-        return this.$store.state.ai.data.score
+      scan () {
+        return this.$store.state.ai.data
+      }
+    },
+    watch: {
+      scan (data) {
+        if (data.score === 100) {
+          EventBus.$emit('scan-success')
+          console.log('成功')
+        } else {
+          EventBus.$emit('scan-failure')
+          console.log('失败')
+        }
       }
     }
   }
@@ -109,7 +119,8 @@
     color: #fdd32a
 
   .color2
-    color: $color-white
+    color: #fdd32a
+    // color: $color-white
 
   .color3
     color: $color-primary
@@ -191,5 +202,6 @@
     padding-top: 50px
     font-size: 40px
     line-height: 40px
-    animation: fadeInDown2 3s infinite
+    margin-top: -50px
+  /*animation: fadeInDown2 3s infinite*/
 </style>

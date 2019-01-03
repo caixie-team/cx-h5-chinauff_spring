@@ -56,16 +56,11 @@
         picValue: '',
         localId: '',
         serverId: '',
+        showClose: true,
         actions: ['hdjs', 'wdfb']
       }
     },
     computed: {
-      // isChecking () {
-      //   return this.$store.state.ai.posting
-      // },
-      // isMatching () {
-      //   return this.$store.state.ai.data.score
-      // },
       score () {
         return this.$store.state.ai.data.score
       },
@@ -80,21 +75,20 @@
       score (newVal) {
         // console.log('score .......')
         // console.log(newVal)
-        if (this.score === 100) {
+        // if (this.score === 100) {
           // 跳转到集福动画页
-          setTimeout(() => {
-            this.dialog.hide()
-            this.$store.commit('ai/RESET_SCORE')
-            EventBus.$emit('show12s', true)
+          // setTimeout(() => {
+          //   this.$store.commit('ai/RESET_SCORE')
+          //   EventBus.$emit('show12s', true)
             // this.$router.push('/page22')
-          }, 2500)
+          // }, 2500)
 
-        } else {
-          setTimeout(() => {
-            this.dialog.hide()
-          }, 2500)
-          this.picValue = ''
-        }
+        // } else {
+        //   setTimeout(() => {
+        //     this.dialog.hide()
+        //   }, 2500)
+        //   this.picValue = ''
+        // }
       },
     },
     mounted () {
@@ -102,6 +96,22 @@
       this.$store.dispatch('luckyTimes', {
         openId: this.userInfo.openId
       })
+
+      EventBus.$on('scan-success', () => {
+        this.dialog.hide()
+        setTimeout(() => {
+          this.$store.commit('ai/RESET_SCORE')
+          EventBus.$emit('show12s', true)
+        }, 2500)
+      })
+      EventBus.$on('scan-failure', () => {
+        // this.showClose = true
+        // setTimeout(() => {
+        //   this.dialog.hide()
+        // }, 2500)
+        this.picValue = ''
+      })
+
     },
     methods: {
       picker () {

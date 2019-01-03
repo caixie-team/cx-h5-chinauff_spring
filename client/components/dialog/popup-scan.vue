@@ -6,12 +6,17 @@
       class="scanimg">
       <preloader
         class="index"/>
+      <img
+        v-show="isClose"
+        :src="btn1"
+        class="btn-zdl"
+        @click="close">
       <div class="mask"/>
-      <img :src="imgsrc">
+      <img
+        :src="imgsrc"
+        class="cover">
     </div>
-    <!--<img-->
-    <!--:src="btn1"-->
-    <!--@click="close">-->
+
   </div>
 </template>
 <script>
@@ -19,6 +24,7 @@
   import btn1 from '~/assets/img/btn/btn_zdlh.png'
   import btn2 from '~/assets/img/btn/btn_yqhyl.png'
   import Preloader from '~/components/preloader'
+  import EventBus from '~/utils/event-bus.js'
 
   const EVENT_CLOSE = 'close'
   export default {
@@ -36,14 +42,23 @@
       return {
         text,
         btn1,
-        btn2
+        btn2,
+        isClose: false
       }
+    },
+    mounted () {
+      EventBus.$on('scan-failure', () => {
+        this.isClose = true
+        // this.picValue = ''
+      })
     },
     methods: {
       close (e) {
+        this.$store.commit('ai/RESET_SCORE')
         this.$emit(EVENT_CLOSE, e)
+        this.isClose = false
       }
-    }
+    },
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -81,7 +96,12 @@
 
       .index
         z-index: 10
-
+      .btn-zdl
+        z-index: 2
+        width: 136px
+        height: 41px
+        bottom: 50px
+        position: absolute
       .mask
         width: 100%
         height: 100%
@@ -90,8 +110,8 @@
         border-radius: 18px
         z-index: 1
 
-      > img
-        border-radius: 18px
+      > cover
+        border-radius: 14px
         width: 93%
         height: 93%
         object-fit: cover

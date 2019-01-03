@@ -15,7 +15,9 @@
           @click="close">
           <img src="~assets/img/btn/btn_close_r.png">
         </span>
-        <popup-scan :imgsrc="imgsrc">
+        <popup-scan
+          :imgsrc="imgsrc"
+          @close="close">
           <preloader/>
         </popup-scan>
       </div>

@@ -46,7 +46,8 @@
           v-if="type === 'dhff'"/>
         <popup-scan
           v-if="type === 'scan'"
-          :imgsrc="imgsrc"/>
+          :imgsrc="imgsrc"
+          @close="close"/>
       </div>
     </c-popup>
   </transition>
