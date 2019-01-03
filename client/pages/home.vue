@@ -148,10 +148,10 @@
         wx.uploadImage({
           localId: src, // 需要上传的图片的本地ID，由chooseImage接口获得
           isShowProgressTips: 1, // 默认为1，显示进度提示
-          success: function (res) {
-            self.$store.dispatch('checkImage', {
+          success: (res) => {
+            this.$store.dispatch('checkImage', {
               mediaId: res.serverId,
-              openId: self.$store.getters.openId
+              openId: this.$store.getters.openId
               // file: res.serverId
             })
             // alert('上传成功')
