@@ -12,7 +12,6 @@
       v-show="scan.score !== 100 && !(scan.score > 100)"
       class="container container2">
       <p class="msg">
-        {{ scan }}
         <span class="color1">AI 智能识别中...</span>
       </p>
     </div>
@@ -55,10 +54,8 @@
       scan (data) {
         if (data.score === 100) {
           EventBus.$emit('scan-success')
-          console.log('成功')
         } else {
           EventBus.$emit('scan-failure')
-          console.log('失败')
         }
       }
     }

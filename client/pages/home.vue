@@ -98,8 +98,8 @@
       })
 
       EventBus.$on('scan-success', () => {
-        this.dialog.hide()
         setTimeout(() => {
+          this.dialog.hide()
           this.$store.commit('ai/RESET_SCORE')
           EventBus.$emit('show12s', true)
         }, 2500)
