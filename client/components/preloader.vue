@@ -67,10 +67,10 @@
       transform: translate(-50%, -50%)
 
     .container1
-      animation: fadeInUp 5s infinite
+      animation: fadeInUp 3s infinite
 
     .container2
-      animation: fadeInDown 5s infinite
+      animation: fadeInDown 3s infinite
 
     .container3
       width: 100%
@@ -191,5 +191,5 @@
     padding-top: 50px
     font-size: 40px
     line-height: 40px
-    animation: fadeInDown2 5s infinite
+    animation: fadeInDown2 3s infinite
 </style>
