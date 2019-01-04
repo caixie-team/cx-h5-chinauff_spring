@@ -206,8 +206,8 @@
         }
         this.selectedDate = selectedText.join(' ')
         await this.$store.commit('user/SET_RESERVER_FORM', {
-          reserve_date: new Date(selectedVal).getTime(),
-          format_date: selectedText.join(' ')
+          reserve_date: selectedVal,
+          format_date: selectedText.join('')
         })
         // this.$createDialog({
         //   type: 'warn',
