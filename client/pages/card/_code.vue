@@ -1,4 +1,4 @@
-<!-- 5.1、二维码兑换 -->
+<!-- 领取会员充值卡 -->
 <template>
   <c-page type="bg4">
     <div
@@ -193,7 +193,7 @@
     },
     computed: {
       isReceive () {
-        return this.$store.state.prize.receive.data.receive_time !== null
+        return this.$store.state.prize.receiveCard.data.receive_time !== null
       },
       _couponClass () {
         return [

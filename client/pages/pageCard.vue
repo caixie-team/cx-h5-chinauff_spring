@@ -53,7 +53,7 @@
   import fu1 from '~/assets/img/common/fu1.png'
   import fu2 from '~/assets/img/common/fu2.png'
   import fu3 from '~/assets/img/common/fu3.png'
-  import fu4 from '~/assets/img/common/fu4.png'
+  // import fu4 from '~/assets/img/common/fu4.png'
   import {has} from 'lodash'
 
   export default {
@@ -61,7 +61,7 @@
     name: 'Index',
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米',
+        title: '查看会员充值卡',
       }
     },
     fetch ({store, query, error}) {

@@ -22,7 +22,7 @@
         <div class="exchange-form">
           <div class="exchange-form__content">
             <span class="date">
-              2019年1月27日—2月7日
+              2019年1月27日—2月4日
             </span>
             <span class="shop">
               湖州总部自由港店
