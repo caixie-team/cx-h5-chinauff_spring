@@ -152,6 +152,7 @@ export const actions = {
     // console.log(req.session.activity_user)
     // console.log(req.session.activity_user)
     store.commit('user/SET_USER_INFO', JSON.parse(req.session.activity_user))
+    console.log(getBaseUrl(req))
     const initAppData = [
       // 获取微信JSSDK配置
       // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
