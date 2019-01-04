@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <ai-scan class="scan"/>
+    <!--<ai-scan class="scan"/>-->
   </c-page>
 </template>
 <script>

@@ -119,7 +119,12 @@
         if (blessingData) {
           // 抽奖劵
           await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
-          EventBus.$emit('show6s', false)
+          // EventBus.$on('scan-success', () => {
+            setTimeout(() => {
+              EventBus.$emit('show6s', false)
+              // EventBus.$emit('show12s', true)
+            }, 1000)
+          // })
         }
       },
       showDialog (type, option) {
@@ -217,7 +222,7 @@
     align-self: center
     background-image: url('~assets/img/btn/btn_sxfq.png')
     position: absolute
-    top: 530px
+    top: 550px
     left: 200px
     z-index: 31;
     background-size: 248px 60px
