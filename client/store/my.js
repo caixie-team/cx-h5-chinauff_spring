@@ -18,9 +18,20 @@ export const state = () => ({
     fetching: false,
     data: []
   },
+  // v-if="card.receive_time !== null && card.receive_time !== ''"
+  // class="cards-list__item">
+  // <span class="date">{{ card.receive_time }} </span>
+// <span class="user">
+//   <span class="name">{{ card.recipient_name }}</span>
+// <span class="phone">{{ card.phone_number }}</span>
+// </span>
+// <span class="address">{{ card.address }}</span>
+// </div>
   cards: {
     fetching: false,
-    data: {}
+    data: {
+      card_code: 'aabbccdd'
+    }
   },
 // {
   // 类型

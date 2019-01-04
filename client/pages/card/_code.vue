@@ -325,6 +325,8 @@
       position: relative
       display: flex
       flex-direction: column
+      align-content: center
+      align-items: center
       height: 800px
       justify-content: space-between
 

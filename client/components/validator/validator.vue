@@ -9,8 +9,7 @@
     <!--class="c-validator-msg"-->
     <!--@click="msgClickHandler">-->
     <div
-      class="c-validator-msg"
-      @click="msgClickHandler">
+      class="c-validator-msg">
       <slot
         :message="msg"
         :dirty="dirty"
