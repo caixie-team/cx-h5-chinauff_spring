@@ -44,7 +44,7 @@ module.exports = options => {
         if (_.has(query, 'headimgurl')) {
           postData.avatar = query.headimgurl
         }
-        console.log('查询 活动账户信息。。。。。。')
+        // console.log('查询 活动账户信息。。。。。。')
         // 创建或查询活动账户
         let res = (await think.got.post(apiConfig.baseUrl + '/account/take', {
           json: true,
