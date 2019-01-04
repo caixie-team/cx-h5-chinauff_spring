@@ -17,7 +17,7 @@
             <span
               class="date"
               @click="showDatePicker">
-              <span v-if="selectedDate === '' && formData.reserve_date === null">
+              <span v-if="formData.reserve_date === null">
                 选择日期
               </span>
               <span v-else>
@@ -191,7 +191,7 @@
 
         this.datePicker.show()
       },
-      selectHandle (date, selectedVal, selectedText) {
+      async selectHandle (date, selectedVal, selectedText) {
         const days = (new Date(selectedVal) - new Date(new Date())) / 1000 / 60 / 60 / 24
         if (days < 3) {
           const pop = this.$createPopup({
@@ -202,13 +202,13 @@
             }
           })
           pop.show()
-        } else {
-          this.selectedDate = selectedText.join(' ')
-          this.$store.commit('user/SET_RESERVER_FORM', {
-            reserve_date: new Date(selectedVal),
-            format_date: selectedText.join(' ')
-          })
+          return
         }
+        this.selectedDate = selectedText.join(' ')
+        await this.$store.commit('user/SET_RESERVER_FORM', {
+          reserve_date: new Date(selectedVal),
+          format_date: selectedText.join(' ')
+        })
         // this.$createDialog({
         //   type: 'warn',
         //   content: `Selected Item: <br/> - date: ${date} <br/> - value: ${selectedVal.join(', ')} <br/> - text: ${selectedText.join(' ')}`,
@@ -216,6 +216,10 @@
         // }).show()
       },
       cancelHandle () {
+        this.$store.commit('user/SET_RESERVER_FORM', {
+          reserve_date: null,
+          format_date: null
+        })
         // this.$createToast({
         //   type: 'correct',
         //   txt: 'Picker canceled',

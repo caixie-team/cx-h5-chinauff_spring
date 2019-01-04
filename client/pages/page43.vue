@@ -288,45 +288,6 @@
         //   this.$refs.scroll.initScroll()
         // })
       },
-      showDatePicker () {
-        if (!this.datePicker) {
-          this.datePicker = this.$createDatePicker({
-            title: '预约兑换时间',
-            min: new Date(2018, 12, 5),
-            max: new Date(2019, 1, 4),
-            value: new Date(),
-            onSelect: this.selectHandle,
-            onCancel: this.cancelHandle,
-            onChange: () => {
-              console.log('change')
-            }
-          })
-        }
-
-        this.datePicker.show()
-      },
-      selectHandle (date, selectedVal, selectedText) {
-        console.log(date)
-        // this.$createDialog({
-        //   type: 'warn',
-        //   content: `Selected Item: <br/> - date: ${date} <br/> - value: ${selectedVal.join(', ')} <br/> - text: ${selectedText.join(' ')}`,
-        //   icon: 'cubeic-alert'
-        // }).show()
-      },
-      cancelHandle () {
-        // this.$createToast({
-        //   type: 'correct',
-        //   txt: 'Picker canceled',
-        //   time: 1000
-        // }).show()
-      },
-      showAlert () {
-        this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
-        })
-        this.dialog.show()
-      }
     }
   }
 </script>

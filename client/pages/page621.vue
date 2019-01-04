@@ -30,6 +30,7 @@
             <img
               src="~assets/img/page621/deng.png"
               class="text-deng">
+            {{ helper }}
             <span class="count">{{ helps.total }}</span>
             <img
               src="~assets/img/page621/weihaoyou.png"
@@ -282,10 +283,10 @@
       flex-direction: column
       justify-content: space-between
       align-items: center
-      background: url('~assets/img/page621/tcbg.png') no-repeat left top
-      background-size: 394px 584px
-      width: 394px
-      height: 600px
+      background: url('~assets/img/page621/zlbg.png') no-repeat left top
+      background-size: 389px 617px
+      width: 389px
+      height: 617px
 
       .info
         position: relative

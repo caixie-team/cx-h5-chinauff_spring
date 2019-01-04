@@ -109,6 +109,8 @@ export const mutations = {
     state.lucky.data = {}
   },
   SET_RESERVER_FORM (state, action) {
+    console.log(action)
     state.reserveForm.data = Object.assign({}, state.reserveForm.data, action)
+    console.log(state.reserveForm.data)
   }
 }
