@@ -25,7 +25,8 @@
         </section>
       </div>
       <div class="footer">
-        <a @click="showDialog('share', { showClose: true })">
+        <!--<a @click="showDialog('share', { showClose: true })">-->
+        <a @click="shareGuide">
           <img src="~assets/img/btn/btn_yqhyzl.png">
         </a>
         <nuxt-link
@@ -45,6 +46,7 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import EventBus from '~/utils/event-bus.js'
 
   export default {
     name: 'Index',
@@ -127,6 +129,9 @@
       }
     },
     methods: {
+      shareGuide () {
+        EventBus.$emit('share')
+      },
       showDialog (type, option) {
         this.dialog = this.$createDialog({
           type: type,

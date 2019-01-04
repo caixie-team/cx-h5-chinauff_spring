@@ -89,7 +89,8 @@
           v-if="helper === 3"
           src="~assets/img/page621/jixuyaoqing.png"
           class="btn-jxyqhyzl"
-          @click="showDialog('share', { showClose: true })">
+          @click="shareGuide">
+          <!--@click="showDialog('share', { showClose: true })">-->
       </div>
       <div class="footer"/>
     </div>
@@ -103,6 +104,7 @@
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
   // import text_zlhyjmf from '~/assets/img/page621/zlhyjmf.png'
+  import EventBus from '~/utils/event-bus.js'
 
   export default {
     name: 'Index',
@@ -221,6 +223,9 @@
       }
     },
     methods: {
+      shareGuide () {
+        EventBus.$emit('share')
+      },
       async helpAction () {
         const beOpenId = this.$route.query.beOpenId
         const isSuccess = await this.$store.dispatch('dealHelpAction', {

@@ -10,7 +10,8 @@
         @click="close">
       <img
         :src="btn2"
-        @click="showDialog('share', {showClose: true})">
+        @click="shareGuide">
+        <!--@click="showDialog('share', {showClose: true})">-->
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@
   import text from '~/assets/img/text/text_popup_limit.png'
   import btn1 from '~/assets/img/btn/btn_zdlh.png'
   import btn2 from '~/assets/img/btn/btn_yqhyl.png'
+  import EventBus from '~/utils/event-bus.js'
 
   const EVENT_CLOSE = 'close'
   export default {
@@ -29,6 +31,9 @@
       }
     },
     methods: {
+      shareGuide() {
+        EventBus.$emit('share')
+      },
       close (e) {
         this.$emit(EVENT_CLOSE, e)
       },

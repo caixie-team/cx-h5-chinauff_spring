@@ -28,7 +28,8 @@
         <a>
           <img
             src="~assets/img/btn/btn_yqhyzl.png"
-            @click="showDialog('share')">
+            @click="shareGuide">
+            <!--@click="showDialog('share')">-->
         </a>
         <a>
           <img src="~assets/img/btn/btn_zlycl.png">
@@ -46,6 +47,7 @@
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
   import {has} from 'lodash'
+  import EventBus from '~/utils/event-bus.js'
 
   export default {
     name: 'Index',
@@ -97,6 +99,9 @@
 
     },
     methods: {
+      shareGuide () {
+        EventBus.$emit('share')
+      },
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'intro',

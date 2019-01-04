@@ -71,7 +71,8 @@
         <img
           src="~assets/img/icon/icon_hhdj.png"
           class="icon-hhdj"
-          @click="showDialog('share', { showClose: true })">
+          @click="shareGuide">
+          <!--@click="showDialog('share', { showClose: true })">-->
       </div>
       <div class="footer">
         <div class="toolbar">
@@ -93,6 +94,7 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import EventBus from '~/utils/event-bus.js'
 
   export default {
     transition: 'page',
@@ -231,6 +233,9 @@
       // console.log()
     },
     methods: {
+      shareGuide () {
+        EventBus.$emit('share')
+      },
       // 预约兑换页
       toPage41 () {
         this.$store.commit('user/SET_RESERVER_FORM', {
