@@ -1,7 +1,7 @@
 <template>
   <div id="play6s">
     <div
-      ref="play6s" />
+      ref="play6s"/>
     <span
       class="c-btn"
       @click="getLucky"/>
@@ -14,6 +14,7 @@
   import CPage from '~/components/c-page.vue'
   import EventBus from '../../utils/event-bus.js'
   import bgLightImg from '~/assets/images/bg/page_bg_light.jpg'
+
   export default {
     components: {
       CPage
@@ -118,12 +119,12 @@
         const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
         if (blessingData) {
           // 抽奖劵
+          EventBus.$emit('show6s', false)
           await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
           // EventBus.$on('scan-success', () => {
-            setTimeout(() => {
-              EventBus.$emit('show6s', false)
-              // EventBus.$emit('show12s', true)
-            }, 1000)
+          //   setTimeout(() => {
+          // EventBus.$emit('show12s', true)
+          // }, 1000)
           // })
         }
       },
@@ -218,6 +219,7 @@
   #play6s
     position: fixed
     z-index: 30
+
   .c-btn
     align-self: center
     background-image: url('~assets/img/btn/btn_sxfq.png')

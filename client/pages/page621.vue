@@ -10,6 +10,7 @@
       <span class="title"/>
       <div class="content">
         <div class="info">
+          <!--headimgs-->
           <div
             v-if="helps.avatars.length > 0"
             class="members members--overlap">
@@ -23,11 +24,30 @@
                   class="c-avatar c-avatar-image">
               </li>
             </ul>
+            <span class="moredot" />
           </div>
-          <span class="moredot">••••••</span>
+
+          <!--
+          <div
+            v-if="headimgs.length > 0"
+            class="members members&#45;&#45;overlap">
+            <ul>
+              <li
+                v-for="(item, index) in headimgs"
+                :key="index"
+                class="member">
+                <img
+                  :src="item"
+                  class="c-avatar c-avatar-image">
+              </li>
+            </ul>
+            <span class="moredot" />
+          </div>-->
+
 
           <div class="total">
             <img
+              v-if="helps.total > 0"
               src="~assets/img/page621/deng.png"
               class="text-deng">
             {{ helper }}
@@ -38,37 +58,36 @@
           </div>
           <img
             v-if="helper === 1 || helper === 2"
-            src="~assets/img/page621/zhulizhuli.png"
+            src="~assets/img/page621/zlhyjmf.png"
             class="text-zhulizhuli">
           <div
             v-if="helper === 3"
             class="helperInfo">
-            <h2>
-              邀请好友为你助力集满“福”
-            </h2>
-            <span>
-              参与助力的好友也将获得优惠券奖励
-            </span>
+            <img
+              src="~assets/img/page621/yaoqinghaoyou.png"
+              class="text-zlhyjmf">
           </div>
         </div>
         <img
           v-if="helper === 1"
-          src="~assets/img/btn/btn_ljzl.png"
+          src="~assets/img/page621/ljzl.png"
           class="btn-ljzl"
           @click="helpAction">
         <span
-          v-else-if="helper === 2"
+          v-if="helper === 2"
           class="helpLucky">
           <img
-            src="~assets/img/btn/btn_ywczlg.png"
+            src="~assets/img/page621/ywczl.png"
             class="btn-ywczlg">
           <nuxt-link to="/">
-            点击此处前往集福
+            <img
+              src="~assets/img/page621/btn_djccqw.png"
+              class="btn-djccqw">
           </nuxt-link>
         </span>
         <img
-          v-else-if="helper === 3"
-          src="~assets/img/btn/btn_jxyqhyzl.png"
+          v-if="helper === 3"
+          src="~assets/img/page621/jixuyaoqing.png"
           class="btn-jxyqhyzl"
           @click="showDialog('share', { showClose: true })">
       </div>
@@ -83,6 +102,7 @@
   import PageContent from '../components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  // import text_zlhyjmf from '~/assets/img/page621/zlhyjmf.png'
 
   export default {
     name: 'Index',
@@ -118,7 +138,14 @@
         tip2,
         limit: 2,
         headimgs: [
+          'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          'https://i.loli.net/2017/08/21/599a521472424.jpg',
         ],
+        // headimgs: [
+        // ],
         blessing_type: 0
       }
     },
@@ -251,7 +278,7 @@
 
       .btn-ywczlg
         position: relative
-        width: 266px
+        width: 248px
         margin-bottom: 20px
 
     .helperInfo
@@ -297,7 +324,8 @@
         align-items: center
 
         .total
-          color: $color-white
+          margin-top: 10px
+          color: #524743
           font-size: 21px
           display: flex
           flex-direction: row
@@ -309,7 +337,7 @@
             margin: 0 4px 0 4px
 
           .text-deng
-            width: 18px
+            width: 21px
             height: 21px
 
           .text-weihaoyou
@@ -319,7 +347,9 @@
       .text-zhulizhuli
         width: 185px
         height: 53px
-
+      .text-zlhyjmf
+        width: 286px
+        height: 53px
       .btn-ljzl
         position: relative
         bottom: 100px
@@ -330,13 +360,27 @@
         bottom: 100px
         width: 266px
 
-      .moredot
-        color: $color-white
-        letter-spacing: 3px
-        font-size: 18px
-        padding: 10px
+      .btn-djccqw
+        width: 230px
+        height: 27px
+
+
 
       .members
+        display: flex
+        flex-direction: column
+        justify-content: flex-start
+        align-content: center
+        align-items: center
+        margin-top: 20px
+        height: 100px
+        .moredot
+          position: relative
+          top: 20px
+          background: url('~assets/img/page621/shenglue.png') no-repeat left bottom
+          background-size: 56px 5px
+          width: 56px
+          height: 5px
         ul
           float: left
 
