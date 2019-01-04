@@ -48,7 +48,7 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
   wechatObj.initialize()
     .then(w => {
       // w is same as window.wechatObj
-      const img = 'http://pic1.ooopic.com/uploadfilepic/shiliang/2009-10-05/OOOPIC_00cyl_20091005e2c6eb1c889e342e.jpg'
+      const img = 'http://spring.chinauff.com/static/share.png'
       // const img = 'http://wx.caixie.top/spring/_nuxt/client/assets/images/bg/page_bg_light.jpg'
       // sugar method
       // const encodeBeOpenId = encodeURIComponent(beOpenId)
@@ -376,6 +376,23 @@ export const actions = {
     })
       .catch(err => {
         commit('prize/GET_COUPON_FAILURE', err)
+      })
+  },
+  // 测试发劵
+  testSendCoupon ({commit}, data) {
+    return this.$axios.$post(`${API_PREFIX}/test/sendCoupon`, {
+      ...data
+    }).then(response => {
+      const data = getResData(response)
+      if (resIsSuccess(response)) {
+        console.log(data)
+        // commit('prize/GET_COUPON_SUCCESS', data)
+        return Promise.resolve(data)
+      }
+    })
+      .catch(err => {
+        console.log(err)
+        // commit('prize/GET_COUPON_FAILURE', err)
       })
   },
   // 集福
