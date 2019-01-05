@@ -99,10 +99,10 @@
 
   export default {
     transition: 'page',
-    name: 'Index',
+    name: 'Page311',
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米',
+        title: '我的福包',
       }
     },
     fetch ({store, query, error}) {

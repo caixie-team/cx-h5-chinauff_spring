@@ -59,15 +59,15 @@
     //   return query.beOpenId
     // },
     fetch ({store, query, error}) {
-      return Promise.all([
-        store.dispatch('loadBlessingStatistics'),
-        // store.dispatch('loadPrizeBlessing'),
-        // store.dispatch('loadPrizeCoupon')
-        // 获取集福统计数
-        // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
-        // 加载活动参与的关联信息
-        // store.dispatch('loadActivityHelps', {beOpenId: query.beOpenId})
-      ])
+      // return Promise.all([
+      return store.dispatch('loadBlessingStatistics')
+      // store.dispatch('loadPrizeBlessing'),
+      // store.dispatch('loadPrizeCoupon')
+      // 获取集福统计数
+      // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
+      // 加载活动参与的关联信息
+      // store.dispatch('loadActivityHelps', {beOpenId: query.beOpenId})
+      // ])
     },
     components: {
       CPage,
@@ -191,9 +191,6 @@
         ]
       }
 
-    },
-    mounted () {
-      EventBus.$emit('show6s', false)
     },
     methods: {
       shareGuide () {
