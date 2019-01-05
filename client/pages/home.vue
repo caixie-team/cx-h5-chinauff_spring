@@ -119,7 +119,7 @@
         const self = this
         wx.chooseImage({
           count: 1, // 默认9
-          sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['camera'],
           success: function (res) {
             const tempFilePaths = res.tempFilePaths
