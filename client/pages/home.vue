@@ -37,19 +37,25 @@
   export default {
     transition: 'fade',
     name: 'Index',
-    fetch ({store, query, error}) {
-      console.log(query)
-      if (query.coupon_code) {
-        console.log(store.state.user.info.data)
-        // return this.$store.state.user.info.data
-
-        if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
-          return store.dispatch('loadPrizeCoupon', {
-            coupon_code: query.coupon_code
-          })
-        }
-      }
+    fetch ({store, route, query, params}) {
+      console.log('--x-x--x-x-x-x-x')
+      console.log(route.query)
+      // console.log(query)
+      // return store.dispatch('loadGithubRepositories')
     },
+    // fetch ({store, query, error}) {
+    //   console.log(query)
+    //   if (query.coupon_code) {
+    //     console.log(store.state.user.info.data)
+    //     // return this.$store.state.user.info.data
+    //
+    //     if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
+    //       return store.dispatch('loadPrizeCoupon', {
+    //         coupon_code: query.coupon_code
+    //       })
+    //     }
+    //   }
+    // },
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
