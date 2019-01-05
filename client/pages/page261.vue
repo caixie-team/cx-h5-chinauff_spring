@@ -195,24 +195,27 @@
         ]
       }
     },
+    mounted () {
+      EventBus.$emit('show6s', false)
+    },
     methods: {
       shareGuide () {
         EventBus.$emit('share', true)
       },
-      showDialog (type, option) {
-        this.dialog = this.$createDialog({
-          type: type,
-          ...option
-        })
-        this.dialog.show()
-      },
-      showAlert () {
-        this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
-        })
-        this.dialog.show()
-      }
+      // showDialog (type, option) {
+      //   this.dialog = this.$createDialog({
+      //     type: type,
+      //     ...option
+      //   })
+      //   this.dialog.show()
+      // },
+      // showAlert () {
+      //   this.dialog = this.$createDialog({
+      //     type: 'intro',
+      //     showClose: true
+      //   })
+      //   this.dialog.show()
+      // }
     },
   }
 </script>
