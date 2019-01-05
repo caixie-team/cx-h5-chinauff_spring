@@ -37,7 +37,7 @@
     methods: {
       close (e) {
         // toPage261 (e) {
-        this.$router.push('/page65')
+        this.$router.push('/page261')
         // this.$emit(EVENT_CLOSE, e)
         // }
         this.$emit(EVENT_CLOSE, e)

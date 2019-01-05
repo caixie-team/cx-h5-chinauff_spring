@@ -94,9 +94,9 @@
         // console.log(this.$route.path)
         if (newVal.receive_status === 2 || newVal.status === 2) {
           if (this.$route.path !== '/page621') {
-            this.showDialog('success1', {showClose: false})
-          } else {
             this.showDialog('success', {showClose: false})
+          } else {
+            this.showDialog('success1', {showClose: false})
           }
         }
       }
