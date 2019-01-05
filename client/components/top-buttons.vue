@@ -64,7 +64,8 @@
     },
     mounted () {
       if (this.$store.getters.mobileLayout === 'page261') {
-        console.log('aabcccdd..')
+        this.$router.push('/')
+        // console.log('aabcccdd..')
       }
     },
     methods: {

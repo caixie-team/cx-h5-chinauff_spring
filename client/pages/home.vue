@@ -124,6 +124,7 @@
     mounted () {
       EventBus.$emit('show12s', false)
       EventBus.$emit('show6s', false)
+      this.$store.commit('option/SET_MOBILE_LAYOUT', '')
 
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {
