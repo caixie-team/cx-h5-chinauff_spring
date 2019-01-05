@@ -87,6 +87,15 @@
         }
       }
     },
+    methods: {
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
+      },
+    },
     mounted () {
       EventBus.$on('share', (e) => {
         this.share = e
