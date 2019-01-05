@@ -83,11 +83,12 @@
         })
       },
       coupon (newVal) {
-        if (this.$route.path === '/page621') {
-          if (newVal.receive_status === 2 || newVal.status === 2) {
-            this.showDialog('success1', {showClose: false})
-          }
+        console.log(this.$route.path)
+        // if (this.$route.path === '/page621') {
+        if (newVal.receive_status === 2 || newVal.status === 2) {
+          this.showDialog('success1', {showClose: false})
         }
+        // }
       }
     },
     mounted () {

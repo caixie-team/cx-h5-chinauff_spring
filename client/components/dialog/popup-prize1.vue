@@ -1,4 +1,4 @@
-<!-- 给助力者的 -->
+<!-- 活动介绍 -->
 <template>
   <div class="popup prize">
     <div
@@ -34,13 +34,13 @@
   </div>
 </template>
 <script>
-  import title from '~/assets/img/text/text_gxnjd.png'
+  import title from '~/assets/img/text/text_gxnbhyjd.png'
   import title1 from '~/assets/img/text/text_aocydd.png'
   import tips from '~/assets/img/text/text_yhqlqlcyx.png'
   import btn1 from '~/assets/img/btn/btn_friend.png'
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
   import {isBrowser} from '~/environment_es'
-  import apiConfig from '~/api.config.es'
+  // import apiConfig from '~/api.config.es'
   // 免费劵 3409
   // 4 元劵 (3410)
   // 8 元劵 (3411)
@@ -209,8 +209,8 @@
       border-bottom: 1px solid #808080
 
       .title
-        width: 252px
-        height: 50px
+        width: 342px
+        height: 42px
 
       .word
         margin-top: 30px
@@ -248,8 +248,8 @@
 
       .title1
         margin-bottom: 8px
-        width: 326px
-        height: 31px
+        width: 342px
+        height: 42px
 
       .icon
         width: 157px

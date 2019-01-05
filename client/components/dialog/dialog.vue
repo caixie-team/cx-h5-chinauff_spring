@@ -26,6 +26,11 @@
           :coupon_type="coupon_type"
           :coupon_code="coupon_code"
           :blessing_type="blessing_type"/>
+        <prize1
+          v-if="type === 'prize1'"
+          :coupon_type="coupon_type"
+          :coupon_code="coupon_code"
+          :blessing_type="blessing_type"/>
         <success
           v-if="type === 'success'"
           @close="close"/>
@@ -64,6 +69,7 @@
   import Limit from './popup-limit'
   import Share from './popup-share'
   import Prize from './popup-prize'
+  import Prize1 from './popup-prize1'
   import Success from './popup-success'
   import Success1 from './popup-success1'
   import Success2 from './popup-success2'
@@ -111,6 +117,7 @@
       Limit,
       Share,
       Prize,
+      Prize1,
       Success,
       Success1,
       Success2,
