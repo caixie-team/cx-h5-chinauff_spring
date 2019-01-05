@@ -118,7 +118,7 @@
         return this.$store.state.prize.coupon.data
       },
       coupon () {
-        switch (this.couponData.type_code) {
+        switch (this.lucky.coupon.type_code) {
           case 3409:
             return 'mianfei'
           case 3410:
