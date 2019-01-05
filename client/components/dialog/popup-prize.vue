@@ -74,7 +74,7 @@
       locationHref () {
         let locationHref = window.location.href
         // locationHref = locationHref + '&coupon_code=' + this.coupon_code
-        locationHref = locationHref + '&openId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
+        locationHref = locationHref + '?openId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
         const redirectURL = `https://weixin.chinauff.com/lnj-weixin/console/weixin/page/loginPage?callback2=${encodeURIComponent(locationHref)}&isAutoRegister=1&channel2=18`
         return redirectURL
       },
