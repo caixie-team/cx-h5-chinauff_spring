@@ -235,7 +235,7 @@
     },
     methods: {
       shareGuide () {
-        console.log('share.....')
+        // console.log('share.....')
         EventBus.$emit('share', true)
       },
       // 预约兑换页
