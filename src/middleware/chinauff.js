@@ -23,6 +23,7 @@ module.exports = options => {
       }
     }
     const activityUser = await ctx.cookie('activity_user')
+    console.log(activityUser)
     if (_.isEmpty(activityUser)) {
       const openId = await ctx.cookie('openId') || await ctx.session('openId')
       const query = ctx.query
@@ -56,7 +57,7 @@ module.exports = options => {
         // 活动账户的信息，包括登录状态和会员信息
         // if Login status === 1
         await ctx.session('activity_user', JSON.stringify(res.data))
-        await ctx.cookie('activity_user', JSON.stringify(res.data))
+        await ctx.cookie('activity_user', res.data)
         return next()
       }
     }
