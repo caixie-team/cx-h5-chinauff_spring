@@ -24,7 +24,7 @@
                   class="c-avatar c-avatar-image">
               </li>
             </ul>
-            <span class="moredot" />
+            <span class="moredot"/>
           </div>
 
           <!--
@@ -89,7 +89,7 @@
           src="~assets/img/page621/jixuyaoqing.png"
           class="btn-jxyqhyzl"
           @click="shareGuide">
-          <!--@click="showDialog('share', { showClose: true })">-->
+        <!--@click="showDialog('share', { showClose: true })">-->
       </div>
       <div class="footer"/>
     </div>
@@ -189,24 +189,28 @@
     },
     watch: {
       lucky (newVal) {
-        let coupon_type = 0
-        let coupon_code = ''
-        if (newVal.type === 1) {
-          coupon_type = newVal.coupon.type_code
-          coupon_code = newVal.coupon.coupon_code
-        } else if (newVal.type === 2) {
-          coupon_type = newVal.card.card_code
-          coupon_code = newVal.card.card_code.toString()
+        if (this.$route.path !== '/page65') {
+          let coupon_type = 0
+          let coupon_code = ''
+          if (newVal.type === 1) {
+            coupon_type = newVal.coupon.type_code
+            coupon_code = newVal.coupon.coupon_code
+          } else if (newVal.type === 2) {
+            coupon_type = newVal.card.card_code
+            coupon_code = newVal.card.card_code.toString()
+          }
+          this.showDialog('prize1', {
+            blessing_type: this.blessing.blessing_type,
+            coupon_type,
+            coupon_code
+          })
         }
-        this.showDialog('prize1', {
-          blessing_type: this.blessing.blessing_type,
-          coupon_type,
-          coupon_code
-        })
       },
       coupon (newVal) {
-        if (newVal.receive_status === 2) {
-          this.showDialog('success', {showClose: false})
+        if (this.$route.path !== '/page65') {
+          if (newVal.receive_status === 2) {
+            this.showDialog('success', {showClose: false})
+          }
         }
       }
     },
@@ -352,9 +356,11 @@
       .text-zhulizhuli
         width: 185px
         height: 53px
+
       .text-zlhyjmf
         width: 286px
         height: 53px
+
       .btn-ljzl
         position: relative
         bottom: 100px
@@ -370,7 +376,6 @@
         height: 27px
 
 
-
       .members
         display: flex
         flex-direction: column
@@ -379,6 +384,7 @@
         align-items: center
         margin-top: 20px
         height: 100px
+
         .moredot
           position: relative
           top: 20px
@@ -386,14 +392,15 @@
           background-size: 56px 5px
           width: 56px
           height: 5px
+
         ul
           float: left
 
         &--overlap
           .member
-            margin-left: -15px
-            float: right
-            font-size: 10px
+          margin-left: -15px
+          float: right
+          font-size: 10px
 
       .c-avatar
         display: inline-block
