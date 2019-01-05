@@ -209,8 +209,8 @@
       border-bottom: 1px solid #808080
 
       .title
-        width: 252px
-        height: 50px
+        width: 342px
+        height: 42px
 
       .word
         margin-top: 30px
