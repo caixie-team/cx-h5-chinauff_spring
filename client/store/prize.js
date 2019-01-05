@@ -49,7 +49,11 @@ export const state = () => {
     coupon: {
       fetching: false,
       data: {
+        // 已使用,这个码被发过了
         status: 0,
+        // 领取状态
+        // 领取状态(1未领取 2已领取)
+        receive_status: 0,
         coupon_code: '',
         crm_coupon_code: ''
       }

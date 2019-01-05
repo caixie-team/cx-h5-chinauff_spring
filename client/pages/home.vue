@@ -113,10 +113,8 @@
       },
     },
     mounted () {
-      console.log('homepage ......')
-      console.log(this.$route)
+      console.log(this.coupon)
       const coupon_code = this.$route.query.coupon_code
-      console.log(coupon_code)
       if (coupon_code) {
         // 用于回调页面回来之后处理发劵，领劵
         if (this.userInfo.status === 1 && coupon_code !== null && coupon_code !== '') {

@@ -82,7 +82,7 @@
         })
       },
       coupon (newVal) {
-        if (newVal.status === 2) {
+        if (newVal.receive_status === 2) {
           this.showDialog('success1', {showClose: false})
         }
       }
