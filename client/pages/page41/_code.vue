@@ -64,7 +64,7 @@
     name: 'Index',
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米'
+        title: '预约兑换礼品'
       }
     },
     validate ({params, query}) {
