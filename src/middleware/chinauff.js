@@ -65,7 +65,7 @@ module.exports = options => {
         res.body.data.beOpenId = encrypt(_openId, openIdKey)
         // 活动账户的信息，包括登录状态和会员信息
         // if Login status === 1
-        await ctx.session('activity_user', JSON.stringify(res.data))
+        await ctx.session('activity_user', JSON.stringify(res.body.data))
 
         return next()
       }
