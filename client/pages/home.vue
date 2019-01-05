@@ -88,11 +88,11 @@
       },
     },
     watch: {
-      // coupon (newVal) {
-      //   if (newVal.status === 2) {
-      //     this.showDialog('success', {showClose: false})
-      //   }
-      // },
+      coupon (newVal) {
+        if (newVal.receive_status === 2) {
+          this.showDialog('success', {showClose: false})
+        }
+      },
       score (newVal) {
         // console.log('score .......')
         // console.log(newVal)
@@ -113,6 +113,8 @@
       },
     },
     mounted () {
+      console.log('homepage ......')
+      console.log(this.$route)
       const coupon_code = this.$route.query.coupon_code
       console.log(coupon_code)
       if (coupon_code) {
@@ -125,7 +127,7 @@
           })
         }
       }
-      // this.showDialog('success1', {showClose: false})
+      this.showDialog('success1', {showClose: false})
 
       this.$store.commit('ai/RESET_SCORE')
       this.$store.dispatch('luckyTimes', {
