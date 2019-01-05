@@ -11,7 +11,7 @@
         src="~assets/img/page311/shiba.png"
         class="imgShiba">
       <h1>
-        {{ stats.peopleNumber }}人已集满 “福”, 您 已集满 {{ stats.myblessingNumber }}个 “福”
+        {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
       </h1>
       <div
         v-if="myBlessingList.length > 0"
@@ -316,9 +316,11 @@
       height: 22px
 
     .imgShiba
+      /*position: relative*/
+      top: 100px
       width: 263px
       height: 85px
-      padding-top: 130px
+      padding-top: 18%
 
     h1
       font-size: 22px
