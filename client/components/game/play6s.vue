@@ -31,46 +31,45 @@
       }
     },
     computed: {
-      userInfo () {
-        return this.$store.state.user.info.data
-      },
-      // 抽奖数据
-      // 集福数据
-      blessing () {
-        return this.$store.state.prize.blessing.data
-      },
-      // 抽奖数据
-      lucky () {
-        return this.$store.state.prize.lucky.data
-      },
-      // 领劵数据
-      coupon () {
-        return this.$store.state.prize.coupon.data
-      }
+      // userInfo () {
+      //   return this.$store.state.user.info.data
+      // },
+      // // 抽奖数据
+      // // 集福数据
+      // blessing () {
+      //   return this.$store.state.prize.blessing.data
+      // },
+      // // 抽奖数据
+      // lucky () {
+      //   return this.$store.state.prize.lucky.data
+      // },
+      // // 领劵数据
+      // coupon () {
+      //   return this.$store.state.prize.coupon.data
+      // }
     },
     watch: {
-      lucky (newVal) {
-        let coupon_type = 0
-        let coupon_code = ''
-        if (newVal.type === 1) {
-          coupon_type = newVal.coupon.type_code
-          coupon_code = newVal.coupon.coupon_code
-        } else if (newVal.type === 2) {
-          coupon_type = newVal.card.card_code
-          coupon_code = newVal.card.card_code.toString()
-        }
-        console.log(newVal)
-        this.showDialog('prize', {
-          blessing_type: this.blessing.blessing_type,
-          coupon_type,
-          coupon_code
-        })
-      },
-      coupon (newVal) {
-        if (newVal.status === 2) {
-          this.showDialog('success1', {showClose: false})
-        }
-      }
+      // lucky (newVal) {
+      //   let coupon_type = 0
+      //   let coupon_code = ''
+      //   if (newVal.type === 1) {
+      //     coupon_type = newVal.coupon.type_code
+      //     coupon_code = newVal.coupon.coupon_code
+      //   } else if (newVal.type === 2) {
+      //     coupon_type = newVal.card.card_code
+      //     coupon_code = newVal.card.card_code.toString()
+      //   }
+      //   this.showDialog('prize', {
+      //     blessing_type: this.blessing.blessing_type,
+      //     coupon_type,
+      //     coupon_code
+      //   })
+      // },
+      // coupon (newVal) {
+      //   if (newVal.status === 2) {
+      //     this.showDialog('success1', {showClose: false})
+      //   }
+      // }
     },
     mounted () {
       // 初始化动化资源
@@ -129,13 +128,13 @@
           // })
         }
       },
-      showDialog (type, option) {
-        this.dialog = this.$createDialog({
-          type: type,
-          ...option
-        })
-        this.dialog.show()
-      },
+      // showDialog (type, option) {
+      //   this.dialog = this.$createDialog({
+      //     type: type,
+      //     ...option
+      //   })
+      //   this.dialog.show()
+      // },
       /**
        * 初始化数据
        * @param d

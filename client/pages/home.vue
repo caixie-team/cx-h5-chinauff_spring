@@ -37,7 +37,15 @@
   export default {
     transition: 'fade',
     name: 'Index',
-
+    fetch ({store, query, error}) {
+      if (query.coupon_code) {
+        if (this.userInfo.status === 1 && query.coupon_code !== null && query.coupon_code !== '') {
+          store.dispatch('loadPrizeCoupon', {
+            coupon_code: query.coupon_code
+          })
+        }
+      }
+    },
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
@@ -76,11 +84,11 @@
       },
     },
     watch: {
-      coupon (newVal) {
-        if (newVal.status === 2) {
-          this.showDialog('success', {showClose: false})
-        }
-      },
+      // coupon (newVal) {
+      //   if (newVal.status === 2) {
+      //     this.showDialog('success', {showClose: false})
+      //   }
+      // },
       score (newVal) {
         // console.log('score .......')
         // console.log(newVal)
@@ -101,17 +109,7 @@
       },
     },
     mounted () {
-      const coupon_code = this.$route.query.coupon_code
-      if (coupon_code !== null) {
-        // 用于回调页面回来之后处理发劵，领劵
-        if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
-          // 领劵
-          // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
-          this.$store.dispatch('loadPrizeCoupon', {
-            coupon_code: this.$route.query.coupon_code
-          })
-        }
-      }
+
       // this.showDialog('success1', {showClose: false})
 
       this.$store.commit('ai/RESET_SCORE')
