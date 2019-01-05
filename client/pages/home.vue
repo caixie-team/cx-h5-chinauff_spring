@@ -122,6 +122,9 @@
       },
     },
     mounted () {
+      EventBus.$emit('show12s', false)
+      EventBus.$emit('show6s', false)
+
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {
         // 用于回调页面回来之后处理发劵，领劵
