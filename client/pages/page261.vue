@@ -52,7 +52,7 @@
     name: 'Index',
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米',
+        title: '集满“福”兑好礼',
       }
     },
     // validate ({query}) {
