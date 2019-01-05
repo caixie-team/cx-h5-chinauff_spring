@@ -189,29 +189,29 @@
     },
     watch: {
       lucky (newVal) {
-        if (this.$route.path !== '/page65') {
-          let coupon_type = 0
-          let coupon_code = ''
-          if (newVal.type === 1) {
-            coupon_type = newVal.coupon.type_code
-            coupon_code = newVal.coupon.coupon_code
-          } else if (newVal.type === 2) {
-            coupon_type = newVal.card.card_code
-            coupon_code = newVal.card.card_code.toString()
-          }
-          this.showDialog('prize1', {
-            blessing_type: this.blessing.blessing_type,
-            coupon_type,
-            coupon_code
-          })
+        // if (this.$route.path !== '/page65') {
+        let coupon_type = 0
+        let coupon_code = ''
+        if (newVal.type === 1) {
+          coupon_type = newVal.coupon.type_code
+          coupon_code = newVal.coupon.coupon_code
+        } else if (newVal.type === 2) {
+          coupon_type = newVal.card.card_code
+          coupon_code = newVal.card.card_code.toString()
         }
+        this.showDialog('prize1', {
+          blessing_type: this.blessing.blessing_type,
+          coupon_type,
+          coupon_code
+        })
+        // }
       },
       coupon (newVal) {
-        if (this.$route.path !== '/page65') {
-          if (newVal.receive_status === 2) {
-            this.showDialog('success', {showClose: false})
-          }
+        // if (this.$route.path !== '/page65') {
+        if (newVal.receive_status === 2) {
+          this.showDialog('success', {showClose: false})
         }
+        // }
       }
     },
     mounted () {
@@ -398,9 +398,9 @@
 
         &--overlap
           .member
-            margin-left: -15px
-            float: right
-            font-size: 10px
+          margin-left: -15px
+          float: right
+          font-size: 10px
 
       .c-avatar
         display: inline-block
