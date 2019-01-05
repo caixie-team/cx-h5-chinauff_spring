@@ -59,6 +59,7 @@
           coupon_type = newVal.card.card_code
           coupon_code = newVal.card.card_code.toString()
         }
+        console.log(newVal)
         this.showDialog('prize', {
           blessing_type: this.blessing.blessing_type,
           coupon_type,
