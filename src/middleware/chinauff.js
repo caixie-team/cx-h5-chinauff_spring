@@ -42,7 +42,7 @@ module.exports = options => {
         if (_.has(query, 'myOpenId')) {
           _openId = query.myOpenId
         }
-        if (!_.isEmpty(openId))  {
+        if (!_.isEmpty(openId)) {
           _openId = openId
         }
         await ctx.cookie('openId', _openId)
@@ -57,12 +57,12 @@ module.exports = options => {
         }
         // console.log('查询 活动账户信息。。。。。。')
         // 创建或查询活动账户
-        let res = (await think.got.post(apiConfig.baseUrl + '/account/take', {
+        let res = await think.got.post(apiConfig.baseUrl + '/account/take', {
           json: true,
           form: true,
           body: postData
-        })).body
-        res.data.beOpenId = encrypt(_openId, openIdKey)
+        })
+        res.body.data.beOpenId = encrypt(_openId, openIdKey)
         // 活动账户的信息，包括登录状态和会员信息
         // if Login status === 1
         await ctx.session('activity_user', JSON.stringify(res.data))
