@@ -61,8 +61,8 @@
     fetch ({store, query, error}) {
       return Promise.all([
         store.dispatch('loadBlessingStatistics'),
-        store.dispatch('loadPrizeBlessing'),
-        store.dispatch('loadPrizeCoupon')
+        // store.dispatch('loadPrizeBlessing'),
+        // store.dispatch('loadPrizeCoupon')
         // 获取集福统计数
         // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
         // 加载活动参与的关联信息
@@ -75,14 +75,14 @@
       PageContent
     },
     props: {
-      coupon: {
-        type: String,
-        default: 'mianfei'
-      },
-      word: {
-        type: String,
-        default: 'kou'
-      }
+      // coupon: {
+      //   type: String,
+      //   default: 'mianfei'
+      // },
+      // word: {
+      //   type: String,
+      //   default: 'kou'
+      // }
     },
     data () {
       return {
@@ -117,6 +117,71 @@
       // coupon () {
       //   return this.$store.state.prize.coupon.data
       // },
+      coupon () {
+        switch (this.coupon.type_code) {
+          case 3409:
+            return 'mianfei'
+          case 3410:
+            return 'siyuan'
+          case 3411:
+            return 'bayuan'
+          case 3412:
+          case 3413:
+          case 3414:
+          case 3415:
+          case 3416:
+          case 3417:
+          case 3418:
+          case 3419:
+            return 'wuzhe'
+          case 3420:
+          case 3421:
+          case 3422:
+          case 3423:
+          case 3424:
+          case 3425:
+          case 3426:
+          case 3427:
+          case 3428:
+            return 'liuzhe'
+          case 3429:
+          case 3430:
+          case 3431:
+          case 3432:
+          case 3433:
+          case 3434:
+          case 3435:
+            return 'qizhe'
+          case 3436:
+          case 3437:
+          case 3438:
+          case 3439:
+          case 3440:
+          case 3441:
+          case 3442:
+          case 3443:
+          case 3444:
+            return 'bazhe'
+          case 50:
+            return 'huiyuanka'
+          default:
+            return 'aaaa'
+        }
+      },
+      word () {
+        switch (this.blessing.blessing_type) {
+          case 1:
+            return 'shi'
+          case 2:
+            return 'yi'
+          case 3:
+            return 'kou'
+          case 4:
+            return 'tian'
+          default:
+            return ''
+        }
+      },
       _couponClass () {
         return [
           'coupon',
