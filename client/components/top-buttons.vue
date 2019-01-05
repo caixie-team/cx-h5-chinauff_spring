@@ -14,6 +14,7 @@
 <script>
   import {oneOf} from '../utils/assist.js'
   import apiConfig from '~/api.config.es'
+
   export default {
     props: {
       type: {
@@ -61,7 +62,11 @@
         ]
       }
     },
-    computed: {},
+    mounted () {
+      if (this.$store.getters.mobileLayout === 'page261') {
+        console.log('aabcccdd..')
+      }
+    },
     methods: {
       isAction (value, array) {
         return oneOf(value, array)
@@ -86,10 +91,14 @@
         }
       },
       redirectUserCenter () {
-          let locationHref = window.location.href
-          locationHref = locationHref + '&coupon_code=' + this.coupon_code
-          const encodeUrl = encodeURIComponent(locationHref)
-          window.location.href = `${apiConfig.proxyUrl}/weixin/page/couponList`
+        if (this.$route.path === '/page261') {
+          // this.$store.commit()
+          this.$store.commit('option/SET_MOBILE_LAYOUT', 'page261')
+        }
+        let locationHref = window.location.href
+        locationHref = locationHref + '&coupon_code=' + this.coupon_code
+        const encodeUrl = encodeURIComponent(locationHref)
+        window.location.href = `${apiConfig.proxyUrl}/weixin/page/couponList`
       },
       showDialog (type, option) {
         this.dialog = this.$createDialog({
@@ -117,9 +126,11 @@
       width: 51px
       heigth: 144px
       padding: 3px
+
       &-hdjsm
         background: url('~assets/img/btn/btn_hdjsm.png') no-repeat
         background-size: 51px 144px
+
       &-hdjs
         background: url('~assets/img/btn/btn_hdjs.png') no-repeat
         background-size: 51px 144px
@@ -143,6 +154,7 @@
       &-wdfb
         background: url('~assets/img/btn/btn_wdfb.png') no-repeat
         background-size: 51px 144px
+
       &-wdqb
         background: url('~assets/img/btn/btn_wdqb.png') no-repeat
         background-size: 51px 144px
@@ -150,9 +162,11 @@
       &-wdqbm
         background: url('~assets/img/btn/btn_wdqb.png') no-repeat
         background-size: 51px 144px
+
       &-ckkb
         background: url('~assets/img/btn/btn_ckkb.png') no-repeat
         background-size: 51px 144px
+
       &-ckkbm
         background: url('~assets/img/btn/btn_ckkbm.png') no-repeat
         background-size: 51px 144px
