@@ -56,7 +56,8 @@
         <img
           v-if="currentBlessing.status === 3"
           src="~assets/img/btn/btn_ydhg.png"
-          class="btn-yydh">
+          class="btn-yydh"
+          @click="shareGuide">
         <p
           v-if="currentBlessing.status === 3">
           兑换于 {{ currentBlessing.exchange_time }}
@@ -234,7 +235,8 @@
     },
     methods: {
       shareGuide () {
-        EventBus.$emit('share')
+        console.log('share.....')
+        EventBus.$emit('share', true)
       },
       // 预约兑换页
       toPage41 () {

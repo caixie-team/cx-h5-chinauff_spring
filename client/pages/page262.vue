@@ -100,7 +100,7 @@
     },
     methods: {
       shareGuide () {
-        EventBus.$emit('share')
+        EventBus.$emit('share', true)
       },
       showAlert () {
         this.dialog = this.$createDialog({

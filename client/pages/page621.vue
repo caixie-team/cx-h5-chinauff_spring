@@ -224,7 +224,7 @@
     },
     methods: {
       shareGuide () {
-        EventBus.$emit('share')
+        EventBus.$emit('share', true)
       },
       async helpAction () {
         const beOpenId = this.$route.query.beOpenId

@@ -32,7 +32,7 @@
     },
     methods: {
       shareGuide() {
-        EventBus.$emit('share')
+        EventBus.$emit('share', true)
       },
       close (e) {
         this.$emit(EVENT_CLOSE, e)
