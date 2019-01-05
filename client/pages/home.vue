@@ -37,24 +37,18 @@
   export default {
     transition: 'fade',
     name: 'Index',
-    fetch ({store, route, query, params}) {
-      console.log('--x-x--x-x-x-x-x')
-      console.log(route.query)
-      // console.log(query)
-      // return store.dispatch('loadGithubRepositories')
-    },
     // fetch ({store, query, error}) {
     //   console.log(query)
     //   if (query.coupon_code) {
     //     console.log(store.state.user.info.data)
-    //     // return this.$store.state.user.info.data
-    //
-    //     if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
-    //       return store.dispatch('loadPrizeCoupon', {
-    //         coupon_code: query.coupon_code
-    //       })
-    //     }
-    //   }
+    //     return this.$store.state.user.info.data
+        //
+        // if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
+        //   return store.dispatch('loadPrizeCoupon', {
+        //     coupon_code: query.coupon_code
+        //   })
+        // }
+      // }
     // },
     head () {
       return {
@@ -119,7 +113,17 @@
       },
     },
     mounted () {
-
+      const coupon_code = this.$route.query.coupon_code
+      if (coupon_code) {
+        // 用于回调页面回来之后处理发劵，领劵
+        if (this.userInfo.status === 1 && coupon_code !== null && coupon_code !== '') {
+          // 领劵
+          // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
+          this.$store.dispatch('loadPrizeCoupon', {
+            coupon_code: this.$route.query.coupon_code
+          })
+        }
+      }
       // this.showDialog('success1', {showClose: false})
 
       this.$store.commit('ai/RESET_SCORE')
