@@ -163,13 +163,13 @@
       }
     },
     methods: {
-      getCoupon () {
+      async getCoupon () {
         // 1 验证用户登录状态
         // 2 未登录跳转登录，回调地址包含验证劵码信息
         if (this.userInfo.status === 1) {
           // 领劵
           // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
-          this.$store.dispatch('loadPrizeCoupon', {
+          await this.$store.dispatch('loadPrizeCoupon', {
             coupon_code: this.coupon_code
           })
         } else {
