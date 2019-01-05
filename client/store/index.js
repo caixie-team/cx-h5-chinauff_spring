@@ -387,7 +387,7 @@ export const actions = {
     }).then(response => {
       const data = getResData(response)
       if (resIsSuccess(response)) {
-        console.log(data)
+        // console.log(data)
         // commit('prize/GET_COUPON_SUCCESS', data)
         return Promise.resolve(data)
       }

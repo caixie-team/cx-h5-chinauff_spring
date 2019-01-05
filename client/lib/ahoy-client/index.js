@@ -36,7 +36,7 @@ class Ahoy {
 
   log (message) {
     if (getCookie('ahoy_debug')) {
-      window.console.log(message)
+      // window.console.log(message)
     }
   }
 

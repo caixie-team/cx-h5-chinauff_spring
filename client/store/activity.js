@@ -38,7 +38,7 @@ export const mutations = {
     state.helps.fetching = true
   },
   GET_HELPS_SUCCESS (state, action) {
-    console.log(action)
+    // console.log(action)
     state.helps.data = action
   },
   GET_HELPS_FAILURE (state) {

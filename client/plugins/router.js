@@ -9,7 +9,7 @@ export default ({app, store}) => {
     });
 
     if (to.path === '/page51') {
-      console.log('page51 请求二维码状态')
+      // console.log('page51 请求二维码状态')
       // window.clearInterval(this.myInterval);
       // next();
     }

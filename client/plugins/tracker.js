@@ -21,7 +21,7 @@ class Tracker {
     }
 
     if (this.isLogging) {
-      console.log('Tracking.send()', data)
+      // console.log('Tracking.send()', data)
     }
   }
 

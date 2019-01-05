@@ -19,7 +19,7 @@ export default class Game {
   print () {
   }
   constructor () {
-    console.log('intid....a.df')
+    // console.log('intid....a.df')
     this.app = new PIXI.Application(window.innerWidth * Ratio, window.innerHeight * Ratio, {
       transparent: true
     })

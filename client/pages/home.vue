@@ -183,8 +183,8 @@
           localId: src, // 需要上传的图片的本地ID，由chooseImage接口获得
           isShowProgressTips: 1, // 默认为1，显示进度提示
           success: async (res) => {
-            console.log('上传图片到微信服务完成')
-            console.log(res)
+            // console.log('上传图片到微信服务完成')
+            // console.log(res)
             await this.$store.dispatch('checkImage', {
               mediaId: res.serverId,
               openId: this.$store.getters.openId
