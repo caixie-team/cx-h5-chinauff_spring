@@ -66,7 +66,7 @@
     },
     watch: {
       lucky (newVal) {
-        if (this.$route.path !== '/page65' || this.$route.path !== 'page621') {
+        if (this.$route.path !== '/page65' || this.$route.path !== '/page621') {
           let coupon_type = 0
           let coupon_code = ''
           // 类型 1 为优惠劵
@@ -86,7 +86,7 @@
       },
       coupon (newVal) {
         // console.log(this.$route.path)
-        if (this.$route.path !== '/page621') {
+        if (this.$route.path !== '/page621' || this.$route.path !== '/page65') {
           if (newVal.receive_status === 2 || newVal.status === 2) {
             this.showDialog('success1', {showClose: false})
           }
