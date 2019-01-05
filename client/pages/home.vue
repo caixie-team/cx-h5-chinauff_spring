@@ -9,11 +9,20 @@
         class="imgBt">
       <div class="footer">
         <div
+          v-if="luckyTimes > 0"
           class="upload">
           <label for="theFile">
             <img
               src="~assets/img/btn/btn_sys.png"
               @click="picker">
+          </label>
+        </div>
+        <div
+          v-else
+          class="upload"
+          @click="showDialog('limit')">
+          <label>
+            <img src="~assets/img/btn/btn_sys.png">
           </label>
         </div>
       </div>
@@ -113,7 +122,6 @@
       },
     },
     mounted () {
-      console.log(this.coupon)
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {
         // 用于回调页面回来之后处理发劵，领劵
@@ -125,7 +133,7 @@
           })
         }
       }
-      this.showDialog('success1', {showClose: false})
+      this.showDialog('limit', {showClose: false})
 
       this.$store.commit('ai/RESET_SCORE')
       this.$store.dispatch('luckyTimes', {
