@@ -33,10 +33,13 @@
         btn2
       }
     },
-    computed: {
-    },
+    computed: {},
     methods: {
       close (e) {
+        // toPage261 (e) {
+        this.$router.push('/page65')
+        // this.$emit(EVENT_CLOSE, e)
+        // }
         this.$emit(EVENT_CLOSE, e)
       }
     }

@@ -113,10 +113,6 @@
       lucky () {
         return this.$store.state.prize.lucky.data
       },
-      // 领劵数据
-      couponData () {
-        return this.$store.state.prize.coupon.data
-      },
       coupon () {
         switch (this.lucky.coupon.type_code) {
           case 3409:
@@ -194,6 +190,7 @@
           'word-' + this.word
         ]
       }
+
     },
     mounted () {
       EventBus.$emit('show6s', false)

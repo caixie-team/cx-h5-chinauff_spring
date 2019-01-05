@@ -139,11 +139,11 @@
         tip2,
         limit: 2,
         headimgs: [
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          // 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          // 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          // 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          // 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+          // 'https://i.loli.net/2017/08/21/599a521472424.jpg',
         ],
         // headimgs: [
         // ],
@@ -211,13 +211,14 @@
       }
     },
     mounted () {
-      const coupon_code = this.$route.query.coupon_code
+      // 这里不对要处理o penid ....
+      const coupon_code = this.$route.loadPrizeCouponquery.coupon_code
       // 用于回调页面回来之后处理发劵，领劵
       if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
         // 领劵
         // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
         this.$store.dispatch('loadPrizeCoupon', {
-          coupon_code: this.$route.query.coupon_code
+          coupon_code: this.$route.query.coupon_code,
         })
       }
     },
