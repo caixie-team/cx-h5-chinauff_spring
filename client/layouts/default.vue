@@ -83,8 +83,10 @@
         })
       },
       coupon (newVal) {
-        if (newVal.receive_status === 2 || newVal.status === 2) {
-          this.showDialog('success1', {showClose: false})
+        if (this.$route.path === '/page621') {
+          if (newVal.receive_status === 2 || newVal.status === 2) {
+            this.showDialog('success1', {showClose: false})
+          }
         }
       }
     },

@@ -145,13 +145,6 @@
         locationHref = locationHref + '&coupon_code=' + this.coupon_code
         const encodeUrl = encodeURIComponent(locationHref)
         window.location.href = `${apiConfig.proxyUrl}/weixin/page/couponList`
-      },
-      showAlert () {
-        this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
-        })
-        this.dialog.show()
       }
     },
   }

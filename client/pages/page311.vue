@@ -10,9 +10,9 @@
       <img
         src="~assets/img/page311/shiba.png"
         class="imgShiba">
-      <h1>
-        {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
-      </h1>
+      <!--<h1>-->
+      <!--{{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”-->
+      <!--</h1>-->
       <div
         v-if="myBlessingList.length > 0"
         class="content">
@@ -229,7 +229,10 @@
     mounted () {
       // console.log(this.myBlessingRecords)
       // 集满福进入弹窗
-      // this.showDialog('jdfl')
+      // this.showDialog('prize', {
+      //   coupon_type: 3419,
+      //   blessing_type: 1
+      // })
       this.currentBlessing = this.myBlessingList[this.initialIndex]
       // console.log()
     },

@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-  import title from '~/assets/img/text/text_gxnjd.png'
+  import title from '~/assets/img/text/text_gxnbhyjd.png'
   import title1 from '~/assets/img/text/text_aocydd.png'
   import tips from '~/assets/img/text/text_yhqlqlcyx.png'
   import btn1 from '~/assets/img/btn/btn_friend.png'
@@ -248,8 +248,8 @@
 
       .title1
         margin-bottom: 8px
-        width: 326px
-        height: 31px
+        width: 342px
+        height: 42px
 
       .icon
         width: 157px
