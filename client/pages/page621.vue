@@ -50,7 +50,6 @@
               v-if="helps.total > 0"
               src="~assets/img/page621/deng.png"
               class="text-deng">
-            {{ helper }}
             <span class="count">{{ helps.total }}</span>
             <img
               src="~assets/img/page621/weihaoyou.png"
