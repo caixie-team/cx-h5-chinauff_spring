@@ -6,7 +6,7 @@
       class="page261">
       <top-buttons :actions="actions"/>
       <h1>
-        {{ stats.peopleNumber }}人已集满 “福”, 您 已集满 {{ stats.myblessingNumber }}个 “福”
+        {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
       </h1>
       <div class="content">
         <section class="section1">
@@ -34,7 +34,7 @@
           to="/home">
           <img src="~assets/img/btn/btn_zlycl.png">
         </nuxt-link>
-        <p>今天日还可参与 {{ luckyTimes }} 次</p>
+        <p>今日还可参与 {{ luckyTimes }} 次</p>
       </div>
     </div>
   </c-page>

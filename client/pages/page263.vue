@@ -21,7 +21,7 @@
       </div>
       <div class="footer">
         <p>
-          {{ total }}人已集满 “福”, 您 已集满 {{ count }}个 “福”
+          {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
         </p>
       </div>
     </div>
@@ -67,6 +67,9 @@
       }
     },
     computed: {
+      stats () {
+        return this.$store.state.prize.stats.data
+      },
       _couponClass () {
         return [
           'coupon',

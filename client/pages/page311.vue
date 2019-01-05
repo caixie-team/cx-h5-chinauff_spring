@@ -227,7 +227,7 @@
       }
     },
     mounted () {
-      console.log(this.myBlessingRecords)
+      // console.log(this.myBlessingRecords)
       // 集满福进入弹窗
       // this.showDialog('jdfl')
       this.currentBlessing = this.myBlessingList[this.initialIndex]
