@@ -69,19 +69,28 @@
       },
       userInfo () {
         return this.$store.state.user.info.data
-      }
+      },
+      // 领劵数据
+      coupon () {
+        return this.$store.state.prize.coupon.data
+      },
     },
     watch: {
+      coupon (newVal) {
+        if (newVal.status === 2) {
+          this.showDialog('success', {showClose: false})
+        }
+      },
       score (newVal) {
         // console.log('score .......')
         // console.log(newVal)
         // if (this.score === 100) {
-          // 跳转到集福动画页
-          // setTimeout(() => {
-          //   this.$store.commit('ai/RESET_SCORE')
-          //   EventBus.$emit('show12s', true)
-            // this.$router.push('/page22')
-          // }, 2500)
+        // 跳转到集福动画页
+        // setTimeout(() => {
+        //   this.$store.commit('ai/RESET_SCORE')
+        //   EventBus.$emit('show12s', true)
+        // this.$router.push('/page22')
+        // }, 2500)
 
         // } else {
         //   setTimeout(() => {
@@ -92,6 +101,19 @@
       },
     },
     mounted () {
+      const coupon_code = this.$route.query.coupon_code
+      if (coupon_code !== null) {
+        // 用于回调页面回来之后处理发劵，领劵
+        if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
+          // 领劵
+          // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
+          this.$store.dispatch('loadPrizeCoupon', {
+            coupon_code: this.$route.query.coupon_code
+          })
+        }
+      }
+      // this.showDialog('success1', {showClose: false})
+
       this.$store.commit('ai/RESET_SCORE')
       this.$store.dispatch('luckyTimes', {
         openId: this.userInfo.openId
