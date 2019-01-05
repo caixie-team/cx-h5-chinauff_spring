@@ -398,9 +398,9 @@
 
         &--overlap
           .member
-          margin-left: -15px
-          float: right
-          font-size: 10px
+            margin-left: -15px
+            float: right
+            font-size: 10px
 
       .c-avatar
         display: inline-block
