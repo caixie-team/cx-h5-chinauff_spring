@@ -73,7 +73,8 @@
     computed: {
       locationHref () {
         let locationHref = window.location.href
-        locationHref = locationHref + '&coupon_code=' + this.coupon_code
+        // locationHref = locationHref + '&coupon_code=' + this.coupon_code
+        locationHref = locationHref + '&openId' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
         // https://weixin.chinauff.com/lnj-weixin/console/weixin/page/loginPage?callback2=https://weixin.chinauff.com/spring/home?coupon_code=yd6gnPsxvJ8GG0wLsauuO&channel2=18&isAutoRegister=1
         // return `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeURIComponent(locationHref)}`
         const redirectURL = `https://weixin.chinauff.com/lnj-weixin/console/weixin/page/loginPage?callback2=${encodeURIComponent(locationHref)}&isAutoRegister=1&channel2=18`
