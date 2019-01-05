@@ -39,7 +39,9 @@
     name: 'Index',
     fetch ({store, query, error}) {
       if (query.coupon_code) {
-        if (this.userInfo.status === 1 && query.coupon_code !== '') {
+        // return this.$store.state.user.info.data
+
+        if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
           return store.dispatch('loadPrizeCoupon', {
             coupon_code: query.coupon_code
           })
