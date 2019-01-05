@@ -37,15 +37,15 @@
   export default {
     transition: 'fade',
     name: 'Index',
-    // fetch ({store, query, error}) {
-    //   if (query.coupon_code) {
-    //     if (this.userInfo.status === 1 && query.coupon_code !== null && query.coupon_code !== '') {
-    //       store.dispatch('loadPrizeCoupon', {
-    //         coupon_code: query.coupon_code
-    //       })
-    //     }
-    //   }
-    // },
+    fetch ({store, query, error}) {
+      if (query.coupon_code) {
+        if (this.userInfo.status === 1 && query.coupon_code !== '') {
+          return store.dispatch('loadPrizeCoupon', {
+            coupon_code: query.coupon_code
+          })
+        }
+      }
+    },
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
