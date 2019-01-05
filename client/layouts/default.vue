@@ -87,15 +87,6 @@
         }
       }
     },
-    methods: {
-      showDialog (type, option) {
-        this.dialog = this.$createDialog({
-          type: type,
-          ...option
-        })
-        this.dialog.show()
-      },
-    },
     mounted () {
       EventBus.$on('share', (e) => {
         this.share = e
@@ -106,7 +97,16 @@
       EventBus.$on('show6s', (e) => {
         this.isShow6s = e
       })
-    }
+    },
+    methods: {
+      showDialog (type, option) {
+        this.dialog = this.$createDialog({
+          type: type,
+          ...option
+        })
+        this.dialog.show()
+      },
+    },
   }
 </script>
 
