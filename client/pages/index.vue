@@ -36,8 +36,8 @@
     flex-direction: column
     min-height: 100vh
     img
-      width: 418px
-      height: 923px
+      width: 640px
+      height: 1136px
   .notices
     color: #fff
     display: flex
