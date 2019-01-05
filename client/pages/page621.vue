@@ -199,18 +199,18 @@
           coupon_type = newVal.card.card_code
           coupon_code = newVal.card.card_code.toString()
         }
-        this.showDialog('prize1', {
-          blessing_type: this.blessing.blessing_type,
-          coupon_type,
-          coupon_code
-        })
+        // this.showDialog('prize1', {
+        //   blessing_type: this.blessing.blessing_type,
+        //   coupon_type,
+        //   coupon_code
+        // })
         // }
       },
       coupon (newVal) {
         // if (this.$route.path !== '/page65') {
-        if (newVal.receive_status === 2) {
-          this.showDialog('success', {showClose: false})
-        }
+        // if (newVal.receive_status === 2) {
+        //   this.showDialog('success', {showClose: false})
+        // }
         // }
       }
     },

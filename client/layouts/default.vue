@@ -66,17 +66,23 @@
     },
     watch: {
       lucky (newVal) {
-        if (this.$route.path !== '/page65' || this.$route.path !== '/page621') {
-          let coupon_type = 0
-          let coupon_code = ''
-          // 类型 1 为优惠劵
-          if (newVal.type === 1) {
-            coupon_type = newVal.coupon.type_code
-            coupon_code = newVal.coupon.coupon_code
-          } else if (newVal.type === 2) {
-            coupon_type = newVal.card.card_code
-            coupon_code = newVal.card.card_code.toString()
-          }
+        let coupon_type = 0
+        let coupon_code = ''
+        // 类型 1 为优惠劵
+        if (newVal.type === 1) {
+          coupon_type = newVal.coupon.type_code
+          coupon_code = newVal.coupon.coupon_code
+        } else if (newVal.type === 2) {
+          coupon_type = newVal.card.card_code
+          coupon_code = newVal.card.card_code.toString()
+        }
+        if (this.$route.path === '/page621') {
+          this.showDialog('prize1', {
+            blessing_type: this.blessing.blessing_type,
+            coupon_type,
+            coupon_code
+          })
+        } else {
           this.showDialog('prize', {
             blessing_type: this.blessing.blessing_type,
             coupon_type,
@@ -86,9 +92,11 @@
       },
       coupon (newVal) {
         // console.log(this.$route.path)
-        if (this.$route.path !== '/page621' || this.$route.path !== '/page65') {
-          if (newVal.receive_status === 2 || newVal.status === 2) {
-            // this.showDialog('success1', {showClose: false})
+        if (newVal.receive_status === 2 || newVal.status === 2) {
+          if (this.$route.path !== '/page621') {
+            this.showDialog('success', {showClose: false})
+          } else {
+            this.showDialog('success1', {showClose: false})
           }
         }
       }

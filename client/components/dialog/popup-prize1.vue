@@ -186,10 +186,10 @@
         // },
         coupon (newVal) {
           // if (this.$route.path !== '/page65') {
-          if (newVal.receive_status === 2) {
-            this.hide()
+          // if (newVal.receive_status === 2) {
+          //   this.hide()
             // this.showDialog('success', {showClose: false})
-          }
+          // }
           // }
         }
       },
