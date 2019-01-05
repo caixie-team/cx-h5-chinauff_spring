@@ -60,7 +60,9 @@
     // },
     fetch ({store, query, error}) {
       return Promise.all([
-        store.dispatch('loadBlessingStatistics')
+        store.dispatch('loadBlessingStatistics'),
+        store.dispatch('loadPrizeBlessing'),
+        store.dispatch('loadPrizeCoupon')
         // 获取集福统计数
         // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
         // 加载活动参与的关联信息

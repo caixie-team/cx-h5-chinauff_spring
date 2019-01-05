@@ -68,6 +68,7 @@
       lucky (newVal) {
         let coupon_type = 0
         let coupon_code = ''
+        // 类型 1 为优惠劵
         if (newVal.type === 1) {
           coupon_type = newVal.coupon.type_code
           coupon_code = newVal.coupon.coupon_code
