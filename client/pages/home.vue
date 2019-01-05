@@ -38,7 +38,9 @@
     transition: 'fade',
     name: 'Index',
     fetch ({store, query, error}) {
+      console.log(query)
       if (query.coupon_code) {
+        console.log(store.state.user.info.data)
         // return this.$store.state.user.info.data
 
         if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
