@@ -74,7 +74,7 @@
       locationHref () {
         let locationHref = window.location.href
         // locationHref = locationHref + '&coupon_code=' + this.coupon_code
-        locationHref = locationHref + '?openId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
+        locationHref = locationHref + '?myOpenId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
         const redirectURL = `https://weixin.chinauff.com/lnj-weixin/console/weixin/page/loginPage?callback2=${encodeURIComponent(locationHref)}&isAutoRegister=1&channel2=18`
         return redirectURL
       },
@@ -178,23 +178,6 @@
           // this.redirectLogin()
         }
       },
-
-      redirectLogin () {
-        // if (isBrowser) {
-        // console.log('-x-x-x--x-x-')
-        // let locationHref = window.location.href
-        // locationHref = locationHref + '&openId' + this.$store.gettters.openId + '&coupon_code=' + this.coupon_code
-        // const encodeUrl = encodeURIComponent(locationHref)
-        // console.log(encodeUrl)
-        // 替换为此接口 http://demo.micvs.com/lnj-weixin/console/weixin/page/loginPage?isAutoRegister=1&callback2=https://www.baidu.com&channel2=18
-        // window.location = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeURIComponent(locationHref)}`
-        // console.log('跳转中。。。')
-        // console.log(localProxURL)
-        const url = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeURIComponent(locationHref)}`
-        console.log(url)
-        // window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeUrl}`
-        // }
-      }
     }
   }
 </script>
