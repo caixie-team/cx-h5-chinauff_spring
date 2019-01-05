@@ -27,7 +27,8 @@ module.exports = options => {
       const openId = await ctx.cookie('openId') || await ctx.session('openId')
       const query = ctx.query
       const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
-      const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
+      // const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
+      const callbackUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/openId?callback=${encodeURI}`
       // 请求地址中不包含 openId
       if (_.isEmpty(openId) && !_.has(query, 'openId')) {
         return ctx.redirect(callbackUrl)
