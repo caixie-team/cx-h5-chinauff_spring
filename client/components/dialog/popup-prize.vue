@@ -171,18 +171,19 @@
         }
       },
       redirectLogin () {
-        if (isBrowser) {
-          console.log('-x-x-x--x-x-')
-          // let locationHref = window.location.href
-          // locationHref = locationHref + '&coupon_code=' + this.coupon_code
-          // const encodeUrl = encodeURIComponent(locationHref)
-          // 替换为此接口 http://demo.micvs.com/lnj-weixin/console/weixin/page/loginPage?isAutoRegister=1&callback2=https://www.baidu.com&channel2=18
-          // window.location = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=` + encodeURIComponent(locationHref)
-          // console.log('跳转中。。。')
-          // console.log(localProxURL)
+        // if (isBrowser) {
+        console.log('-x-x-x--x-x-')
+        let locationHref = window.location.href
+        locationHref = locationHref + '&coupon_code=' + this.coupon_code
+        const encodeUrl = encodeURIComponent(locationHref)
+        console.log(encodeUrl)
+        // 替换为此接口 http://demo.micvs.com/lnj-weixin/console/weixin/page/loginPage?isAutoRegister=1&callback2=https://www.baidu.com&channel2=18
+        // window.location = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=` + encodeURIComponent(locationHref)
+        // console.log('跳转中。。。')
+        // console.log(localProxURL)
 
-          // window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeUrl}`
-        }
+        // window.location.href = `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeUrl}`
+        // }
       }
     }
   }
