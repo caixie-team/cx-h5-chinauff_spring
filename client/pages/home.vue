@@ -133,7 +133,7 @@
           })
         }
       }
-      this.showDialog('limit', {showClose: false})
+      // this.showDialog('limit', {showClose: false})
 
       this.$store.commit('ai/RESET_SCORE')
       this.$store.dispatch('luckyTimes', {
