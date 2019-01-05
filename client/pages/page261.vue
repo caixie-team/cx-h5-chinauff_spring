@@ -31,7 +31,7 @@
         </a>
         <nuxt-link
           v-if="luckyTimes > 0"
-          to="/home">
+          to="/">
           <img src="~assets/img/btn/btn_zlycl.png">
         </nuxt-link>
         <p>今日还可参与 {{ luckyTimes }} 次</p>
