@@ -66,21 +66,23 @@
     },
     watch: {
       lucky (newVal) {
-        let coupon_type = 0
-        let coupon_code = ''
-        // 类型 1 为优惠劵
-        if (newVal.type === 1) {
-          coupon_type = newVal.coupon.type_code
-          coupon_code = newVal.coupon.coupon_code
-        } else if (newVal.type === 2) {
-          coupon_type = newVal.card.card_code
-          coupon_code = newVal.card.card_code.toString()
+        if (this.$route.path !== '/page65') {
+          let coupon_type = 0
+          let coupon_code = ''
+          // 类型 1 为优惠劵
+          if (newVal.type === 1) {
+            coupon_type = newVal.coupon.type_code
+            coupon_code = newVal.coupon.coupon_code
+          } else if (newVal.type === 2) {
+            coupon_type = newVal.card.card_code
+            coupon_code = newVal.card.card_code.toString()
+          }
+          this.showDialog('prize', {
+            blessing_type: this.blessing.blessing_type,
+            coupon_type,
+            coupon_code
+          })
         }
-        this.showDialog('prize', {
-          blessing_type: this.blessing.blessing_type,
-          coupon_type,
-          coupon_code
-        })
       },
       coupon (newVal) {
         // console.log(this.$route.path)
