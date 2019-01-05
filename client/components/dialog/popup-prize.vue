@@ -71,6 +71,11 @@
       }
     },
     computed: {
+      locationHref () {
+        let locationHref = window.location.href
+        locationHref = locationHref + '&coupon_code=' + this.coupon_code
+        return `${apiConfig.proxyUrl}/weixin/page/loginPage?isAutoRegister=1&channel2=18&callback2=${encodeURIComponent(locationHref)}`
+      },
       userInfo () {
         return this.$store.state.user.info.data
       },
@@ -166,10 +171,12 @@
             coupon_code: this.coupon_code
           })
         } else {
-          console.log('未登录状态')
-          this.redirectLogin()
+          window.location.href = this.locationHref
+          // console.log('未登录状态')
+          // this.redirectLogin()
         }
       },
+
       redirectLogin () {
         // if (isBrowser) {
         console.log('-x-x-x--x-x-')
