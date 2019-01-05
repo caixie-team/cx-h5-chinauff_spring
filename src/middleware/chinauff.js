@@ -56,7 +56,7 @@ module.exports = options => {
         // 活动账户的信息，包括登录状态和会员信息
         // if Login status === 1
         await ctx.session('activity_user', JSON.stringify(res.data))
-        this.cookie('activity_user', JSON.stringify(res.data))
+        await ctx.cookie('activity_user', JSON.stringify(res.data))
         return next()
       }
     }
