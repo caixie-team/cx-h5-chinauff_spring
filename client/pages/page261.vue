@@ -114,11 +114,11 @@
         return this.$store.state.prize.lucky.data
       },
       // 领劵数据
-      // coupon () {
-      //   return this.$store.state.prize.coupon.data
-      // },
+      couponData () {
+        return this.$store.state.prize.coupon.data
+      },
       coupon () {
-        switch (this.coupon.type_code) {
+        switch (this.couponData.type_code) {
           case 3409:
             return 'mianfei'
           case 3410:
