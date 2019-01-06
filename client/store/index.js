@@ -562,8 +562,9 @@ export const actions = {
   // 好友助力
   async dealHelpAction ({commit}, params) {
     const res = await this.$axios.$post(`${API_PREFIX}/blessing/help`, {
-      openId: this.getters.openId,
-      beOpenId: params.beOpenId
+      ...params
+      // openId: this.getters.openId,
+      // beOpenId: params.beOpenId
     })
     if (res && res.errno === 0) {
       return true

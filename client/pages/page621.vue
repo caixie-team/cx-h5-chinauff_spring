@@ -27,24 +27,6 @@
             <span class="moredot"/>
           </div>
 
-          <!--
-          <div
-            v-if="headimgs.length > 0"
-            class="members members&#45;&#45;overlap">
-            <ul>
-              <li
-                v-for="(item, index) in headimgs"
-                :key="index"
-                class="member">
-                <img
-                  :src="item"
-                  class="c-avatar c-avatar-image">
-              </li>
-            </ul>
-            <span class="moredot" />
-          </div>-->
-
-
           <div class="total">
             <img
               v-if="helps.total > 0"
@@ -59,6 +41,7 @@
             v-if="helper === 1 || helper === 2"
             src="~assets/img/page621/zlhyjmf.png"
             class="text-zhulizhuli">
+          <!-- 如果是被助力者自己看到的 -->
           <div
             v-if="helper === 3"
             class="helperInfo">
@@ -67,11 +50,13 @@
               class="text-zlhyjmf">
           </div>
         </div>
+        <!-- 立即助力 -->
         <img
           v-if="helper === 1"
           src="~assets/img/page621/ljzl.png"
           class="btn-ljzl"
           @click="helpAction">
+        <!-- 已完成助力 -->
         <span
           v-if="helper === 2"
           class="helpLucky">
@@ -84,6 +69,7 @@
               class="btn-djccqw">
           </nuxt-link>
         </span>
+        <!-- 被助力者自己 -->
         <img
           v-if="helper === 3"
           src="~assets/img/page621/jixuyaoqing.png"
@@ -122,7 +108,7 @@
     },
     head () {
       return {
-        title: '老娘舅新春集福瓜分18吨福米',
+        title: '助力好友集福',
       }
     },
     components: {
@@ -215,7 +201,7 @@
       }
     },
     mounted () {
-      // 这里不对要处理o penid ....
+      // 这里不对要处理openid ....
       const coupon_code = this.$route.loadPrizeCouponquery.coupon_code
       // 用于回调页面回来之后处理发劵，领劵
       if (this.userInfo.status === 1 && coupon_code && coupon_code !== null && coupon_code !== '') {
@@ -230,17 +216,31 @@
       shareGuide () {
         EventBus.$emit('share', true)
       },
+      // 开始助力
+      // 1 提交助力者openId
+      // 2 提交被助力者beOpenId
       async helpAction () {
         const beOpenId = this.$route.query.beOpenId
+        const openId = this.$store.getters.openId
         const isSuccess = await this.$store.dispatch('dealHelpAction', {
-          openId: this.$store.getters.openId,
-          beOpenId: this.$route.query.beOpenId
+          // 助力者打开后的自己的 openId
+          openId,
+          beOpenId
+          // openId: this.$store.getters.openId,
+          // beOpenId: this.$route.query.beOpenId
         })
+        console.log('-----')
+        console.log(beOpenId + '被助力者')
+        console.log(openId + '助力者')
+        // 如果助力成功
         if (isSuccess) {
+          // 根据被助力者，查询获取助力者状态，判断1、未助力，2、已助力，3、同一人
           await this.$store.dispatch('loadActivityHelperStatus', {beOpenId})
+          // 帮助好友集福
           const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
-          if (blessingData) {
-            await this.$store.dispatch('loadPrizeLucky', {openId: beOpenId, encrypt: true})
+          // 如果集福成功,自己抽个奖
+          if (blessingData) loadPrizeLucky{
+            await this.$store.dispatch('loadPrizeLucky', {openId: openId, encrypt: true})
           }
         }
       },
@@ -263,7 +263,7 @@
     align-items: center
     flex-direction: column
     min-height: 100vh
-    position: absolute
+    position: fixed
     left: 0
     width: 100%
     height: 100%
