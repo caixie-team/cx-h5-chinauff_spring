@@ -8,9 +8,8 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        {{ luckyCount }}
         <div
-          v-if="luckyCount > 0"
+          v-if="luckyTimes > 0"
           class="upload">
           <label for="theFile">
             <img
@@ -77,13 +76,13 @@
       }
     },
     computed: {
-      luckyCount () {
-        const number = this.luckyTimes - 1
-        if (number > 0) {
-          return number
-        }
-        return 0
-      },
+      // luckyCount () {
+      //   const number = this.luckyTimes - 1
+      //   if (number > 0) {
+      //     return number
+      //   }
+      //   return 0
+      // },
       score () {
         return this.$store.state.ai.data.score
       },
