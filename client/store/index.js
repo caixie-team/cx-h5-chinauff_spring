@@ -55,7 +55,7 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
       wechatObj.shareOnChat({
         title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
         // type: 'link',
-        link: apiConfig.hostUrl + '/page621?beOpenId=' + beOpenId,
+        link: 'https://weixin.chinauff.com/spring/page621?beOpenId=' + beOpenId,
         // link: location.href,
         imgUrl: img,
         desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
@@ -70,7 +70,7 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
         type: 'link',
         desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
         // link: location.href,
-        link: apiConfig.hostUrl + '/page621?beOpenId=' + beOpenId,
+        link: 'https://weixin.chinauff.com/spring/page621?beOpenId=' + beOpenId,
         success: function () {
           commit('option/SET_LOG_INFO', {
             msg: 'share on moment success'
@@ -387,7 +387,7 @@ export const actions = {
     }).then(response => {
       const data = getResData(response)
       if (resIsSuccess(response)) {
-        // console.log(data)
+        console.log(data)
         // commit('prize/GET_COUPON_SUCCESS', data)
         return Promise.resolve(data)
       }

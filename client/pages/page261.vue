@@ -9,14 +9,18 @@
         {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
       </h1>
       <div class="content">
-        <section class="section1">
+        <section
+          v-if="blessing.name"
+          class="section1">
           <img
             :src="tip1"
             class="tip1">
           <span :class="_wordClass"/>
 
         </section>
-        <section class="section2">
+        <section
+          v-if="lucky.type > 0"
+          class="section2">
           <img
             :src="tip2"
             class="tip2">
@@ -25,7 +29,6 @@
         </section>
       </div>
       <div class="footer">
-        <!--<a @click="showDialog('share', { showClose: true })">-->
         <a @click="shareGuide">
           <img src="~assets/img/btn/btn_yqhyzl.png">
         </a>
@@ -34,7 +37,7 @@
           href="https://weixin.chinauff.com/spring/home">
           <img src="~assets/img/btn/btn_zlycl.png">
         </a>
-        <p>今日还可参与 {{ luckyTimes - 1 }} 次</p>
+        <p>今日还可参与 {{ luckyCount }} 次</p>
       </div>
     </div>
   </c-page>
@@ -95,6 +98,13 @@
       }
     },
     computed: {
+      luckyCount () {
+        const number = this.luckyTimes - 1
+        if (number > 0) {
+          return number
+        }
+        return 0
+      },
       luckyTimes () {
         return this.$store.state.user.lucky.data.times
       },
@@ -161,7 +171,7 @@
           case 50:
             return 'huiyuanka'
           default:
-            return 'aaaa'
+            return ''
         }
       },
       word () {
