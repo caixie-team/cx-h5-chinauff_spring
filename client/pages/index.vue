@@ -8,6 +8,7 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
+        {{ luckyTimes }}
         <div
           v-if="luckyTimes > 0"
           class="upload">
@@ -63,6 +64,17 @@
       return {
         title: '老娘舅新春集福瓜分18吨福米'
       }
+    },
+    fetch ({store, query, error}) {
+      return Promise.all([
+        store.dispatch('luckyTimes', {
+          openId: store.getters.openId
+        })
+        // 加载我的满福
+        // store.dispatch('loadMyBlessing'),
+        // 加载我的福字记录
+        // store.dispatch('loadMyBlessingRecords')
+      ])
     },
     components: {
       CPage,
@@ -142,7 +154,7 @@
 
       this.$store.commit('ai/RESET_SCORE')
       this.$store.dispatch('luckyTimes', {
-        openId: this.userInfo.openId
+        openId: this.$store.getters.openId
       })
 
       EventBus.$on('scan-success', () => {
