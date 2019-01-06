@@ -40,7 +40,7 @@
   import btn1 from '~/assets/img/btn/btn_friend.png'
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
   import {isBrowser} from '~/environment_es'
-  import apiConfig from '~/api.config.es'
+  // import apiConfig from '~/api.config.es'
   // 免费劵 3409
   // 4 元劵 (3410)
   // 8 元劵 (3411)
@@ -169,14 +169,11 @@
         if (this.userInfo.status === 1) {
           // 领劵
           // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
-          await this.$store.dispatch('loadPrizeCoupon', {
+          return await this.$store.dispatch('loadPrizeCoupon', {
             coupon_code: this.coupon_code
           })
-        } else {
-          window.location.href = this.locationHref
-          // console.log('未登录状态')
-          // this.redirectLogin()
         }
+        window.location.href = this.locationHref
       },
     }
   }

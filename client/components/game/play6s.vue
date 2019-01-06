@@ -100,11 +100,11 @@
       // 添加背景容器
       const bg = viewport.addChild(new PIXI.Container())
       // 添加背景图
-      bg.addChild(new PIXI.Sprite.fromImage(bgLightImg))
       // 添加背景
       viewport.addChild(bg)
       this.$refs.play6s.appendChild(this.app.view)
       this.loadRes(() => {
+        bg.addChild(new PIXI.Sprite.fromImage(bgLightImg))
         // console.log('loading end...')
         this.app.stage.addChild(viewport)
         this.init6s()
@@ -224,7 +224,7 @@
     align-self: center
     background-image: url('~assets/img/btn/btn_sxfq.png')
     position: absolute
-    top: 550px
+    top: 580px
     left: 200px
     z-index: 31;
     background-size: 248px 60px

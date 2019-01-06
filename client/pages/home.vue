@@ -123,9 +123,8 @@
     },
     mounted () {
       // this.showDialog('success3', {showClose: false})
-
-      EventBus.$emit('show12s', false)
       EventBus.$emit('show6s', false)
+      EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
 
       const coupon_code = this.$route.query.coupon_code
