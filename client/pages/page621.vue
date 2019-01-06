@@ -239,7 +239,7 @@
           // 帮助好友集福
           const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
           // 如果集福成功,自己抽个奖
-          if (blessingData) loadPrizeLucky{
+          if (blessingData) {
             await this.$store.dispatch('loadPrizeLucky', {openId: openId, encrypt: true})
           }
         }
