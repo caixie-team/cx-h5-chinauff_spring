@@ -68,7 +68,9 @@ export const mutations = {
 
   // 设置 JSSDK
   SET_JSSDK_CONFIG (state, action) {
+    // state.jssdkConfig = Object.assign({}, state.jssdkConfig, action)
     state.jssdkConfig = Object.assign({}, state.jssdkConfig, action)
+    state.jssdkConfig.appId = 'wxb44ce8b8c5cfdc0a'
     state.jssdkConfig.jsApiList = [
       'hideMenuItems',
       'onMenuShareTimeline',
