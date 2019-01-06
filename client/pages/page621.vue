@@ -78,7 +78,7 @@
           <img
             src="~assets/img/page621/ywczl.png"
             class="btn-ywczlg">
-          <nuxt-link to="/">
+          <nuxt-link to="/home">
             <img
               src="~assets/img/page621/btn_djccqw.png"
               class="btn-djccqw">
