@@ -8,9 +8,9 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
-        {{ luckyTimes }}
+        {{ luckyCount }}
         <div
-          v-if="luckyTimes > 0"
+          v-if="luckyCount > 0"
           class="upload">
           <label for="theFile">
             <img
@@ -47,19 +47,6 @@
   export default {
     transition: 'fade',
     name: 'Index',
-    // fetch ({store, query, error}) {
-    //   console.log(query)
-    //   if (query.coupon_code) {
-    //     console.log(store.state.user.info.data)
-    //     return this.$store.state.user.info.data
-        //
-        // if (store.state.user.info.data.status === 1 && query.coupon_code !== '') {
-        //   return store.dispatch('loadPrizeCoupon', {
-        //     coupon_code: query.coupon_code
-        //   })
-        // }
-      // }
-    // },
     head () {
       return {
         title: '老娘舅新春集福瓜分18吨福米'
@@ -70,10 +57,6 @@
         store.dispatch('luckyTimes', {
           openId: store.getters.openId
         })
-        // 加载我的满福
-        // store.dispatch('loadMyBlessing'),
-        // 加载我的福字记录
-        // store.dispatch('loadMyBlessingRecords')
       ])
     },
     components: {
@@ -94,6 +77,13 @@
       }
     },
     computed: {
+      luckyCount () {
+        const number = this.luckyTimes - 1
+        if (number > 0) {
+          return number
+        }
+        return 0
+      },
       score () {
         return this.$store.state.ai.data.score
       },
@@ -114,29 +104,11 @@
           this.showDialog('success', {showClose: false})
         }
       },
-      score (newVal) {
-        // console.log('score .......')
-        // console.log(newVal)
-        // if (this.score === 100) {
-        // 跳转到集福动画页
-        // setTimeout(() => {
-        //   this.$store.commit('ai/RESET_SCORE')
-        //   EventBus.$emit('show12s', true)
-        // this.$router.push('/page22')
-        // }, 2500)
-
-        // } else {
-        //   setTimeout(() => {
-        //     this.dialog.hide()
-        //   }, 2500)
-        //   this.picValue = ''
-        // }
-      },
     },
     mounted () {
       // this.showDialog('success3', {showClose: false})
-      EventBus.$emit('show6s', false)
-      EventBus.$emit('show12s', false)
+      // EventBus.$emit('show6s', false)
+      // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
 
       const coupon_code = this.$route.query.coupon_code
