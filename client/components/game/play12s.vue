@@ -246,14 +246,12 @@
           setTimeout(this.timer, 1000);
           // this.happyMusic.sound.stop()
         } else {
+          // setTimeout(() => {
+          EventBus.$emit('show12s', false)
+          // }, 1000)
           setTimeout(() => {
-            EventBus.$emit('show12s', false)
-            // this.dialog.hide()
-            // this.$store.commit('ai/RESET_SCORE')
-            // EventBus.$emit('show12s', true)
-            // this.$router.push('/page22')
+            EventBus.$emit('show6s', true)
           }, 1000)
-          EventBus.$emit('show6s', true)
         }
       },
       init12s (data) {
@@ -353,7 +351,8 @@
     position: fixed
     top: 0
     left: 0
-    /*z-index: 0*/
+
+  /*z-index: 0*/
 
   .topbar
     position: absolute
@@ -362,6 +361,7 @@
     justify-content: space-between
     padding: 20px
     width: 600px
+
     span
       display: flex
       font-size: 20px
