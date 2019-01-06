@@ -50,6 +50,7 @@
     flex-direction: column
     text-align: center
     align-items: center
+    justify-content: center
 
     .text
       position: absolute

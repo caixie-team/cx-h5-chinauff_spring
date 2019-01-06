@@ -89,7 +89,7 @@
           src="~assets/img/page621/jixuyaoqing.png"
           class="btn-jxyqhyzl"
           @click="shareGuide">
-        <!--@click="showDialog('share', { showClose: true })">-->
+          <!--@click="showDialog('share', { showClose: true })">-->
       </div>
       <div class="footer"/>
     </div>

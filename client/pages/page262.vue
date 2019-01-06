@@ -31,7 +31,7 @@
             @click="shareGuide">
             <!--@click="showDialog('share')">-->
         </a>
-        <a>
+        <a href="https://weixin.chinauff.com/spring/home">
           <img src="~assets/img/btn/btn_zlycl.png">
         </a>
         <p>今天日还可参与 {{ limit }} 次</p>

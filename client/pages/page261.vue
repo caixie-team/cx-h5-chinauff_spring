@@ -29,12 +29,12 @@
         <a @click="shareGuide">
           <img src="~assets/img/btn/btn_yqhyzl.png">
         </a>
-        <nuxt-link
+        <a
           v-if="luckyTimes > 0"
-          to="/">
+          href="https://weixin.chinauff.com/spring/home">
           <img src="~assets/img/btn/btn_zlycl.png">
-        </nuxt-link>
-        <p>今日还可参与 {{ luckyTimes }} 次</p>
+        </a>
+        <p>今日还可参与 {{ luckyTimes - 1 }} 次</p>
       </div>
     </div>
   </c-page>

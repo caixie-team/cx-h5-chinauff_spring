@@ -38,8 +38,8 @@
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment_es'
   import TopButtons from '../components/top-buttons'
-  import AiScan from '../components/ai-scan'
-  import DialogScan from '../components/dialog/dialog-scan'
+  // import AiScan from '../components/ai-scan'
+  // import DialogScan from '../components/dialog/dialog-scan'
   // import Exif from 'exif-js'
   // import apiConfig from '~/api.config'
 
@@ -67,8 +67,8 @@
     components: {
       CPage,
       TopButtons,
-      AiScan,
-      DialogScan
+      // AiScan,
+      // DialogScan
     },
     data () {
       return {
@@ -122,6 +122,8 @@
       },
     },
     mounted () {
+      // this.showDialog('success3', {showClose: false})
+
       EventBus.$emit('show12s', false)
       EventBus.$emit('show6s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
