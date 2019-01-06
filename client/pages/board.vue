@@ -62,7 +62,7 @@
         pages: [{
           id: '1.1',
           title: '集福首页',
-          link: '/home'
+          link: '/'
         }, {
           id: '2.1',
           title: '2.1、AR界面：扫一扫操作',

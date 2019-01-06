@@ -34,7 +34,7 @@
         </a>
         <a
           v-if="luckyTimes > 0"
-          href="https://weixin.chinauff.com/spring/home">
+          href="https://weixin.chinauff.com/spring">
           <img src="~assets/img/btn/btn_zlycl.png">
         </a>
         <p>今日还可参与 {{ luckyCount }} 次</p>
