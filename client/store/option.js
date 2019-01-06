@@ -23,6 +23,7 @@ export const state = () => ({
     // appId: 'wxb44ce8b8c5cfdc0a',
     // 老娘舅测试
     // appId: 'wxa8299eb7fc27ef04',
+    // 老娘舅正式ID
     appId: 'wxb44ce8b8c5cfdc0a',
     nonceStr: '',
     signature: '',
