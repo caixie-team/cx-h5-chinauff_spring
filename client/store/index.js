@@ -205,7 +205,9 @@ export const actions = {
     // console.log(url)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
-    const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    const postUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=` + encodeURIComponent(url)
     return this.$axios.$post(postUrl)
       .then(response => {
