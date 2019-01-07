@@ -286,7 +286,7 @@ export default class Game {
 
     let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.jpg')
     button.x = window.innerWidth / 2
-    button.y = window.innerHeight / 2 - 100
+    button.y = window.innerHeight / 2 - 500
     button.anchor.set(0.5)
     button.width = 248 / 2
     button.height = 60 / 2
