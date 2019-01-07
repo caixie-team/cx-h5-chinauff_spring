@@ -33,19 +33,9 @@
 <script>
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
   import EventBus from '~/utils/event-bus.js'
-  import apiConfig from '~/api.config.es'
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment_es'
   import TopButtons from '../components/top-buttons'
-
-  // const API_PREFIX = apiConfig.baseUrl
-  // import axios from 'axios'
-
-  // const getResData = response => {
-  //   return response.data ? response.data : response
-    // return response.status ? response.data : response
-  // }
-
 
   export default {
     transition: 'fade',
@@ -117,7 +107,7 @@
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {
         // 用于回调页面回来之后处理发劵，领劵
-        if (this.userInfo.status === 1 && coupon_code !== null && coupon_code !== '') {
+        if (this.userInfo.status === 1 && this.userInfo.cardNo > 0 && coupon_code !== null && coupon_code !== '') {
           // 领劵
           // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
           this.$store.dispatch('loadPrizeCoupon', {

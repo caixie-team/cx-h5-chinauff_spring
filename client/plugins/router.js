@@ -8,6 +8,10 @@ export default ({app, store}) => {
       path: to.fullPath
     });
 
+    EventBus.$emit('re-signature', {
+      path: to.fullPath
+    });
+    // this.$
     if (to.path === '/page51') {
       // console.log('page51 请求二维码状态')
       // window.clearInterval(this.myInterval);
