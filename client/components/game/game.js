@@ -270,7 +270,7 @@ export default class Game {
     bgSprite.height = window.innerHeight
     bgSprite.anchor.set(0.5)
     this.container6s.addChild(bgSprite)
-
+    bgSprite.zIndex = 1
 
     const frames = []
     for (let i = 0; i < 61; i++) {
@@ -283,22 +283,22 @@ export default class Game {
     this.play6sObj.sprite.anchor.set(0.5)
     this.play6sObj.sprite.animationSpeed = 0.3
     this.setSize(this.play6sObj.sprite, W * .3)
-
+    this.play6sObj.sprite.zIndex = 2
     let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.jpg')
     button.x = window.innerWidth / 2
-    button.y = window.innerHeight / 2 - 500
+    button.y = window.innerHeight / 2 - 100
     button.anchor.set(0.5)
     button.width = 248 / 2
     button.height = 60 / 2
     button.interactive = true
     button.buttonMode = true
-    button.zIndex = 100
     button
       .on('touchstart', this._onButtonDown)
       .on('touchend', this.onButtonUp)
     // .on('touchendoutside', this.onButtonUp)
     // this.setSize(button, W * .1)
     this.container6s.addChild(button)
+    button.zIndex = 100
 
     this.container6s.visible = false
     // sprite.play()
