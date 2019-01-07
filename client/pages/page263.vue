@@ -20,9 +20,11 @@
         </section>
       </div>
       <div class="footer">
+        <!--
         <p>
           {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
         </p>
+        -->
       </div>
     </div>
   </c-page>

@@ -25,7 +25,7 @@
         </span>
         <span
           v-show="scan.score > 100">
-          识别失败
+          对象不符合
           <br><br>
           请重新 “扫一扫”
         </span>

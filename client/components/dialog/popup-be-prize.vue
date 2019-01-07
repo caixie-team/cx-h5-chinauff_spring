@@ -166,7 +166,7 @@
       async getCoupon () {
         // 1 验证用户登录状态
         // 2 未登录跳转登录，回调地址包含验证劵码信息
-        if (this.userInfo.status === 1) {
+        if (this.userInfo.status === 1 && this.userInfo.cardNo > 0) {
           // 领劵
           // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
           await this.$store.dispatch('loadPrizeCoupon', {

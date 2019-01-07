@@ -339,7 +339,7 @@
           display: flex
           flex-direction: row
           justify-content: center
-          margin-bottom: 50px
+          margin-bottom: 10px
 
           .count
             font-weight: 500

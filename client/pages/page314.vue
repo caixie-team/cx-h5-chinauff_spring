@@ -8,9 +8,11 @@
       <img
         src="~assets/img/page311/shiba.png"
         class="imgShiba">
+      <!--
       <h1>
         {{ total }}人已集满 “福”, 您 已集满 {{ count }}个 “福”
       </h1>
+      -->
       <div class="content">
         <span class="fuzi fuzi-fu1"/>
         <nuxt-link

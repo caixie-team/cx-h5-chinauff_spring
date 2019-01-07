@@ -53,6 +53,10 @@
           v-if="type === 'scan'"
           :imgsrc="imgsrc"
           @close="close"/>
+        <popup-msg
+          v-if="type === 'msg'"
+          :msg="msg"
+          @close="close"/>
       </div>
     </c-popup>
   </transition>
@@ -78,6 +82,7 @@
   import Dhff from './popup-dhff'
   import EventBus from '~/utils/event-bus.js'
   import PopupScan from "./popup-scan";
+  import PopupMsg from "./popup-msg";
 
   const COMPONENT_NAME = 'c-dialog'
   const EVENT_CONFIRM = 'confirm'
@@ -111,6 +116,7 @@
     name: COMPONENT_NAME,
     components: {
       PopupScan,
+      PopupMsg,
       CPopup,
       CInput,
       Intro,
@@ -127,6 +133,10 @@
     },
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {
+      msg: {
+        type: String,
+        default: ''
+      },
       coupon_type: {
         type: Number,
         default: 0

@@ -5,9 +5,11 @@
       slot="content"
       class="page261">
       <top-buttons/>
+      <!--
       <h1>
         {{ total }}人已集满 “福”, 您 已集满 {{ count }}个 “福”
       </h1>
+      -->
       <div class="content">
         <section class="section1">
           <img

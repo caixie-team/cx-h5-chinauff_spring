@@ -11,16 +11,12 @@ export const state = () => ({
     // if Login status === 1
     data: {
       openId: '',
-      nickname: '请好好说话🌱',
-      sex: 1,
-      language: 'zh_CN',
-      city: '丰台',
-      province: '北京',
-      country: '中国',
-      headimgurl: 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epTImibsmcibWuh9CMGNugXagRxCWy8N1cVSoaBPvs4KGdib7zuSEQHDBuu1lFrZ5ruhxiaaMN3BGNOUQ/132',
-      privilege: [],
-      unionid: '',
-      status: 0
+      name: '',
+      headimgurl: '',
+      cardNo: 0,
+      status: 0,
+      avatar: '',
+      lastLoginTime: ''
     }
   },
   lucky: {

@@ -32,16 +32,11 @@
 </template>
 <script>
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
-  /* global PIXI, Game */
   import EventBus from '~/utils/event-bus.js'
 
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment_es'
   import TopButtons from '../components/top-buttons'
-  // import AiScan from '../components/ai-scan'
-  // import DialogScan from '../components/dialog/dialog-scan'
-  // import Exif from 'exif-js'
-  // import apiConfig from '~/api.config'
 
   export default {
     transition: 'fade',
@@ -132,7 +127,7 @@
         setTimeout(() => {
           this.dialog.hide()
           this.$store.commit('ai/RESET_SCORE')
-          EventBus.$emit('show12s', true)
+          EventBus.$emit('play12s', true)
         }, 2500)
       })
       EventBus.$on('scan-failure', () => {
@@ -146,14 +141,13 @@
     },
     methods: {
       picker () {
-        // console.log('choose image ....')
         const self = this
         wx.chooseImage({
           count: 1, // 默认9
           sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['camera'],
           success: function (res) {
-            const tempFilePaths = res.tempFilePaths
+            // const tempFilePaths = res.tempFilePaths
             const localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
             self.localId = localIds[0]
 

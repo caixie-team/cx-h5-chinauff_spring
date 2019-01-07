@@ -13,6 +13,7 @@ import apiConfig from '~/api.config.es'
 // import uaDevice from '~/utils/ua-device'
 import {isBrowser, isServer, isProdMode} from '~/environment_es'
 import {browserParse, osParse} from '~/utils/ua-os-browser'
+import axios from 'axios'
 
 // import shareIcon from '~/assets/img/icon/icon_gift.png'
 
@@ -26,8 +27,10 @@ const getResData = response => {
   // return response.status ? response.data : response
 }
 const resIsSuccess = response => {
+  // console.log(response.data)
   // HTTP2
   if (response.data) {
+    // console.log('is right')
     return response.errno === 0 || response.errcode === 0 || response.errcode === '0' && response.data
     // return response.status && response.data && Object.is(response.data.code, 1)
   } else {
@@ -86,18 +89,6 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
         imgUrl: img
       })
 
-      // w.callWechatApi('onMenuShareAppMessage', {
-      //   title: 'onMenuShareAppMessage test title',
-      //   type: 'link',
-      //   desc: 'onMenuShareAppMessage share description',
-      //   success: function () {
-      //     console.log('share on chat success')
-      //   },
-      //   cancel: function () {
-      //     console.log('share on chat canceled')
-      //   },
-      //   imgUrl: img
-      // })
       commit('user/REQUEST_USER_LOCATION')
       // 获取当前地理定位
       w.callWechatApi('getLocation', {
@@ -119,8 +110,38 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
     })
     .catch(err => {
       commit('option/SET_LOG_INFO', err)
+      console.log('rest lgoin inf......')
+      wechatObj.signSignature({
+        'nonceStr': config.nonceStr,
+        'signature': config.signature,
+        'timestamp': config.timestamp
+      })
       console.error(err)
     })
+}
+const loadJSSDKConfig = () => {
+  // console.log(url)
+  const url = window.location.href
+  // const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
+  // const postUrl = `${API_PREFIX}/wechat/signature?url=${url}`
+  const postUrl = `${API_PREFIX}/wechat/signature`
+  // console.log('LOAD JSSDK CONFIG...')
+  // console.log(postUrl)
+  // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=` + encodeURIComponent(url)
+  // const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
+  return axios.post(postUrl, {
+    appId: 'wxb44ce8b8c5cfdc0a',
+    url
+  }).then(response => {
+    console.log(response.data)
+    if (response.data.errcode === '0' && response.data) {
+      return getResData(response.data)
+    } else {
+      console.log('微信签名信息获取失败：', response)
+    }
+  }).catch(err => {
+    console.warn('获取签名信息错误', err)
+  })
 }
 
 export const state = () => ({
@@ -153,16 +174,16 @@ export const actions = {
     // console.log(req.session.activity_user)
     store.commit('user/SET_USER_INFO', JSON.parse(req.session.activity_user))
     // console.log(getBaseUrl(req))
-    const initAppData = [
-      // 获取微信JSSDK配置
-      // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
-      // 获取 oauth 请求地址
-      // store.dispatch('loadOauthUrls')
-    ]
+    // const initAppData = [
+    // 获取微信JSSDK配置
+    // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
+    // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+    // 获取 oauth 请求地址
+    // store.dispatch('loadOauthUrls')
+    // ]
 
     // 首次服务端渲染时渲
-    return Promise.all(initAppData)
+    // return Promise.all(initAppData)
   },
 
   /**
@@ -172,7 +193,7 @@ export const actions = {
    * @returns {Promise<void>}
    */
   async nuxtClientInit ({commit}, context) {
-    const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
+    const jssdkConfig = await loadJSSDKConfig()
     await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
   },
   // 获取 generateOAuthUrl 地址信息
@@ -188,26 +209,24 @@ export const actions = {
         console.warn('获取 oauth url 错误', err)
       })
   },
-  loadCxJSSDKConfig ({commit}, url) {
-    const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
-    return this.$axios.$get(getUrl)
-      .then(response => {
-        // console.log(response)
-        resIsSuccess(response)
-          ? commit('option/SET_JSSDK_CONFIG', getResData(response))
-          : console.log('微信签名信息获取失败：', response)
-      })
-      .catch(err => {
-        console.warn('获取签名信息错误', err)
-      })
-  },
-  loadJSSDKConfig ({commit}, url) {
+  // loadCxJSSDKConfig ({commit}, url) {
+  //   const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
+  //   return this.$axios.$get(getUrl)
+  //     .then(response => {
+  //       // console.log(response)
+  //       resIsSuccess(response)
+  //         ? commit('option/SET_JSSDK_CONFIG', getResData(response))
+  //         : console.log('微信签名信息获取失败：', response)
+  //     })
+  //     .catch(err => {
+  //       console.warn('获取签名信息错误', err)
+  //     })
+  // },
+/*  loadJSSDKConfig ({commit}) {
     // console.log(url)
-    // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
-    // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
-    // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    const url = window.location.href
     const postUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
-
+    console.log('LOAD JSSDK CONFIG...')
     console.log(postUrl)
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=` + encodeURIComponent(url)
     return this.$axios.$post(postUrl)
@@ -220,8 +239,8 @@ export const actions = {
       .catch(err => {
         console.warn('获取签名信息错误', err)
       })
-  },
-  loadUserInfo ({commit}, openId) {
+  },*/
+/*  loadUserInfo ({commit}, openId) {
     const getUrl = `/proxy/dcApi/member/isLogin?openId=${openId}`
     return this.$axios.$get(getUrl)
       .then(response => {
@@ -244,9 +263,9 @@ export const actions = {
       .catch(err => {
         console.warn('获取签名信息错误', err)
       })
-  },
+  },*/
   // 加载用户信息
-  loadWechatUserInfo ({commit}, code) {
+/*  loadWechatUserInfo ({commit}, code) {
     // return this.$axios.$get(`${API_PREFIX}/wechat/signature?url=${encodeURIComponent(location.href)}`)
     return this.$axios.$get(`${API_PREFIX}/wechat/oauth?code=${code}`)
       .then(response => {
@@ -257,7 +276,7 @@ export const actions = {
       .catch(err => {
         console.warn('获取签名信息错误', err)
       })
-  },
+  },*/
   reloadUserInfo ({commit}, data) {
     commit('user/REQUEST_USER_INFO')
     return this.$axios.$post(`${API_PREFIX}/account/take`, {
@@ -562,8 +581,9 @@ export const actions = {
   // 好友助力
   async dealHelpAction ({commit}, params) {
     const res = await this.$axios.$post(`${API_PREFIX}/blessing/help`, {
-      openId: this.getters.openId,
-      beOpenId: params.beOpenId
+      ...params
+      // openId: this.getters.openId,
+      // beOpenId: params.beOpenId
     })
     if (res && res.errno === 0) {
       return true
@@ -571,153 +591,7 @@ export const actions = {
       return false
     }
   },
-  // 获取同构常量
-  // loadConstants ({ commit }) {
-  //   return this.$axios.$get(`${API_PREFIX}/constants`)
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('option/SET_CONSTANTS', getResData(response))
-  //         : console.log('也是一个永远不会发生的异常：同构常量获取失败：', response)
-  //     })
-  //     .catch(err => {
-  //       console.warn('获取同构常量错误，实际上这个错误永远也不会发生', err)
-  //     })
-  // },
-
-  // 获取博主资料
-  // loadAdminInfo ({ commit }) {
-  //   commit('option/REQUEST_ADMIN_INFO')
-  //   return this.$axios.$get(`${API_PREFIX}/auth`)
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('option/REQUEST_ADMIN_INFO_SUCCESS', getResData(response))
-  //         : commit('option/REQUEST_ADMIN_INFO_FAILURE')
-  //     })
-  //     .catch(err => {
-  //       commit('option/REQUEST_ADMIN_INFO_FAILURE', err)
-  //     })
-  // },
-
-  // 获取全局配置
-  // loadGlobalOption ({ commit }) {
-  //   commit('option/REQUEST_GLOBAL_OPTIONS')
-  //   return this.$axios.$get(`${API_PREFIX}/option`)
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('option/REQUEST_GLOBAL_OPTIONS_SUCCESS', getResData(response))
-  //         : commit('option/REQUEST_GLOBAL_OPTIONS_FAILURE')
-  //     })
-  //     .catch(err => {
-  //       commit('option/REQUEST_GLOBAL_OPTIONS_FAILURE', err)
-  //     })
-  // },
-
-  // 获取标签列表
-  // loadTagList ({ commit }, params = { per_page: 160 }) {
-  //   commit('tag/REQUEST_LIST')
-  //   return this.$axios.$get(`${API_PREFIX}/tag`, { params })
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('tag/GET_LIST_SUCCESS', getResData(response))
-  //         : commit('tag/GET_LIST_FAILURE')
-  //     })
-  //     .catch(err => {
-  //       commit('tag/GET_LIST_FAILURE', err)
-  //     })
-  // },
-
-  // 获取分类列表
-  // loadCategories ({ commit }, params = { per_page: 100 }) {
-  //   commit('category/REQUEST_LIST')
-  //   return this.$axios.$get(`${API_PREFIX}/category`, { params })
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('category/GET_LIST_SUCCESS', getResData(response))
-  //         : commit('category/GET_LIST_FAILURE')
-  //     })
-  //     .catch(err => {
-  //       commit('category/GET_LIST_FAILURE', err)
-  //     })
-  // },
-
-  // 获取最热文章列表
-  // loadHotArticles ({ commit }) {
-  //   commit('article/REQUEST_HOT_LIST')
-  //   return this.$axios.$get(`${API_PREFIX}/article`, { params: { hot: 1 } })
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('article/GET_HOT_LIST_SUCCESS', getResData(response))
-  //         : commit('article/GET_HOT_LIST_FAILURE')
-  //     })
-  //     .catch(err => {
-  //       commit('article/GET_HOT_LIST_FAILURE', err)
-  //     })
-  // },
-
-  // 根据 post-id 获取评论列表
-  // loadCommentsByPostId ({ state, commit }, params) {
-  //
-  //   const constants = state.option.constants
-  //   const SORT_TYPE = constants && constants.SORT_TYPE || { desc: -1 }
-  //
-  //   params = Object.assign({
-  //     page: 1,
-  //     per_page: 88,
-  //     sort: SORT_TYPE.desc
-  //   }, params)
-  //
-  //   if (params.page === 1) {
-  //     commit('comment/CLEAR_LIST')
-  //   }
-  //
-  //   commit('comment/REQUEST_LIST')
-  //   return this.$axios.$get(`${API_PREFIX}/comment`, { params })
-  //     .then(response => {
-  //       if (resIsSuccess(response)) {
-  //         const data = getResData(response)
-  //         Object.is(params.sort, SORT_TYPE.desc) && data.result.data.reverse()
-  //         commit('comment/GET_LIST_SUCCESS', data)
-  //       } else {
-  //         commit('comment/GET_LIST_FAILURE')
-  //       }
-  //     })
-  //     .catch(err => {
-  //       commit('comment/GET_LIST_FAILURE', err)
-  //     })
-  // },
-  //
-  // 发布评论
-  // postComment ({ commit }, comment) {
-  //   commit('comment/POST_ITEM')
-  //   return this.$axios.$post(`${API_PREFIX}/comment`, comment)
-  //     .then(response => {
-  //       const data = getResData(response)
-  //       if (resIsSuccess(response)) {
-  //         commit('comment/POST_ITEM_SUCCESS', data)
-  //         return Promise.resolve(data)
-  //       } else {
-  //         commit('comment/POST_ITEM_FAILURE')
-  //         return Promise.reject(data)
-  //       }
-  //     })
-  //     .catch(err => {
-  //       commit('comment/POST_ITEM_FAILURE', err)
-  //       return Promise.reject(err)
-  //     })
-  // },
-
-  // 获取公告列表
-  // loadAnnouncements ({ commit }, params = {}) {
-  //   commit('announcement/REQUEST_LIST')
-  //   return this.$axios.$get(`${API_PREFIX}/announcement`, { params })
-  //     .then(response => {
-  //       resIsSuccess(response)
-  //         ? commit('announcement/GET_LIST_SUCCESS', getResData(response))
-  //         : commit('announcement/GET_LIST_FAILURE')
-  //     })
-  //     .catch(err => {
-  //       commit('announcement/GET_LIST_FAILURE', err)
-  //     })
-  // },
-
+  showLoading({commit}, params) {
+    commit('game/SHOW_LOADING', params)
+  }
 }

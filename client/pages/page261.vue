@@ -5,9 +5,11 @@
       slot="content"
       class="page261">
       <top-buttons :actions="actions"/>
+      <!--
       <h1>
         {{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”
       </h1>
+      -->
       <div class="content">
         <section
           v-if="blessing.name"
