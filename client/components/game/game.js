@@ -185,7 +185,8 @@ export default class Game {
     this.container12s && this.container12s.destory()
     this.container12s = new PIXI.Container()
     this.app.stage.addChild(this.container12s)
-    let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
+    // let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
+    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'])
     this.container12s.addChild(bgRed)
 
     // called once when finish queued resources load. (callback)
@@ -265,8 +266,8 @@ export default class Game {
     this.container6s && this.container6s.destory()
     this.container6s = new PIXI.Container()
     this.app.stage.addChild(this.container6s)
-    // let bgSprite = new PIXI.Sprite.fromImage('assets/animation/bg_light.jpg')
-    let bgSprite = this.loader.resources['assets/animation/bg_light.jpg']
+    let bgSprite = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'])
+    // let bgSprite = this.loader.resources['assets/animation/bg_light.jpg']
     bgSprite.x = window.innerWidth / 2
     bgSprite.y = window.innerHeight / 2
     bgSprite.width = window.innerWidth
@@ -287,8 +288,8 @@ export default class Game {
     this.play6sObj.sprite.animationSpeed = 0.3
     this.setSize(this.play6sObj.sprite, W * .3)
     this.play6sObj.sprite.zIndex = 2
-    let button = this.loader.resources['assets/animation/btn_sxfq.jpg']
-    // let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.jpg')
+    // let button = this.loader.resources['assets/animation/btn_sxfq.jpg']
+    let button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'])
     button.x = window.innerWidth / 2
     button.y = window.innerHeight / 2 - 100
     button.anchor.set(0.5)
