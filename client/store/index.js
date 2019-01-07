@@ -200,7 +200,7 @@ export const actions = {
 
     const jssdkConfig = await loadJSSDKConfig()
     // const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
-    await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
+    await clientInitWechatJSSDK(JSON.parse(jssdkConfig), commit, this.getters.beOpenId)
   },
   // 获取 generateOAuthUrl 地址信息
   loadOauthUrls ({commit}) {
