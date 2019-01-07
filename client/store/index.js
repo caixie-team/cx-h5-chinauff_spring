@@ -197,10 +197,46 @@ export const actions = {
     console.log(context)
     // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
     // await store.dispatch('loadJSSDKConfig')
-
-    const jssdkConfig = await loadJSSDKConfig()
+    let jssdkConfig = {
+      // appId: 'wx40f58df735cd2868',
+      // appId: 'wxb44ce8b8c5cfdc0a',
+      // 老娘舅测试
+      // appId: 'wxa8299eb7fc27ef04',
+      // 老娘舅正式ID
+      appId: 'wxb44ce8b8c5cfdc0a',
+        nonceStr: '',
+        signature: '',
+        jsApiList: [
+        'hideMenuItems',
+        'onMenuShareTimeline',
+        'getLocation',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage'
+        // 'chooseCard',
+        // 'addCard',
+        // 'openCard',
+        // 'chooseWXPay'
+        // 'updateAppMessageShareData',
+        // 'updateTimelineShareData',
+      ],
+        url: ''
+    }
+    const loadConfig = await loadJSSDKConfig()
+    jssdkConfig = Object.assign({}, jssdkConfig, loadConfig)
+    jssdkConfig.appId = 'wxb44ce8b8c5cfdc0a'
+    jssdkConfig.jsApiList = [
+      'hideMenuItems',
+      'onMenuShareTimeline',
+      'getLocation',
+      'chooseImage',
+      'previewImage',
+      'uploadImage',
+      'downloadImage'
+    ]
     // const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
-    await clientInitWechatJSSDK(JSON.parse(jssdkConfig), commit, this.getters.beOpenId)
+    await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
   },
   // 获取 generateOAuthUrl 地址信息
   loadOauthUrls ({commit}) {
