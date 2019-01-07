@@ -289,7 +289,10 @@ export default class Game {
     this.setSize(this.play6sObj.sprite, W * .3)
     this.play6sObj.sprite.zIndex = 2
     // let button = this.loader.resources['assets/animation/btn_sxfq.jpg']
-    let button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'])
+    const textureButton = PIXI.Texture(this.loader.resources['assets/animation/btn_sxfq.jpg'])
+    // textureButtonDown = PIXI.Texture.fromImage(`${res}/buttonDown.png`)
+    const button = new PIXI.Sprite(textureButton)
+    // let button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'])
     button.x = window.innerWidth / 2
     button.y = window.innerHeight / 2 - 100
     button.anchor.set(0.5)
