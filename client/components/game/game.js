@@ -270,9 +270,9 @@ export default class Game {
     bgSprite.height = window.innerHeight
     bgSprite.anchor.set(0.5)
     this.container6s.addChild(bgSprite)
-    let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.png')
+    let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.jpg')
     button.x = window.innerWidth / 2
-    button.y = window.innerHeight / 2 + 50
+    button.y = window.innerHeight / 2
     button.anchor.set(0.5)
     button.width = 248 / 2
     button.height = 60 / 2
@@ -307,13 +307,14 @@ export default class Game {
     if (this.isdown) {
       return
     }
-    this.isDown = true
-    this.alpha = .6
+    this.isdown = true
+    this.alpha = 1
+    // this.alpha = .6
     EventBus.$emit('getLucky', true)
   }
   onButtonUp () {
     this.isdown = false
-    this.alpha = 1
+    // this.alpha = 1
   }
 
   setSize (sprite, len, size = 'width') {
