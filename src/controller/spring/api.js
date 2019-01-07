@@ -37,4 +37,8 @@ module.exports = class extends Base {
       return this.json(res)
     }
   }
+
+  async jssdkAction () {
+    return this.success()
+  }
 }
