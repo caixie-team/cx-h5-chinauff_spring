@@ -131,6 +131,8 @@ export default class Game {
     this.loader.add('assets/audio/6s.mp3')
     this.loader.add('assets/animation/bg_red.jpg')
     this.loader.add('assets/animation/bg_light.jpg')
+    this.loader.add('assets/animation/bg_light.jpg')
+    this.loader.add('assets/animation/btn_sxfq.jpg')
     // this.loader.load((data) => {
     //   this.isHaveLoad = true
     //   cb && cb(data)
@@ -263,7 +265,8 @@ export default class Game {
     this.container6s && this.container6s.destory()
     this.container6s = new PIXI.Container()
     this.app.stage.addChild(this.container6s)
-    let bgSprite = new PIXI.Sprite.fromImage('assets/animation/bg_light.jpg')
+    // let bgSprite = new PIXI.Sprite.fromImage('assets/animation/bg_light.jpg')
+    let bgSprit = this.loader.resources['assets/animation/bg_light.jpg']
     bgSprite.x = window.innerWidth / 2
     bgSprite.y = window.innerHeight / 2
     bgSprite.width = window.innerWidth
@@ -284,7 +287,8 @@ export default class Game {
     this.play6sObj.sprite.animationSpeed = 0.3
     this.setSize(this.play6sObj.sprite, W * .3)
     this.play6sObj.sprite.zIndex = 2
-    let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.jpg')
+    let button = this.loader.resources['assets/animation/btn_sxfq.jpg']
+    // let button = new PIXI.Sprite.fromImage('assets/animation/btn_sxfq.jpg')
     button.x = window.innerWidth / 2
     button.y = window.innerHeight / 2 - 100
     button.anchor.set(0.5)
