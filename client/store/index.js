@@ -124,7 +124,7 @@ const loadJSSDKConfig = () => {
   // console.log(url)
   const url = window.location.href
   // const getUrl = `/cx/wechat/signature?url=${encodeURIComponent(url)}`
-  const postUrl = `${API_PREFIX}/wechat/signature?url=${encodeURIComponent(url)}`
+  const postUrl = `${API_PREFIX}/wechat/signature?url=${url}`
   // console.log('LOAD JSSDK CONFIG...')
   // console.log(postUrl)
   // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=` + encodeURIComponent(url)
