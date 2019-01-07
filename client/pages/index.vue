@@ -33,10 +33,19 @@
 <script>
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
   import EventBus from '~/utils/event-bus.js'
-
+  import apiConfig from '~/api.config.es'
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment_es'
   import TopButtons from '../components/top-buttons'
+
+  const API_PREFIX = apiConfig.baseUrl
+  import axios from 'axios'
+
+  const getResData = response => {
+    return response.data ? response.data : response
+    // return response.status ? response.data : response
+  }
+
 
   export default {
     transition: 'fade',
@@ -99,12 +108,93 @@
         }
       },
     },
-    mounted () {
+    async mounted () {
       // this.showDialog('success3', {showClose: false})
       // EventBus.$emit('play12s', true)
       // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
+      const u = navigator.userAgent;
+      const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+      if (isAndroid) {
+        const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
 
+          const wechatObj = new window.WechatJSSDK(config)
+          wechatObj.initialize()
+            .then(w => {
+              // w is same as window.wechatObj
+              const img = 'http://spring.chinauff.com/static/share.png'
+              // const img = 'http://wx.caixie.top/spring/_nuxt/client/assets/images/bg/page_bg_light.jpg'
+              // sugar method
+              // const encodeBeOpenId = encodeURIComponent(beOpenId)
+              wechatObj.shareOnChat({
+                title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
+                // type: 'link',
+                link: 'https://weixin.chinauff.com/spring/page621?beOpenId=' + beOpenId,
+                // link: location.href,
+                imgUrl: img,
+                desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
+                surccess: () => {
+                },
+                cancel: () => {
+                }
+              })
+
+              wechatObj.shareOnMoment({
+                title: '我正在参加老娘舅新春集福，快来帮我助力吧！',
+                type: 'link',
+                desc: '老娘舅新春集福对好礼，AR 扫描米饭，即有机会集满“福”兑好礼！快来参加吧！',
+                // link: location.href,
+                link: 'https://weixin.chinauff.com/spring/page621?beOpenId=' + beOpenId,
+                success: function () {
+                  commit('option/SET_LOG_INFO', {
+                    msg: 'share on moment success'
+                  })
+                  console.log('share on moment success')
+                },
+                cancel: function () {
+                  console.log('share on moment canceled')
+                  commit('option/SET_LOG_INFO', {
+                    msg: 'share on moment canceled'
+                  })
+                },
+                imgUrl: img
+              })
+
+              commit('user/REQUEST_USER_LOCATION')
+              // 获取当前地理定位
+              w.callWechatApi('getLocation', {
+                type: 'wgs84',
+                success: function (res) {
+                  // console.log('reqeust user location ...')
+                  // console.log('getLocation')
+                  // const latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                  // const longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                  // const speed = res.speed; // 速度，以米/每秒计
+                  // const accuracy = res.accuracy; // 位置精度
+                  // console.log(res)
+                  // console.log('request user location usss....')
+                  commit('user/GET_USER_LOCATION_SUCCESS', res)
+                }
+              })
+
+
+            })
+            .catch(err => {
+              commit('option/SET_LOG_INFO', err)
+              console.log('rest lgoin inf......')
+              wechatObj.signSignature({
+                'nonceStr': config.nonceStr,
+                'signature': config.signature,
+                'timestamp': config.timestamp
+              })
+              console.error(err)
+            })
+        }
+
+        // loadJSSDKConfig
+        const jssdkConfig = await loadJSSDKConfig()
+        await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
+      }
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {
         // 用于回调页面回来之后处理发劵，领劵
@@ -174,6 +264,24 @@
           }
         })
       },
+      loadJSSDKConfig () {
+        const url = window.location.href
+        const postUrl = `${API_PREFIX}/wechat/signature`
+        return axios.post(postUrl, {
+          appId: 'wxb44ce8b8c5cfdc0a',
+          url
+        }).then(response => {
+          console.log(response.data)
+          if (response.data.errcode === '0' && response.data) {
+            return getResData(response.data)
+          } else {
+            console.log('微信签名信息获取失败：', response)
+          }
+        }).catch(err => {
+          console.warn('获取签名信息错误', err)
+        })
+      },
+
       showAlert () {
         this.dialog = this.$createDialog({
           type: 'intro',
