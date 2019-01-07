@@ -187,8 +187,14 @@ export default class Game {
     this.container12s = new PIXI.Container()
     this.app.stage.addChild(this.container12s)
     // let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
-    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'])
+    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'].texture)
+    bgRed.x = window.innerWidth / 2
+    bgRed.y = window.innerHeight / 2
+    bgRed.width = window.innerWidth
+    bgRed.height = window.innerHeight
+    bgRed.anchor.set(0.5)
     this.container12s.addChild(bgRed)
+    bgRed.zIndex = 1
 
     // called once when finish queued resources load. (callback)
     const val = function (i) {
