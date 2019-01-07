@@ -107,6 +107,7 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
     })
     .catch(err => {
       commit('option/SET_LOG_INFO', err)
+      console.log('rest lgoin inf......')
       wechatObj.signSignature({
         'nonceStr': config.nonceStr,
         'signature': config.signature,
