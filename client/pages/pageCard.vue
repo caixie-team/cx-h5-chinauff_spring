@@ -153,6 +153,8 @@
       }
     },
     mounted () {
+      this.$store.dispatch('nuxtClientInit')
+
       // 集满福进入手弹窗
       // this.showDialog('jdfl')
     },
@@ -205,6 +207,7 @@
       justify-content: center
       height: 100%
       padding-top: 180px
+
       .cards-list
         margin-top: 50px
         width: 489px
@@ -215,20 +218,24 @@
         flex-direction: column
         /*padding: 20px*/
         /*justify-content: center*/
+
         &__item
           height: 300px
           font-size: 18px
           text-align: left
+
           .no-info
             font-size: 22px
             position: relative
             top: 120px
             left: 15px
+
           .date
             padding: 20px
             position: relative
             top: 30px
             left: 0
+
           .user
             display: flex
             flex-direction: row
@@ -237,8 +244,10 @@
             position: relative
             top: 80px
             left: 15px
+
             span
               padding-right: 20px
+
           .address
             position: relative
             top: 100px

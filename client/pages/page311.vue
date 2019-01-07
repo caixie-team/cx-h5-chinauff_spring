@@ -227,6 +227,7 @@
       }
     },
     mounted () {
+      this.$store.dispatch('nuxtClientInit')
       // console.log(this.myBlessingRecords)
       // 集满福进入弹窗
       // this.showDialog('prize', {
