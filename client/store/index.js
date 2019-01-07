@@ -150,7 +150,7 @@ export const actions = {
     const initAppData = [
       // 获取微信JSSDK配置
       // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -166,8 +166,7 @@ export const actions = {
    * @returns {Promise<void>}
    */
   async nuxtClientInit ({commit}, context) {
-    await this.dispatch('loadJSSDKConfig', getBaseUrl(req)),
-
+    console.log(context)
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
     await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
   },
@@ -198,7 +197,7 @@ export const actions = {
       })
   },
   loadJSSDKConfig ({commit}, url) {
-    // console.log(url)
+    console.log(url)
     // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
     // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
