@@ -150,7 +150,7 @@ export const actions = {
     const initAppData = [
       // 获取微信JSSDK配置
       // store.dispatch('loadCxJSSDKConfig', getBaseUrl(req)),
-      // store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
+      store.dispatch('loadJSSDKConfig', getBaseUrl(req)),
       // 获取 oauth 请求地址
       // store.dispatch('loadOauthUrls')
     ]
@@ -167,7 +167,6 @@ export const actions = {
    */
   async nuxtClientInit ({commit}, context) {
     console.log(context)
-    await this.dispatch('loadJSSDKConfig')
     const jssdkConfig = JSON.parse(JSON.stringify(context.store.state.option.jssdkConfig))
     await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
   },
@@ -197,29 +196,25 @@ export const actions = {
         console.warn('获取签名信息错误', err)
       })
   },
-  // loadJSSDKConfig ({commit}, url) {
-  loadJSSDKConfig ({commit}) {
-    if (isBrowser) {
-      const url = window.local.href
-      // console.log(url)
-      // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
-      // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
-      // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
-      const postUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
-      console.log('LOAD JSSDK CONFIG...')
-      console.log(postUrl)
-      // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=` + encodeURIComponent(url)
-      return this.$axios.$post(postUrl)
-        .then(response => {
-          // console.log(response)
-          resIsSuccess(response)
-            ? commit('option/SET_JSSDK_CONFIG', getResData(response))
-            : console.log('微信签名信息获取失败：', response)
-        })
-        .catch(err => {
-          console.warn('获取签名信息错误', err)
-        })
-    }
+  loadJSSDKConfig ({commit}, url) {
+    // console.log(url)
+    // return this.$axios.$post(`${API_THIRD}/activity/weChat/getConfigMessage?url=${encodeURIComponent(url)}`)
+    // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=${encodeURIComponent(url)}`
+    // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    const postUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/getConfigMessage?appid=wxb44ce8b8c5cfdc0a&url=${encodeURIComponent(url)}`
+    console.log('LOAD JSSDK CONFIG...')
+    console.log(postUrl)
+    // const postUrl = `/proxy/activity/weChat/getConfigMessage?appid=wxa8299eb7fc27ef04&url=` + encodeURIComponent(url)
+    return this.$axios.$post(postUrl)
+      .then(response => {
+        // console.log(response)
+        resIsSuccess(response)
+          ? commit('option/SET_JSSDK_CONFIG', getResData(response))
+          : console.log('微信签名信息获取失败：', response)
+      })
+      .catch(err => {
+        console.warn('获取签名信息错误', err)
+      })
   },
   loadUserInfo ({commit}, openId) {
     const getUrl = `/proxy/dcApi/member/isLogin?openId=${openId}`
