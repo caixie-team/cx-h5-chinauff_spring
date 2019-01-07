@@ -150,10 +150,10 @@
         this.$refs.game_container.appendChild(this.game.app.view)
         this.game.init(() => {
           this.$store.dispatch('showLoading', {show: false})
-          EventBus.$on('re-signature', (path) => {
-            console.log(path)
-            this.$store.dispatch('nuxtClientInit')
-          })
+          // EventBus.$on('re-signature', (path) => {
+          //   console.log(path)
+          this.$store.dispatch('nuxtClientInit')
+          // })
           EventBus.$on('play12s', (e) => {
             if (e === true) {
               this.time = 12
