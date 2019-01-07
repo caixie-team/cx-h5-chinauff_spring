@@ -101,7 +101,7 @@
     },
     mounted () {
       // this.showDialog('success3', {showClose: false})
-      EventBus.$emit('play12s', true)
+      // EventBus.$emit('play12s', true)
       // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
 
