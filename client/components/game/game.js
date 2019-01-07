@@ -131,7 +131,6 @@ export default class Game {
     this.loader.add('assets/audio/6s.mp3')
     this.loader.add('assets/animation/bg_red.jpg')
     this.loader.add('assets/animation/bg_light.jpg')
-    this.loader.add('assets/animation/bg_light.jpg')
     this.loader.add('assets/animation/btn_sxfq.jpg')
     // this.loader.load((data) => {
     //   this.isHaveLoad = true
@@ -186,7 +185,8 @@ export default class Game {
     this.container12s && this.container12s.destory()
     this.container12s = new PIXI.Container()
     this.app.stage.addChild(this.container12s)
-    this.container12s.addChild(new PIXI.Sprite.fromImage('assets/animation/bg_red.jpg'))
+    let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
+    this.container12s.addChild(bgRed)
 
     // called once when finish queued resources load. (callback)
     const val = function (i) {
@@ -266,7 +266,7 @@ export default class Game {
     this.container6s = new PIXI.Container()
     this.app.stage.addChild(this.container6s)
     // let bgSprite = new PIXI.Sprite.fromImage('assets/animation/bg_light.jpg')
-    let bgSprit = this.loader.resources['assets/animation/bg_light.jpg']
+    let bgSprite = this.loader.resources['assets/animation/bg_light.jpg']
     bgSprite.x = window.innerWidth / 2
     bgSprite.y = window.innerHeight / 2
     bgSprite.width = window.innerWidth
