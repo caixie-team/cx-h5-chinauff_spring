@@ -86,18 +86,6 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
         imgUrl: img
       })
 
-      // w.callWechatApi('onMenuShareAppMessage', {
-      //   title: 'onMenuShareAppMessage test title',
-      //   type: 'link',
-      //   desc: 'onMenuShareAppMessage share description',
-      //   success: function () {
-      //     console.log('share on chat success')
-      //   },
-      //   cancel: function () {
-      //     console.log('share on chat canceled')
-      //   },
-      //   imgUrl: img
-      // })
       commit('user/REQUEST_USER_LOCATION')
       // 获取当前地理定位
       w.callWechatApi('getLocation', {
@@ -119,6 +107,11 @@ const clientInitWechatJSSDK = async (config, commit, beOpenId) => {
     })
     .catch(err => {
       commit('option/SET_LOG_INFO', err)
+      wechatObj.signSignature({
+        'nonceStr': config.nonceStr,
+        'signature': config.signature,
+        'timestamp': config.timestamp
+      })
       console.error(err)
     })
 }
