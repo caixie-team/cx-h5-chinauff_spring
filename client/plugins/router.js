@@ -1,11 +1,11 @@
 import EventBus from '~/utils/event-bus.js';
 
 export default ({app, store}) => {
-  app.router.beforeEach ((to, from, next) => {
+  app.router.beforeEach((to, from, next) => {
     EventBus.$emit('re-signature', {
       path: to.fullPath
-    });
-  }
+    })
+  });
   app.router.afterEach((to, from, next) => {
     // console.log(to)
     // PV 统计事件
