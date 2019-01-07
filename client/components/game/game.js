@@ -187,7 +187,7 @@ export default class Game {
     this.container12s = new PIXI.Container()
     this.app.stage.addChild(this.container12s)
     // let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
-    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'].texture)
+    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_red.jpg'].texture)
     bgRed.x = window.innerWidth / 2
     bgRed.y = window.innerHeight / 2
     bgRed.width = window.innerWidth
@@ -297,7 +297,7 @@ export default class Game {
     this.play6sObj.sprite.zIndex = 2
     const button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'].texture)
     button.x = window.innerWidth / 2
-    button.y = H * .8
+    button.y = window.innerHeight / 2 + 30
     button.anchor.set(0.5)
     button.width = 248 / 2
     button.height = 60 / 2
