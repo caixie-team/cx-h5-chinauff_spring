@@ -150,6 +150,7 @@
         this.$refs.game_container.appendChild(this.game.app.view)
         this.game.init(() => {
           this.$store.dispatch('showLoading', {show: false})
+          this.$store.dispatch('nuxtClientInit')
           EventBus.$on('play12s', (e) => {
             if (e === true) {
               this.time = 12

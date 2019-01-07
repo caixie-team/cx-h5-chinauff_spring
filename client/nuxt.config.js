@@ -228,7 +228,7 @@ module.exports = {
   plugins: [
     // { src: '~/plugins/loaded-task.js'},
     {src: '~plugins/axios.js'},
-    {src: '~/plugins/nuxt-client-init.js', ssr: false},
+    // {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~/plugins/wechat-jssdk.js', ssr: false},
     {src: '~/plugins/router.js', ssr: false},
     {src: '~/plugins/ui.js', ssr: false},
