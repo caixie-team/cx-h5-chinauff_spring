@@ -1,6 +1,11 @@
 import EventBus from '~/utils/event-bus.js';
 
 export default ({app, store}) => {
+  app.router.beforeEach ((to, from, next) => {
+    EventBus.$emit('re-signature', {
+      path: to.fullPath
+    });
+  }
   app.router.afterEach((to, from, next) => {
     // console.log(to)
     // PV 统计事件
@@ -8,9 +13,9 @@ export default ({app, store}) => {
       path: to.fullPath
     });
 
-    EventBus.$emit('re-signature', {
-      path: to.fullPath
-    });
+    // EventBus.$emit('re-signature', {
+    //   path: to.fullPath
+    // });
     // this.$
     if (to.path === '/page51') {
       // console.log('page51 请求二维码状态')
