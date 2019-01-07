@@ -1,6 +1,7 @@
 /* eslint-disable  */
 
 import * as PIXI from 'pixi.js'
+
 PIXI.utils.skipHello()
 import EventBus from '~/utils/event-bus.js'
 
@@ -186,7 +187,7 @@ export default class Game {
     this.container12s = new PIXI.Container()
     this.app.stage.addChild(this.container12s)
     // let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
-    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'].texture)
+    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'])
     this.container12s.addChild(bgRed)
 
     // called once when finish queued resources load. (callback)
@@ -288,16 +289,9 @@ export default class Game {
     this.play6sObj.sprite.animationSpeed = 0.3
     this.setSize(this.play6sObj.sprite, W * .3)
     this.play6sObj.sprite.zIndex = 2
-    // let button = this.loader.resources['assets/animation/btn_sxfq.jpg']
-    // const textureButton = PIXI.Texture(this.loader.resources['assets/animation/btn_sxfq.jpg'])
-    // textureButtonDown = PIXI.Texture.fromImage(`${res}/buttonDown.png`)
     const button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'].texture)
-    // const textureButton = PIXI.Texture.fromImage('assets/animation/btn_sxfq.jpg')
-    // textureButtonDown = PIXI.Texture.fromImage(`${res}/buttonDown.png`)
-    // const button = new PIXI.Sprite(textureButton)
-    // let button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'])
     button.x = window.innerWidth / 2
-    button.y = window.innerHeight / 2 - 100
+    button.y = H * .8
     button.anchor.set(0.5)
     button.width = 248 / 2
     button.height = 60 / 2
@@ -326,6 +320,7 @@ export default class Game {
     // this.alpha = .6
     EventBus.$emit('getLucky', true)
   }
+
   onButtonUp () {
     this.isdown = false
     // this.alpha = 1
