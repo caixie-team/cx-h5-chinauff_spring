@@ -1,10 +1,11 @@
-<!-- 集福流程2 的 success page241、page242 -->
+<!-- 领取成功进入会员中心劵包，用在助力集福页的弹窗, 不是去 261页，是去第65页 -->
 <template>
   <div class="popup success">
     <img
       :src="text"
       class="text">
     <div class="buttons">
+      <!-- 其实是去 page65 没来得及改名字 -->
       <img
         :src="btn1"
         @click="toPage261">

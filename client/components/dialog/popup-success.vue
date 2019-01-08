@@ -1,4 +1,4 @@
-<!--领取成功、今日已领完 -->
+<!--领取成功、今日已领完, page25 -->
 <template>
   <div class="popup success">
     <img
@@ -37,6 +37,8 @@
     methods: {
       close (e) {
         // toPage261 (e) {
+        // 领取劵完成后会跳到
+        // 2.6.1、领取完成后页面
         this.$router.push('/page261')
         // this.$emit(EVENT_CLOSE, e)
         // }

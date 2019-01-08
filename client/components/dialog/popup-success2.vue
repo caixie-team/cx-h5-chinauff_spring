@@ -1,4 +1,4 @@
-<!-- 预约卡成功 -->
+<!-- 这个是卡，预约卡成功 -->
 <template>
   <div class="popup success">
     <img

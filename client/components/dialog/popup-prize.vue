@@ -71,6 +71,9 @@
       }
     },
     computed: {
+      blessing () {
+        return this.$store.state.prize.blessing.data
+      },
       locationHref () {
         let locationHref = window.location.href
         // locationHref = locationHref + '&coupon_code=' + this.coupon_code

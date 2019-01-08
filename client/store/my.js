@@ -30,7 +30,7 @@ export const state = () => ({
   cards: {
     fetching: false,
     data: {
-      card_code: 'aabbccdd'
+      card_code: ''
     }
   },
 // {

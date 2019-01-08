@@ -77,6 +77,7 @@
       }
     },
     watch: {
+      // 劵或卡
       lucky (newVal) {
         // console.log(newVal)
         if (newVal.errno > 0) {
@@ -109,6 +110,7 @@
           })
         }
       },
+      // 劵领取状态
       coupon (newVal) {
         if (newVal.errno > 0) {
           this.showDialog('msg', {
@@ -117,6 +119,7 @@
           return
         }
         // console.log(this.$route.path)
+        // 劵领取成功的状态
         if (newVal.receive_status === 2 || newVal.status === 2) {
           if (this.$route.path !== '/page621') {
             this.showDialog('success', {showClose: false})
@@ -134,8 +137,13 @@
       EventBus.$on('share', (e) => {
         this.share = e
       })
+      // 收下福气的事件
       EventBus.$on('getLucky', async () => {
         await this.getLucky()
+      })
+      // 集到福了
+      EventBus.$on('jdfl', (blessing_code) => {
+        this.showDialog('jdfl', {blessing_code})
       })
       if (process.browser) {
         if (this.game === null) {
@@ -180,10 +188,14 @@
       },
       // 收下福气，抽奖
       async getLucky () {
-        // 集福字
-        const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
-        if (blessingData) {
-          await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
+        // 20190108 更改逻辑，先抽奖，再集福
+        // 1 抽奖
+        const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
+        // 2 集福
+        // const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
+        if (luckyData) {
+          // 集福可能会集得满福
+          await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
           // 抽奖劵
           setTimeout(
             EventBus.$emit('play6s', false)

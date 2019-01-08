@@ -229,7 +229,6 @@
           // openId: this.$store.getters.openId,
           // beOpenId: this.$route.query.beOpenId
         })
-        console.log('-----')
         console.log(beOpenId + '被助力者')
         console.log(openId + '助力者')
         // 如果助力成功

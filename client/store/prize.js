@@ -22,8 +22,10 @@ export const state = () => {
       fetching: false,
       data: {
         name: '',
+        blessing_code: null,         // 满福才会有的数据
+        icon_num: null,        // 满福才会有的数据
         blessing_type: '',
-        full: false
+        full: false // 满福为 true
       }
     },
     // 抽奖操作
@@ -77,6 +79,9 @@ export const state = () => {
 }
 
 export const mutations = {
+  SET_FULL_BLESSING (state, action) {
+    state.blessing.data = action
+  },
   REQUEST_BLESSING (state) {
     state.blessing.fetching = true
   },

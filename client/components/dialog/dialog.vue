@@ -46,7 +46,8 @@
           v-if="type === 'success3'"
           @close="close"/>
         <jdfl
-          v-if="type === 'jdfl'"/>
+          v-if="type === 'jdfl'"
+          :blessing_code="blessing_code"/>
         <dhff
           v-if="type === 'dhff'"/>
         <popup-scan
@@ -134,6 +135,10 @@
     mixins: [visibilityMixin, popupMixin, localeMixin],
     props: {
       msg: {
+        type: String,
+        default: ''
+      },
+      blessing_code: {
         type: String,
         default: ''
       },

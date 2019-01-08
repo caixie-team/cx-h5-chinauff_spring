@@ -1,4 +1,4 @@
-<!-- 预约成功 page45 -->
+<!-- 预约成功 page45 4.5、预约成功提示-->
 <template>
   <div class="popup success">
     <img

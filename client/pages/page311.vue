@@ -43,11 +43,13 @@
             </template>
           </c-slide>
         </div>
+        <!-- 未满福状态 -->
         <img
           v-if="currentBlessing.status === 1"
           src="~assets/img/btn/btn_yydhh.png"
           class="btn-yydh"
           @click="toPage41">
+        <!-- 满福状态 -->
         <img
           v-if="currentBlessing.status === 2"
           src="~assets/img/btn/btn_dkdhmh.png"

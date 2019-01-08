@@ -1,4 +1,3 @@
-<!-- 活动介绍 -->
 <template>
   <div class="popup prize">
     <div
@@ -71,10 +70,18 @@
       }
     },
     computed: {
+      blessing () {
+        return this.$store.state.prize.blessing.data
+      },
       locationHref () {
-        let locationHref = window.location.href
+        // let locationHref = window.location.href
+        let locationHref = 'https://weixin.chinauff.com/spring/'
+        // locationHref = locationHref
+        //   + '?myOpenId=' + this.$store.getters.openId
+        //   + '&coupon_code=' + this.coupon_code
         // locationHref = locationHref + '&coupon_code=' + this.coupon_code
-        locationHref = locationHref + '?myOpenId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
+        locationHref = locationHref + '?myOpenId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code + this.blessing.full ? '&blessing_code=' + this.blessing.blessing_code : ''
+
         const redirectURL = `https://weixin.chinauff.com/lnj-weixin/console/weixin/page/loginPage?callback2=${encodeURIComponent(locationHref)}&isAutoRegister=1&channel2=18`
         return redirectURL
       },
@@ -188,7 +195,7 @@
           // if (this.$route.path !== '/page65') {
           // if (newVal.receive_status === 2) {
           //   this.hide()
-            // this.showDialog('success', {showClose: false})
+          // this.showDialog('success', {showClose: false})
           // }
           // }
         }
@@ -205,6 +212,7 @@
             coupon_code: this.coupon_code
           })
         } else {
+          // 跳到会员面，回调到首页
           window.location.href = this.locationHref
           // console.log('未登录状态')
           // this.redirectLogin()

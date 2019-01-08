@@ -376,6 +376,7 @@ export const actions = {
       }
     })
       .catch(err => {
+        return Promise.reject(err)
         commit('prize/GET_LUCKY_FAILURE', err)
       })
   },

@@ -25,6 +25,10 @@
   const EVENT_CLOSE = 'close'
   export default {
     props: {
+      blessing_code: {
+        type: String,
+        default: ''
+      },
       type: {
         type: String, // success/limit
         default: ''
@@ -45,6 +49,7 @@
       },
       // 跳转至预约兑换页面
       exchange () {
+        this.$router.push('/page41/' + this.blessing_code)
         // this.$router.push(`/${name}`)
       }
     }
