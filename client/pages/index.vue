@@ -103,6 +103,7 @@
       // EventBus.$emit('play12s', true)
       // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
+      this.$store.dispatch('nuxtClientInit')
 
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {

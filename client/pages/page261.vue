@@ -204,6 +204,9 @@
       }
 
     },
+    mounted () {
+      this.$store.dispatch('nuxtClientInit')
+    },
     methods: {
       shareGuide () {
         EventBus.$emit('share', true)
