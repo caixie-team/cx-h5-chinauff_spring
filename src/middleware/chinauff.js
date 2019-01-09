@@ -24,7 +24,7 @@ module.exports = options => {
     }
     const activityUser = await ctx.session('activity_user')
     if (_.isEmpty(activityUser)) {
-      const openId = await ctx.cookie('openId') || await ctx.session('openId')
+      const openId = await ctx.session('openId')
       const query = ctx.query
       const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
       // const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
@@ -46,7 +46,7 @@ module.exports = options => {
           _openId = openId
         }
         await ctx.cookie('openId', _openId)
-        await ctx.session('openId', _openId)
+        // await ctx.session('openId', _openId)
 
         const postData = {
           openId: _openId,
