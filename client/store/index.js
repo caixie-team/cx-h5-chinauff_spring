@@ -334,15 +334,15 @@ export const actions = {
       .then(response => {
         const data = getResData(response)
         if (resIsSuccess(response)) {
-          commit('user/GET_RECEIVE_SUCCESS', data)
+          commit('user/GET_RESERVE_SUCCESS', data)
           return Promise.resolve(data)
         } else {
-          commit('user/GET_RECEIVE_FAILURE')
+          commit('user/GET_RESERVE_FAILURE')
           return Promise.reject(data)
         }
       })
       .catch(err => {
-        commit('user/GET_RECEIVE_FAILURE', err)
+        commit('user/GET_RESERVE_FAILURE', err)
         return Promise.reject(err)
       })
   },
