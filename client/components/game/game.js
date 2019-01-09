@@ -9,8 +9,10 @@ const [w, h] = [window.innerWidth, window.innerHeight]
 const Ratio = window.devicePixelRatio
 const W = w * Ratio
 const H = h * Ratio
-const path12s = 'assets/animation/12s'
-const path6s = 'assets/animation/6s'
+const static_url = 'https://18anniversary.obs.cn-east-2.myhwclouds.com/assets'
+
+const path12s = static_url + '/12s'
+const path6s = static_url + '/6s'
 
 export default class Game {
   constructor () {
@@ -128,11 +130,11 @@ export default class Game {
     for (const obj in this.objSprites) {
       this.loader.add(this.objSprites[obj].json) // resource load for eatch objSprites
     }
-    this.loader.add('assets/audio/12s.mp3')
-    this.loader.add('assets/audio/6s.mp3')
-    this.loader.add('assets/animation/bg_red.jpg')
-    this.loader.add('assets/animation/bg_light.jpg')
-    this.loader.add('assets/animation/btn_sxfq.jpg')
+    this.loader.add(static_url + '/12s.mp3')
+    this.loader.add(static_url + '/6s.mp3')
+    this.loader.add(static_url + '/bg_red.jpg')
+    this.loader.add(static_url + '/bg_light.jpg')
+    this.loader.add(static_url + '/btn_sxfq.jpg')
     // this.loader.load((data) => {
     //   this.isHaveLoad = true
     //   cb && cb(data)
@@ -187,7 +189,7 @@ export default class Game {
     this.container12s = new PIXI.Container()
     this.app.stage.addChild(this.container12s)
     // let bgRed = this.loader.resources['assets/animation/bg_light.jpg']
-    let bgRed = new PIXI.Sprite(this.loader.resources['assets/animation/bg_red.jpg'].texture)
+    let bgRed = new PIXI.Sprite(this.loader.resources[static_url + '/bg_red.jpg'].texture)
     bgRed.x = window.innerWidth / 2
     bgRed.y = window.innerHeight / 2
     bgRed.width = window.innerWidth
@@ -259,7 +261,7 @@ export default class Game {
     this.play12sObj.lanternTexture.animationSpeed = 0.18
 
     // this.play12sObj.audio = this.loader.resources['assets/audio/12s.mp3']
-    const audio = this.loader.resources['assets/audio/12s.mp3']
+    const audio = this.loader.resources[static_url + '/12s.mp3']
     this.play12sObj.sound = audio.sound
     this.container12s.addChild(this.play12sObj.mountainTexture)
     this.container12s.addChild(this.play12sObj.fireTexture)
@@ -273,7 +275,7 @@ export default class Game {
     this.container6s && this.container6s.destory()
     this.container6s = new PIXI.Container()
     this.app.stage.addChild(this.container6s)
-    let bgSprite = new PIXI.Sprite(this.loader.resources['assets/animation/bg_light.jpg'].texture)
+    let bgSprite = new PIXI.Sprite(this.loader.resources[static_url + '/bg_light.jpg'].texture)
     // let bgSprite = this.loader.resources['assets/animation/bg_light.jpg']
     bgSprite.x = window.innerWidth / 2
     bgSprite.y = window.innerHeight / 2
@@ -295,7 +297,7 @@ export default class Game {
     this.play6sObj.sprite.animationSpeed = 0.3
     this.setSize(this.play6sObj.sprite, W * .3)
     this.play6sObj.sprite.zIndex = 2
-    const button = new PIXI.Sprite(this.loader.resources['assets/animation/btn_sxfq.jpg'].texture)
+    const button = new PIXI.Sprite(this.loader.resources[static_url + '/btn_sxfq.jpg'].texture)
     button.x = window.innerWidth / 2
     button.y = window.innerHeight / 2 + 30
     button.anchor.set(0.5)
@@ -313,7 +315,7 @@ export default class Game {
 
     this.container6s.visible = false
     // sprite.play()
-    const audio = this.loader.resources['assets/audio/6s.mp3']
+    const audio = this.loader.resources[static_url + '/6s.mp3']
     this.play6sObj.sound = audio.sound
   }
 
