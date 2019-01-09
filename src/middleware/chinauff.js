@@ -23,18 +23,17 @@ module.exports = options => {
       }
     }
     const activityUser = await ctx.session('activity_user')
-
     if (_.isEmpty(activityUser)) {
-      const openId = await ctx.session('openId') || await ctx.cookie('openId')
+      const openId = await ctx.cookie('openId') || await ctx.session('openId')
       const query = ctx.query
       const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
+      // const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
       const callbackUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/openId?callback=${encodeURI}`
       // 请求地址中不包含 openId
       // myOpenId 跳转回来的用于验证
       if (_.isEmpty(openId) && !_.has(query, 'openId') && !_.has(query, 'myOpenId')) {
         return ctx.redirect(callbackUrl)
-      }
-      if (_.has(query, 'openId') || !_.isEmpty(openId) || _.has(query, 'myOpenId')) { // 请求地址中包含 openId
+      } else if (_.has(query, 'openId') || !_.isEmpty(openId) || _.has(query, 'myOpenId')) { // 请求地址中包含 openId
         // const _openId = _.has(query, 'openId') || _.has(query, 'myOpenId') ? query.openId : openId
         let _openId
         if (_.has(query, 'openId')) {
@@ -43,7 +42,6 @@ module.exports = options => {
         if (_.has(query, 'myOpenId')) {
           _openId = query.myOpenId
         }
-        // cookie 中包含openId 不会被覆盖
         if (!_.isEmpty(openId)) {
           _openId = openId
         }
