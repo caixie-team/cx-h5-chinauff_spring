@@ -20,7 +20,7 @@
           src="~assets/img/text/text_qjrwmzsgsyy.png"
           class="text-qjrwmzsgsyy">
         <div
-          v-if="reserve.data"
+          v-if="reserve.shop_name !== null"
           class="exchange-form">
           <div class="exchange-form__content">
             <span class="date">
