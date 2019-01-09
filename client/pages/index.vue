@@ -110,7 +110,7 @@
       // 获得这个之后setting 进当前的满福中,用于在 261页打开时弹出满福
       // 这里的 blessing_code 是在 popup-prize1 中跳转时传过来的，如果没有非会员的跳转情况是没有数据的
       const blessing_code = this.$route.query.blessing_code
-      if (blessing_code && blessing_code !== null && blessing_code !== '') {
+      if (blessing_code !== undefined && blessing_code !== null && blessing_code !== '') {
         this.$store.commit('prize/SET_FULL_BLESSING', {
           full: true,
           blessing_code
@@ -118,7 +118,7 @@
       }
 
       const coupon_code = this.$route.query.coupon_code
-      if (coupon_code && coupon_code !== null && coupon_code !== '') {
+      if (coupon_code !== undefined && coupon_code !== null && coupon_code !== '') {
         // 用于回调页面回来之后处理发劵，领劵，这里可能也会带回来 blessing_code 用于跑到261 页面用的
         if (this.userInfo.status === 1 && this.userInfo.cardNo > 0 && coupon_code !== null && coupon_code !== '') {
           // 领劵

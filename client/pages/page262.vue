@@ -97,7 +97,7 @@
       }
     },
     mounted () {
-      this.showDialog('jdfl')
+      // this.showDialog('jdfl')
 
     },
     methods: {
