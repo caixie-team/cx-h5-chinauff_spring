@@ -21,7 +21,7 @@ export const state = () => {
     blessing: {
       fetching: false,
       data: {
-        name: '',
+        name: null,
         blessing_code: null,         // 满福才会有的数据
         icon_num: null,        // 满福才会有的数据
         blessing_type: '',

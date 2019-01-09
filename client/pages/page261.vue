@@ -21,6 +21,16 @@
 
         </section>
         <section
+          v-else
+          class="section1">
+          <img
+            :src="_title"
+            class="title1">
+          <img
+            src="~assets/img/icon/icon_cyddxz.png"
+            class="icon">
+        </section>
+        <section
           v-if="lucky.type > 0"
           class="section2">
           <img
@@ -52,6 +62,8 @@
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
   import EventBus from '~/utils/event-bus.js'
+  import title from '~/assets/img/text/text_gxnbhyjd.png'
+  import title1 from '~/assets/img/text/text_aocydd.png'
 
   export default {
     name: 'Index',
@@ -100,6 +112,9 @@
       }
     },
     computed: {
+      _title () {
+        return this.word ? title : title1
+      },
       luckyCount () {
         const number = this.luckyTimes - 1
         if (number > 0) {
@@ -273,7 +288,13 @@
         &.section1
           position: relative
           top: 180px
-
+          .title1
+            margin-bottom: 8px
+            width: 342px
+            height: 42px
+          .icon
+            width: 157px
+            height: 166px
         &.section2
           margin-top: 200px
 
