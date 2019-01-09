@@ -12,7 +12,7 @@
       -->
       <div class="content">
         <section
-          v-if="blessing.name !== null && blessing.type !== ''"
+          v-if="word"
           class="section1">
           <img
             :src="tip1"
