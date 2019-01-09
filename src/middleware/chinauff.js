@@ -22,54 +22,54 @@ module.exports = options => {
         }
       }
     }
+    // 获取活动账户信息
     const activityUser = await ctx.session('activity_user')
-    if (_.isEmpty(activityUser)) {
-      const openId = await ctx.cookie('openId') || await ctx.session('openId')
-      const query = ctx.query
-      const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
-      // const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
-      const callbackUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/openId?callback=${encodeURI}`
-      // 请求地址中不包含 openId
-      // myOpenId 跳转回来的用于验证
-      if (_.isEmpty(openId) && !_.has(query, 'openId') && !_.has(query, 'myOpenId')) {
-        return ctx.redirect(callbackUrl)
-      } else if (_.has(query, 'openId') || !_.isEmpty(openId) || _.has(query, 'myOpenId')) { // 请求地址中包含 openId
-        // const _openId = _.has(query, 'openId') || _.has(query, 'myOpenId') ? query.openId : openId
-        let _openId
-        if (_.has(query, 'openId')) {
-          _openId = query.openId
-        }
-        if (_.has(query, 'myOpenId')) {
-          _openId = query.myOpenId
-        }
-        if (!_.isEmpty(openId)) {
-          _openId = openId
-        }
-        await ctx.cookie('openId', _openId)
-        await ctx.session('openId', _openId)
+    const openId = await ctx.cookie('openId')
+    const query = ctx.query
+    const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
+    const callbackUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/openId?callback=${encodeURI}`
+    // 请求地址中不包含 openId
+    // myOpenId 跳转回来的用于验证
 
-        const postData = {
-          openId: _openId,
-          avatar: ''
-        }
-        if (_.has(query, 'headimgurl')) {
-          postData.avatar = query.headimgurl
-        }
-        // console.log('查询 活动账户信息。。。。。。')
-        // 创建或查询活动账户
-        let res = await think.got.post(apiConfig.baseUrl + '/account/take', {
-          json: true,
-          form: true,
-          body: postData
-        })
-        res.body.data.beOpenId = encrypt(_openId, openIdKey)
-        // 活动账户的信息，包括登录状态和会员信息
-        // if Login status === 1
-        await ctx.session('activity_user', JSON.stringify(res.body.data))
-
-        return next()
+    // IF 包含 openId 按新 openId 验证处理
+    if (_.has(query, 'openId') || _.has(query, 'myOpenId')) {
+      // 请求地址中包含 openId
+      let _openId
+      if (_.has(query, 'openId')) {
+        _openId = query.openId
       }
+      if (_.has(query, 'myOpenId')) {
+        _openId = query.myOpenId
+      }
+      await ctx.cookie('openId', _openId)
+      await ctx.session('openId', _openId)
+
+      const postData = {
+        openId: _openId,
+        avatar: ''
+      }
+      if (_.has(query, 'headimgurl')) {
+        postData.avatar = query.headimgurl
+      }
+      // console.log('查询 活动账户信息。。。。。。')
+      // 创建或查询活动账户
+      let res = await think.got.post(apiConfig.baseUrl + '/account/take', {
+        json: true,
+        form: true,
+        body: postData
+      })
+      res.body.data.beOpenId = encrypt(_openId, openIdKey)
+      // 活动账户的信息，包括登录状态和会员信息
+      // if Login status === 1
+      await ctx.session('activity_user', JSON.stringify(res.body.data))
+
+      return next()
     }
+    // IF cookie 中不存在用户信息,重新回调
+    if (openId === null || _.isEmpty(activityUser)) {
+      return ctx.redirect(callbackUrl)
+    }
+    // IF 查询参数中包含 openId
     return next()
   }
   return middleware
