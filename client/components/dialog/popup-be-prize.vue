@@ -129,7 +129,7 @@
           case 50:
             return 'huiyuanka'
           default:
-            return 'aaaa'
+            return ''
         }
       },
       word () {
@@ -143,7 +143,7 @@
           case 4:
             return 'tian'
           default:
-            return ''
+            return false
         }
       },
       _title () {

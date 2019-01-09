@@ -18,7 +18,6 @@
             :src="tip1"
             class="tip1">
           <span :class="_wordClass"/>
-
         </section>
         <section
           v-else
@@ -72,34 +71,13 @@
         title: '集满“福”兑好礼',
       }
     },
-    // validate ({query}) {
-    //   return query.beOpenId
-    // },
     fetch ({store, query, error}) {
-      // return Promise.all([
       return store.dispatch('loadBlessingStatistics')
-      // store.dispatch('loadPrizeBlessing'),
-      // store.dispatch('loadPrizeCoupon')
-      // 获取集福统计数
-      // store.dispatch('loadActivityHelperStatus', {beOpenId: query.beOpenId}),
-      // 加载活动参与的关联信息
-      // store.dispatch('loadActivityHelps', {beOpenId: query.beOpenId})
-      // ])
     },
     components: {
       CPage,
       TopButtons,
       PageContent
-    },
-    props: {
-      // coupon: {
-      //   type: String,
-      //   default: 'mianfei'
-      // },
-      // word: {
-      //   type: String,
-      //   default: 'kou'
-      // }
     },
     data () {
       return {
@@ -202,7 +180,7 @@
           case 4:
             return 'tian'
           default:
-            return ''
+            return false
         }
       },
       _couponClass () {

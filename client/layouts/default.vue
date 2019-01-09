@@ -192,7 +192,6 @@
         // 1 抽奖
         const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
         // 2 集福
-        // const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
         if (luckyData) {
           // 集福可能会集得满福
           await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})

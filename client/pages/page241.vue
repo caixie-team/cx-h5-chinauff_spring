@@ -62,10 +62,10 @@
       }
     },
     mounted () {
-      this.showDialog('prize', {
-        word: 'kou',
-        coupon: 'mianfei'
-      })
+      // this.showDialog('prize', {
+      //   word: 'kou',
+      //   coupon: 'mianfei'
+      // })
     },
     methods: {
       showDialog (type, option) {
