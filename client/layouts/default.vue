@@ -86,29 +86,6 @@
           })
           return
         }
-        let coupon_type = 0
-        let coupon_code = ''
-        // 类型 1 为优惠劵
-        if (newVal.type === 1) {
-          coupon_type = newVal.coupon.type_code
-          coupon_code = newVal.coupon.coupon_code
-        } else if (newVal.type === 2) {
-          coupon_type = newVal.card.card_code
-          coupon_code = newVal.card.card_code.toString()
-        }
-        if (this.$route.path === '/page621') {
-          this.showDialog('prize1', {
-            blessing_type: this.blessing.blessing_type,
-            coupon_type,
-            coupon_code
-          })
-        } else {
-          this.showDialog('prize', {
-            blessing_type: this.blessing.blessing_type,
-            coupon_type,
-            coupon_code
-          })
-        }
       },
       // 劵领取状态
       coupon (newVal) {
@@ -192,13 +169,38 @@
         // 1 抽奖
         const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
         // 2 集福
-        if (luckyData) {
+        if (luckyData.type > 0) {
           // 集福可能会集得满福
-          await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
+          const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
+          if (blessingData.blessing_type !== null) {
+            let coupon_type = 0
+            let coupon_code = ''
+            // 类型 1 为优惠劵
+            if (luckyData.type === 1) {
+              coupon_type = luckyData.coupon.type_code
+              coupon_code = luckyData.coupon.coupon_code
+            } else if (luckyData.type === 2) {
+              coupon_type = luckyData.card.card_code
+              coupon_code = luckyData.card.card_code.toString()
+            }
+            if (this.$route.path === '/page621') {
+              this.showDialog('prize1', {
+                blessing_type: this.blessing.blessing_type,
+                coupon_type,
+                coupon_code
+              })
+            } else {
+              this.showDialog('prize', {
+                blessing_type: this.blessing.blessing_type,
+                coupon_type,
+                coupon_code
+              })
+            }
+          }
           // 抽奖劵
-          setTimeout(
-            EventBus.$emit('play6s', false)
-            , 500)
+          // setTimeout(
+          EventBus.$emit('play6s', false)
+          // , 500)
         }
       },
       timer () {

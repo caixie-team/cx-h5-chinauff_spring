@@ -241,7 +241,31 @@
           const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
           // 如果集福成功,自己抽个奖
           if (blessingData) {
-            await this.$store.dispatch('loadPrizeLucky', {openId: openId})
+            const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: openId})
+
+            let coupon_type = 0
+            let coupon_code = ''
+            // 类型 1 为优惠劵
+            if (luckyData.type === 1) {
+              coupon_type = luckyData.coupon.type_code
+              coupon_code = luckyData.coupon.coupon_code
+            } else if (luckyData.type === 2) {
+              coupon_type = luckyData.card.card_code
+              coupon_code = luckyData.card.card_code.toString()
+            }
+            if (this.$route.path === '/page621') {
+              this.showDialog('prize1', {
+                blessing_type: blessingData.blessing_type,
+                coupon_type,
+                coupon_code
+              })
+            } else {
+              this.showDialog('prize', {
+                blessing_type: blessingData.blessing_type,
+                coupon_type,
+                coupon_code
+              })
+            }
           }
         }
       },
