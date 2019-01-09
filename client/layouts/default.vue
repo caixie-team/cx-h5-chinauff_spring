@@ -120,7 +120,7 @@
       })
       // 集到福了
       EventBus.$on('jdfl', (blessing_code) => {
-        this.showDialog('jdfl', {blessing_code})
+        this.showDialog('jdfl', {blessing_code: blessing_code})
       })
       if (process.browser) {
         if (this.game === null) {
