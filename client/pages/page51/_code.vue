@@ -19,13 +19,15 @@
         <img
           src="~assets/img/text/text_qjrwmzsgsyy.png"
           class="text-qjrwmzsgsyy">
-        <div class="exchange-form">
+        <div
+          v-if="reserve.data"
+          class="exchange-form">
           <div class="exchange-form__content">
             <span class="date">
-              2019年1月27日—2月4日
+              {{ reserve.reserve_date }}
             </span>
             <span class="shop">
-              湖州总部自由港店
+              {{ reserve.shop_name }}
             </span>
           </div>
         </div>
@@ -56,6 +58,8 @@
     },
 
     fetch ({store, params, error}) {
+      const blessing_code = params.code
+      return store.dispatch('getReserve', {blessing_code})
       // console.log(params)
       // return store.dispatch('')
     },
@@ -65,14 +69,6 @@
       PageContent
     },
     props: {
-      coupon: {
-        type: String,
-        default: 'mianfei'
-      },
-      word: {
-        type: String,
-        default: 'kou'
-      }
     },
     data () {
       return {
@@ -87,18 +83,9 @@
       }
     },
     computed: {
-      _couponClass () {
-        return [
-          'coupon',
-          'coupon-' + this.coupon
-        ]
+      reserve () {
+        return this.$store.state.user.reserve.data
       },
-      _wordClass () {
-        return [
-          'word',
-          'word-' + this.word
-        ]
-      }
     },
     mounted () {
       this.blessingCode = this.$route.params.code

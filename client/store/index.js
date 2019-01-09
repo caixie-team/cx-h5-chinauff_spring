@@ -326,6 +326,28 @@ export const actions = {
         return Promise.reject(err)
       })
   },
+
+  // 获取预约信息
+  getReserve ({commit}, data) {
+    commit('user/REQUEST_RESERVE')
+    return this.$axios.$post(`${API_PREFIX}/blessing/getReserve`, data)
+      .then(response => {
+        const data = getResData(response)
+        if (resIsSuccess(response)) {
+          commit('user/GET_RECEIVE_SUCCESS', data)
+          return Promise.resolve(data)
+        } else {
+          commit('user/GET_RECEIVE_FAILURE')
+          return Promise.reject(data)
+        }
+      })
+      .catch(err => {
+        commit('user/GET_RECEIVE_FAILURE', err)
+        return Promise.reject(err)
+      })
+  },
+
+
   // 预约充值卡
   postReceiveCard ({commit}, data) {
     commit('prize/REQUEST_RECEIVE_CARD')

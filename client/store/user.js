@@ -53,7 +53,12 @@ export const state = () => ({
   reserve: {
     fetching: false,
     sending: false,
-    data: [],
+    data: {
+      shop_name: null,
+      shop_code: null,
+      blessing_code: null,
+      reserve_date: null
+    },
     form: {},
   },
   // 福字
@@ -63,6 +68,17 @@ export const state = () => ({
 })
 
 export const mutations = {
+  REQUEST_RESERVE (state) {
+    state.reserve.fetching = true
+  },
+
+  GET_RESERVE_SUCCESS (state, action) {
+    state.reserve.fetching = false
+    state.reserve.data = action
+  },
+  GET_RESERVE_FAILURE (state) {
+    state.reserve.fetching = false
+  },
   SET_USER_INFO (state, action) {
     state.info.data = Object.assign({}, state.info.data, action)
   },

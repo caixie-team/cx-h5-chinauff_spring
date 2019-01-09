@@ -107,6 +107,13 @@
       },
     },
     mounted () {
+      // TEST 关闭 loading
+      // this.$store.commit('game/SHOW_LOADING', false)
+      EventBus.$on('err-msg', (errmsg) => {
+        this.showDialog('msg', {
+          msg: errmsg
+        })
+      })
       // EventBus.$on('re-signature', (path) => {
       //   console.log(path)
       this.$store.dispatch('nuxtClientInit')

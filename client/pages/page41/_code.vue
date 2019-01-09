@@ -59,6 +59,7 @@
   import PageContent from '~/components/page-content'
   import tip1 from '~/assets/img/text/text_gxnjd.png'
   import tip2 from '~/assets/img/text/text_gxncz.png'
+  import EventBus from '~/utils/event-bus.js'
 
   export default {
     name: 'Index',
@@ -194,14 +195,15 @@
       async selectHandle (date, selectedVal, selectedText) {
         const days = (new Date(selectedVal) - new Date(new Date())) / 1000 / 60 / 60 / 24
         if (days < 3) {
-          const pop = this.$createPopup({
-            type: 'xx',
-            content: '日份最早可选择第三天的日子',
-            onMaskClick: () => {
-              pop.hide()
-            }
-          })
-          pop.show()
+          EventBus.$emit('err-msg', '日份最早可选择第三天的日子')
+          // const pop = this.$createPopup({
+          //   type: 'xx',
+          //   content: '日份最早可选择第三天的日子',
+          //   onMaskClick: () => {
+          //     pop.hide()
+          //   }
+          // })
+          // pop.show()
           return
         }
         this.selectedDate = selectedText.join(' ')

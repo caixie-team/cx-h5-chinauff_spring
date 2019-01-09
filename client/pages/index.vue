@@ -99,6 +99,7 @@
       },
     },
     async mounted () {
+      // TEST
       // this.showDialog('success3', {showClose: false})
       // EventBus.$emit('play12s', true)
       // EventBus.$emit('show12s', false)
