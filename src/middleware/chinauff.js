@@ -23,6 +23,7 @@ module.exports = options => {
       }
     }
     const activityUser = await ctx.session('activity_user')
+
     if (_.isEmpty(activityUser)) {
       const openId = await ctx.session('openId') || await ctx.cookie('openId')
       const query = ctx.query
