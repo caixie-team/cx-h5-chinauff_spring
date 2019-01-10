@@ -134,9 +134,9 @@
         this.isSubmit = true
         const res = await this.$store.dispatch('postReceiveBlessing', {
           openId: this.$store.getters.openId,
-          shop_id: this.formData.shop,
-          blessing_code: this.formData.blessing_code,
-          reserve_date: this.formData.reserve_date
+          shop_id: this.$store.state.user.reserveForm.data.shop,
+          blessing_code: this.$store.state.user.reserveForm.data.blessing_code,
+          reserve_date: this.$store.state.user.reserveForm.data.reserve_date
         })
          if (res.errno > 0) {
            EventBus.$emit('err-msg', res.errmsg)
@@ -172,17 +172,17 @@
       onSelect (date, selectedVal, selectedText) {
         this.selectedDate = selectedText.join('')
         this.$store.commit('user/SET_RESERVER_FORM', {
-          reserve_date: new Date().getTime(),
+          reserve_date: new Date(selectedVal).getTime(),
           format_date: selectedText.join('')
         })
         console.log(this.formData)
         console.log('current time: ' + new Date(selectedVal).getTime())
       },
       cancelHandle () {
-        this.$store.commit('user/SET_RESERVER_FORM', {
-          reserve_date: null,
-          format_date: null
-        })
+        // this.$store.commit('user/SET_RESERVER_FORM', {
+        //   reserve_date: null,
+        //   format_date: null
+        // })
       }
     }
   }
