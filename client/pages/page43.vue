@@ -170,6 +170,9 @@
       shopList () {
         return this.$store.state.shop.list.data
       },
+      formData () {
+        return this.$store.state.user.reserveForm.data
+      },
       options () {
         return {
           pullDownRefresh: this.pullDownRefreshObj,
@@ -216,7 +219,9 @@
       selected (newVal) {
         this.$store.commit('user/SET_RESERVER_FORM', {
           shop: newVal.split(':')[0],
-          shop_name: newVal.split(':')[1]
+          shop_name: newVal.split(':')[1],
+          blessing_code: this.formData.blessing_code,
+          reserve_date: this.formData.reserve_date
         })
         console.log(newVal)
       }
