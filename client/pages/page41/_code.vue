@@ -190,19 +190,14 @@
         const days = (new Date(selectedVal) - new Date(new Date())) / 1000 / 60 / 60 / 24
         if (days < 3) {
           EventBus.$emit('err-msg', '日份最早可选择第三天的日子')
-          selectedVal = ''
           return
         }
+
         this.selectedDate = selectedText.join('')
         await this.$store.commit('user/SET_RESERVER_FORM', {
           reserve_date: new Date(selectedVal).getTime(),
           format_date: selectedText.join('')
         })
-        // this.$createDialog({
-        //   type: 'warn',
-        //   content: `Selected Item: <br/> - date: ${date} <br/> - value: ${selectedVal.join(', ')} <br/> - text: ${selectedText.join(' ')}`,
-        //   icon: 'cubeic-alert'
-        // }).show()
       },
       cancelHandle () {
         this.$store.commit('user/SET_RESERVER_FORM', {
