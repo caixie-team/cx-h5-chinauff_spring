@@ -118,10 +118,9 @@
       },
     },
     mounted () {
-      console.log(this.formData)
-      this.$store.commit('user/SET_RESERVER_FORM', {
-        openId: this.$store.getters.openId
-      })
+      // this.$store.commit('user/SET_RESERVER_FORM', {
+      //   openId: this.$store.getters.openId
+      // })
     },
     methods: {
       showDialog (type, option) {
