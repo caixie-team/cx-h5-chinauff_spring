@@ -224,6 +224,7 @@
           reserve_date: this.formData.reserve_date
         })
         console.log(newVal)
+        console.log(this.formData)
       }
       // shopList (newVal) {
       //   this.shops = newVal

@@ -135,6 +135,7 @@
         openId: this.$store.getters.openId,
         blessing_code: this.$route.params.code
       })
+      console.log(this.formData)
       // console.log(this.formData)
     },
     methods: {
@@ -157,7 +158,6 @@
            EventBus.$emit('err-msg', res.errmsg)
           return
         }
-        // console.log(res.reserve_date)
          if (res.reserve_date !== null && res.status === 1) {
             this.showDialog('success3', {showClose: false})
          }
@@ -174,7 +174,7 @@
               month: 'MM月',
               date: ' D 日'
             },
-            onSelect: this.selectHandle,
+            onSelect: this.onSelect,
             onCancel: this.cancelHandle,
             onChange: () => {
               console.log('change')
@@ -184,7 +184,7 @@
 
         this.datePicker.show()
       },
-      async selectHandle (date, selectedVal, selectedText) {
+      async onSelect (date, selectedVal, selectedText) {
         this.selectedDate = selectedText.join('')
         await this.$store.commit('user/SET_RESERVER_FORM', {
           reserve_date: new Date(selectedVal).getTime(),
