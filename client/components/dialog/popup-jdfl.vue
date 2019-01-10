@@ -46,7 +46,7 @@
     computed: {
     },
     mounted () {
-      console.log('init jdfl')
+      // console.log('init jdfl')
       console.log(this.blessing_code)
     },
     methods: {
@@ -54,8 +54,8 @@
         this.$emit(EVENT_CLOSE, e)
       },
       // 跳转至预约兑换页面
-      exchange (e) {
-        console.log('--d-d-d-d-')
+      exchange (e) {j
+        // console.log('--d-d-d-d-')
         this.$router.push('/page41/' + this.blessing_code)
         this.$emit(EVENT_CLOSE, e)
         // this.$router.push(`/${name}`)
