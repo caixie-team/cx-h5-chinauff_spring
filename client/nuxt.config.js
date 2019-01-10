@@ -55,10 +55,10 @@ module.exports = {
   */
   loading: {color: '#fdd32a'},
 
-  cache: {
-    max: 100,
-    maxAge: 1000 * 60 * 15
-  },
+  // cache: {
+  //   max: 100,
+  //   maxAge: 1000 * 60 * 15
+  // },
 
 
   /*
