@@ -24,7 +24,7 @@ export const state = () => {
         name: null,
         blessing_code: null,         // 满福才会有的数据
         icon_num: null,        // 满福才会有的数据
-        blessing_type: null,
+        blessing_type: 0,
         full: false // 满福为 true
       }
     },
@@ -87,7 +87,7 @@ export const mutations = {
     state.blessing.fetching = true
   },
   GET_BLESSING_SUCCESS (state, action) {
-    console.log(action)
+    // console.log(action)
     state.blessing.data = action
   },
   GET_BLESSING_FAILURE (state) {

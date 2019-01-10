@@ -129,7 +129,7 @@
           case 50:
             return 'huiyuanka'
           default:
-            return ''
+            return false
         }
       },
       word () {

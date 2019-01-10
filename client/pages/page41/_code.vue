@@ -89,8 +89,8 @@
     data () {
       return {
         isSubmit: false,
-        total: '12,345',
-        count: '2',
+        total: 0,
+        count: 0,
         tip1,
         tip2,
         limit: 2,

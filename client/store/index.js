@@ -274,21 +274,21 @@ export const actions = {
         console.warn('获取签名信息错误', err)
       })
   },*/
-  reloadUserInfo ({commit}, data) {
-    commit('user/REQUEST_USER_INFO')
-    return this.$axios.$post(`${API_PREFIX}/account/take`, {
-      ...data
-    }).then(response => {
-      const data = getResData(response)
-      if (resIsSuccess(response)) {
-        commit('prize/GET_LUCKY_SUCCESS', data)
-        return Promise.resolve(data)
-      }
-    })
-      .catch(err => {
-        commit('prize/GET_LUCKY_FAILURE', err)
-      })
-  },
+  // reloadUserInfo ({commit}, data) {
+  //   commit('user/REQUEST_USER_INFO')
+  //   return this.$axios.$post(`${API_PREFIX}/account/take`, {
+  //     ...data
+  //   }).then(response => {
+  //     const data = getResData(response)
+  //     if (resIsSuccess(response)) {
+  //       commit('prize/GET_LUCKY_SUCCESS', data)
+  //       return Promise.resolve(data)
+  //     }
+  //   })
+  //     .catch(err => {
+  //       commit('prize/GET_LUCKY_FAILURE', err)
+  //     })
+  // },
   // AI 图片
   checkImage ({commit}, data) {
     commit('ai/POST_IMAGE')

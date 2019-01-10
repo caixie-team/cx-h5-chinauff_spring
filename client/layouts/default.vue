@@ -182,31 +182,40 @@
         if (luckyData.type > 0) {
           // 集福可能会集得满福
           const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: this.$store.getters.openId})
-          if (blessingData.blessing_type !== null) {
-            let coupon_type = 0
-            let coupon_code = ''
-            // 类型 1 为优惠劵
-            if (luckyData.type === 1) {
-              coupon_type = luckyData.coupon.type_code
-              coupon_code = luckyData.coupon.coupon_code
-            } else if (luckyData.type === 2) {
-              coupon_type = luckyData.card.card_code
-              coupon_code = luckyData.card.card_code.toString()
-            }
-            if (this.$route.path === '/page621') {
-              this.showDialog('prize1', {
-                blessing_type: this.blessing.blessing_type,
-                coupon_type,
-                coupon_code
-              })
-            } else {
-              this.showDialog('prize', {
-                blessing_type: this.blessing.blessing_type,
-                coupon_type,
-                coupon_code
-              })
-            }
+          // if (blessingData.blessing_type !== 0) {
+          let coupon_type = 0
+          let coupon_code = ''
+          // 类型 1 为优惠劵
+          if (luckyData.type === 1) {
+            coupon_type = luckyData.coupon.type_code
+            coupon_code = luckyData.coupon.coupon_code
           }
+          if (luckyData.type === 2) {
+            coupon_type = luckyData.card.card_code
+            coupon_code = luckyData.card.card_code.toString()
+          }
+          if (this.$route.path === '/page621') {
+            this.showDialog('prize1', {
+              blessing_type: this.blessing.blessing_type,
+              coupon_type,
+              coupon_code
+            })
+          } else {
+            this.showDialog('prize', {
+              blessing_type: this.blessing.blessing_type,
+              coupon_type,
+              coupon_code
+            })
+          }
+
+          // 集到了满福
+          // if (blessingData.full === true && blessingData.blessing_code !== null) {
+          //   this.showDialog('jdfl', {
+          //     blessing_code: blessingData.blessing_code,
+          //     showClose: true
+          //   })
+          // }
+          // }
           // 抽奖劵
           // setTimeout(
           EventBus.$emit('play6s', false)

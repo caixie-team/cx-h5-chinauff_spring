@@ -9,7 +9,7 @@
       :src="icon"
       class="icon">
     <div
-      v-if="blessing_code !== '' && blessing_code !== null"
+      v-if="blessing_code !== null && blessing_code !== ''"
       class="buttons">
       <img
         :src="btn"
@@ -47,7 +47,7 @@
     },
     mounted () {
       // console.log('init jdfl')
-      console.log(this.blessing_code)
+      // console.log(this.blessing_code)
     },
     methods: {
       close (e) {
@@ -55,8 +55,9 @@
       },
       // 跳转至预约兑换页面
       exchange (e) {
-        // console.log('--d-d-d-d-')
-        this.$router.push('/page41/' + this.blessing_code)
+        if (this.blessing_code !== null && this.blessing_code !== '') {
+          this.$router.push('/page41/' + this.blessing_code)
+        }
         this.$emit(EVENT_CLOSE, e)
         // this.$router.push(`/${name}`)
       }

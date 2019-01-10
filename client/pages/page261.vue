@@ -199,8 +199,8 @@
     },
     mounted () {
       this.$store.dispatch('nuxtClientInit')
-      if (this.blessing.full === true && this.blessing_code !== null) {
-        EventBus.$emit('jdfl', this.blessing_code)
+      if (this.blessing.full === true && this.blessing.blessing_code !== null) {
+        EventBus.$emit('jdfl', this.blessing.blessing_code)
       }
     },
     methods: {
