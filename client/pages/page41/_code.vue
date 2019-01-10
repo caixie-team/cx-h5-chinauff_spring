@@ -173,7 +173,7 @@
       onSelect (date, selectedVal, selectedText) {
         this.selectedDate = selectedText.join('')
         this.$store.commit('user/SET_RESERVER_FORM', {
-          reserve_date: new Date(selectedVal).getTime(),
+          reserve_date: new Date(selectedVal),
           format_date: selectedText.join('')
         })
         console.log(this.formData)
