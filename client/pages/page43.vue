@@ -186,12 +186,12 @@
         })
       },
       selected (newVal) {
-        if (newVal) {
-          this.$store.commit('user/SET_RESERVER_FORM', {
-            shop: newVal.split(':')[0],
-            shop_name: newVal.split(':')[1]
-          })
-        }
+        // if (newVal) {
+        this.$store.commit('user/SET_RESERVER_FORM', {
+          shop: newVal.split(':')[0],
+          shop_name: newVal.split(':')[1]
+        })
+        // }
       }
       // shopList (newVal) {
       //   this.shops = newVal
@@ -300,14 +300,17 @@
       height: 50px
       width: 90%
       margin-top: 20px
+
     .btn
       margin-top: 20px
       width: 248px
       height: 40x
+
     .content
       display: flex
       flex-direction: column
       align-items: center
+
       .gift
         display: flex
         justify-content: center
@@ -403,6 +406,7 @@
 
       .shop-content
         flex: 1
+
         .name
           margin: 4px 0 16px 0
           /*height: 14px*/
