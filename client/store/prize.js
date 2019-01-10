@@ -71,7 +71,8 @@ export const state = () => {
     receiveBlessing: {
       posting: false,
       data: {
-        receive_time: null
+        status: 0,
+        reserve_date: null
       }
     }
   }

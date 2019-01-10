@@ -104,9 +104,9 @@
       formData () {
         return this.$store.state.user.reserveForm.data
       },
-      reserve () {
-        return this.$store.state.prize.receiveBlessing.data
-      },
+      // reserve () {
+      //   return this.$store.state.prize.receiveBlessing.data
+      // },
       isDisabled () {
         const data = this.formData
         for (const i in data) {
@@ -130,14 +130,14 @@
       }
     },
     watch: {
-      reserve (newVal) {
-        if (newVal.errno > 0) {
-          console.log(newVal)
-        }
-        if (newVal && newVal.receive_time !== null) {
-          this.showDialog('success3', {showClose: false})
-        }
-      }
+      // reserve (newVal) {
+      //   if (newVal.errno > 0) {
+      //     console.log(newVal)
+      //   }
+      //   if (newVal && newVal.reserve_date !== null) {
+      //     this.showDialog('success3', {showClose: false})
+      //   }
+      // }
     },
     mounted () {
       console.log(this.$route.params.code)
@@ -165,12 +165,21 @@
         //   format_date: null,
         //   openId: '',
         //   blessing_code: ''
-        await this.$store.dispatch('postReceiveBlessing', {
+        const res = await this.$store.dispatch('postReceiveBlessing', {
           openId: this.formData.openId,
           shop_id: this.formData.shop,
           blessing_code: this.formData.blessing_code,
           reserve_date: this.formData.reserve_date
         })
+        // console.log(res.reserve_date)
+         if (res.errno > 0) {
+           EventBus.$emit('err-msg', res.errmsg)
+          return
+        }
+        // console.log(res.reserve_date)
+         if (res.reserve_date !== null && res.status === 1) {
+            this.showDialog('success3', {showClose: false})
+         }
       },
       showDatePicker () {
         if (!this.datePicker) {
