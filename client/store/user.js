@@ -57,6 +57,7 @@ export const state = () => ({
       shop_name: null,
       shop_code: null,
       blessing_code: null,
+      reserve_date: null
     },
     form: {},
   },
