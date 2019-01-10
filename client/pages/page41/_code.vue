@@ -140,6 +140,8 @@
       }
     },
     mounted () {
+      console.log(this.$route.params.code)
+      console.log('预约兑换。。。')
       this.$store.commit('user/SET_RESERVER_FORM', {
         openId: this.$store.getters.openId,
         blessing_code: this.$route.params.code

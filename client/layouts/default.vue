@@ -126,8 +126,11 @@
         await this.getLucky()
       })
       // 集到福了
-      EventBus.$on('jdfl', (blessing_code) => {
-        this.showDialog('jdfl', {blessing_code: blessing_code})
+      EventBus.$on('jdfl', (code) => {
+        this.showDialog('jdfl', {
+          blessing_code: code,
+          showClose: true
+        })
       })
       if (process.browser) {
         if (this.game === null) {

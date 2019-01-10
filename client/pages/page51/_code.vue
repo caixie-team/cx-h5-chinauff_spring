@@ -87,6 +87,7 @@
       },
     },
     mounted () {
+
       this.blessingCode = this.$route.params.code
       // clearInterval(this.timer);
       // this.setTimer();

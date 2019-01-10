@@ -47,7 +47,8 @@
           @close="close"/>
         <jdfl
           v-if="type === 'jdfl'"
-          :blessing_code="blessing_code"/>
+          :blessing_code="blessing_code"
+          @close="close"/>
         <dhff
           v-if="type === 'dhff'"/>
         <popup-scan
