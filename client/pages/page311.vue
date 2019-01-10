@@ -123,11 +123,11 @@
     props: {
       coupon: {
         type: String,
-        default: 'mianfei'
+        default: ''
       },
       word: {
         type: String,
-        default: 'kou'
+        default: ''
       }
     },
     data () {
@@ -250,9 +250,6 @@
           blessing_code: this.currentBlessing.blessing_code
         })
         this.$router.push('/page41/' + this.currentBlessing.blessing_code)
-        // this.initialIndex
-        // const blessing = this.myBlessingList[this.current]
-        // console.log(blessing)
       },
       // 兑换码页
       toPage51 () {
@@ -267,11 +264,13 @@
       },
       changePage (current) {
         this.currentBlessing = this.myBlessingList[current]
+        this.$store.commit('user/SET_RESERVER_FORM', {
+          blessing_code: this.currentBlessing.blessing_code
+        })
         // this.current = current
         // console.log('当前序号为:' + current)
       },
       clickPage (item, index) {
-        // console.log(item, index)
       },
     },
   }

@@ -38,8 +38,8 @@
                       <div class="icon">
                         <img
                           src="~assets/img/bg/shop_bg.jpg"
-                          width="100"
-                          height="59">
+                          width="80"
+                          height="39">
                       </div>
                       <div class="shop-content">
                         <h2 class="name">{{ shop.shop_name }}</h2>
@@ -49,15 +49,6 @@
                           class="extra">
                           <span>距您 {{ shop.distance / 1000 }} 公里</span>
                         </div>
-                        <!--<div class="extra">-->
-                        <!--<span class="count">月售{{ food.sellCount }}份</span><span>好评率{{ food.rating }}%</span>-->
-                        <!--</div>-->
-                        <!--<div class="price">-->
-                        <!--<span class="now">￥{{ food.price }}</span>-->
-                        <!--<span-->
-                        <!--v-show="food.oldPrice"-->
-                        <!--class="old">￥{{ food.oldPrice }}</span>-->
-                        <!--</div>-->
                       </div>
                     </li>
                   </c-radio>
@@ -124,23 +115,13 @@
     },
     head () {
       return {
-        title: '选择预约门店'
+        title: '选择门店'
       }
     },
     components: {
       CPage,
       TopButtons,
       PageContent
-    },
-    props: {
-      coupon: {
-        type: String,
-        default: 'mianfei'
-      },
-      word: {
-        type: String,
-        default: 'kou'
-      }
     },
     data () {
       return {
@@ -312,7 +293,7 @@
     align-items: center
     flex-direction: column
     min-height: 100vh
-    position: absolute
+    position: fixed
     left: 0
     width: 100%
     height: 100%
@@ -425,7 +406,6 @@
     .food-item
       display: flex
       padding: 18px
-      border-bottom: 1px solid rgba(7, 17, 27, 0.1)
 
       &:last-child
         border-none()
@@ -439,15 +419,14 @@
         flex: 1
         .name
           margin: 4px 0 16px 0
-          height: 14px
-          line-height: 14px
-          font-size: 18px
+          /*height: 14px*/
+          line-height: 18px
+          font-size: 15px
           color: rgb(7, 17, 27)
 
         .description, .extra
           font-size: 14px
           color: rgb(147, 153, 159)
-          line-height: 20px
 
         .description
           margin-bottom: 8px

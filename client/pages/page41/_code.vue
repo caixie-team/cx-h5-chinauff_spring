@@ -116,27 +116,12 @@
         }
         return false
       },
-      _couponClass () {
-        return [
-          'coupon',
-          'coupon-' + this.coupon
-        ]
-      },
-      _wordClass () {
-        return [
-          'word',
-          'word-' + this.word
-        ]
-      }
     },
     mounted () {
-      console.log(this.$route.params.code)
-      this.$store.commit('user/SET_RESERVER_FORM', {
-        openId: this.$store.getters.openId,
-        blessing_code: this.$route.params.code
-      })
       console.log(this.formData)
-      // console.log(this.formData)
+      this.$store.commit('user/SET_RESERVER_FORM', {
+        openId: this.$store.getters.openId
+      })
     },
     methods: {
       showDialog (type, option) {
@@ -149,13 +134,14 @@
       async submit () {
         this.isSubmit = true
         const res = await this.$store.dispatch('postReceiveBlessing', {
-          openId: this.formData.openId,
+          openId: this.$store.getters.openId,
           shop_id: this.formData.shop,
           blessing_code: this.formData.blessing_code,
           reserve_date: this.formData.reserve_date
         })
          if (res.errno > 0) {
            EventBus.$emit('err-msg', res.errmsg)
+           this.isSubmit = false
           return
         }
          if (res.reserve_date !== null && res.status === 1) {
@@ -171,8 +157,8 @@
             value: new Date(),
             format: {
               year: 'YYYY年',
-              month: 'MM月',
-              date: ' D 日'
+              month: ' MM月',
+              date: ' D日'
             },
             onSelect: this.onSelect,
             onCancel: this.cancelHandle,
@@ -184,12 +170,13 @@
 
         this.datePicker.show()
       },
-      async onSelect (date, selectedVal, selectedText) {
+      onSelect (date, selectedVal, selectedText) {
         this.selectedDate = selectedText.join('')
-        await this.$store.commit('user/SET_RESERVER_FORM', {
+        this.$store.commit('user/SET_RESERVER_FORM', {
           reserve_date: new Date(selectedVal).getTime(),
           format_date: selectedText.join('')
         })
+        console.log(this.formData)
         console.log('current time: ' + new Date(selectedVal).getTime())
       },
       cancelHandle () {
@@ -197,18 +184,6 @@
           reserve_date: null,
           format_date: null
         })
-        // this.$createToast({
-        //   type: 'correct',
-        //   txt: 'Picker canceled',
-        //   time: 1000
-        // }).show()
-      },
-      showAlert () {
-        this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
-        })
-        this.dialog.show()
       }
     }
   }
@@ -221,7 +196,7 @@
     align-items: center
     flex-direction: column
     min-height: 100vh
-    position: absolute
+    position: fixed
     left: 0
     width: 100%
     height: 100%
@@ -254,14 +229,12 @@
       .btn
         padding: 20px
         position: relative
-        width: 266px
-        height: 64px
+        width: 248px
 
-      .shop
-        span
-          color: $color-dark
-          font-size: 14px
-          line-height: 20px
+      .shop, .date
+        color: $color-dark
+        font-size: 20px
+        line-height: 10px
 
       .exchange-form
         width: 419px
@@ -283,7 +256,6 @@
 
         span
           font-weight: 500
-          font-size: 24px
           position: relative
           text-align: right
           right: 20px

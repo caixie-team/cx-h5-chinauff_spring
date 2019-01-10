@@ -116,7 +116,7 @@
       })
       // EventBus.$on('re-signature', (path) => {
       //   console.log(path)
-      this.$store.dispatch('nuxtClientInit')
+      // this.$store.dispatch('nuxtClientInit')
       // })
       EventBus.$on('share', (e) => {
         this.share = e

@@ -67,6 +67,7 @@
       top: 200px
       width: 292px
       height: 62px
+      font-size: $fontsize-large-xx
 
     .buttons
       position: absolute

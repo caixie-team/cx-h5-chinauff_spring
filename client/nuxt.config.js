@@ -52,9 +52,9 @@ module.exports = {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
-  // serverMiddleware: [
-  //   '~/api/headers.js'
-  // ],
+  serverMiddleware: [
+    '~/api/headers.js'
+  ],
 
   /*
   ** Customize the progress-bar color

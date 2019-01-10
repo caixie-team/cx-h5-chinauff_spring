@@ -321,7 +321,6 @@
     line-height: 80px
     padding: 0 $picker-lr-padding
     box-sizing: content-box
-    font-size: $fontsize-large-xxx
 
   .c-picker-confirm
     position: absolute
@@ -380,19 +379,20 @@
     padding: 0 $picker-lr-padding
     > div
       flex-fix()
-      height: 300px
+      height: 290px
       overflow: hidden
-      font-size: $fontsize-large-xxxx
+      font-size: $fontsize-large-xxx
 
   .c-picker-wheel-scroll
     padding: 0
     margin-top: 128px
-    line-height: 48px
+    line-height: 40px
     list-style: none
 
   .c-picker-wheel-item
     list-style: none
     height: 42px
+    font-size: $fontsize-large-xxx
     overflow: hidden
     white-space: nowrap
     color: $picker-item-color
