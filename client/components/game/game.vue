@@ -27,8 +27,8 @@
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
   /* global PIXI, Game */
   // import {mapState} from 'vuex'
-  import EventBus from '../../utils/event-bus.js'
-  import bgLightImg from '~/assets/img/bg/page_bgr.jpg'
+  // import EventBus from '../../utils/event-bus.js'
+  // import bgLightImg from '~/assets/img/bg/page_bgr.jpg'
   import EventBus from '../../utils/event-bus.js'
   import bgLightImg from '~/assets/images/bg/page_bg_light.jpg'
   const path12s = 'assets/animation/12s'

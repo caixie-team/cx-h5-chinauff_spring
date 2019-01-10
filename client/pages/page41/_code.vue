@@ -129,19 +129,8 @@
         ]
       }
     },
-    watch: {
-      // reserve (newVal) {
-      //   if (newVal.errno > 0) {
-      //     console.log(newVal)
-      //   }
-      //   if (newVal && newVal.reserve_date !== null) {
-      //     this.showDialog('success3', {showClose: false})
-      //   }
-      // }
-    },
     mounted () {
       console.log(this.$route.params.code)
-      console.log('预约兑换。。。')
       this.$store.commit('user/SET_RESERVER_FORM', {
         openId: this.$store.getters.openId,
         blessing_code: this.$route.params.code
@@ -158,20 +147,12 @@
       },
       async submit () {
         this.isSubmit = true
-        // console.log(this.formData)
-        // shop: null,
-        //   shop_name: null,
-        //   reserve_date: null,
-        //   format_date: null,
-        //   openId: '',
-        //   blessing_code: ''
         const res = await this.$store.dispatch('postReceiveBlessing', {
           openId: this.formData.openId,
           shop_id: this.formData.shop,
           blessing_code: this.formData.blessing_code,
           reserve_date: this.formData.reserve_date
         })
-        // console.log(res.reserve_date)
          if (res.errno > 0) {
            EventBus.$emit('err-msg', res.errmsg)
           return
@@ -212,7 +193,7 @@
           selectedVal = ''
           return
         }
-        this.selectedDate = selectedText.join(' ')
+        this.selectedDate = selectedText.join('')
         await this.$store.commit('user/SET_RESERVER_FORM', {
           reserve_date: new Date(selectedVal).getTime(),
           format_date: selectedText.join('')

@@ -143,7 +143,7 @@
           this.dialog.hide()
           this.$store.commit('ai/RESET_SCORE')
           EventBus.$emit('play12s', true)
-        }, 2500)
+        }, 1500)
       })
       EventBus.$on('scan-failure', () => {
         // this.showClose = true
@@ -188,31 +188,6 @@
             })
           }
         })
-      },
-      // loadJSSDKConfig () {
-      //   const url = window.location.href
-      //   const postUrl = `${API_PREFIX}/wechat/signature`
-      //   return axios.post(postUrl, {
-      //     appId: 'wxb44ce8b8c5cfdc0a',
-      //     url
-      //   }).then(response => {
-      //     console.log(response.data)
-      //     if (response.data.errcode === '0' && response.data) {
-      //       return getResData(response.data)
-      //     } else {
-      //       console.log('微信签名信息获取失败：', response)
-      //     }
-      //   }).catch(err => {
-      //     console.warn('获取签名信息错误', err)
-      //   })
-      // },
-
-      showAlert () {
-        this.dialog = this.$createDialog({
-          type: 'intro',
-          showClose: true
-        })
-        this.dialog.show()
       },
       showDialog (type, option) {
         this.dialog = this.$createDialog({
