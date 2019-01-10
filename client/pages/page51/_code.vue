@@ -14,7 +14,7 @@
         <div
           v-else
           class="qrcode">
-          已兑换
+          已兑换或已取消预约
         </div>
         <img
           src="~assets/img/text/text_qjrwmzsgsyy.png"
