@@ -7,9 +7,9 @@
 import {isProdMode} from './environment_es'
 // 线上 DEV 测试
 export default {
-  domain: isProdMode ? 'https://weixin.chinauff.com' : 'http://weixin.chinauff.com',
-  hostUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://weixin.chinauff.com/spring',
-  cdnUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'http://spring.chinauff.com/spring',
+  domain: isProdMode ? 'https://weixin.chinauff.com' : 'https://weixin.chinauff.com',
+  hostUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'https://weixin.chinauff.com/spring',
+  cdnUrl: isProdMode ? 'https://weixin.chinauff.com/spring' : 'https://spring.chinauff.com/spring',
   proxyUrl: isProdMode ? 'http://crm.chinauff.com/lnj-weixin/console' : 'http://demo.micvs.com/lnj-weixin/console',
   baseUrl: isProdMode ? 'https://weixin.chinauff.com/spring/server/api' : 'http://spring.chinauff.com/api',
   caixieUrl: isProdMode ? 'http://spring.chinauff.com/api' : 'http://spring.chinauff.com/api',
