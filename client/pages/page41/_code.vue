@@ -137,7 +137,7 @@
           shop_id: this.$store.state.user.reserveForm.data.shop,
           blessing_code: this.$store.state.user.reserveForm.data.blessing_code,
           // reserve_date: this.$store.state.user.reserveForm.data.reserve_date
-          reserve_date: 'abcd12344'
+          reserve_date: ''
         })
          if (res.errno > 0) {
            EventBus.$emit('err-msg', res.errmsg)
@@ -173,7 +173,7 @@
       onSelect (date, selectedVal, selectedText) {
         this.selectedDate = selectedText.join('')
         this.$store.commit('user/SET_RESERVER_FORM', {
-          reserve_date: new Date(selectedVal).getTime(),
+          reserve_date: selectedVal,
           format_date: selectedText.join('')
         })
         console.log(this.formData)
