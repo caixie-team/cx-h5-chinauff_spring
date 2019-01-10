@@ -31,12 +31,15 @@ module.exports = options => {
       const callbackUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/openId?callback=${encodeURI}`
       // 请求地址中不包含 openId
       // myOpenId 跳转回来的用于验证
-      if (_.isEmpty(openId) && !_.has(query, 'openId') && !_.has(query, 'myOpenId')) {
+      if (_.isEmpty(openId) && !_.has(query, 'openId') && !_.has(query, 'openid') && !_.has(query, 'myOpenId')) {
         return ctx.redirect(callbackUrl)
-      } else if (_.has(query, 'openId') || !_.isEmpty(openId) || _.has(query, 'myOpenId')) { // 请求地址中包含 openId
+      } else if (_.has(query, 'openId') || _.has(query, 'openid') || !_.isEmpty(openId) || _.has(query, 'myOpenId')) { // 请求地址中包含 openId
         // const _openId = _.has(query, 'openId') || _.has(query, 'myOpenId') ? query.openId : openId
         let _openId
         if (_.has(query, 'openId')) {
+          _openId = query.openId
+        }
+        if (_.has(query, 'openid')) {
           _openId = query.openId
         }
         if (_.has(query, 'myOpenId')) {
