@@ -54,7 +54,7 @@
         this.$emit(EVENT_CLOSE, e)
       },
       // 跳转至预约兑换页面
-      exchange (e) {j
+      exchange (e) {
         // console.log('--d-d-d-d-')
         this.$router.push('/page41/' + this.blessing_code)
         this.$emit(EVENT_CLOSE, e)
