@@ -209,13 +209,13 @@
       }
     },
     watch: {
-      isReceive (newVal) {
-        if (newVal === true) {
+      // isReceive (newVal) {
+        // if (newVal === true) {
           // 弹出预约成功
           // this.showDialog('jdfl')
-          this.showDialog('success2')
-        }
-      }
+          // this.showDialog('success2')
+        // }
+      // }
     },
     mounted () {
       this.cardCode = this.$route.params.code
