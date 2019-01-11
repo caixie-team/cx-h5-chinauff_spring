@@ -205,6 +205,9 @@
       if (this.blessing.full === true && this.blessing.blessing_code !== null) {
         EventBus.$emit('jdfl', this.blessing.blessing_code)
       }
+      this.$store.dispatch('luckyTimes', {
+        openId: this.$store.getters.openId
+      })
     },
     methods: {
       shareGuide () {
