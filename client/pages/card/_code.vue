@@ -231,7 +231,18 @@
           recipient_name: this.model.inputNameValue,
           phone_number: this.model.inputPhoneValue
         }
-        await this.$store.dispatch('postReceiveCard', form)
+        const res = await this.$store.dispatch('postReceiveCard', form)
+        if (res && res.receive_time !== null) {
+          this.showDialog('success2')
+        } else {
+          if (res.errno > 0) {
+            this.showDialog('msg', {
+              msg: res.errmsg
+            })
+            return
+          }
+        }
+        // if (res)
         // console.log(form)
         // console.log('submit')
         // return
