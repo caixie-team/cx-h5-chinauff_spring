@@ -126,8 +126,8 @@ function debounce (func, wait, immediate, initValue) {
   const later = function (context, args) {
     timeout = null
     if (args) {
-      // result = func.apply(context, args)
-      result = Reflect.apply(func, context, args)
+      result = func.apply(context, args)
+      // result = Reflect.apply(func, context, args)
     }
   }
 
@@ -139,8 +139,8 @@ function debounce (func, wait, immediate, initValue) {
       const callNow = !timeout
       timeout = setTimeout(later, wait)
       if (callNow) {
-        // result = func.apply(this, args)
-        result = Reflect.apply(func, this, args)
+        result = func.apply(this, args)
+        // result = Reflect.apply(func, this, args)
       }
     } else {
       timeout = setTimeout(() => {

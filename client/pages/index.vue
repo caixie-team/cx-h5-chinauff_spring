@@ -8,6 +8,7 @@
         src="~assets/images/home/bt.png"
         class="imgBt">
       <div class="footer">
+        <!--<a @click="getLuckyTest">TEST LUCKY ...</a>-->
         <div
           v-if="luckyTimes > 0"
           class="upload">
@@ -36,6 +37,8 @@
   import CPage from '../components/c-page.vue'
   import {isBrowser} from '~/environment_es'
   import TopButtons from '../components/top-buttons'
+  // import {debounce} from 'lodash';
+  import {debounce} from "../common/helpers/util";
 
   export default {
     transition: 'fade',
@@ -99,10 +102,14 @@
       },
     },
     async mounted () {
+      // this.fireLucky = debounce(() => {
+      //   console.log('get lucky...')
+      //   return EventBus.$emit('getLucky', true)
+      // }, 300)
       // TEST
       // EventBus.$emit('jdfl', 'aabbcc')
       // this.showDialog('success3', {showClose: false})
-      // EventBus.$emit('play12s', true)
+      // EventBus.$emit('play6s', true)
       // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
       this.$store.dispatch('nuxtClientInit')
@@ -155,6 +162,9 @@
 
     },
     methods: {
+      // getLuckyTest () {
+      //   this.fireLucky()
+      // },
       picker () {
         const self = this
         wx.chooseImage({

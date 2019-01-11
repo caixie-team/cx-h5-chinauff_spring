@@ -4,8 +4,8 @@ import * as PIXI from 'pixi.js'
 
 PIXI.utils.skipHello()
 import EventBus from '~/utils/event-bus.js'
-// import {debounce} from 'lodash'
-import {debounce} from "../../common/helpers/util";
+import {debounce} from 'lodash'
+// import {debounce} from "../../common/helpers/util";
 
 const [w, h] = [window.innerWidth, window.innerHeight]
 const Ratio = window.devicePixelRatio
@@ -15,18 +15,20 @@ const static_url = 'https://18anniversary.obs.cn-east-2.myhwclouds.com/assets'
 
 const path12s = static_url + '/12s'
 const path6s = static_url + '/6s'
-
+let self = null
 export default class Game {
   constructor () {
     this.app = new PIXI.Application(window.innerWidth * Ratio, window.innerHeight * Ratio, {
       transparent: true,
     });
+    self = this
     // this.isHaveLoad = false
     this.isLoadFirst = false
     // this.isLoadTouzi = false
     this.play12sObj = {}
     this.play6sObj = {}
     this.allTexture = {}
+    this.fireLucky = debounce(() => EventBus.$emit('getLucky', true), 300)
     this.objSprites = {
       // 球
       ball: {
@@ -328,12 +330,13 @@ export default class Game {
     this.isdown = true
     // this.alpha = 1
     this.alpha = .6
-    debounce(() => EventBus.$emit('getLucky', true), 300)
+    this.interactive = false
+    self.fireLucky()
   }
 
   onButtonUp () {
     this.isdown = false
-    this.alpha = 1
+    // this.alpha = 1
   }
 
   setSize (sprite, len, size = 'width') {

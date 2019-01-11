@@ -455,7 +455,7 @@ export const actions = {
     })
       .catch(err => {
         commit('prize/GET_BLESSING_FAILURE', err)
-        // return Promise.reject(err)
+        return Promise.reject(err)
       })
   },
   // 获取集福统计（集满福的人数，我的集满福个数）

@@ -33,7 +33,7 @@
   import ShareGuide from '../components/share/share-guide'
   import Loading from '../components/game/loading'
   import EventBus from '../utils/event-bus.js'
-  import {debounce} from '../common/helpers/util'
+  // import {debounce} from '../common/helpers/util'
 
   export default {
     components: {
@@ -175,9 +175,11 @@
       },
       // 收下福气，抽奖
       async getLucky () {
+        // console.log('getlucy...')
         // 20190108 更改逻辑，先抽奖，再集福
         // 1 抽奖
         const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: this.$store.getters.openId})
+        // console.log(luckyData)
         // 2 集福
         if (luckyData.type > 0) {
           // 集福可能会集得满福
@@ -191,8 +193,8 @@
             coupon_code = luckyData.coupon.coupon_code
           }
           if (luckyData.type === 2) {
-            coupon_type = luckyData.card.card_code
-            coupon_code = luckyData.card.card_code.toString()
+            coupon_type = luckyData.card.card_type
+            coupon_code = luckyData.card.card_code
           }
           if (this.$route.path === '/page621') {
             this.showDialog('prize1', {

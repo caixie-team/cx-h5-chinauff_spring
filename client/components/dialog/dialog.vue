@@ -25,12 +25,14 @@
           v-if="type === 'prize'"
           :coupon_type="coupon_type"
           :coupon_code="coupon_code"
-          :blessing_type="blessing_type"/>
+          :blessing_type="blessing_type"
+          @close="close"/>
         <prize1
           v-if="type === 'prize1'"
           :coupon_type="coupon_type"
           :coupon_code="coupon_code"
-          :blessing_type="blessing_type"/>
+          :blessing_type="blessing_type"
+          @close="close"/>
         <success
           v-if="type === 'success'"
           @close="close"/>

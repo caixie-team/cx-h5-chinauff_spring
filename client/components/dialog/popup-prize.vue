@@ -40,6 +40,8 @@
   import btn1 from '~/assets/img/btn/btn_friend.png'
   import btn2 from '~/assets/img/btn/btn_friend_timeline.png'
   import {isBrowser} from '~/environment_es'
+  const EVENT_CLOSE = 'close'
+
   // import apiConfig from '~/api.config.es'
   // 免费劵 3409
   // 4 元劵 (3410)
@@ -166,17 +168,21 @@
       }
     },
     methods: {
-      async getCoupon () {
+      async getCoupon (e) {
         // 1 验证用户登录状态
         // 2 未登录跳转登录，回调地址包含验证劵码信息
+        if (this.coupon_type == 50) {
+          this.$emit(EVENT_CLOSE, e)
+          return this.$router.push('/pageCard')
+          // await this.$store.dispatch('')
+        }
         if (this.userInfo.status === 1 && this.userInfo.cardNo > 0) {
-          // 领劵
-          // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
-          return await this.$store.dispatch('loadPrizeCoupon', {
+          await this.$store.dispatch('loadPrizeCoupon', {
             coupon_code: this.coupon_code
           })
+        } else {
+          window.location.href = this.locationHref
         }
-        window.location.href = this.locationHref
       },
     }
   }
