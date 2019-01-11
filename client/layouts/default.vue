@@ -122,10 +122,9 @@
       EventBus.$on('share', (e) => {
         this.share = e
       })
-      const debounceTime = 200
+      const debounceTime = 300
       // 收下福气的事件
       EventBus.$on('getLucky', async () => {
-
         debounce(async () => await this.getLucky(), debounceTime)
         // await this.getLucky()
       })
