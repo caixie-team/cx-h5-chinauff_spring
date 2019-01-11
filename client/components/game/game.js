@@ -4,6 +4,8 @@ import * as PIXI from 'pixi.js'
 
 PIXI.utils.skipHello()
 import EventBus from '~/utils/event-bus.js'
+// import {debounce} from 'lodash'
+import {debounce} from "../../common/helpers/util";
 
 const [w, h] = [window.innerWidth, window.innerHeight]
 const Ratio = window.devicePixelRatio
@@ -324,14 +326,14 @@ export default class Game {
       return
     }
     this.isdown = true
-    this.alpha = 1
-    // this.alpha = .6
-    EventBus.$emit('getLucky', true)
+    // this.alpha = 1
+    this.alpha = .6
+    debounce(() => EventBus.$emit('getLucky', true), 300)
   }
 
   onButtonUp () {
     this.isdown = false
-    // this.alpha = 1
+    this.alpha = 1
   }
 
   setSize (sprite, len, size = 'width') {

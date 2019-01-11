@@ -33,7 +33,7 @@
   import ShareGuide from '../components/share/share-guide'
   import Loading from '../components/game/loading'
   import EventBus from '../utils/event-bus.js'
-  import { debounce } from '../common/helpers/util'
+  import {debounce} from '../common/helpers/util'
 
   export default {
     components: {
@@ -124,10 +124,7 @@
       })
       const debounceTime = 300
       // 收下福气的事件
-      EventBus.$on('getLucky', async () => {
-        debounce(async () => await this.getLucky(), debounceTime)
-        // await this.getLucky()
-      })
+      EventBus.$on('getLucky', (e) => this.getLucky())
       // 集到福了
       EventBus.$on('jdfl', (code) => {
         this.showDialog('jdfl', {
