@@ -72,7 +72,10 @@
       }
     },
     fetch ({store, query, error}) {
-      return store.dispatch('loadBlessingStatistics')
+      store.dispatch('luckyTimes', {
+        openId: store.getters.openId
+      })
+      // return store.dispatch('loadBlessingStatistics')
     },
     components: {
       CPage,
