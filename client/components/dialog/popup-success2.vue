@@ -35,7 +35,7 @@
     },
     methods: {
       toPage261 (e) {
-        this.$router.push('/page261')
+        this.$router.push('/pageCard')
         this.$emit(EVENT_CLOSE, e)
       }
       // close (e) {
