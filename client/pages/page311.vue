@@ -56,6 +56,10 @@
           class="btn-yydh"
           @click="toPage51">
         <img
+          v-if="currentBlessing.status === 2"
+          src="~assets/img/page311/kckdhm.png"
+          class="imgKckdhm">
+        <img
           v-if="currentBlessing.status === 3"
           src="~assets/img/btn/btn_ydhg.png"
           class="btn-yydh"
@@ -319,7 +323,9 @@
     .imgQtqst
       width: 158px
       height: 22px
-
+    .imgKckdhm
+      width: 180px
+      height: 19px
     .imgShiba
       /*position: relative*/
       top: 100px

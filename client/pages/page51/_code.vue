@@ -23,7 +23,7 @@
           class="exchange-form">
           <div class="exchange-form__content">
             <span class="date">
-              {{ reserve.reserve_date }}
+              {{ reserve.reserve_date }} ~ 02-04
             </span>
             <span class="shop">
               {{ reserve.shop_name }}
