@@ -245,7 +245,7 @@
     methods: {
       shareGuide () {
         // console.log('share.....')
-        // EventBus.$emit('share', true)
+        EventBus.$emit('share', true)
       },
       // 预约兑换页
       toPage41 () {
