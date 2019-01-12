@@ -48,8 +48,8 @@ module.exports = options => {
         if (!_.isEmpty(openId)) {
           _openId = openId
         }
-        await ctx.cookie('openId', _openId)
-        // await ctx.session('openId', _openId)
+        // await ctx.cookie('openId', _openId)
+        await ctx.session('openId', _openId)
 
         const postData = {
           openId: _openId,
