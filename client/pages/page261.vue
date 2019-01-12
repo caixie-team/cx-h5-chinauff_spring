@@ -48,7 +48,7 @@
           href="https://weixin.chinauff.com/spring">
           <img src="~assets/img/btn/btn_zlycl.png">
         </a>
-        <p>今日还可参与 {{ luckyTimes }} 次</p>
+        <p>今日还可参与 {{ luckyCount }} 次</p>
       </div>
     </div>
   </c-page>
