@@ -244,7 +244,9 @@
           })
           // 如果集福成功,自己抽个奖
           if (blessingData) {
-            const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: openId})
+            const luckyData = await this.$store.dispatch('loadPrizeLucky', {
+              openId: openId
+            })
 
             let coupon_type = 0
             let coupon_code = ''
