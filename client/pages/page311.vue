@@ -72,14 +72,12 @@
           src="~assets/img/page311/qtqst.png"
           class="imgQtqst">
       </div>
-      <div
-        v-else>
-        <img
-          src="~assets/img/icon/icon_hhdj.png"
-          class="icon-hhdj"
-          @click="shareGuide">
-          <!--@click="showDialog('share', { showClose: true })">-->
-      </div>
+      <img
+        v-else
+        src="~assets/img/icon/icon_hhdj.png"
+        class="icon-hhdj"
+        @click="shareGuide">
+      <!--@click="showDialog('share', { showClose: true })">-->
       <div class="footer">
         <div class="toolbar">
           <span
@@ -287,7 +285,7 @@
     align-items: center
     flex-direction: column
     min-height: 100vh
-    position: absolute
+    position: fixed
     left: 0
     width: 100%
     height: 100%
@@ -339,13 +337,10 @@
       margin-bottom: 10px
 
     .icon-hhdj
+      position: relative
+      top: 30px
       z-index: 100
-      width: 355px
-      height: 585px
-
-    /*background-size: 389px 618px*/
-    /*background: url("~assets/img/icon/icon_hhdj.png") no-repeat*/
-
+      width: 55%
     .content
       display: flex
       flex-direction: column
@@ -424,7 +419,7 @@
       justify-content: center
 
       .toolbar
-        width: 90%;
+        width: 90%
         display: flex
         flex-direction: row
         justify-content: space-between
