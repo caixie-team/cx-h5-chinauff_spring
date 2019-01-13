@@ -237,7 +237,11 @@
           // 根据被助力者，查询获取助力者状态，判断1、未助力，2、已助力，3、同一人
           await this.$store.dispatch('loadActivityHelperStatus', {beOpenId})
           // 帮助好友集福
-          const blessingData = await this.$store.dispatch('loadPrizeBlessing', {openId: beOpenId, encrypt: true})
+          const blessingData = await this.$store.dispatch('loadPrizeBlessing', {
+            openId: openId,
+            beOpenId: beOpenId,
+            encrypt: true
+          })
           // 如果集福成功,自己抽个奖
           if (blessingData) {
             const luckyData = await this.$store.dispatch('loadPrizeLucky', {openId: openId})
