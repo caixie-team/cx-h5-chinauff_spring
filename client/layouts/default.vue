@@ -90,7 +90,7 @@
       },
       // 劵领取状态
       coupon (newVal) {
-        if (newVal.errno > 0) {
+        if (newVal.errno > 0 || newVal.errcode > 0) {
           this.showDialog('msg', {
             msg: newVal.errmsg
           })

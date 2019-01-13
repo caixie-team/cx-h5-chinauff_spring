@@ -420,6 +420,7 @@ export const actions = {
     })
       .catch(err => {
         commit('prize/GET_COUPON_FAILURE', err)
+        return Promise.reject(err)
       })
   },
   // 测试发劵
