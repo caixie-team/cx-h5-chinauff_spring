@@ -5,8 +5,7 @@
       slot="content"
       class="page621">
       <top-buttons
-        :actions="actions"
-        type="second"/>
+        :actions="actions"/>
       <span class="title"/>
       <div class="content">
         <div class="info">
