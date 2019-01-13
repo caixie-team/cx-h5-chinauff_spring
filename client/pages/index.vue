@@ -140,8 +140,8 @@
 
       // this.showDialog('limit', {showClose: false})
 
-      this.$store.commit('ai/RESET_SCORE')
-      this.$store.dispatch('luckyTimes', {
+      await this.$store.commit('ai/RESET_SCORE')
+      await this.$store.dispatch('luckyTimes', {
         openId: this.$store.getters.openId
       })
 
