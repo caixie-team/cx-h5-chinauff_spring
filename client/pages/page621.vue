@@ -311,8 +311,8 @@
 
       .btn-ywczlg
         position: relative
-        width: 248px
-        margin-bottom: 20px
+        width: 208px
+        margin-bottom: 10px
 
     .helperInfo
       color: $color-white
@@ -344,9 +344,9 @@
       justify-content: space-between
       align-items: center
       background: url('~assets/img/page621/zlbg.png') no-repeat left top
-      background-size: 389px 617px
+      background-size: 389px 580px
       width: 389px
-      height: 617px
+      height: 580px
 
       .info
         position: relative
@@ -396,6 +396,7 @@
         width: 266px
 
       .btn-djccqw
+        position: relative
         width: 230px
         height: 27px
 

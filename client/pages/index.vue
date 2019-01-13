@@ -233,11 +233,14 @@
     height: 100%
     /*background: #ab2d2f;*/
     background-image: url('~assets/images/home/hn.png')
-    background-size: 640px 1136px
+    background-position: center
+    background-size: 600px 1096px
     overflow: hidden
 
     .imgBt
-      padding: 145px 112px 0 112px
+      position: relative
+      top: 115px
+      /*padding: 145px 112px 0 112px*/
       width: 444px
       height: 176px
 
