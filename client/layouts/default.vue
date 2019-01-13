@@ -192,10 +192,11 @@
             coupon_type = luckyData.coupon.type_code
             coupon_code = luckyData.coupon.coupon_code
           }
-          if (luckyData.type === 2) {
-            coupon_type = luckyData.card.card_type
-            coupon_code = luckyData.card.card_code
-          }
+          // 停止发卡
+          // if (luckyData.type === 2) {
+          //   coupon_type = luckyData.card.card_type
+          //   coupon_code = luckyData.card.card_code
+          // }
           if (this.$route.path === '/page621') {
             this.showDialog('prize1', {
               blessing_type: this.blessing.blessing_type,

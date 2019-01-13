@@ -165,6 +165,7 @@
           case 3442:
           case 3443:
           case 3444:
+          case 3445:
             return 'bazhe'
           case 50:
             return 'huiyuanka'

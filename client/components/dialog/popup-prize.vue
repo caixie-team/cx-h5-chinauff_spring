@@ -23,6 +23,7 @@
       <span :class="_couponClass"/>
       <!-- 立即领取, 发劵 -->
       <img
+        v-if="coupon !== ''"
         src="~assets/img/btn/btn_ljlqh.png"
         class="btn-lijilq"
         @click="getCoupon">
@@ -130,6 +131,7 @@
           case 3442:
           case 3443:
           case 3444:
+          case 3445:
             return 'bazhe'
           case 50:
             return 'huiyuanka'
@@ -171,11 +173,11 @@
       async getCoupon (e) {
         // 1 验证用户登录状态
         // 2 未登录跳转登录，回调地址包含验证劵码信息
-        if (this.coupon_type == 50) {
-          this.$emit(EVENT_CLOSE, e)
-          return this.$router.push('/pageCard')
-          // await this.$store.dispatch('')
-        }
+        // 20190113 停卡发卡
+        // if (this.coupon_type == 50) {
+        //   this.$emit(EVENT_CLOSE, e)
+        //   return this.$router.push('/pageCard')
+        // }
         if (this.userInfo.status === 1 && this.userInfo.cardNo > 0) {
           await this.$store.dispatch('loadPrizeCoupon', {
             coupon_code: this.coupon_code
