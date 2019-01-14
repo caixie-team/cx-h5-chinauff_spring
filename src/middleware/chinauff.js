@@ -25,7 +25,10 @@ module.exports = options => {
     // const activityUser = await ctx.session('activity_user')
     // if (_.isEmpty(activityUser)) {
     const openId = await ctx.session('openId')
+    console.log(openId)
+    console.log('-1-1-1-')
     const query = ctx.query
+    console.log(query)
     const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
     // const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
     const callbackUrl = `http://crm.chinauff.com/lnj-weixin/console/activity/weChat/openId?callback=${encodeURI}`
@@ -48,6 +51,8 @@ module.exports = options => {
       if (!_.isEmpty(openId)) {
         _openId = openId
       }
+      console.log(_openId)
+      console.log('xx-x-x-x--x')
       // await ctx.cookie('openId', _openId)
       await ctx.session('openId', _openId)
 
@@ -55,18 +60,20 @@ module.exports = options => {
         openId: _openId,
         avatar: ''
       }
+
+      console.log(postData)
+      console.log('psot dat a......')
       if (_.has(query, 'headimgurl')) {
         postData.avatar = query.headimgurl
       }
-      // console.log('查询 活动账户信息。。。。。。')
       // 创建或查询活动账户
       let res = await think.got.post(apiConfig.baseUrl + '/account/take', {
         json: true,
         form: true,
         body: postData
       })
-      console.log('aaa--a-')
-      console.log(res)
+      // console.log('aaa--a-')
+      // console.log(res)
       res.body.data.beOpenId = encrypt(_openId, openIdKey)
       // 活动账户的信息，包括登录状态和会员信息
       // if Login status === 1

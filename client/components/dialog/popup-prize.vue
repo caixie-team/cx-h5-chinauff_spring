@@ -78,9 +78,12 @@
         return this.$store.state.prize.blessing.data
       },
       locationHref () {
-        let locationHref = window.location.href
+        // let locationHref = window.location.href
+        // let locationHref = 'http://wx.caixie.top/'
+        let locationHref = 'https://weixin.chinauff.com/spring/'
+        // let locationHref = 'http://wx.caixie.top/spring/'
         // locationHref = locationHref + '&coupon_code=' + this.coupon_code
-        locationHref = locationHref + '&myOpenId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
+        locationHref = locationHref + '?myOpenId=' + this.$store.getters.openId + '&coupon_code=' + this.coupon_code
         const redirectURL = `https://weixin.chinauff.com/lnj-weixin/console/weixin/page/loginPage?callback2=${encodeURIComponent(locationHref)}&isAutoRegister=1&channel2=18`
         return redirectURL
       },
