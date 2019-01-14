@@ -26,7 +26,6 @@ module.exports = options => {
     const query = ctx.query
 
     if (_.isEmpty(activityUser) || (activityUser.status === 0 && _.has(query, 'openId') || _.has(query, 'openid') || _.has(query, 'myOpenId'))) {
-      // console.log('-------登录')
       const openId = await ctx.session('openId')
       const encodeURI = encodeURIComponent(`${apiConfig.domain}${ctx.req.url}`)
       // const callbackUrl = `${apiConfig.proxyUrl}/activity/weChat/openId?callback=${encodeURI}`
