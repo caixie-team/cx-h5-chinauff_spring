@@ -109,7 +109,7 @@
       // TEST
       // EventBus.$emit('jdfl', 'aabbcc')
       // this.showDialog('success3', {showClose: false})
-      // EventBus.$emit('play6s', true)
+      EventBus.$emit('play6s', true)
       // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
       this.$store.dispatch('nuxtClientInit')

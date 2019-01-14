@@ -83,7 +83,7 @@
         // console.log(newVal)
         if (newVal.errno > 0) {
           this.showDialog('msg', {
-            msg: newVal.errmsg
+            msg: newVal.errmsg ? newVal.errmsg : '今日可参与次数已用完'
           })
           return
         }
@@ -92,7 +92,8 @@
       coupon (newVal) {
         if (newVal.errno > 0 || newVal.errcode > 0) {
           this.showDialog('msg', {
-            msg: newVal.errmsg
+            // msg: newVal.errmsg
+            msg: newVal.errmsg ? newVal.errmsg : '今日可参与次数已用完'
           })
           return
         }
