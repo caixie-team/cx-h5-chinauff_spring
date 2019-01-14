@@ -77,8 +77,8 @@
         return this.$store.state.prize.blessing.data
       },
       locationHref () {
-        // let locationHref = window.location.href
-        let locationHref = 'https://weixin.chinauff.com/spring/'
+        let locationHref = window.location.href
+        // let locationHref = 'https://weixin.chinauff.com/spring/'
         // locationHref = locationHref
         //   + '?myOpenId=' + this.$store.getters.openId
         //   + '&coupon_code=' + this.coupon_code

@@ -266,7 +266,7 @@
             //   coupon_code = luckyData.card.card_code.toString()
             // }
             if (this.$route.path === '/page621') {
-              console.log('page 621 prize1')
+              console.log('page 621 jprize 1')
               this.showDialog('prize1', {
                 blessing_type: blessingData.blessing_type,
                 coupon_type,
