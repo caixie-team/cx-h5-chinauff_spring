@@ -109,7 +109,7 @@
       // TEST
       // EventBus.$emit('jdfl', 'aabbcc')
       // this.showDialog('success3', {showClose: false})
-      // EventBus.$emit('play6s', true)
+      EventBus.$emit('play6s', true)
       // EventBus.$emit('show12s', false)
       this.$store.commit('option/SET_MOBILE_LAYOUT', '')
       this.$store.dispatch('nuxtClientInit')
@@ -127,7 +127,10 @@
       }
 
       const coupon_code = this.$route.query.coupon_code
+      console.log(coupon_code)
+      console.log('-x-x-xx-')
       if (coupon_code !== undefined && coupon_code !== null && coupon_code !== '') {
+        console.log('this.userInfo' + JSON.stringify(this.userInfo))
         // 用于回调页面回来之后处理发劵，领劵，这里可能也会带回来 blessing_code 用于跑到261 页面用的
         if (this.userInfo.status === 1 && this.userInfo.cardNo > 0 && coupon_code !== null && coupon_code !== '') {
           // 领劵

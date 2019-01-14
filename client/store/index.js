@@ -407,7 +407,8 @@ export const actions = {
   },
   // 领劵、发劵
   loadPrizeCoupon ({commit}, data) {
-    // console.log(data)
+    console.log(data)
+    console.log('receiveCoupon')
     commit('prize/REQUEST_COUPON')
     return this.$axios.$post(`${API_PREFIX}/coupon/receiveCoupon`, {
       ...data
