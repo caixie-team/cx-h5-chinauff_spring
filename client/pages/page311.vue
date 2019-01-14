@@ -282,13 +282,13 @@
     display: flex
     align-items: center
     flex-direction: column
-    min-height: 100vh
+    /*min-height: 100vh*/
     position: fixed
     left: 0
     width: 100%
     height: 100%
-    justify-content: center
-    /*justify-content: flex-start*/
+    /*justify-content: center*/
+    justify-content: flex-start
     overflow: hidden
 
     .slide-container
@@ -328,7 +328,7 @@
       /*top: 20%*/
       width: 263px
       height: 85px
-      /*margin-top: 15%*/
+      margin-top: 15%
       /*padding-bottom: 5%*/
 
     h1
@@ -341,7 +341,7 @@
       position: relative
       top: 30px
       z-index: 100
-      width: 55%
+      width: 50%
     .content
       display: flex
       flex-direction: column
