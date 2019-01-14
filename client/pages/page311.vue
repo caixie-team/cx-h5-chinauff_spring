@@ -10,9 +10,6 @@
       <img
         src="~assets/img/page311/shiba.png"
         class="imgShiba">
-      <!--<h1>-->
-      <!--{{ stats.peopleNumber }}人已集满 “福”, 您已集满 {{ stats.myblessingNumber }}个 “福”-->
-      <!--</h1>-->
       <div
         v-if="myBlessingList.length > 0"
         class="content">
@@ -64,7 +61,8 @@
           src="~assets/img/btn/btn_ydhg.png"
           class="btn-yydh">
         <p
-          v-if="currentBlessing.status === 3">
+          v-if="currentBlessing.status === 3"
+          class="exchange-time">
           兑换于 {{ currentBlessing.exchange_time }}
         </p>
         <img
@@ -289,7 +287,8 @@
     left: 0
     width: 100%
     height: 100%
-    justify-content: flex-start
+    justify-content: center
+    /*justify-content: flex-start*/
     overflow: hidden
 
     .slide-container
@@ -324,11 +323,13 @@
       width: 180px
       height: 19px
     .imgShiba
-      /*position: relative*/
-      top: 100px
+      /*position: absolute*/
+      /*top: 100px*/
+      /*top: 20%*/
       width: 263px
       height: 85px
-      padding-top: 18%
+      /*margin-top: 15%*/
+      /*padding-bottom: 5%*/
 
     h1
       font-size: 22px
@@ -345,7 +346,10 @@
       display: flex
       flex-direction: column
       align-items: center
-
+      .exchange-time
+        line-height: 20px
+        font-size: $fontsize-large
+        font-weight: bold
       .fuzi
         width: 400px
         height: 436px
@@ -401,7 +405,6 @@
         &.section1
           position: relative
           top: 180px
-
           img
             width: 266px
             height: 64px
@@ -466,12 +469,6 @@
           &-tian
             background: url("~assets/img/word/word_tian.png") no-repeat
             background-size: 120px 120px
-
-      p
-        line-height: 30px
-        font-size: $fontsize-large-x
-        font-weight: bold
-
       a
         width: 266px
         height: 64px
