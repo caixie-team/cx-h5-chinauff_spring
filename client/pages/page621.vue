@@ -204,7 +204,11 @@
       const coupon_code = this.$route.query.coupon_code
       if (coupon_code) {
         // 用于回调页面回来之后处理发劵，领劵
-        if (this.userInfo.status === 1 && this.userInfo.cardNo > 0 && coupon_code && coupon_code !== null && coupon_code !== '') {
+        if (this.userInfo.status === 1 &&
+          this.userInfo.cardNo > 0 &&
+          coupon_code &&
+          coupon_code !== null &&
+          coupon_code !== '') {
           // 领劵
           // http://demo.micvs.com/crmSession/console/api/coupon/sendCouponByActivity
           this.$store.dispatch('loadPrizeCoupon', {
@@ -256,11 +260,13 @@
             if (luckyData.type === 1) {
               coupon_type = luckyData.coupon.type_code
               coupon_code = luckyData.coupon.coupon_code
-            } else if (luckyData.type === 2) {
-              coupon_type = luckyData.card.card_code
-              coupon_code = luckyData.card.card_code.toString()
             }
+            // else if (luckyData.type === 2) {
+            //   coupon_type = luckyData.card.card_code
+            //   coupon_code = luckyData.card.card_code.toString()
+            // }
             if (this.$route.path === '/page621') {
+              console.log('page 621 prize1')
               this.showDialog('prize1', {
                 blessing_type: blessingData.blessing_type,
                 coupon_type,

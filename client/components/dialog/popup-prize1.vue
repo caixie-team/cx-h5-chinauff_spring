@@ -1,5 +1,5 @@
 <template>
-  <div class="popup prize">
+  <div class="popup prize p621">
     <div
       v-if="word"
       class="section">

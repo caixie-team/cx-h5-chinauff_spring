@@ -186,11 +186,11 @@ export const actions = {
    * @returns {Promise<void>}
    */
   async nuxtClientInit ({commit}, context) {
-    console.log('init ......')
+    console.log('init jssdk ...')
     const jssdkConfig = await loadJSSDKConfig()
-    const config = Object.assign({}, jssdkConfig, {
-      customUrl: '~'
-    })
+    // const config = Object.assign({}, jssdkConfig, {
+    //   customUrl: '~'
+    // })
     await clientInitWechatJSSDK(jssdkConfig, commit, this.getters.beOpenId)
   },
   // 获取 generateOAuthUrl 地址信息
