@@ -65,6 +65,8 @@ module.exports = options => {
         form: true,
         body: postData
       })
+      console.log('aaa--a-')
+      console.log(res)
       res.body.data.beOpenId = encrypt(_openId, openIdKey)
       // 活动账户的信息，包括登录状态和会员信息
       // if Login status === 1
