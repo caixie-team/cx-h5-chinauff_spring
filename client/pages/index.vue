@@ -158,10 +158,18 @@
 
     },
     methods: {
+      isEnd () {
+        const now = new Date().getTime()
+        const endTime = new Date('2019-02-04 23:59:59').getTime()
+        return now > endTime
+      },
       // getLuckyTest () {
       //   this.fireLucky()
       // },
       picker () {
+        if (this.isEnd()) {
+          return
+        }
         const self = this
         wx.chooseImage({
           count: 1, // 默认9

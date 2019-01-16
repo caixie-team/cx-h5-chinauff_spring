@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!isEnd"
     v-cloak
     id="app">
     <share-guide v-show="share"/>
@@ -26,6 +27,17 @@
     </transition>
     <nuxt v-if="!loading.show"/>
   </div>
+  <c-page
+    v-else
+    type="bg1">
+    <div
+      slot="content"
+      class="isEnd">
+      <strong>
+        活动已结束
+      </strong>
+    </div>
+  </c-page>
 </template>
 <script>
   /* eslint-disable new-cap,no-unused-vars,no-undef,space-infix-ops */
@@ -34,11 +46,13 @@
   import Loading from '../components/game/loading'
   import EventBus from '../utils/event-bus.js'
   // import {debounce} from '../common/helpers/util'
+  import CPage from '../components/c-page.vue'
 
   export default {
     components: {
       ShareGuide,
-      Loading
+      Loading,
+      CPage
     },
     data () {
       return {
@@ -54,9 +68,18 @@
         isShow12s: false,
         isShow6s: false,
         showTimer: false
+
+        // if (now > endTime) {
+        //   return next()
+        // }
       }
     },
     computed: {
+      isEnd () {
+        const now = new Date().getTime()
+        const endTime = new Date('2019-02-04 23:59:59').getTime()
+        return now > endTime
+      },
       loading () {
         return this.$store.state.game.loading
       },
@@ -78,6 +101,9 @@
       }
     },
     watch: {
+      isEnd (newVal) {
+        console.log(newVal)
+      },
       // 劵或卡
       lucky (newVal) {
         // console.log(newVal)
@@ -133,7 +159,7 @@
           showClose: true
         })
       })
-      if (process.browser) {
+      if (process.browser && !this.isEnd) {
         if (this.game === null) {
           const GameClass = require('../components/game/game').default
           const gameInstance = new GameClass()
@@ -260,7 +286,16 @@
     canvas
       width: 100%
       height: 100%
-
+  .isEnd
+    width: 100%
+    height: 100%
+    position: fixed
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    font-weight: 800
+    font-size: $fontsize-large-xxxx
   #game_container
     position: fixed
     top: 0
