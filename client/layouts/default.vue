@@ -101,9 +101,6 @@
       }
     },
     watch: {
-      isEnd (newVal) {
-        console.log(newVal)
-      },
       // 劵或卡
       lucky (newVal) {
         // console.log(newVal)
@@ -135,7 +132,7 @@
       },
     },
     mounted () {
-      console.log(this.isEnd)
+      console.log('The end ?' + this.isEnd)
       // TEST 关闭 loading
       // this.$store.commit('game/SHOW_LOADING', false)
       EventBus.$on('err-msg', (errmsg) => {
