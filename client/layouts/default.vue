@@ -135,6 +135,7 @@
       },
     },
     mounted () {
+      console.log(this.isEnd)
       // TEST 关闭 loading
       // this.$store.commit('game/SHOW_LOADING', false)
       EventBus.$on('err-msg', (errmsg) => {
