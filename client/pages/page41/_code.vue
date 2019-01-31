@@ -153,7 +153,7 @@
           this.datePicker = this.$createDatePicker({
             title: '预约兑换时间',
             min: new Date(2018, 12, 5),
-            max: new Date(2019, 1, 1),
+            max: new Date(2019, 1, 4),
             value: new Date(),
             format: {
               year: 'YYYY年',
