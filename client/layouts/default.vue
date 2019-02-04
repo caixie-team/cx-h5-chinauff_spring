@@ -1,5 +1,5 @@
 <template>
-  <div
+<!--  <div
     v-if="!isEnd"
     v-cloak
     id="app">
@@ -26,9 +26,8 @@
       </div>
     </transition>
     <nuxt v-if="!loading.show"/>
-  </div>
+  </div>-->
   <c-page
-    v-else
     type="bg1">
     <div
       slot="content"
