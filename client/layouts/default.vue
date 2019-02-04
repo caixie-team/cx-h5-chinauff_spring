@@ -292,7 +292,8 @@
     justify-content: center
     align-items: center
     font-weight: 800
-    font-size: $fontsize-large-xxxx
+    color: #fff
+    font-size: 38px
   #game_container
     position: fixed
     top: 0
