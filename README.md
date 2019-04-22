@@ -1,8 +1,7 @@
 
 <img src="https://github.com/caixie-ltd/cx-h5-chinauff_spring/blob/master/doc/case-chinauffSpring-featured.png?raw=true" title="" width="1600px">
 
-#老娘舅春节集福
-    为客户定制春节集福活动系统, 支持高并发、分布部署。基于 Nodejs\MySql\Redis\Traefix\NuxtJS 等技术。
+# 为客户定制春节集福活动系统, 支持高并发、分布部署。基于 Nodejs\MySql\Redis\Traefix\NuxtJS 等技术。
 
 <img src="https://github.com/caixie-ltd/cx-h5-chinauff_spring/blob/master/doc/case-chinauffSpring-1.png?raw=true" title="" width="356px">
 <img src="https://github.com/caixie-ltd/cx-h5-chinauff_spring/blob/master/doc/case-chinauffSpring-2.png?raw=true" title="" width="356px">
